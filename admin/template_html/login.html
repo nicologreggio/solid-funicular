@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="it">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="Content-Language" content="IT" />
+        <meta name="robots" content="NOINDEX,NOFOLLOW" />
+
+        <link rel="shortcut icon" href="/images/fav.ico" TYPE="image/x-icon">
+        <link rel="stylesheet" href="/admin/style/style.css">
+
+        <title>Login al pannello di amministrazione</title>
+    </head>
+    <body>
+        <header>
+            <nav>
+                <img src="/images/logo.png">
+                <ul>
+                    <li>
+                        <a href="/admin/register.php">
+                            Aggiungi amministratore
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            Categorie
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            Prodotti
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            Materiali
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            Richieste di preventivo
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            Logout
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <h1>Login pannello di amministrazione</h1>
+            <form action="login.php" method="post" id="form-login" data-validate="1">
+                <label for="email">Email</label>
+                <input 
+                    id="email" 
+                    name="email" 
+                    type="email"
+                    placeholder="Inserisci email" 
+                    required="required" 
+                    autofocus="autofocus" 
+                    data-error-field="error-email" 
+                    data-rules="required,email" 
+                    data-error-message="L'email inserita non è valida">
+                <p id="error-email" class="error"></p>
+
+                <label for="password">Password</label>
+                <input 
+                    id="password" 
+                    type="password"
+                    name="password" 
+                    placeholder="Inserisci password" 
+                    required="required" 
+                    data-error-field="error-password" 
+                    data-rules="required" 
+                    data-error-message="La password non può essere vuota">
+                <p id="error-password" class="error"></p>
+
+                <button type="submit">
+                    Accedi
+                </button>
+            </form>
+        </main>
+        <script src="/admin/script/validate.js"></script>
+    </body>

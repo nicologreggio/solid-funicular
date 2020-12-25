@@ -1,0 +1,133 @@
+body {
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+    padding: 0;
+    margin: 0;
+}
+header{
+    border-bottom: 1px solid rgba(0,0,0,.2);
+    box-shadow: 0 0px 4px rgba(0, 0, 0, 0.2);
+    margin:0;
+    padding:0;
+}
+nav {
+    margin:auto;
+    /* come il nostro amato stackoverflow */
+    max-width: 1300px; 
+    height: 5em;
+    padding: .2em 1.5em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+nav > img {
+    max-height: 3em;
+}
+nav > ul {
+    display: flex;
+    list-style-type: none;
+}
+nav > ul > li{
+    padding: 1em 1.5em 1em 0em;
+    text-transform: uppercase;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+nav > ul > li > a {
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9em;
+    color: rgba(0,0,0,.5);
+    transition: .5s all;
+}
+nav > ul > li:hover > a{
+    color: rgba(0,0,0,.9);
+}
+
+main{
+    margin:auto;
+    max-width: 1200px; 
+    padding: 2em 5em;
+}
+
+main > h1{
+    border-bottom: 1px solid rgba(0,0,0,.2);
+    padding-bottom:.5em;
+}
+
+h1{
+    font-size: 2em;
+    font-weight: 500;
+}
+h2{
+    font-size: 1.4em;
+    font-weight: 400;
+}
+h3{
+    font-size: 1em;
+    font-weight: 300;
+}
+
+form input {
+    display: block;
+    width: calc( 100% - 1.5em );
+    padding: .375em .75em;
+    font-size: 1em;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    appearance: menulist-button;
+    background-image: none !important;
+    color: -internal-light-dark(black, white) !important;
+}
+form input:focus{
+    color: #495057;
+    background-color: #fff;
+    border-color: #80bdff;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+}
+form input.error{
+    border: 1px solid #ff7373 !important;
+}
+form input.error:focus{
+    box-shadow: 0 0 0 0.2rem rgba(250, 0, 0, 0.25);
+}
+
+form label{
+    display: block;
+    padding: 2em 0 .2em 0;
+}
+
+form button{
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    border: 1px solid transparent;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: .25rem;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    text-transform: none;
+    margin: 2em 0 .2em 0;;
+    width:100%;
+}
+form button:hover{
+    color: #fff;
+    background-color: #0069d9;
+    border-color: #0062cc;
+    cursor: pointer;
+    text-decoration: none;
+}
+p.error{
+    color:rgb(187, 23, 23);
+    font-size: 1em;
+}
