@@ -18,8 +18,8 @@ foreach(DBC::getInstance()->query('SELECT * FROM CATEGORIES')->fetchAll() as $ca
             '.e($cat->_DESCRIPTION).'
         </p>
         <div class="clearfix">
-            <a class="w49 left button button-green">Modifica</a>
-            <a class="w49 right button button-red">Elimina</a>
+            <a class="w49 left button button-green" href="/admin/category/edit.php?id='.e($cat->_ID).'">Modifica</a>
+            <a class="w49 right button button-red" href="/admin/category/delete.php?id='.e($cat->_ID).'">Elimina</a>
         </div>
         <hr class="mt-3">
     </li>
