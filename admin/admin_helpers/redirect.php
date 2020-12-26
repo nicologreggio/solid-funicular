@@ -14,3 +14,9 @@ function redirectIfLogged() : void{
         die();
     }
 }
+
+function redirectTo($url){
+    echo "Ti stiamo redirezionando a $url.";
+    header("Location: $url");
+    die();
+}

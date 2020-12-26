@@ -52,7 +52,8 @@
         </header>
         <main>
             <h1>Crea una nuova categoria per il sito</h1>
-            <form action="/admin/login.php" method="post" id="form-login" data-validate="1">
+            <p class="error"><error-db/></p>
+            <form action="/admin/category/create.php" method="post" id="form-login" data-validate="1">
                 <label for="name">Nome</label>
                 <input 
                     value="<value-name/>"
@@ -65,24 +66,36 @@
                     data-error-field="error-name" 
                     data-rules="required|min_length:2|max_length:100" 
                     data-error-message="Il nome è obbligatorio e deve essere almeno lungo 2 caratteri e lungo al massimo 100 caratteri">
-                <p id="error-name" class="error"><error-name/></p>
+                <div id="error-name" class="error"><error-name/></div>
 
-                <label for="password">Password</label>
-                <input 
-                    id="password" 
-                    type="password"
-                    name="password" 
-                    placeholder="Inserisci password" 
+                <label for="meta-description">Meta-descrizione</label>
+                <textarea 
+                    id="meta-description" 
+                    name="meta-description" 
+                    placeholder="Inserisci la meta-descrizione" 
                     required="required" 
-                    data-error-field="error-password" 
-                    data-rules="required" 
-                    data-error-message="La password non può essere vuota">
-                <p id="error-password" class="error"></p>
+                    data-error-field="error-meta-description" 
+                    data-rules="required|max_length:500|min_length:30" 
+                    data-error-message="E' obbligatorio inserire una meta-descrizione che sia più lunga di 30 caratteri e lunga al massimo 500 caratteri"><value-meta-description/></textarea>
+                <div id="error-meta-description" class="error"><error-meta-description/></div>
+                
+                <label for="description">Descrizione</label>
+                <textarea 
+                    id="description" 
+                    name="description" 
+                    placeholder="Inserisci la descrizione" 
+                    required="required" 
+                    data-error-field="error-description" 
+                    data-rules="required|min_length:30" 
+                    data-error-message="E' obbligatorio inserire una descrizione lunga almeno 30 caratteri"><value-description/></textarea>
+                <div id="error-description" class="error pb-2"><error-description/></div>
+
+                <input type="checkbox" name="menu" id="menu" class="left " <value-menu/>>
+                <label for="menu" class="d-inline pl-1" >Visualizzazione su menu principale</label>
 
                 <button type="submit">
                     Accedi
                 </button>
             </form>
         </main>
-        <script src="/admin/script/validate.js"></script>
     </body>

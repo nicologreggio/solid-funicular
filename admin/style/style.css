@@ -70,7 +70,8 @@ h3{
 abbr {
     text-decoration: none;
 }
-form input {
+form input,
+form textarea {
     display: block;
     width: calc( 100% - 1.5em );
     padding: .375em .75em;
@@ -86,17 +87,29 @@ form input {
     background-image: none !important;
     color: -internal-light-dark(black, white) !important;
 }
-form input:focus{
+
+form input[type=checkbox]{
+    width:auto;
+}
+form textarea{
+    resize: vertical;
+    font-family: Arial;
+}
+
+form input:focus,
+form textarea:focus{
     color: #495057;
     background-color: #fff;
     border-color: #80bdff;
     outline: 0;
     box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
 }
-form input.error{
+form input.error,
+form textarea.error{
     border: 1px solid #ff7373 !important;
 }
-form input.error:focus{
+form input.error:focus,
+form textarea.error:focus{
     box-shadow: 0 0 0 0.2rem rgba(250, 0, 0, 0.25);
 }
 
@@ -279,7 +292,18 @@ hr {
 
 
 
-
+.d-initial{
+    display: initial;
+}
+.d-inline{
+    display: inline;
+}
+.d-flex{
+    display: flex;
+}
+.d-block{
+    display: block;
+}
 
 .p0{
     padding:0;
