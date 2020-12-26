@@ -1,5 +1,5 @@
 <?php
-require_once(__DIR__.'/../imports.php');
+require_once(__DIR__.'/../inc/imports.php');
 function redirectIfNotLogged() : void{
     if(!auth()->isLogged()){
         echo "Ti stiamo redirezionando al login.";
