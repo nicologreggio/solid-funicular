@@ -10,7 +10,7 @@
         <link rel="shortcut icon" href="/images/fav.ico" TYPE="image/x-icon">
         <link rel="stylesheet" href="/admin/style/style.css">
 
-        <title>Crea nuova categoria</title>
+        <title>Modifica categoria numero <value-id/></title>
     </head>
     <body>
         <header>
@@ -51,9 +51,10 @@
             </nav>
         </header>
         <main>
-            <h1>Crea una nuova categoria per il sito</h1>
+            <h1>Modifica la categoria n.<value-id/></h1>
             <p class="error"><error-db/></p>
-            <form action="/admin/category/create.php" method="post" id="form-login" data-validate="1">
+            <form action="/admin/category/edit.php" method="post" id="form-login" data-validate="1">
+                <input type="hidden" name="id" value="<value-id/>">
                 <label for="name">Nome</label>
                 <input 
                     value="<value-name/>"

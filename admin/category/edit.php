@@ -1,7 +1,9 @@
 <?php
 require_once(__DIR__.'/../inc/header_php.php');
 redirectIfNotLogged();
-$page = file_get_contents('../template_html/category/create.html');
+$page = file_get_contents('../template_html/category/edit.html');
+$page = str_replace('<value-id/>', $_REQUEST['id'], $page);
+
 if($_SERVER['REQUEST_METHOD'] == 'POST' ){
     $err = validate([
         'name' => $_POST['name'],
@@ -23,13 +25,20 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' ){
     ]);
     if($err === true){
         $err = DBC::getInstance()->prepare("
-            INSERT INTO CATEGORIES(`_NAME`, `_DESCRIPTION`, `_METADESCRIPTION`, `_MENU`) VALUES
-            (?, ?, ?, b?)
+            UPDATE CATEGORIES
+            SET 
+            `_NAME` = ?, 
+            `_DESCRIPTION` = ?, 
+            `_METADESCRIPTION` = ?, 
+            `_MENU` = b?
+            WHERE
+            `_ID` = ?
         ")->execute([
             $_POST['name'],
             $_POST['description'],
             $_POST['meta-description'],
-            isset($_POST['menu'])
+            isset($_POST['menu']),
+            $_POST['id']
         ]);
         if($err === true){
             redirectTo('/admin/category/index.php');
@@ -59,13 +68,25 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' ){
      }
 }
 else {
-    $page = str_replace("<value-name/>", "", $page);
-    $page = str_replace("<value-description/>", "", $page);
-    $page = str_replace("<value-meta-description/>", "", $page);
+    $stm = DBC::getInstance()->prepare("
+        SELECT *
+        FROM CATEGORIES
+        WHERE `_ID` = ?
+    ");
+    $stm->execute([
+        $_REQUEST['id']
+    ]);
+    $category = $stm->fetch();
+    if($category === false){
+        error('La categoria cercata non esiste');
+    } 
+    $page = str_replace("<value-name/>", $category->_NAME, $page);
+    $page = str_replace("<value-description/>", $category->_DESCRIPTION, $page);
+    $page = str_replace("<value-meta-description/>", $category->_METADESCRIPTION, $page);
+    $page = str_replace('<value-menu/>', $category->_MENU == '1' ? 'checked' : '', $page);
     $page = str_replace('<error-db/>', "", $page);
     $page = str_replace('<error-name/>', "", $page);
     $page = str_replace('<error-description/>', "" , $page);
     $page = str_replace('<error-meta-description/>', "" , $page);
-    $page = str_replace('<value-menu/>', '', $page);
 }
 echo $page;
