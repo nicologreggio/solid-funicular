@@ -1,23 +1,29 @@
 <?php
+require_once(__DIR__."/../DBC.php");
 class Rules{
     public static function email ($value){
-        return filter_var($value, FILTER_VALIDATE_EMAIL);
+        return self::regex($value, '/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/');
     }
-    public function numeric($value){
+    public static function numeric($value){
         return is_numeric($value) == true;
     }
-    public function alphabetic($value, $min = null, $max = null){
-        if($min > $max) $max = $min;
-        if($min != null && $max == null) $max = INF;
+    public static function alphabetic($value, $min = null, $max = null){
+        if($min == null && $max == null) {
+            $min = 0;
+            $max = INF;
+        }
+        else if($min > $max) {
+            $max = $min;
+        }
+        else if($min != null && $max == null) {
+            $max = INF;
+        }
         $value = preg_replace(array('/\s{2,}/', '/[\t\n]/'), ' ', $value);
         $value = trim($value);
         $words = explode(" ", $value);
-        var_dump($min);
-        var_dump( $max);
         if(sizeof($words) >= $min && sizeof($words) <= $max){
-            var_dump('checking words');
             foreach($words as $word){
-                if(!preg_match('/[a-zA-Z\ ]*/', $word)){
+                if(!preg_match('/^[a-zA-Z\ ]*$/', $word)){
                     return false;
                 }
             }
@@ -25,23 +31,33 @@ class Rules{
         }
         return false;
     }
-    public function required($value){
+    public static function required($value){
         return $value != null && $value != "" && $value == true ;
     }
-    public function regex($value, $regex){
+    public static function regex($value, $regex){
         return preg_match($regex, $value) == true;
     }
-    public function min_length($value, $min){
+    public static function min_length($value, $min){
         return strlen($value) >= $min;
     }
-    public function max_length($value, $max){
+    public static function max_length($value, $max){
         return strlen($value) <= $max;
     }
-    public function length($value, $val){
+    public static function length($value, $val){
         return strlen($value) == $val;
     }
-    public function integer(){
-        return preg_match("/^[1-9]*$/", $value) == true;
+    public static function integer($value){
+        return preg_match("/^[0-9]*$/", $value) == true;
+    }
+    public static function equals($value, $compare){
+        return $value == $compare;
+    }
+    public static function unique($value, $table, $column){
+        $sql = "SELECT count(*) FROM $table WHERE $column = ?"; 
+        $result = DBC::getInstance()->prepare($sql); 
+        $result->execute([$value]); 
+        $number_of_rows = $result->fetchColumn(); 
+        return $number_of_rows == 0;
     }
 }
 function validate(array $values, array $rules, array $errors = []){
@@ -51,13 +67,18 @@ function validate(array $values, array $rules, array $errors = []){
         foreach($field_rules as $rule){
             $field_value = $values[$field_name] ?? null;
             $params = [];
-            if($pos = strpos($rule, ':') && $rule == 'regex'){
-                $params= substr($rule,$pos+1);
-                $rule = substr($rule, 0, $pos);
-            }
-            else if($pos = strpos($rule, ':')){
-                $params= explode(',', substr($rule,$pos+1));
-                $rule = substr($rule, 0, $pos);
+            $pos = strpos($rule, ':');
+            if($pos){
+                $real_rule = substr($rule, 0, $pos);
+                if($real_rule == 'regex'){
+                    $params= [substr($rule,$pos+1)];
+                } else if($real_rule == "equals"){
+                    $params = [$values[substr($rule,$pos+1)]];
+                }
+                else if($pos){
+                    $params= explode(',', substr($rule,$pos+1));
+                }
+                $rule = $real_rule;
             }
             $validation = Rules::$rule($field_value, ...$params);
             if($validation == false){
@@ -79,15 +100,14 @@ function validate(array $values, array $rules, array $errors = []){
         return $final_errors;
     }
 }
-/*
+
 
 /////////////////////////////////
 //        PER FAR TEST         //
 /////////////////////////////////
-
-// validate email
+/*
 var_dump(validate([
-    ''
+    'email' => 'admin@admin.admin'
 ],[
     'email' => ['required', "email"]
 ],[
@@ -95,11 +115,11 @@ var_dump(validate([
     'email.required' => "E' necessaria una email"
 ]));
 var_dump(validate([
-    'testo' => 'asd '
+    'testo' => 'as1d'
 ],[
     'testo' => ["alphabetic:1"]
 ],[
-    'testo.alphabetic' => "testo non alfabetico"
+    'testo.alphabetic' => "testo non alfabetico o troppo lungo"
 ]));
 
 var_dump(validate([
@@ -110,4 +130,23 @@ var_dump(validate([
     'testo.regex' => "il testo deve essere asd con tante d finali quante ne vuoi"
 ]));
 
+
+
+var_dump(validate([
+    'testo' => 'asddddde',
+    'conferma' => 'asdddde'
+],[
+    'testo' => ["equals:conferma"]
+],[
+    'testo.equals' => "La conferma non è uguale"
+]));
+
+
+var_dump(validate([
+    'email' => 'admin@admin.admin',
+],[
+    'email' => ["unique:USERS,_EMAIL"]
+],[
+    'email.unique' => "L'email esiste già nel DB"
+]));
 */
