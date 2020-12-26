@@ -87,4 +87,7 @@ CREATE TABLE QUOTE_PRODUCT(
     FOREIGN KEY(_PRODUCT_ID) REFERENCES PRODUCTS(_ID) ON UPDATE CASCADE ON DELETE CASCADE
 ) ENGINE=INNODB DEFAULT CHARSET=LATIN1;
 
+INSERT INTO `USERS` (`_ID`, `_NAME`, `_SURNAME`, `_CITY`, `_ADDRESS`, `_CAP`, `_ADMIN`, `_EMAIL`, `_PASSWORD`) VALUES
+(1, 'admin name', 'admin surname', 'admin city', 'admin address', '10010', b'1', 'admin@admin.admin', 'admin')
+
 COMMIT;
