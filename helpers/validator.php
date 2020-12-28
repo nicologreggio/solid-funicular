@@ -59,6 +59,9 @@ class Rules{
         $number_of_rows = $result->fetchColumn(); 
         return $number_of_rows == 0;
     }
+    public static function in_table($value, $table, $column){
+        return !self::unique($value, $table, $column); 
+    }
     public static function file($value, $size = 100){ // 100 Kb
         return isset($value)   
                 && $value['error'] === UPLOAD_ERR_OK
