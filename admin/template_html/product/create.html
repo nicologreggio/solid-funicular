@@ -129,6 +129,18 @@
                     data-error-message="E' obbligatorio selezionare un'immagine">
                 <div id="error-image" class="error pb-2"><error-image/></div>
 
+                <label for="image-description">Descrizione immagine del prodotto</label>
+                <input 
+                    value="<value-image-description/>"
+                    id="image-description" 
+                    name="image-description" 
+                    type="text"
+                    placeholder="Inserisci la descrizione dell'immagine del prodotto"
+                    data-error-field="image-description" 
+                    data-rules="required|min_length:10|max_length:200" 
+                    data-error-message="La descrizione del prodotto deve essere di lunghezza compresa tra 10 e 200 caratteri">
+                <div id="error-image-description" class="error"><error-image-description/></div>
+
                 <label for="category">Categoria</label>
                 <select 
                     id="category" 

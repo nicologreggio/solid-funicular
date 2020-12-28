@@ -28,7 +28,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' ){
         'age' => $_POST['age'] ?? "",
         'image' => $_FILES['image'] ?? null,
         'category' => $_POST['category'],
-        'image' => $_FILES['image']
+        'image' => $_FILES['image'],
+        'image-description' => $_POST['image-description']
     ],[
         'name' => ["required", "min_length:2", "max_length:30"],
         'description' => ["required",  "min_length:30"],
@@ -36,6 +37,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' ){
         'dimensions' => ['max_length:300'],
         'age' => ['max_length:50'],
         'category' => ['in_table:CATEGORIES,_ID'],
+        'image-description' => ['required', 'min_length:10', 'max_length:200'],
         'image' => ($_FILES['image']['size'] == 0 ? [] : ['file:700', 'image'])
     ],[
         "name.required" => "E' obbligatorio inserire un nome",
@@ -57,6 +59,10 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' ){
 
         "image.file" => "E' obbligatorio inserire un immagine valida di dimensione massima 700kb",
         "image.image" => "Il file selezionato deve essere un immagine JPEG, PNG, JPEG2000 o GIF",
+
+        'image-description.required' => "E' obbligatorio inserire una descrizione dell'immagine",
+        'image-description.min_length' => "La descrizione dell'immagine inserita deve essere lunga almeno 10 caratteri",
+        'image-description.max_length' => "La descrizione dell'immagine inserita può essere lunga al massimo 200 caratteri",
     ]);
 
     if($err === true){
@@ -83,7 +89,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' ){
             `_METADESCRIPTION` = ?, 
             `_DIMENSIONS` = ?, 
             `_AGE` = ?,  
-            `_CATEGORY` = ?
+            `_CATEGORY` = ?,
+            `_MAIN_IMAGE_DESCRIPTION` = ?
             WHERE _ID = ?
         ")->execute([
             $_POST['name'],
@@ -92,6 +99,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' ){
             $_POST['dimensions'],
             $_POST['age'],
             $_POST['category'],
+            $_POST['image-description'],
             $_REQUEST['id'],
         ]);
         
@@ -107,12 +115,14 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' ){
     $page = str_replace("<value-meta-description/>", $_POST["meta-description"], $page);
     $page = str_replace('<value-age/>', $_POST["age"], $page);
     $page = str_replace('<value-dimensions/>', $_POST["dimensions"], $page);
+    $page = str_replace('<value-image-description/>', $_POST["image-description"], $page);
 
     if($err === false){
         $page = str_replace('<error-db/>', "C'è stato un errore durante l'inserimento", $page);
         $page = str_replace('<error-name/>', "", $page);
         $page = str_replace('<error-description/>', "" , $page);
         $page = str_replace('<error-meta-description/>', "" , $page);
+        $page = str_replace('<error-image-description/>', "" , $page);
     }
     else if(is_array($err)){
         $page = str_replace('<error-db/>', "", $page); // rimuovo placeholder per errore db
@@ -133,6 +143,7 @@ else {
     $page = str_replace("<value-meta-description/>", $product->_METADESCRIPTION, $page);
     $page = str_replace('<value-age/>', $product->_AGE, $page);
     $page = str_replace('<value-dimensions/>', $product->_DIMENSIONS, $page);
+    $page = str_replace('<value-image-description/>', $product->_MAIN_IMAGE_DESCRIPTION, $page);
     
     $page = str_replace('<error-db/>', "", $page);
     $page = str_replace('<error-name/>', "", $page);
@@ -142,6 +153,7 @@ else {
     $page = str_replace('<error-dimensions/>', "" , $page);
     $page = str_replace('<error-image/>', "" , $page);
     $page = str_replace('<error-category/>', "" , $page);
+    $page = str_replace('<error-image-description/>', "" , $page);
 }
 $categories = DBC::getInstance()->query("
     SELECT _ID, _NAME FROM CATEGORIES 
