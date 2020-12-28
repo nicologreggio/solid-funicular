@@ -11,18 +11,21 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' ){
         'meta-description' => $_POST['meta-description'] ?? "",
     ],[
         'name' => ["required", "min_length:2", "max_length:100"],
-        'description' => ["required", "max_length:500", "min_length:30"],
-        'meta-description' => ["required", "min_length:30"],
+        'description' => ["required", "min_length:30"],
+        'meta-description' => ["required", "max_length:500", "min_length:30"],
     ],[
         "name.required" => "E' obbligatorio inserire un nome",
         "name.min_length" => "Il nome inserito deve essere lungo almeno 2 caratteri",
         "name.max_length" => "Il nome inserito può essere lungo al massimo 50 caratteri",
+        
         "meta-description.required" => "E' obbligatorio inserire una meta-descrizione",
         "meta-description.min_length" => "La meta descrizione deve essere lunga almeno 30 caratteri",
-        "meta-description." => "La meta descrizione può essere lunga al massimo 500 caratteri",
+        "meta-description.max_length" => "La meta descrizione può essere lunga al massimo 500 caratteri",
+
         "description.required" => "E' obbligatorio inserire una descrizione",
         "description.min_length" => "La descrizione deve essere lunga almeno 30 caratteri",
     ]);
+
     if($err === true){
         $err = DBC::getInstance()->prepare("
             UPDATE CATEGORIES
