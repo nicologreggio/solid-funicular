@@ -32,16 +32,34 @@ nav > ul > li{
     display: flex;
     justify-content: center;
     align-items: center;
+
+    color: black;
+    font-weight: 600;
+    font-size: 0.98em !important;
 }
 nav > ul > li > a {
+    position: relative;
     text-decoration: none;
     font-weight: 600;
-    font-size: 0.9em;
     color: rgba(0,0,0,.5);
     transition: .5s all;
 }
 nav > ul > li:hover > a{
     color: rgba(0,0,0,.9);
+}
+nav > ul > li > a::after{
+    height: 1px;
+    transition: .3s linear all;
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right:100%;
+    top:100%;
+    background-color: black;
+}
+nav > ul > li:hover > a::after{
+    right: 0;
 }
 
 main{
@@ -288,17 +306,18 @@ hr {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
+.flex-col{
+    flex-direction: column;
+} 
+.justify-center{
+    justify-content: center;
+} 
+.content-center{
+    align-items: center;
+}
+.h80vh{
+    height: 80vh;
+}
 
 
 
