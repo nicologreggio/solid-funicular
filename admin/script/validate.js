@@ -29,32 +29,46 @@ const filters = {
         return input.files.length != 0;
     }
 };
+function validateInput(input){
+    let valid = true;
+    if(input.dataset.rules){
+        document.getElementById(input.dataset.errorField).innerHTML = "";
+        input.classList.remove('error');
+        let rules = input.dataset.rules.split('|');
+        rules.forEach(r => {
+            let params = [];
+            if(r.includes(':')){
+                let tmp = r.split(':');
+                r = tmp[0];
+                params = tmp[1].split(',');
+            }
+            if(filters[r] && !filters[r](input, ...params)){
+                input.classList.add('error')
+                document.getElementById(input.dataset.errorField).innerHTML = "<p class='error'>"+input.dataset.errorMessage+"</p>";
+                valid = false;
+            } 
+        })
+    }
+    return valid;
+}
 document.addEventListener("DOMContentLoaded", function(event) {
     for(let form of document.getElementsByTagName('form')){
         if(form.dataset.validate == "1"){
+            let inputs = [...form.getElementsByTagName('input'), ...form.getElementsByTagName('textarea'), ...form.getElementsByTagName('select'),];
+
+            for(let input of inputs){
+                input.addEventListener('focusout', function(e){
+                    e.preventDefault();
+                    validateInput(e.target);
+                })
+            }
+
             form.addEventListener('submit', function(e){
                 e.preventDefault();
                 e.stopImmediatePropagation();
                 let valid = true;
-                for(let input of [...form.getElementsByTagName('input'), ...form.getElementsByTagName('textarea'), ...form.getElementsByTagName('select'),]){
-                    if(input.dataset.rules){
-                        document.getElementById(input.dataset.errorField).innerHTML = "";
-                        input.classList.remove('error');
-                        let rules = input.dataset.rules.split('|');
-                        rules.forEach(r => {
-                            let params = [];
-                            if(r.includes(':')){
-                                let tmp = r.split(':');
-                                r = tmp[0];
-                                params = tmp[1].split(',');
-                            }
-                            if(filters[r] && !filters[r](input, ...params)){
-                                input.classList.add('error')
-                                document.getElementById(input.dataset.errorField).innerHTML = "<p class='error'>"+input.dataset.errorMessage+"</p>";
-                                valid = false;
-                            } 
-                        })
-                    }
+                for(let input of inputs){
+                    valid = validateInput(input)
                 }
                 if(valid) form.submit();
             })
@@ -63,6 +77,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
     return false;
 });
 
-// convertito con BABEL per retrocompatibilità Browsers: defaults, ie 6, ie_mob 11
+// convertito con BABEL per retro-compatibilità Browsers: defaults, ie 6, ie_mob 11
 // link 
 // https://babeljs.io/repl#?browsers=defaults%2C%20ie%206%2C%20ie_mob%2011&build=&builtIns=false&spec=false&loose=false&code_lz=Q&debug=false&forceAllTransforms=false&shippedProposals=false&circleciRepo=&evaluate=false&fileSize=false&timeTravel=false&sourceType=module&lineWrap=true&presets=env%2Creact%2Cstage-2&prettier=false&targets=&version=7.12.12&externalPlugins=
