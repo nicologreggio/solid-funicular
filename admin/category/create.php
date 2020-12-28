@@ -4,20 +4,20 @@ redirectIfNotLogged();
 $page = file_get_contents('../template_html/category/create.html');
 if($_SERVER['REQUEST_METHOD'] == 'POST' ){
     $err = validate([
-        'name' => $_POST['name'],
-        'description' => $_POST['description'],
-        'meta-description' => $_POST['meta-description'],
+        'name' => $_POST['name'] ?? "",
+        'description' => $_POST['description'] ?? "",
+        'meta-description' => $_POST['meta-description'] ?? "",
     ],[
         'name' => ["required", "min_length:2", "max_length:100"],
-        'description' => ["required", "max_length:500", "min_length:30"],
-        'meta-description' => ["required", "min_length:30"],
+        'description' => ["required", "min_length:30"],
+        'meta-description' => ["required", "min_length:30", "max_length:500"],
     ],[
         "name.required" => "E' obbligatorio inserire un nome",
         "name.min_length" => "Il nome inserito deve essere lungo almeno 2 caratteri",
         "name.max_length" => "Il nome inserito può essere lungo al massimo 50 caratteri",
         "meta-description.required" => "E' obbligatorio inserire una meta-descrizione",
         "meta-description.min_length" => "La meta descrizione deve essere lunga almeno 30 caratteri",
-        "meta-description." => "La meta descrizione può essere lunga al massimo 500 caratteri",
+        "meta-description.max_length" => "La meta descrizione può essere lunga al massimo 500 caratteri",
         "description.required" => "E' obbligatorio inserire una descrizione",
         "description.min_length" => "La descrizione deve essere lunga almeno 30 caratteri",
     ]);

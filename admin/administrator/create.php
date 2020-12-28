@@ -5,14 +5,14 @@ $page = file_get_contents('../template_html/administrator/create.html');
 if($_SERVER['REQUEST_METHOD'] == 'POST' ){
     //$name, $surname, $city, $address, $cap, $email, $password, $confirm
     $register = auth()->register(
-        $_POST['name'],
-        $_POST['surname'],
-        $_POST['city'],
-        $_POST['address'],
-        $_POST['cap'],
-        $_POST['email'],
-        $_POST['password'],
-        $_POST['confirm']
+        $_POST['name'] ?? "",
+        $_POST['surname'] ?? "",
+        $_POST['city'] ?? "",
+        $_POST['address'] ?? "",
+        $_POST['cap'] ?? "",
+        $_POST['email'] ?? "",
+        $_POST['password'] ?? "",
+        $_POST['confirm'] ?? ""
     );
     // registrazione andata a buon fine
     if($register === true){

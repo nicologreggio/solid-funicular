@@ -1,29 +1,32 @@
 "use strict";
 const filters = {
-    email : function (email){
+    email : function (input){
         const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        return re.test(String(email).toLowerCase());
+        return re.test(String(input.value).toLowerCase());
     },
-    required : function(value){
-        return value != null && value != "" && value.length != 0;
+    required : function(input){
+        return input.value != null && input.value != "" && input.value.length != 0;
     },
-    equals : function(value, id){
-        return value == document.getElementById(id).value;
+    equals : function(input, id){
+        return input.value == document.getElementById(id).value;
     },
-    max_length : function(value, max){
-        return value.length <= max;
+    max_length : function(input, max){
+        return input.value.length <= max;
     },
-    min_length : function(value, min){
-        return value.length >= min;
+    min_length : function(input, min){
+        return input.value.length >= min;
     },
-    length : function(value, len){
-        return value.length == len;
+    length : function(input, len){
+        return input.value.length == len;
     },
-    alphabetic : function(value){
-        return /^[A-Za-z\ ]*$/.test(value);
+    alphabetic : function(input){
+        return /^[A-Za-z\ ]*$/.test(input.value);
     },
-    integer: function(value){
-        return /^[0-9]*$/.test(value)
+    integer: function(input){
+        return /^[0-9]*$/.test(input.value)
+    },
+    file_required: function(input){
+        return input.files.length != 0;
     }
 };
 document.addEventListener("DOMContentLoaded", function(event) {
@@ -45,7 +48,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
                                 r = tmp[0];
                                 params = tmp[1].split(',');
                             }
-                            if(filters[r] && !filters[r](input.value, ...params)){
+                            if(filters[r] && !filters[r](input, ...params)){
                                 input.classList.add('error')
                                 document.getElementById(input.dataset.errorField).innerHTML = "<p class='error'>"+input.dataset.errorMessage+"</p>";
                                 valid = false;

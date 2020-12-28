@@ -146,6 +146,7 @@ button:hover, .button:hover{
     border-color: #0062cc;
     cursor: pointer;
     text-decoration: unset;
+    box-shadow: 0 0 0 0.2rem rgba(0,123,255,.5);
 
     -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
     -moz-box-sizing: border-box;    /* Firefox, other Gecko */
@@ -240,7 +241,23 @@ hr {
     float:right;
 }
 
+.pagination{
+    margin:auto;
+    display: flex;
+    max-width: 450px;
+}
+.pagination > *{
+    flex:1 1 auto;
+    margin:5px;
+}
 
+.pagination > button,
+.pagination > .button{
+    background-color: white !important;
+    border-width: 2px !important;
+    color:  #007bff !important;
+    border-color:  #007bff;
+}
 
 
 
