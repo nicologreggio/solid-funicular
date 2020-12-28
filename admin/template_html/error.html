@@ -10,7 +10,7 @@
         <link rel="shortcut icon" href="/images/fav.ico" TYPE="image/x-icon">
         <link rel="stylesheet" href="/admin/style/style.css">
 
-        <title>Gestione prodotti del sito</title>
+        <title>Errore: <error-message/></title>
     </head>
     <body>
         <header>
@@ -28,7 +28,9 @@
                         </a>
                     </li>
                     <li>
-                        <p>Prodotti</p>
+                        <a href="/admin/product/index.php">
+                            Prodotti
+                        </a>
                     </li>
                     <li>
                         <a href="/admin/materials/index.php">
@@ -48,17 +50,8 @@
                 </ul>
             </nav>
         </header>
-        <main>
-            <h1 class="pb-1 mb-0">Prodotti</h1>
-            <a href="/admin/product/create.php" class="button mt-2 mb-1">
-                Nuovo prodotto
-            </a>
-            <hr>
-            <ul class="main-list  p0 m0">
-                <products/>
-            </ul>
-            <div class="pagination">
-                <pagination/>
-            </div>
+        <main class="d-flex flex-col justify-center items-center h80vh">
+            <h1>Errore</h1>
+            <h2><error-message/></h2>
         </main>
     </body>
