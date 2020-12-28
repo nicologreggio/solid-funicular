@@ -59,6 +59,26 @@ class Rules{
         $number_of_rows = $result->fetchColumn(); 
         return $number_of_rows == 0;
     }
+    public static function file($value, $size = 100){ // 100 Kb
+        return isset($value)   
+                && $value['error'] === UPLOAD_ERR_OK
+                && $value['size'] > 0 
+                && $value['size'] < $size * 1000;
+    }
+
+    public static function image($value, $width = null, $height = null){
+        if(!self::file($value, INF)){
+            return false;
+        }
+        $info = getimagesize($value['tmp_name']);
+        return $info !== false
+                && (
+                    $info[2] !== IMAGETYPE_GIF ||
+                    $info[2] !== IMAGETYPE_JPEG || 
+                    $info[2] !== IMAGETYPE_PNG || 
+                    $info[2] !== IMAGETYPE_JPEG2000
+                );
+    }
 }
 function validate(array $values, array $rules, array $errors = []){
     $final_errors = [];
