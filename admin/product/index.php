@@ -8,12 +8,45 @@ $per_page = 20;
 $stm = DBC::getInstance()->prepare('SELECT * FROM PRODUCTS ORDER BY _ID LIMIT :limit OFFSET :offset');
 $stm->bindValue(':limit', (int) $per_page, PDO::PARAM_INT); 
 $stm->bindValue(':offset', (int) $cur_page * $per_page, PDO::PARAM_INT); 
-
+$stm->execute();
 foreach(($stm->fetchAll() ?? []) as $prod){
+    $category_name = DBC::getInstance()->query("SELECT _NAME FROM CATEGORIES WHERE _ID = $prod->_ID LIMIT 1")->fetchColumn();
     $products.='
-        ...<br>
+        <li>
+            <h2 class="strong m0 p0 pt-1 pb-1 img-product">'.e($prod->_NAME).'</h2>
+            <img src="'.$prod->_MAIN_IMAGE.'" class="w20 left">
+            <div class="w80 right pl-3">
+                <h3 class="m0 p0"><abbr title="Identificativo" class="strong">ID:</abbr> '.e($prod->_ID).'</h3>
+                <p class="m0 p0 mt-2">
+                    <strong>Meta-descrizione: </strong> <br>
+                    '.e($prod->_METADESCRIPTION).'
+                </p>
+                <p class="m0 p0 mt-2">
+                    <strong>Descrizione: </strong><br>
+                    '.e($prod->_DESCRIPTION).'
+                </p>
+                <p class="m0 p0 mt-2">
+                    <strong>Dimensioni: </strong>
+                    '.e($prod->_DIMENSIONS).'
+                </p>
+                <p class="m0 p0 mt-2">
+                    <strong>Età consigliata: </strong>
+                    '.e($prod->_AGE).'
+                </p>
+                <p class="m0 p0 mt-2">
+                    <strong>Categoria</strong> <br>
+                    <a href="/admin/category/index.php" title="Visualizza categorie"> '.e($category_name).' </a>
+                </p>
+            </div>
+            <div class="clearfix">
+                <a class="w49 left button button-green" href="/admin/product/edit.php?id='.e($prod->_ID).'">Modifica</a>
+                <a class="w49 right button button-red" href="/admin/product/delete.php?id='.e($prod->_ID).'">Elimina</a>
+            </div>
+            <hr class="mt-3">
+        </li>
     ';
 }
+$page = str_replace('<products/>', $products, $page);
 $sql = "SELECT count(*) FROM PRODUCTS"; 
 $number_of_products = DBC::getInstance()->query($sql)->fetchColumn();
 

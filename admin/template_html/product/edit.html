@@ -10,7 +10,7 @@
         <link rel="shortcut icon" href="/images/fav.ico" TYPE="image/x-icon">
         <link rel="stylesheet" href="/admin/style/style.css">
 
-        <title>Modifica categoria numero <value-id/></title>
+        <title>Modifica prodotto numero <value-id/></title>
     </head>
     <body>
         <header>
@@ -51,22 +51,22 @@
             </nav>
         </header>
         <main>
-            <h1>Modifica la categoria n.<value-id/></h1>
+            <h1>Modifica il prodotto numero n.<value-id/></h1>
             <p class="error"><error-db/></p>
-            <form action="/admin/category/edit.php" method="post" id="form-login" data-validate="1">
-                <input type="hidden" name="id" value="<value-id/>">
+            <form action="/admin/product/edit.php" method="post" id="form-login" data-validate="1" enctype="multipart/form-data">
                 <label for="name">Nome</label>
+                <input type="hidden" name="id" value="<value-id/>">
                 <input 
                     value="<value-name/>"
                     id="name" 
                     name="name" 
                     type="text"
-                    placeholder="Inserisci nome della categoria" 
+                    placeholder="Inserisci nome del prodotto" 
                     required="required" 
                     autofocus="autofocus" 
                     data-error-field="error-name" 
-                    data-rules="required|min_length:2|max_length:100" 
-                    data-error-message="Il nome è obbligatorio e deve essere almeno lungo 2 caratteri e lungo al massimo 100 caratteri">
+                    data-rules="required|min_length:2|max_length:30" 
+                    data-error-message="Il nome è obbligatorio e deve essere almeno lungo 2 caratteri e lungo al massimo 30 caratteri">
                 <div id="error-name" class="error"><error-name/></div>
 
                 <label for="meta-description">Meta-descrizione</label>
@@ -89,10 +89,54 @@
                     data-error-field="error-description" 
                     data-rules="required|min_length:30" 
                     data-error-message="E' obbligatorio inserire una descrizione lunga almeno 30 caratteri"><value-description/></textarea>
-                <div id="error-description" class="error pb-2"><error-description/></div>
+                <div id="error-description" class="error"><error-description/></div>
 
-                <input type="checkbox" name="menu" id="menu" class="left " <value-menu/>>
-                <label for="menu" class="d-inline pl-1" >Visualizzazione su menu principale</label>
+                <label for="age">Età consigliata</label>
+                <input 
+                    value="<value-age/>"
+                    id="age" 
+                    name="age" 
+                    type="text"
+                    placeholder="Inserisci l'età consigliata"
+                    data-error-field="error-age" 
+                    data-rules="max_length:50" 
+                    data-error-message="L'età consigliata deve essere più breve di 50 caratteri">
+                <div id="error-age" class="error"><error-age/></div>
+
+                <label for="dimensions">Dimensioni del prodotto</label>
+                <input 
+                    value="<value-dimensions/>"
+                    id="dimensions" 
+                    name="dimensions" 
+                    type="text"
+                    placeholder="Inserisci le dimensioni del prodotto"
+                    data-error-field="error-dimensions" 
+                    data-rules="max_length:300" 
+                    data-error-message="Le dimensioni del prodotto possono essere lunghe al massimo 300 caratteri">
+                <div id="error-dimensions" class="error"><error-dimensions/></div>
+
+                <label for="image">Immagine del prodotto (non inserire niente se non la vuoi cambiare)</label>
+                <!-- 
+                    sfortunatamente non si può ricompilare un input type file se la validazione fallisce:
+                    https://stackoverflow.com/questions/27726980/how-to-refill-file-input-after-form-submited-with-errors
+                -->
+                <input 
+                    id="image" 
+                    name="image" 
+                    type="file"
+                    placeholder="Inserisci un'immagine del prodotto">
+                <div id="error-image" class="error pb-2"><error-image/></div>
+
+                <label for="category">Categoria</label>
+                <select 
+                    id="category" 
+                    name="category" 
+                    data-error-field="error-category" 
+                    data-rules="required" 
+                    data-error-message="E' obbligatorio selezionare una categoria">
+                    <categories/>
+                </select>
+                <div id="error-category" class="error"><error-category/></div>
 
                 <button type="submit">
                     Modifica

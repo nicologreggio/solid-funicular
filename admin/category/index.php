@@ -6,7 +6,7 @@ $categories = "";
 foreach(DBC::getInstance()->query('SELECT * FROM CATEGORIES')->fetchAll() as $cat){
     $categories.='
     <li>
-        <h2 class="strong m0 p0 pt-1 pb-1">Nome categoria</h2>
+        <h2 class="strong m0 p0 pt-1 pb-1">'.e($cat->_NAME).'</h2>
         <h3 class="m0 p0"><abbr title="Identificativo" class="strong">ID:</abbr> '.e($cat->_ID).'</h3>
         <p class="m0 p0">La categoria <strong>'.($cat->_MENU ? '': 'NON').'verrà mostrata</strong> nel menu</p>
         <p class="m0 p0 mt-2">

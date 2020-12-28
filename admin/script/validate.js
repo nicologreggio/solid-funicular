@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 e.preventDefault();
                 e.stopImmediatePropagation();
                 let valid = true;
-                for(let input of [...form.getElementsByTagName('input'), ...form.getElementsByTagName('textarea')]){
+                for(let input of [...form.getElementsByTagName('input'), ...form.getElementsByTagName('textarea'), ...form.getElementsByTagName('select'),]){
                     if(input.dataset.rules){
                         document.getElementById(input.dataset.errorField).innerHTML = "";
                         input.classList.remove('error');

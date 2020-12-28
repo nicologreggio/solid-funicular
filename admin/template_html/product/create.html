@@ -88,7 +88,7 @@
                     data-error-field="error-description" 
                     data-rules="required|min_length:30" 
                     data-error-message="E' obbligatorio inserire una descrizione lunga almeno 30 caratteri"><value-description/></textarea>
-                <div id="error-description" class="error pb-2"><error-description/></div>
+                <div id="error-description" class="error"><error-description/></div>
 
                 <label for="age">Età consigliata</label>
                 <input 
@@ -129,11 +129,21 @@
                     data-error-message="E' obbligatorio selezionare un'immagine">
                 <div id="error-image" class="error pb-2"><error-image/></div>
 
-                    
+                <label for="category">Categoria</label>
+                <select 
+                    id="category" 
+                    name="category" 
+                    data-error-field="error-category" 
+                    data-rules="required" 
+                    data-error-message="E' obbligatorio selezionare una categoria">
+                    <categories/>
+                </select>
+                <div id="error-category" class="error"><error-category/></div>
 
                 <button type="submit">
                     Crea
                 </button>
             </form>
         </main>
+        <script src="/admin/script/validate.js"></script>
     </body>

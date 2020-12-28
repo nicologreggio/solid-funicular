@@ -70,7 +70,9 @@ h3{
 abbr {
     text-decoration: none;
 }
+
 form input,
+form select,
 form textarea {
     display: block;
     width: calc( 100% - 1.5em );
@@ -97,6 +99,7 @@ form textarea{
 }
 
 form input:focus,
+form select:focus,
 form textarea:focus{
     color: #495057;
     background-color: #fff;
@@ -105,10 +108,12 @@ form textarea:focus{
     box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
 }
 form input.error,
+form select.error,
 form textarea.error{
     border: 1px solid #ff7373 !important;
 }
 form input.error:focus,
+form select.error:focus,
 form textarea.error:focus{
     box-shadow: 0 0 0 0.2rem rgba(250, 0, 0, 0.25);
 }
@@ -116,6 +121,9 @@ form textarea.error:focus{
 form label{
     display: block;
     padding: 2em 0 .2em 0;
+}
+form select{
+    width: 100%;
 }
 
 button, .button{
@@ -161,7 +169,11 @@ button:hover, .button:hover{
 .button-green:hover{
     background-color: #218838;
     border-color: #218838;
+    cursor: pointer;
+    text-decoration: unset;
+    box-shadow: 0 0 0 0.2rem rgba(40,167,69,.5);
 }
+
 .button-red{
     color: #fff !important;
     background-color: #dc3545;
@@ -170,6 +182,10 @@ button:hover, .button:hover{
 .button-red:hover{
     background-color: #c82333;
     border-color: #bd2130;
+    cursor: pointer;
+    text-decoration: unset;
+    box-shadow: 0 0 0 0.2rem rgba(220,53,69,.5);
+
 }
 
 
@@ -233,7 +249,18 @@ hr {
     -moz-box-sizing: border-box;    /* Firefox, other Gecko */
     box-sizing: border-box;         /* Opera/IE 8+ */
 }
-
+.w80{    
+    width:80%;
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+    box-sizing: border-box;         /* Opera/IE 8+ */
+}
+.w20{    
+    width:20%;
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+    box-sizing: border-box;         /* Opera/IE 8+ */
+}
 .left{
     float:left;
 }
@@ -258,8 +285,6 @@ hr {
     color:  #007bff !important;
     border-color:  #007bff;
 }
-
-
 
 
 

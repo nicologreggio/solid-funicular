@@ -7,16 +7,18 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' ){
         'name' => $_POST['name'] ?? "",
         'description' => $_POST['description'] ?? "",
         'meta-description' => $_POST['meta-description'] ?? "",
-        'dimensions' => $_POST['meta-description'] ?? "",
-        'age' => $_POST['meta-description'] ?? "",
-        'image' => $_FILES['image'] ?? null
+        'dimensions' => $_POST['dimensions'] ?? "",
+        'age' => $_POST['age'] ?? "",
+        'image' => $_FILES['image'] ?? null,
+        'category' => $_POST['category']
     ],[
         'name' => ["required", "min_length:2", "max_length:30"],
         'description' => ["required",  "min_length:30"],
         'meta-description' => ["required", "max_length:500", "min_length:30"],
         'dimensions' => ['max_length:300'],
         'age' => ['max_length:50'],
-        'image' => ['file:700', 'image']
+        'image' => ['file:700', 'image'],
+        'category' => ['in_table:CATEGORIES,_ID']
     ],[
         "name.required" => "E' obbligatorio inserire un nome",
         "name.min_length" => "Il nome inserito deve essere lungo almeno 2 caratteri",
@@ -34,22 +36,30 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' ){
         "dimensions.max_length" => "Le dimensioni possono essere lunghe al massimo 300 caratteri",
 
         "image.file" => "E' obbligatorio inserire un immagine valida di dimensione massima 700kb",
-        "image.image" => "Il file selezionato deve essere un immagine JPEG, PNG, JPEG2000 o GIF"
+        "image.image" => "Il file selezionato deve essere un immagine JPEG, PNG, JPEG2000 o GIF",
+
+        'category.in_table' => "La categoria selezionata non è stata trovata"
     ]);
     if($err === true){
-        
-        $err = DBC::getInstance()->prepare("
-            INSERT INTO `PRODUCTS`(`_NAME`, `_DESCRIPTION`, `_METADESCRIPTION`, `_DIMENSIONS`, `_AGE`, `_CATEGORY`)
-            (?, ?, ?, b?)
-        ")->execute([
-            $_POST['name'],
-            $_POST['description'],
-            $_POST['meta-description'],
-            isset($_POST['menu'])
-        ]);
-        if($err === true){
-            redirectTo('/admin/category/index.php');
+        if($file_path = saveFromRequest('image')){
+            $err = DBC::getInstance()->prepare("
+                INSERT INTO `PRODUCTS`(`_NAME`, `_DESCRIPTION`, `_METADESCRIPTION`, `_DIMENSIONS`, `_AGE`, `_MAIN_IMAGE`, `_CATEGORY`) VALUES
+                (?, ?, ?, ?, ?, ?, ?)
+            ")->execute([
+                $_POST['name'],
+                $_POST['description'],
+                $_POST['meta-description'],
+                $_POST['dimensions'],
+                $_POST['age'],
+                $file_path,
+                $_POST['category'],
+
+            ]);
+            if($err === true){
+                redirectTo('/admin/product/index.php');
+            }
         }
+        
     }
     $page = str_replace("<value-name/>", $_POST["name"], $page);
     $page = str_replace("<value-description/>", $_POST["description"], $page);
@@ -62,6 +72,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' ){
         $page = str_replace('<error-name/>', "", $page);
         $page = str_replace('<error-description/>', "" , $page);
         $page = str_replace('<error-meta-description/>', "" , $page);
+        $page = str_replace('<error-age/>', "" , $page);
+        $page = str_replace('<error-dimensions/>', "" , $page);
+        $page = str_replace('<error-image/>', "" , $page);
     }
     else if(is_array($err)){
         $page = str_replace('<error-db/>', "", $page); // rimuovo placeholder per errore db
@@ -79,10 +92,24 @@ else {
     $page = str_replace("<value-name/>", "", $page);
     $page = str_replace("<value-description/>", "", $page);
     $page = str_replace("<value-meta-description/>", "", $page);
+    $page = str_replace('<value-age/>', "", $page);
+    $page = str_replace('<value-dimensions/>', "", $page);
     $page = str_replace('<error-db/>', "", $page);
     $page = str_replace('<error-name/>', "", $page);
     $page = str_replace('<error-description/>', "" , $page);
     $page = str_replace('<error-meta-description/>', "" , $page);
-    $page = str_replace('<value-menu/>', '', $page);
+    $page = str_replace('<error-age/>', "" , $page);
+    $page = str_replace('<error-dimensions/>', "" , $page);
+    $page = str_replace('<error-image/>', "" , $page);
+    $page = str_replace('<error-category/>', "" , $page);
 }
+
+$categories = DBC::getInstance()->query("
+    SELECT _ID, _NAME FROM CATEGORIES 
+")->fetchAll();
+$out = "<option value='' ".(isset($_REQUEST['category']) ? '' : 'selected' ).">Seleziona la categoria di questo prodotto</option>";
+foreach($categories as $cat){
+    $out.= '<option value="'.$cat->_ID.'"'.(($_REQUEST['category'] ?? null === $cat->_ID )? 'selected' : '' ).'>'.$cat->_NAME.'</option>';
+}
+$page = str_replace('<categories/>', $out, $page);
 echo $page;
