@@ -50,7 +50,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' ){
         if($file_path = saveFromRequest('image')){
             $err = DBC::getInstance()->prepare("
                 INSERT INTO `PRODUCTS`(`_NAME`, `_DESCRIPTION`, `_METADESCRIPTION`, `_DIMENSIONS`, `_AGE`, `_MAIN_IMAGE`, `_CATEGORY`, `_MAIN_IMAGE_DESCRIPTION`) VALUES
-                (?, ?, ?, ?, ?, ?, ?)
+                (?, ?, ?, ?, ?, ?, ?, ?)
             ")->execute([
                 $_POST['name'],
                 $_POST['description'],
