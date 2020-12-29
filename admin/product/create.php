@@ -10,8 +10,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' ){
         'dimensions' => $_POST['dimensions'] ?? "",
         'age' => $_POST['age'] ?? "",
         'image' => $_FILES['image'] ?? null,
-        'category' => $_POST['category'],
-        'image-description' => $_POST['image-description']
+        'category' => $_POST['category'] ?? "",
+        'image-description' => $_POST['image-description'] ?? "",
+        'materials' => $_POST['materials'] ?? []
     ],[
         'name' => ["required", "min_length:2", "max_length:30"],
         'description' => ["required",  "min_length:30"],
@@ -20,7 +21,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' ){
         'age' => ['max_length:50'],
         'image' => ['file:700', 'image'],
         'category' => ['in_table:CATEGORIES,_ID'],
-        'image-description' => ['required', 'min_length:10', 'max_length:200']
+        'image-description' => ['required', 'min_length:10', 'max_length:200'],
+        'materials' => ['array_in_table:MATERIALS,_ID']
     ],[
         "name.required" => "E' obbligatorio inserire un nome",
         "name.min_length" => "Il nome inserito deve essere lungo almeno 2 caratteri",
@@ -45,6 +47,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' ){
         'image-description.required' => "E' obbligatorio inserire una descrizione dell'immagine",
         'image-description.min_length' => "La descrizione dell'immagine inserita deve essere lunga almeno 10 caratteri",
         'image-description.max_length' => "La descrizione dell'immagine inserita può essere lunga al massimo 200 caratteri",
+
+        'materials.array_in_table' => "Uno o più dei materiali selezionati non è stato trovato nel database"
     ]);
     if($err === true){
         if($file_path = saveFromRequest('image')){
@@ -60,9 +64,20 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' ){
                 $file_path,
                 $_POST['category'],
                 $_POST['image-description'],
-
             ]);
             if($err === true){
+                if(!empty($_POST['materials'] ?? [])){
+                    $prod_id = DBC::getInstance()->lastInsertId();
+                    foreach($_POST['materials'] ?? [] as $mat){
+                        $err = DBC::getInstance()->prepare("
+                            INSERT INTO `PRODUCT_MATERIAL`(`_MATERIAL_ID`, `_PRODUCT_ID`) VALUES
+                            (?, ?)
+                        ")->execute([
+                            $mat,
+                            $prod_id
+                        ]);
+                    }
+                }
                 redirectTo('/admin/product/index.php');
             }
         }
@@ -83,6 +98,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' ){
         $page = str_replace('<error-meta-description/>', "" , $page);
         $page = str_replace('<error-age/>', "" , $page);
         $page = str_replace('<error-dimensions/>', "" , $page);
+        $page = str_replace('<error-materials/>', "" , $page);
         $page = str_replace('<error-image/>', "" , $page);
         $page = str_replace('<error-image-description/>', "" , $page);
     }
@@ -115,6 +131,7 @@ else {
     $page = str_replace('<error-image/>', "" , $page);
     $page = str_replace('<error-category/>', "" , $page);
     $page = str_replace('<error-image-description/>', "" , $page);
+    $page = str_replace('<error-materials/>', "" , $page);
 }
 
 $categories = DBC::getInstance()->query("
@@ -125,4 +142,21 @@ foreach($categories as $cat){
     $out.= '<option value="'.$cat->_ID.'"'.(($_REQUEST['category'] ?? null === $cat->_ID )? 'selected' : '' ).'>'.$cat->_NAME.'</option>';
 }
 $page = str_replace('<categories/>', $out, $page);
+
+
+
+
+$materials = DBC::getInstance()->query("
+    SELECT * FROM MATERIALS 
+")->fetchAll();
+$out = "";
+foreach($materials as $mat){
+    $out.= '<option value="'.$mat->_ID.'" '.(in_array($_REQUEST['material'] ?? [],  $mat->_ID )? 'selected ' : '' ).' label="'.e($mat->_DESCRIPTION).'">'.$mat->_NAME.'</option>';
+}
+$page = str_replace('<materials/>', $out, $page);
+
+
+
+
+
 echo $page;

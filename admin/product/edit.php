@@ -29,7 +29,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' ){
         'image' => $_FILES['image'] ?? null,
         'category' => $_POST['category'],
         'image' => $_FILES['image'],
-        'image-description' => $_POST['image-description']
+        'image-description' => $_POST['image-description'],
+        'materials' => $_POST['materials'] ?? []
     ],[
         'name' => ["required", "min_length:2", "max_length:30"],
         'description' => ["required",  "min_length:30"],
@@ -38,7 +39,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' ){
         'age' => ['max_length:50'],
         'category' => ['in_table:CATEGORIES,_ID'],
         'image-description' => ['required', 'min_length:10', 'max_length:200'],
-        'image' => ($_FILES['image']['size'] == 0 ? [] : ['file:700', 'image'])
+        'image' => ($_FILES['image']['size'] == 0 ? [] : ['file:700', 'image']),
+        'materials' => ['array_in_table:MATERIALS,_ID']
     ],[
         "name.required" => "E' obbligatorio inserire un nome",
         "name.min_length" => "Il nome inserito deve essere lungo almeno 2 caratteri",
@@ -63,6 +65,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' ){
         'image-description.required' => "E' obbligatorio inserire una descrizione dell'immagine",
         'image-description.min_length' => "La descrizione dell'immagine inserita deve essere lunga almeno 10 caratteri",
         'image-description.max_length' => "La descrizione dell'immagine inserita può essere lunga al massimo 200 caratteri",
+
+        'materials.array_in_table' => "Uno o più dei materiali selezionati non è stato trovato nel database"
     ]);
 
     if($err === true){
@@ -163,4 +167,34 @@ foreach($categories as $cat){
     $out.= '<option value="'.$cat->_ID.'"'.((($_REQUEST['category'] ?? $product->_CATEGORY) === $cat->_ID )? 'selected' : '' ).'>'.$cat->_NAME.'</option>';
 }
 $page = str_replace('<categories/>', $out, $page);
+
+
+
+
+
+$materials = DBC::getInstance()->query("
+    SELECT * FROM MATERIALS 
+")->fetchAll();
+$out = "";
+$current_materials = [];
+if(isset($_POST['materials'])){
+    $current_materials = $_POST['materials'];
+}
+else {
+    $current_materials = DBC::getInstance()->query("
+        SELECT _MATERIAL_ID
+        FROM PRODUCT_MATERIAL 
+        WHERE _PRODUCT_ID = $product->_ID
+    ")->fetchAll(PDO::FETCH_COLUMN);
+}
+foreach($materials as $mat){
+    $select = in_array( $mat->_ID, $current_materials );
+    $out.= '<option value="'.$mat->_ID.'" '.($select ? 'selected ' : '' ).' label="'.e($mat->_DESCRIPTION).'">'.$mat->_NAME.'</option>';
+}
+$page = str_replace('<materials/>', $out, $page);
+
+
+
+
+
 echo $page;

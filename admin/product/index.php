@@ -11,6 +11,19 @@ $stm->bindValue(':offset', (int) $cur_page * $per_page, PDO::PARAM_INT);
 $stm->execute();
 foreach(($stm->fetchAll() ?? []) as $prod){
     $category_name = DBC::getInstance()->query("SELECT _NAME FROM CATEGORIES WHERE _ID = $prod->_CATEGORY LIMIT 1")->fetchColumn();
+    $materials = '
+    <p class="m0 p0 mt-2">
+        <strong>Materiali: </strong>
+        <ul class="pl-2">' ;
+    foreach(DBC::getInstance()->query("
+        SELECT *
+        FROM MATERIALS JOIN PRODUCT_MATERIAL WHERE _ID = _MATERIAL_ID AND _PRODUCT_ID = $prod->_ID
+    ")->fetchAll() as $mat){
+        $materials.="<li>".e($mat->_NAME)."</li>";
+    }
+    $materials.="
+        </ul>
+    </p>";
     $products.='
         <li>
             <h2 class="strong m0 p0 pt-1 pb-1 img-product">'.e($prod->_NAME).'</h2>
@@ -37,6 +50,7 @@ foreach(($stm->fetchAll() ?? []) as $prod){
                     <strong>Categoria: </strong> <br>
                     <a href="/admin/category/index.php" title="Visualizza categorie"> '.e($category_name).' </a>
                 </p>
+                '.$materials.'
             </div>
             <div class="clearfix">
                 <a class="w49 left button button-green" href="/admin/product/edit.php?id='.e($prod->_ID).'">Modifica</a>
