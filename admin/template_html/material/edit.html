@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="it">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="Content-Language" content="IT" />
+        <meta name="robots" content="NOINDEX,NOFOLLOW" />
+
+        <link rel="shortcut icon" href="/images/fav.ico" TYPE="image/x-icon">
+        <link rel="stylesheet" href="/admin/style/style.css">
+
+        <title>Modifica materiale numero <value-id/></title>
+    </head>
+    <body>
+        <header>
+            <nav>
+                <img src="/images/logo.png">
+                <ul>
+                    <li>
+                        <a href="/admin/administrator/create.php">
+                            Aggiungi amministratore
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/admin/category/index.php">
+                            Categorie
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/admin/product/index.php">
+                            Prodotti
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/admin/material/index.php">
+                            Materiali
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/admin/queue/index.php">
+                            Richieste di preventivo
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/admin/logout.php">
+                            <span lang="en" xml:lang="en">Logout</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <h1>Modifica il materiale n.<value-id/></h1>
+            <p class="error"><error-db/></p>
+            <form action="/admin/material/edit.php" method="post" id="form-login" data-validate="1">
+                <input type="hidden" name="id" value="<value-id/>">
+                <label for="name">Nome</label>
+                <input 
+                    value="<value-name/>"
+                    id="name" 
+                    name="name" 
+                    type="text"
+                    placeholder="Inserisci nome del materiale" 
+                    required="required" 
+                    autofocus="autofocus" 
+                    data-error-field="error-name" 
+                    data-rules="required|min_length:2|max_length:50" 
+                    data-error-message="Il nome è obbligatorio e deve essere almeno lungo 2 caratteri e lungo al massimo 50 caratteri">
+                <div id="error-name" class="error"><error-name/></div>
+                
+                <label for="description">Descrizione</label>
+                <textarea 
+                    id="description" 
+                    name="description" 
+                    placeholder="Inserisci la descrizione" 
+                    required="required" 
+                    data-error-field="error-description" 
+                    data-rules="required|min_length:30|max_length:200" 
+                    data-error-message="E' obbligatorio inserire una descrizione lunga almeno 30 caratteri e al massimo 200 caratteri"><value-description/></textarea>
+                <div id="error-description" class="error pb-2"><error-description/></div>
+
+                <button type="submit">
+                    Modifica
+                </button>
+            </form>
+        </main>
+        <script src="/admin/script/validate.js"></script>
+    </body>
