@@ -10,7 +10,7 @@ $stm->bindValue(':limit', (int) $per_page, PDO::PARAM_INT);
 $stm->bindValue(':offset', (int) $cur_page * $per_page, PDO::PARAM_INT); 
 $stm->execute();
 foreach(($stm->fetchAll() ?? []) as $prod){
-    $category_name = DBC::getInstance()->query("SELECT _NAME FROM CATEGORIES WHERE _ID = $prod->_ID LIMIT 1")->fetchColumn();
+    $category_name = DBC::getInstance()->query("SELECT _NAME FROM CATEGORIES WHERE _ID = $prod->_CATEGORY LIMIT 1")->fetchColumn();
     $products.='
         <li>
             <h2 class="strong m0 p0 pt-1 pb-1 img-product">'.e($prod->_NAME).'</h2>
