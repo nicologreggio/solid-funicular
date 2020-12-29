@@ -13,21 +13,46 @@ nav {
     margin:auto;
     /* come il nostro amato stackoverflow */
     max-width: 1300px; 
-    height: 5em;
-    padding: .2em 1.5em;
+    height: auto;
+    padding: 1em 1.5em;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 nav > img {
+    object-fit:contain;
+    object-position: left;
     max-height: 3em;
 }
+nav > button{
+    display:inline-table;
+    margin:0;
+    background-color: white;
+    color: rgba(0,0,0,.5);
+    padding:0;
+    font-size:2em;
+    transition: .5s all linear;
+}
+nav > button > svg{
+    float:right;
+}
+nav > button:hover,
+nav > button:hover *{
+    color: rgba(0,0,0,.8);
+    background-color: white;
+    border-color: white;
+    cursor: pointer;
+    text-decoration: unset;
+    box-shadow: unset;
+    text-shadow: 0.2px 0.2px 10px rgba(0,0,0,.9);
+}
+
 nav > ul {
     display: flex;
     list-style-type: none;
 }
 nav > ul > li{
-    padding: 1em 1.5em 1em 0em;
+    padding: 0 1.5em 0 0em;
     text-transform: uppercase;
     display: flex;
     justify-content: center;
@@ -43,6 +68,7 @@ nav > ul > li > a {
     font-weight: 600;
     color: rgba(0,0,0,.5);
     transition: .5s all;
+    text-align: center;
 }
 nav > ul > li:hover > a{
     color: rgba(0,0,0,.9);
@@ -319,40 +345,6 @@ hr {
     height: 80vh;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .d-initial{
     display: initial;
 }
@@ -513,4 +505,67 @@ hr {
 }
 .mr-3{
     margin-right:1.5em !important;
+}
+
+.hidden-l{
+    display: none;
+} 
+@media screen and (max-width: 852px) {
+    .hidden-l{
+        display: block;
+    }
+    nav > ul{
+        clip: rect(1px, 1px, 1px, 1px);
+        clip-path: inset(50%);
+        height: 1px;
+        width: 1px;
+        margin: -1px;
+        overflow: hidden;
+        padding: 0;
+        position: absolute;
+    }
+    nav > ul.visible{
+        clip: initial;
+        clip-path: initial;
+        height: auto;
+        width: auto;
+        margin: auto;
+        overflow: auto;
+        padding: inherit;
+        position: relative;
+        display: block !important;
+        margin-top:1em;
+        padding-bottom: 0;
+        width:100% !important;
+    }
+
+    nav{
+        display: flex;
+        flex-wrap: wrap;
+        height: auto;
+    }
+    nav > *{
+        flex-grow: 1;
+        width: 50%;
+    }
+    nav > ul > li{
+        padding: 1em 1.5em 1em 0em;
+    }
+    nav > ul {
+        padding-bottom:0;
+        padding-top:1em;
+        margin-bottom:0;
+        border-top: 1px solid rgba(0,0,0, .2);
+    }
+    nav > button {
+        padding: 0 !important;
+    }
+    svg path{
+        fill: rgba(0, 0, 0, 0.5);
+    }
+}
+@media screen and (max-width: 852px) {
+    main{
+        padding: 2em 3em;
+    }
 }
