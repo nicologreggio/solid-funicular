@@ -151,7 +151,7 @@ $materials = DBC::getInstance()->query("
 ")->fetchAll();
 $out = "";
 foreach($materials as $mat){
-    $out.= '<option value="'.$mat->_ID.'" '.(in_array($_REQUEST['material'] ?? [],  $mat->_ID )? 'selected ' : '' ).' >'.$mat->_NAME.'</option>';
+    $out.= '<option value="'.$mat->_ID.'" '.(in_array($mat->_ID, $_REQUEST['material'] ?? [] )? 'selected ' : '' ).' >'.$mat->_NAME.'</option>';
 }
 $page = str_replace('<materials/>', $out, $page);
 
