@@ -82,6 +82,15 @@ class Rules{
                     $info[2] !== IMAGETYPE_JPEG2000
                 );
     }
+    public static function array_in_table(array $value, $table, $column){
+        // probabilmente si può fare tutto con una query...
+        foreach($value as $el){
+            if(!self::in_table($el, $table, $column)){
+                return false;
+            }
+        }
+        return true;
+    }
 }
 function validate(array $values, array $rules, array $errors = []){
     $final_errors = [];
