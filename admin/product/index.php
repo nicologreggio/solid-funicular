@@ -34,8 +34,8 @@ foreach(($stm->fetchAll() ?? []) as $prod){
     $products.='
         <li>
             <h2 class="strong m0 p0 pt-1 pb-1 img-product">'.e($prod->_NAME).'</h2>
-            <img src="'.$prod->_MAIN_IMAGE.'" class="w20 left">
-            <div class="w80 right pl-3">
+            <img src="'.$prod->_MAIN_IMAGE.'" class="w20 w100-sm left">
+            <div class="w80 w100-sm right pl-3 pl-0-sm pt-2-sm">
                 <h3 class="m0 p0"><abbr title="Identificativo" class="strong">ID:</abbr> '.e($prod->_ID).'</h3>
                 <p class="m0 p0 mt-2">
                     <strong>Meta-descrizione: </strong> <br>
