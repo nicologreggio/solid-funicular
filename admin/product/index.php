@@ -44,16 +44,19 @@ foreach(($stm->fetchAll() ?? []) as $prod){
                 <p class="m0 p0 mt-2">
                     <strong>Descrizione: </strong><br>
                     '.e($prod->_DESCRIPTION).'
-                </p>
-                <p class="m0 p0 mt-2">
+                </p>';
+    if($prod->_DIMENSIONS) $products.=
+                '<p class="m0 p0 mt-2">
                     <strong>Dimensioni: </strong>
                     '.e($prod->_DIMENSIONS).'
-                </p>
-                <p class="m0 p0 mt-2">
+                </p>';
+    if($prod->_AGE) $products.=
+                '<p class="m0 p0 mt-2">
                     <strong>Età consigliata: </strong>
                     '.e($prod->_AGE).'
-                </p>
-                <p class="m0 p0 mt-2">
+                </p>';
+    $products.=
+                '<p class="m0 p0 mt-2">
                     <strong>Categoria: </strong> <br>
                     <a href="/admin/category/index.php" title="Visualizza categorie"> '.e($category_name).' </a>
                 </p>
