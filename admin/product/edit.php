@@ -111,6 +111,20 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' ){
 
         
         if($err === true){
+            DBC::getInstance()->prepare("
+                DELETE FROM `PRODUCT_MATERIAL` WHERE _PRODUCT_ID = ?
+            ")->execute([
+                $_REQUEST['id']
+            ]);
+            foreach($_POST['materials'] ?? [] as $mat){
+                $err = DBC::getInstance()->prepare("
+                    INSERT INTO `PRODUCT_MATERIAL`(`_MATERIAL_ID`, `_PRODUCT_ID`) VALUES
+                    (?, ?)
+                ")->execute([
+                    $mat,
+                    $_REQUEST['id']
+                ]);
+            }
             redirectTo('/admin/product/index.php');
         }    
     }
@@ -189,7 +203,7 @@ else {
 }
 foreach($materials as $mat){
     $select = in_array( $mat->_ID, $current_materials );
-    $out.= '<option value="'.$mat->_ID.'" '.($select ? 'selected ' : '' ).' label="'.e($mat->_DESCRIPTION).'">'.$mat->_NAME.'</option>';
+    $out.= '<option value="'.$mat->_ID.'" '.($select ? 'selected ' : '' ).'>'.$mat->_NAME.'</option>';
 }
 $page = str_replace('<materials/>', $out, $page);
 

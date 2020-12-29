@@ -11,19 +11,26 @@ $stm->bindValue(':offset', (int) $cur_page * $per_page, PDO::PARAM_INT);
 $stm->execute();
 foreach(($stm->fetchAll() ?? []) as $prod){
     $category_name = DBC::getInstance()->query("SELECT _NAME FROM CATEGORIES WHERE _ID = $prod->_CATEGORY LIMIT 1")->fetchColumn();
-    $materials = '
-    <p class="m0 p0 mt-2">
-        <strong>Materiali: </strong>
-        <ul class="pl-2">' ;
-    foreach(DBC::getInstance()->query("
+    $product_materials = DBC::getInstance()->query("
         SELECT *
         FROM MATERIALS JOIN PRODUCT_MATERIAL WHERE _ID = _MATERIAL_ID AND _PRODUCT_ID = $prod->_ID
-    ")->fetchAll() as $mat){
-        $materials.="<li>".e($mat->_NAME)."</li>";
+    ")->fetchAll() ?? [];
+    if(empty($product_materials)){
+        $materials = '<p class="m0 p0 mt-2"><strong>Nessun materiale associato a questo prodotto</strong></p>';
     }
-    $materials.="
-        </ul>
-    </p>";
+    else {
+        $materials = '
+        <p class="m0 p0 mt-2">
+            <strong>Materiali: </strong>
+            <ul class="pl-2">' ;
+        foreach($product_materials as $mat){
+            $materials.="<li>".e($mat->_NAME)."</li>";
+        }
+        $materials.="
+            </ul>
+        </p>";
+    }
+    
     $products.='
         <li>
             <h2 class="strong m0 p0 pt-1 pb-1 img-product">'.e($prod->_NAME).'</h2>
