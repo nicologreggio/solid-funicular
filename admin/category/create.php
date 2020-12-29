@@ -14,7 +14,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' ){
     ],[
         "name.required" => "E' obbligatorio inserire un nome",
         "name.min_length" => "Il nome inserito deve essere lungo almeno 2 caratteri",
-        "name.max_length" => "Il nome inserito può essere lungo al massimo 50 caratteri",
+        "name.max_length" => "Il nome inserito può essere lungo al massimo 100 caratteri",
 
         "meta-description.required" => "E' obbligatorio inserire una meta-descrizione",
         "meta-description.min_length" => "La meta descrizione deve essere lunga almeno 30 caratteri",
