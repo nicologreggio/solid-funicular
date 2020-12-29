@@ -34,7 +34,7 @@ foreach(($stm->fetchAll() ?? []) as $prod){
                     '.e($prod->_AGE).'
                 </p>
                 <p class="m0 p0 mt-2">
-                    <strong>Categoria</strong> <br>
+                    <strong>Categoria: </strong> <br>
                     <a href="/admin/category/index.php" title="Visualizza categorie"> '.e($category_name).' </a>
                 </p>
             </div>
