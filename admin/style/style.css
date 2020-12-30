@@ -50,6 +50,7 @@ nav > button:hover *{
 nav > ul {
     display: flex;
     list-style-type: none;
+    margin: 0;
 }
 nav > ul > li{
     padding: 0 1.5em 0 0em;
@@ -623,4 +624,4 @@ hr {
     * {
        transition: 0 all !important;
     }
-  }
+}
