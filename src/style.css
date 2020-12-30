@@ -15,6 +15,11 @@ html, body
     font-family: 'Fira Sans', sans-serif;
 }
 
+.clickable
+{
+    cursor: pointer;
+}
+
 .authentication-container
 {
     display: flex;
@@ -93,8 +98,16 @@ html, body
     border-bottom: 2px solid #0288D1;
 }
 
-.suggestion {
-    font-size: 0.8em;
+.authentication-form #password {
+    width: 95%;
+}
+
+.suggestion, .error {
+    font-size: 1em;
+}
+
+.error {
+    color: #B71C1C;
 }
 
 .buttons-control {

@@ -1,42 +1,21 @@
 document.addEventListener("DOMContentLoaded", function() {
-    var $loginForm = document.getElementById("login-form");
+    var $hideShowPassword = document.getElementById("hide-show-password");
+    var $passwordField = document.getElementById("password");
 
-    $loginForm.addEventListener("submit", submitLogin)
 
-    function submitLogin(e)
-    {
-        var valideEmail = validateEmail(document.getElementById("email").value);
-        var validePassword = validatePassword(document.getElementById("password").value);
+    $hideShowPassword.addEventListener("click", function() {
+        var eyeOffSrc = "/images/icons/eye-off.svg";
+        var eyeOnSrc = "/images/icons/eye-on.svg";
 
-        if(!valideEmail)
+        if($passwordField.type == "password")
         {
-            let labelEmail = document.querySelector("label[for='email']");
-            setErrorLabel(labelEmail);
-
-            e.preventDefault();
-            return false;
+            $hideShowPassword.src = eyeOnSrc;
+            $passwordField.type = "text"
         }
         else
         {
-            let labelEmail = document.querySelector("label[for='email']");
-            unSetErrorLabel(labelEmail);
+            $hideShowPassword.src = eyeOffSrc;
+            $passwordField.type = "password";
         }
-
-        if(!validePassword)
-        {
-            let labelPassword = document.querySelector("label[for='password']");
-            setErrorLabel(labelPassword);
-
-            e.preventDefault();
-            return false;
-        }
-        else
-        {
-            let labelPassword = document.querySelector("label[for='password']");
-            unSetErrorLabel(labelPassword)
-        }
-
-        return true;
-    }
+    });
 });
-

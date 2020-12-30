@@ -4,10 +4,6 @@ const filters = {
         const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         return re.test(String(input.value).toLowerCase());
     },
-    password : function(input) {
-        const re = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,1024}$/;
-        return re.test(input.value);
-    },
     required : function(input){
         return input.value != null && input.value != "" && input.value.length != 0;
     },
@@ -48,10 +44,7 @@ function validateInput(input){
             }
             if(filters[r] && !filters[r](input, ...params)){
                 input.classList.add('error')
-                if(input.dataset.errorMessage)
-                {
-                    document.getElementById(input.dataset.errorField).innerHTML = "<p class='error'>"+input.dataset.errorMessage+"</p>";
-                }
+                document.getElementById(input.dataset.errorField).innerHTML = "<p class='error'>"+input.dataset.errorMessage+"</p>";
                 valid = false;
             } 
         })
