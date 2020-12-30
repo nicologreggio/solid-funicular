@@ -25,8 +25,8 @@ foreach($stm->fetchAll() as $cat){
             '.$cat->_DESCRIPTION.'
         </p>
         <div class="clearfix">
-            <a class="w49 left button button-green" href="/admin/category/edit.php?id='.e($cat->_ID).'">Modifica</a>
-            <a class="w49 right button button-red" href="/admin/category/delete.php?id='.e($cat->_ID).'">Elimina</a>
+            <a class="w49 left button button-green" href="/admin/category/edit.php?id='.e($cat->_ID).'" title="Modifica questa categoria">Modifica</a>
+            <a class="w49 right button button-red" href="/admin/category/delete.php?id='.e($cat->_ID).'" title="Elimina questa categoria">Elimina</a>
         </div>
         <hr class="mt-3">
     </li>

@@ -21,8 +21,8 @@ foreach($stm->fetchAll() as $mat){
         </p>
 
         <div class="clearfix">
-            <a class="w49 left button button-green" href="/admin/material/edit.php?id='.e($mat->_ID).'">Modifica</a>
-            <a class="w49 right button button-red" href="/admin/material/delete.php?id='.e($mat->_ID).'">Elimina</a>
+            <a class="w49 left button button-green" title="Modifica questo materiale" href="/admin/material/edit.php?id='.e($mat->_ID).'">Modifica</a>
+            <a class="w49 right button button-red" title="Elimina questo materiale" href="/admin/material/delete.php?id='.e($mat->_ID).'">Elimina</a>
         </div>
         <hr class="mt-3">
     </li>

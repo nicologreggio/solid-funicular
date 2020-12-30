@@ -15,8 +15,8 @@
     <body>
         <header>
             <nav>
-                <img src="/images/logo.png">
-                <button title="Espandi/chiudi menu" aria-label="Espandi/chiudi il menu" class="hidden-l show-m">
+                <img src="/images/logo.png" alt="Logo dell'azienda rosso con dentro le iniziali S.F." title="logo dell'azienda">
+                <button title="Espandi/chiudi menu" aria-label="Espandi/chiudi il menu" class="hidden-l show-m" aria-hidden="true">
                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="32px" id="Layer_1"  version="1.1" viewBox="0 0 32 32" width="32px" xml:space="preserve"><path d="M4,10h24c1.104,0,2-0.896,2-2s-0.896-2-2-2H4C2.896,6,2,6.896,2,8S2.896,10,4,10z M28,14H4c-1.104,0-2,0.896-2,2  s0.896,2,2,2h24c1.104,0,2-0.896,2-2S29.104,14,28,14z M28,22H4c-1.104,0-2,0.896-2,2s0.896,2,2,2h24c1.104,0,2-0.896,2-2  S29.104,22,28,22z"/></svg>
                     <!-- <span aria-hidden="true">&times;</span>-->
                 </button>
@@ -25,27 +25,27 @@
                         Aggiungi amministratore
                     </li>
                     <li>
-                        <a href="/admin/category/index.php">
+                        <a href="/admin/category/index.php" title="Vai alla pagina per la gestione delle categorie">
                             Categorie
                         </a>
                     </li>
                     <li>
-                        <a href="/admin/product/index.php">
+                        <a href="/admin/product/index.php" title="Vai alla pagina di gestione dei prodotti del sito">
                             Prodotti
                         </a>
                     </li>
                     <li>
-                        <a href="/admin/material/index.php">
+                        <a href="/admin/material/index.php" title="Vai alla pagina di gestione dei materiali dei prodotti">
                             Materiali
                         </a>
                     </li>
                     <li>
-                        <a href="/admin/queue/index.php">
+                        <a href="/admin/queue/index.php" title="Vai alla pagina di gestione delle richieste di preventivo">
                             Richieste di preventivo
                         </a>
                     </li>
                     <li>
-                        <a href="/admin/logout.php">
+                        <a href="/admin/logout.php" title="effettua il logout">
                             <span lang="en" xml:lang="en">Logout</span>
                         </a>
                     </li>
@@ -55,9 +55,9 @@
         <main>
             <h1>Creazione nuovo amministratore</h1>
             <p class="pb-0 mb-0"> Ti trovi in: </p>
-            <ul class="breadcrumb mt-0 pt-1">
+            <ul class="breadcrumb mt-0 pt-1" aria-label="Breadcrumb">
                 <li>
-                    <a href="/admin/home.php">
+                    <a href="/admin/home.php" title="torna alla homepage">
                         Home
                     </a>
                     <p class="separator">
@@ -82,9 +82,10 @@
                     required="required" 
                     autofocus="autofocus" 
                     data-error-field="error-email" 
+                    aria-required="true"
                     data-rules="required|email|max_length:100" 
                     data-error-message="L'email inserita non è valida o troppo lunga (massimo 100 caratteri)">
-                <div id="error-email" class="error"><error-email/></div>
+                <div id="error-email" class="error" role="alert" aria-relevant="all" aria-live="assertive"><error-email/></div>
 
                 <label for="password">Password</label>
                 <input 
@@ -93,10 +94,11 @@
                     name="password" 
                     placeholder="Inserisci password" 
                     required="required" 
+                    aria-required="true"
                     data-error-field="error-password" 
                     data-rules="required|min_length:5|max_length:1024" 
                     data-error-message="La password deve aver una lunghezza compresa tra 5 e 1024 caratteri">
-                <div id="error-password" class="error"><error-password/></div>
+                <div id="error-password" class="error" role="alert" aria-relevant="all" aria-live="assertive"><error-password/></div>
 
                 <label for="confirm-password">Conferma password</label>
                 <input 
@@ -105,10 +107,11 @@
                     name="confirm" 
                     placeholder="Re-inserisci password" 
                     required="required" 
+                    aria-required="true"
                     data-error-field="error-confirm-password" 
                     data-rules="required|equals:password" 
                     data-error-message="La conferma non corrisponde alla password">
-                <div id="error-confirm-password" class="error"><error-confirm/></div>
+                <div id="error-confirm-password" class="error" role="alert" aria-relevant="all" aria-live="assertive"><error-confirm/></div>
 
                 <label for="name">Nome</label>
                 <input 
@@ -118,10 +121,11 @@
                     name="name" 
                     placeholder="Inserisci il nome" 
                     required="required" 
+                    aria-required="true"
                     data-error-field="error-name" 
                     data-rules="required|alphabetic|max_length:50|min_length:2" 
                     data-error-message="Il nome può contenere solo lettere e spazi, deve essere più lungo di 1 carattere e può essere lungo al massimo 50 caratteri">
-                <div id="error-name" class="error"><error-name/></div>
+                <div id="error-name" class="error" role="alert" aria-relevant="all" aria-live="assertive"><error-name/></div>
 
                 <label for="surname">Cognome</label>
                 <input 
@@ -131,10 +135,11 @@
                     name="surname" 
                     placeholder="Inserisci il cognome" 
                     required="required" 
+                    aria-required="true"
                     data-error-field="error-surname" 
                     data-rules="required|alphabetic|max_length:100|min_length:2" 
                     data-error-message="Il cognome può contenere solo lettere e spazi, deve essere più lungo di 1 carattere e può essere lungo al massimo 100 caratteri">
-                <div id="error-surname" class="error"><error-surname/></div>
+                <div id="error-surname" class="error" role="alert" aria-relevant="all" aria-live="assertive"><error-surname/></div>
 
                 <label for="city">Città</label>
                 <input 
@@ -144,10 +149,11 @@
                     name="city" 
                     placeholder="Inserisci la città" 
                     required="required" 
+                    aria-required="true"
                     data-error-field="error-city" 
                     data-rules="required|max_length:100|min_length:2" 
                     data-error-message="La città deve essere almeno lungo 2 caratteri e al massimo 100 caratteri">
-                <div id="error-city" class="error"><error-city/></div>
+                <div id="error-city" class="error" role="alert" aria-relevant="all" aria-live="assertive"><error-city/></div>
 
                 <label for="address">Indirizzo</label>
                 <input 
@@ -157,10 +163,11 @@
                     name="address" 
                     placeholder="Inserisci l'indirizzo" 
                     required="required" 
+                    aria-required="true"
                     data-error-field="error-address" 
                     data-rules="required|max_length:100|min_length:2" 
                     data-error-message="L'indirizzo' deve essere almeno lungo 2 caratteri e al massimo 100 caratteri">
-                <div id="error-address" class="error"><error-address/></div>
+                <div id="error-address" class="error" role="alert" aria-relevant="all" aria-live="assertive"><error-address/></div>
 
                 <label for="cap"><abbr title="Codice Avviamento Postale">CAP</abbr></label>
                 <input 
@@ -170,10 +177,11 @@
                     name="cap" 
                     placeholder="Inserisci l'indirizzo" 
                     required="required" 
+                    aria-required="true"
                     data-error-field="error-cap" 
                     data-rules="required|length:5|integer" 
                     data-error-message="Il <abbr title='Codice Avviamento Postale'>CAP</abbr> deve essere lungo 5 caratteri e può essere composto da soli numeri">
-                <div id="error-cap" class="error"><error-cap/></div>
+                <div id="error-cap" class="error" role="alert" aria-relevant="all" aria-live="assertive"><error-cap/></div>
 
                 <button type="submit">
                     Crea

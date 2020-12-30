@@ -15,39 +15,39 @@
     <body>
         <header>
             <nav>
-                <img src="/images/logo.png">
-                <button title="Espandi/chiudi menu" aria-label="Espandi/chiudi il menu" class="hidden-l show-m">
+                <img src="/images/logo.png" alt="Logo dell'azienda rosso con dentro le iniziali S.F." title="logo dell'azienda">
+                <button title="Espandi/chiudi menu" aria-label="Espandi/chiudi il menu" class="hidden-l show-m" aria-hidden="true">
                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="32px" id="Layer_1"  version="1.1" viewBox="0 0 32 32" width="32px" xml:space="preserve"><path d="M4,10h24c1.104,0,2-0.896,2-2s-0.896-2-2-2H4C2.896,6,2,6.896,2,8S2.896,10,4,10z M28,14H4c-1.104,0-2,0.896-2,2  s0.896,2,2,2h24c1.104,0,2-0.896,2-2S29.104,14,28,14z M28,22H4c-1.104,0-2,0.896-2,2s0.896,2,2,2h24c1.104,0,2-0.896,2-2  S29.104,22,28,22z"/></svg>
                     <!-- <span aria-hidden="true">&times;</span>-->
                 </button>
-                <ul>
+                <ul aria-label="menu">
                     <li>
-                        <a href="/admin/administrator/create.php">
+                        <a href="/admin/administrator/create.php" title="Aggiungi un amministratore al sito">
                             Aggiungi amministratore
                         </a>
                     </li>
                     <li>
-                        <a href="/admin/category/index.php">
+                        <a href="/admin/category/index.php" title="Vai alla pagina per la gestione delle categorie">
                             Categorie
                         </a>
                     </li>
                     <li>
-                        <a href="/admin/product/index.php">
+                        <a href="/admin/product/index.php" title="Vai alla pagina di gestione dei prodotti del sito">
                             Prodotti
                         </a>
                     </li>
                     <li>
-                        <a href="/admin/material/index.php">
+                        <a href="/admin/material/index.php" title="Vai alla pagina di gestione dei materiali dei prodotti">
                             Materiali
                         </a>
                     </li>
                     <li>
-                        <a href="/admin/queue/index.php">
+                        <a href="/admin/queue/index.php" title="Vai alla pagina di gestione delle richieste di preventivo">
                             Richieste di preventivo
                         </a>
                     </li>
                     <li>
-                        <a href="/admin/logout.php">
+                        <a href="/admin/logout.php" title="effettua il logout">
                             <span lang="en" xml:lang="en">Logout</span>
                         </a>
                     </li>
@@ -57,9 +57,9 @@
         <main>
             <h1>Crea un nuovo prodotto</h1>
             <p class="pb-0 mb-0"> Ti trovi in: </p>
-            <ul class="breadcrumb mt-0 pt-1">
+            <ul class="breadcrumb mt-0 pt-1" aria-label="Breadcrumb">
                 <li>
-                    <a href="/admin/home.php">
+                    <a href="/admin/home.php" title="torna alla homepage">
                         Home
                     </a>
                     <p class="separator">
@@ -67,7 +67,7 @@
                     </p>
                 </li>
                 <li>
-                    <a href="/admin/product/index.php">
+                    <a href="/admin/product/index.php" title="Vai alla pagina di gestione dei prodotti del sito">
                         Prodotti
                     </a>
                     <p class="separator">
@@ -95,7 +95,7 @@
                     data-error-field="error-name" 
                     data-rules="required|min_length:2|max_length:30" 
                     data-error-message="Il nome è obbligatorio e deve essere almeno lungo 2 caratteri e lungo al massimo 30 caratteri">
-                <div id="error-name" class="error"><error-name/></div>
+                <div id="error-name" class="error" role="alert" aria-relevant="all" aria-live="assertive"><error-name/></div>
 
                 <label for="meta-description">Meta-descrizione</label>
                 <textarea 
@@ -106,7 +106,7 @@
                     data-error-field="error-meta-description" 
                     data-rules="required|max_length:500|min_length:30" 
                     data-error-message="E' obbligatorio inserire una meta-descrizione che sia più lunga di 30 caratteri e lunga al massimo 500 caratteri"><value-meta-description/></textarea>
-                <div id="error-meta-description" class="error"><error-meta-description/></div>
+                <div id="error-meta-description" class="error" role="alert" aria-relevant="all" aria-live="assertive"><error-meta-description/></div>
                 
                 <label for="description">Descrizione</label>
                 <textarea 
@@ -117,7 +117,7 @@
                     data-error-field="error-description" 
                     data-rules="required|min_length:30" 
                     data-error-message="E' obbligatorio inserire una descrizione lunga almeno 30 caratteri"><value-description/></textarea>
-                <div id="error-description" class="error"><error-description/></div>
+                <div id="error-description" class="error" role="alert" aria-relevant="all" aria-live="assertive"><error-description/></div>
 
                 <label for="age">Età consigliata</label>
                 <input 
@@ -129,7 +129,7 @@
                     data-error-field="error-age" 
                     data-rules="max_length:50" 
                     data-error-message="L'età consigliata deve essere più breve di 50 caratteri">
-                <div id="error-age" class="error"><error-age/></div>
+                <div id="error-age" class="error" role="alert" aria-relevant="all" aria-live="assertive"><error-age/></div>
 
                 <label for="dimensions">Dimensioni del prodotto</label>
                 <input 
@@ -141,7 +141,7 @@
                     data-error-field="error-dimensions" 
                     data-rules="max_length:300" 
                     data-error-message="Le dimensioni del prodotto possono essere lunghe al massimo 300 caratteri">
-                <div id="error-dimensions" class="error"><error-dimensions/></div>
+                <div id="error-dimensions" class="error" role="alert" aria-relevant="all" aria-live="assertive"><error-dimensions/></div>
 
                 <label for="image">Immagine del prodotto</label>
                 <!-- 
@@ -155,8 +155,10 @@
                     placeholder="Inserisci un'immagine del prodotto"
                     data-error-field="error-image" 
                     data-rules="file_required" 
+                    required="required"
+                    aria-required="true"
                     data-error-message="E' obbligatorio selezionare un'immagine">
-                <div id="error-image" class="error pb-2"><error-image/></div>
+                <div id="error-image" class="error pb-2" role="alert" aria-relevant="all" aria-live="assertive"><error-image/></div>
 
                 <label for="image-description">Descrizione immagine del prodotto</label>
                 <input 
@@ -166,9 +168,11 @@
                     type="text"
                     placeholder="Inserisci la descrizione dell'immagine del prodotto"
                     data-error-field="image-description" 
+                    aria-required="true"
+                    required="required"
                     data-rules="required|min_length:10|max_length:200" 
                     data-error-message="La descrizione del prodotto deve essere di lunghezza compresa tra 10 e 200 caratteri">
-                <div id="error-image-description" class="error"><error-image-description/></div>
+                <div id="error-image-description" class="error" role="alert" aria-relevant="all" aria-live="assertive"><error-image-description/></div>
 
                 <label for="category">Categoria</label>
                 <select 
@@ -176,10 +180,12 @@
                     name="category" 
                     data-error-field="error-category" 
                     data-rules="required" 
+                    aria-required="true"
+                    required="required"
                     data-error-message="E' obbligatorio selezionare una categoria">
                     <categories/>
                 </select>
-                <div id="error-category" class="error"><error-category/></div>
+                <div id="error-category" class="error" role="alert" aria-relevant="all" aria-live="assertive"><error-category/></div>
 
                 <label for="materials">Materiali</label>
                 <select 
@@ -188,7 +194,7 @@
                     name="materials[]">
                     <materials/>
                 </select>
-                <div id="error-materials" class="error"><error-materials/></div>
+                <div id="error-materials" class="error" role="alert" aria-relevant="all" aria-live="assertive"><error-materials/></div>
 
                 <button type="submit">
                     Crea

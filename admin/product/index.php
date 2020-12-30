@@ -34,7 +34,7 @@ foreach(($stm->fetchAll() ?? []) as $prod){
     $products.='
         <li>
             <h2 class="strong m0 p0 pt-1 pb-1 img-product">'.e($prod->_NAME).'</h2>
-            <img src="'.$prod->_MAIN_IMAGE.'" class="w20 w100-sm left">
+            <img src="'.$prod->_MAIN_IMAGE.'" class="w20 w100-sm left" alt="'.$prod->_MAIN_IMAGE_DESCRIPTION.'">
             <div class="w80 w100-sm right pl-3 pl-0-sm pt-2-sm">
                 <h3 class="m0 p0"><abbr title="Identificativo" class="strong">ID:</abbr> '.e($prod->_ID).'</h3>
                 <p class="m0 p0 mt-2">
@@ -63,8 +63,8 @@ foreach(($stm->fetchAll() ?? []) as $prod){
                 '.$materials.'
             </div>
             <div class="clearfix">
-                <a class="w49 left button button-green" href="/admin/product/edit.php?id='.e($prod->_ID).'">Modifica</a>
-                <a class="w49 right button button-red" href="/admin/product/delete.php?id='.e($prod->_ID).'">Elimina</a>
+                <a class="w49 left button button-green" title="Modifica questo prodotto" href="/admin/product/edit.php?id='.e($prod->_ID).'">Modifica</a>
+                <a class="w49 right button button-red"  title="Elimina questo prodotto" href="/admin/product/delete.php?id='.e($prod->_ID).'">Elimina</a>
             </div>
             <hr class="mt-3">
         </li>
