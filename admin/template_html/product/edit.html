@@ -56,6 +56,30 @@
         </header>
         <main>
             <h1>Modifica il prodotto numero n.<value-id/></h1>
+            <p class="pb-0 mb-0"> Ti trovi in: </p>
+            <ul class="breadcrumb mt-0 pt-1">
+                <li>
+                    <a href="/admin/home.php">
+                        Home
+                    </a>
+                    <p class="separator">
+                        >>
+                    </p>
+                </li>
+                <li>
+                    <a href="/admin/product/index.php">
+                        Prodotti
+                    </a>
+                    <p class="separator">
+                        >>
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        Modifica prodotto <value-id/>
+                    </p>
+                </li>
+            </ul>
             <p class="error"><error-db/></p>
             <form action="/admin/product/edit.php" method="post" id="form-login" data-validate="1" enctype="multipart/form-data">
                 <label for="name">Nome</label>

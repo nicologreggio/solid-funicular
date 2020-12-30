@@ -1,7 +1,7 @@
 <?php
 require_once(__DIR__.'/../inc/header_php.php');
 redirectIfNotLogged();
-$page = file_get_contents('../template_html/product/index.html');
+$page = page('../template_html/product/index.html');
 $products = "";
 $cur_page = preg_match('/^[0-9]+$/', $_REQUEST['page']?? '') ? $_REQUEST['page'] : 0;
 $per_page = 8;

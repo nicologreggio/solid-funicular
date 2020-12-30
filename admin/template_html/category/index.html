@@ -56,10 +56,29 @@
         </header>
         <main>
             <h1 class="pb-1 mb-0">Categorie</h1>
+            <p class="pb-0 mb-0"> Ti trovi in: </p>
+            <ul class="breadcrumb mt-0 pt-1">
+                <li>
+                    <a href="/admin/home.php">
+                        Home
+                    </a>
+                    <p class="separator">
+                        >>
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        Categorie
+                    </p>
+                </li>
+            </ul>
             <a href="/admin/category/create.php" class="button mt-2 mb-1">
                 Nuova categoria
             </a>
             <hr>
+            <div class="p-0 m-0 message mt-3 mb-2">
+                <message/>
+            </div>
             <ul class="main-list  p0 m0">
                 <categories/>
             </ul>

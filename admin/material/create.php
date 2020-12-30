@@ -1,7 +1,7 @@
 <?php
 require_once(__DIR__.'/../inc/header_php.php');
 redirectIfNotLogged();
-$page = file_get_contents('../template_html/material/create.html');
+$page = page('../template_html/material/create.html');
 if($_SERVER['REQUEST_METHOD'] == 'POST' ){
     $err = validate([
         'name' => $_POST['name'] ?? "",
@@ -27,6 +27,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' ){
             $_POST['description'],
         ]);
         if($err === true){
+            message("Materiale creato correttamente");
             redirectTo('/admin/material/index.php');
         }
     }

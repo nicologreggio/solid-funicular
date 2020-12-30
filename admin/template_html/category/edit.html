@@ -56,6 +56,31 @@
         </header>
         <main>
             <h1>Modifica la categoria n.<value-id/></h1>
+            <p class="pb-0 mb-0"> Ti trovi in: </p>
+            <ul class="breadcrumb mt-0 pt-1">
+                <li>
+                    <a href="/admin/home.php">
+                        Home
+                    </a>
+                    <p class="separator">
+                        >>
+                    </p>
+                </li>
+                <li>
+                    <a href="/admin/category/index.php">
+                        Categorie
+                    </a>
+                    <p class="separator">
+                        >>
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        Modifica categoria <value-id/>
+                    </p>
+                </li>
+
+            </ul>
             <p class="error"><error-db/></p>
             <form action="/admin/category/edit.php" method="post" id="form-login" data-validate="1">
                 <input type="hidden" name="id" value="<value-id/>">

@@ -56,6 +56,29 @@
         </header>
         <main>
             <h1>Crea una nuova categoria per il sito</h1>
+            <ul class="breadcrumb mt-0 pt-1">
+                <li>
+                    <a href="/admin/home.php">
+                        Home
+                    </a>
+                    <p class="separator">
+                        >>
+                    </p>
+                </li>
+                <li>
+                    <a href="/admin/category/index.php">
+                        Categorie
+                    </a>
+                    <p class="separator">
+                        >>
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        Crea nuova categoria
+                    </p>
+                </li>
+            </ul>
             <p class="error"><error-db/></p>
             <form action="/admin/category/create.php" method="post" id="form-login" data-validate="1">
                 <label for="name">Nome</label>

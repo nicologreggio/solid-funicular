@@ -1,7 +1,7 @@
 <?php
 require_once(__DIR__.'/../inc/header_php.php');
 redirectIfNotLogged();
-$page = file_get_contents('../template_html/product/edit.html');
+$page = page('../template_html/product/edit.html');
 $page = str_replace('<value-id/>', $_REQUEST['id'], $page);
 
 
@@ -125,6 +125,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' ){
                     $_REQUEST['id']
                 ]);
             }
+            message("Prodotto modificato correttamente");
             redirectTo('/admin/product/index.php');
         }    
     }

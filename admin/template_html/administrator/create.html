@@ -54,6 +54,22 @@
         </header>
         <main>
             <h1>Creazione nuovo amministratore</h1>
+            <p class="pb-0 mb-0"> Ti trovi in: </p>
+            <ul class="breadcrumb mt-0 pt-1">
+                <li>
+                    <a href="/admin/home.php">
+                        Home
+                    </a>
+                    <p class="separator">
+                        >>
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        Crea un nuovo amministratore
+                    </p>
+                </li>
+            </ul>
             <p class="error"><error-db/></p>
             <form action="/admin/administrator/create.php" method="post" id="form-login" data-validate="1">
                 <label for="email">Email</label>

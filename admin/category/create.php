@@ -1,7 +1,7 @@
 <?php
 require_once(__DIR__.'/../inc/header_php.php');
 redirectIfNotLogged();
-$page = file_get_contents('../template_html/category/create.html');
+$page = page('../template_html/category/create.html');
 if($_SERVER['REQUEST_METHOD'] == 'POST' ){
     $err = validate([
         'name' => $_POST['name'] ?? "",
@@ -34,6 +34,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' ){
             isset($_POST['menu'])
         ]);
         if($err === true){
+            message("Categoria creata correttamente");
             redirectTo('/admin/category/index.php');
         }
     }

@@ -1,7 +1,7 @@
 <?php
 require_once(__DIR__.'/../inc/header_php.php');
 redirectIfNotLogged();
-$page = file_get_contents('../template_html/material/edit.html');
+$page = page('../template_html/material/edit.html');
 $page = str_replace('<value-id/>', $_REQUEST['id'], $page);
 
 if($_SERVER['REQUEST_METHOD'] == 'POST' ){
@@ -35,6 +35,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' ){
             $_POST['id']
         ]);
         if($err === true){
+            message("Materiale modificato correttamente");
             redirectTo('/admin/material/index.php');
         }
     }

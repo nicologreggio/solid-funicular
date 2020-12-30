@@ -1,7 +1,7 @@
 <?php
 require_once(__DIR__.'/../inc/header_php.php');
 redirectIfNotLogged();
-$page = file_get_contents('../template_html/product/create.html');
+$page = page('../template_html/product/create.html');
 if($_SERVER['REQUEST_METHOD'] == 'POST' ){
     $err = validate([
         'name' => $_POST['name'] ?? "",
@@ -78,6 +78,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' ){
                         ]);
                     }
                 }
+                message("Prodotto inserito correttamente");
                 redirectTo('/admin/product/index.php');
             }
         }
