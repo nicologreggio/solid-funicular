@@ -2,13 +2,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it" lang="it">
 	<head>
 		<meta charset="UTF-8">
-		<link rel="stylesheet" href="../style.css">
-		<script src="./login.js"></script>
+		<link rel="stylesheet" href="../style.css" />
+		<link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico" />
 		<script src="../validate.js"></script>
+		<script src="../scripts/authentication.js"></script>
 	</head>
 	<body>
 		<div class="authentication-container">
-			<form id="login-form" class="authentication-form" action="./login.php" method="POST" data-validate="1">
+			<form class="authentication-form" action="./login.php" method="POST" data-validate="1">
 				<h2>ACCEDI</h2>
 				<fieldset>
 					<label for="email">Email*: </label><br />
@@ -18,17 +19,17 @@
 						name="email" 
 						type="email" 
 						required="required" 
-						placeholder="Inserisci l'email"
+						placeholder="Inserisci la tua email"
 						autofocus="autofocus" 
 						data-error-field="error-email" 
 						data-rules="required|email|max_length:100" 
 						data-error-message="L'email inserita non è valida o troppo lunga (massimo 100 caratteri)" />
-						<div id="error-email" class="error"><error-email/></div>
+					<div id="error-email" class="error"><error-email/></div>
 
 					<label for="password">Password*: </label><br />
 					<input
+						id="password"
 						value="<value-password/>"
-						id="password" 
 						name="password" 
 						type="password" 
 						required="required" 
@@ -40,7 +41,7 @@
 					<div id="error-password" class="error"><error-password/></div>
 				</fieldset>
 				<div class="buttons-control">
-					<a class="button" href="">Registrati</a>
+					<a class="button" href="/src/signup/signup.php">Registrati</a>
 					<button class="button" type="submit">Accedi</button>
 				</div>
 			</form>
