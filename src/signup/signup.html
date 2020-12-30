@@ -1,0 +1,51 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it" lang="it">
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="../style.css">
+		<script src="../validation.js"></script>
+		<script src="./signup.js"></script>
+	</head>
+	<body>
+		<div class="authentication-container">
+			<form id="signup-form" class="authentication-form" action="./signup.php" method="POST">
+				<h2>REGISTRAZIONE</h2>
+				<fieldset>
+                    <legend>Informazioni generali</legend>
+                    
+                    <label for="email">Email*: </label><br />
+                    <input id="email" name="email" type="text" required="required" placeholder="Email" /><br />
+                    
+                    <label for="name">Nome*:</label>
+                    <input id="name" name="name" type="text" placeholder="Nome"><br />
+                    
+                    <label for="surname">Cognome*:</label>
+                    <input id="surname" name="surname" type="text" placeholder="Cognome">
+                    
+                    <label for="password">Password*: </label><br />
+					<input id="password" name="password" type="password" required="required" placeholder="Password" />
+                    <div class="suggestion">La password deve essere lunga almeno 8 caratteri, contenere almeno una lettera maiuscola e almeno un numero</div>
+                    
+                    <label for="password">Conferma Password*: </label><br />
+					<input id="password" name="password" type="password" required="required" placeholder="Password" />
+                </fieldset>
+                <fieldset>
+                    <legend>Residenza</legend>
+                    
+                    <label for="city">Città*: </label><br />
+                    <input id="city" name="city" type="text" required="required" placeholder="Città" /><br />
+                    
+                    <label for="address">Indirizzo*:</label>
+                    <input id="address" name="address" type="text" placeholder="Indirizzo"> 
+                    
+                    <label for="cap">CAP*:</label>
+                    <input id="cap" name="cap" type="text" placeholder="CAP">
+                </fieldset>
+				<div class="buttons-control">
+					<a class="button" href="">Registrati</a>
+					<button id="submit" class="button" type="submit">Accedi</button>
+				</div>
+			</form>
+		</div>
+	</body>
+</html>
