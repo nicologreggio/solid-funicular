@@ -33,6 +33,13 @@ const filters = {
         return input.files.length != 0;
     }
 };
+function removeError(input){
+    input.classList.add('error')
+    if(input.dataset.errorMessage)
+    {
+        document.getElementById(input.dataset.errorField).innerHTML = "<p class='error'>"+input.dataset.errorMessage+"</p>";
+    }
+}
 function validateInput(input){
     let valid = true;
     if(input.dataset.rules){
@@ -47,11 +54,7 @@ function validateInput(input){
                 params = tmp[1].split(',');
             }
             if(filters[r] && !filters[r](input, ...params)){
-                input.classList.add('error')
-                if(input.dataset.errorMessage)
-                {
-                    document.getElementById(input.dataset.errorField).innerHTML = "<p class='error'>"+input.dataset.errorMessage+"</p>";
-                }
+                removeError(input);
                 valid = false;
             } 
         })
@@ -68,7 +71,12 @@ document.addEventListener("DOMContentLoaded", function(event) {
                     e.preventDefault();
                     validateInput(e.target);
                 })
+                input.addEventListener('change', function(e){
+                    e.preventDefault();
+                    removeError(e.target);
+                })
             }
+            
 
             form.addEventListener('submit', function(e){
                 e.preventDefault();
