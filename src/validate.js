@@ -61,6 +61,7 @@ function validateInput(input){
     }
     return valid;
 }
+var input;
 document.addEventListener("DOMContentLoaded", function(event) {
     for(let form of document.getElementsByTagName('form')){
         if(form.dataset.validate == "1"){
@@ -71,10 +72,20 @@ document.addEventListener("DOMContentLoaded", function(event) {
                     e.preventDefault();
                     validateInput(e.target);
                 })
-                input.addEventListener('change', function(e){
+                const onchangeHandler = function(e){
                     e.preventDefault();
-                    removeError(e.target);
-                })
+                    // man mano che l'utente scrive, se l'errore è mostrato, allora controlla che non sia finalmente 
+                    // valido quello che ha scritto
+                    // non è molto supportato, ma per chi lo supporta penso possa essere "positivo"
+                    input = e.target;
+                    if(input.dataset.errorField && document.getElementById(input.dataset.errorField).innerHTML.trim()){
+                        validateInput(e.target);
+                    }
+                };
+                // IE9
+                input.addEventListener('propertychange', onchangeHandler);
+                // per il resto
+                input.addEventListener('input', onchangeHandler)
             }
             
 
