@@ -82,8 +82,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' ){
                 redirectTo('/admin/product/index.php');
             }
         }
-        
     }
+    
     $page = str_replace("<value-name/>", $_POST["name"], $page);
     $page = str_replace("<value-description/>", $_POST["description"], $page);
     $page = str_replace("<value-meta-description/>", $_POST["meta-description"], $page);

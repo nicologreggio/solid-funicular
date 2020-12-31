@@ -15,6 +15,11 @@ html, body
     font-family: 'Fira Sans', sans-serif;
 }
 
+.clickable
+{
+    cursor: pointer;
+}
+
 .authentication-container
 {
     display: flex;
@@ -35,6 +40,10 @@ html, body
     position: relative;
     color: #333;
     border-radius: 10px;
+}
+
+.authentication-form ul {
+    list-style-type: none;
 }
 
 .authentication-form fieldset
@@ -89,12 +98,21 @@ html, body
     border-bottom: 2px solid #ccc;
 }
 
-.authentication-form input:focus {
+.authentication-form input:focus
+{
     border-bottom: 2px solid #0288D1;
 }
 
-.suggestion {
-    font-size: 0.8em;
+.authentication-form #password {
+    width: 95%;
+}
+
+.suggestion, .error {
+    font-size: 1em;
+}
+
+.error {
+    color: #B71C1C;
 }
 
 .buttons-control {

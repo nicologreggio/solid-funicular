@@ -4,10 +4,6 @@ const filters = {
         const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         return re.test(String(input.value).toLowerCase());
     },
-    password : function(input) {
-        const re = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,1024}$/;
-        return re.test(input.value);
-    },
     required : function(input){
         return input.value != null && input.value != "" && input.value.length != 0;
     },
@@ -33,13 +29,6 @@ const filters = {
         return input.files.length != 0;
     }
 };
-function removeError(input){
-    input.classList.add('error')
-    if(input.dataset.errorMessage)
-    {
-        document.getElementById(input.dataset.errorField).innerHTML = "<p class='error'>"+input.dataset.errorMessage+"</p>";
-    }
-}
 function validateInput(input){
     let valid = true;
     if(input.dataset.rules){
@@ -54,7 +43,8 @@ function validateInput(input){
                 params = tmp[1].split(',');
             }
             if(filters[r] && !filters[r](input, ...params)){
-                removeError(input);
+                input.classList.add('error')
+                document.getElementById(input.dataset.errorField).innerHTML = "<p class='error'>"+input.dataset.errorMessage+"</p>";
                 valid = false;
             } 
         })
@@ -71,12 +61,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
                     e.preventDefault();
                     validateInput(e.target);
                 })
-                input.addEventListener('change', function(e){
-                    e.preventDefault();
-                    removeError(e.target);
-                })
             }
-            
 
             form.addEventListener('submit', function(e){
                 e.preventDefault();

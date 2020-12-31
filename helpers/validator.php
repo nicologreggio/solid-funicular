@@ -4,6 +4,9 @@ class Rules{
     public static function email ($value){
         return self::regex($value, '/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/');
     }
+    public static function password($value) {
+        return self::regex($value, '/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,1024}$/');
+    }
     public static function numeric($value){
         return is_numeric($value) == true;
     }
