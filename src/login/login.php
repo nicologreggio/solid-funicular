@@ -1,8 +1,8 @@
 <?php
 
 require_once(__DIR__."/../../helpers/validator.php");
-require_once(__DIR__."/../user/user.service.php");
 require_once(__DIR__."/../utils/utils.php");
+require_once(__DIR__."/../user/user.service.php");
 
 function login(string $email, string $password) : bool
 {
@@ -20,13 +20,14 @@ function validateLoginData(string $email, string $password)
         'email' => $email,
         'password' => $password
     ], [
-        'email' => ['email', 'required'],
+        'email' => ['required', 'email'],
         'validate' => ['required', 'password']
     ], [
         'email.required' => "È obbligatorio inserire una email",
         'email.email' => "L'email inserita non è valida",
 
-        'password.required' => "È obbligatorio inserire una password"
+        'password.required' => "È obbligatorio inserire una password",
+        'password.password' => "La password inserita non è valida"
     ]);
 
     return $err;
@@ -48,9 +49,9 @@ function fillPageWithErrorAndValue($page, $err)
     $page = str_replace("<value-email/>", $_POST['email'], $page);
     $page = str_replace("<value-password/>", $_POST['password'], $page);
 
-    if($err === false)
+    if($err === true)
     {
-        $page = str_replace('<error-db/>', "C'è stato un errore durante l'inserimento", $page);
+        $page = str_replace('<error-db/>', "C'è stato un errore nel database", $page);
         $page = str_replace('<error-email/>', "", $page);
         $page = str_replace('<error-password/>', "", $page);
     } else if(is_array($err))
@@ -64,6 +65,7 @@ function fillPageWithErrorAndValue($page, $err)
 if($_SERVER['REQUEST_METHOD'] == 'POST')
 {
     $err = validateLoginData($_POST['email'], $_POST['password']);
+    
     if($err === false)
     {
         if(login($_POST['email'], $_POST['password']))
