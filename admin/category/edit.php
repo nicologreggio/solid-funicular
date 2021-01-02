@@ -2,7 +2,6 @@
 require_once(__DIR__.'/../inc/header_php.php');
 redirectIfNotLogged();
 $page = page('../template_html/category/edit.html');
-var_dump($_REQUEST['id']);
 replaceValues(['id' => $_REQUEST['id'] ?? null], $page);
 
 $stm = DBC::getInstance()->prepare("
