@@ -2,6 +2,7 @@
 require_once(__DIR__.'/../inc/header_php.php');
 redirectIfNotLogged();
 $page = page('../template_html/material/index.html');
+$page = str_replace('<page/>', ($_REQUEST['page'] ?? 0) + 1, $page);
 $materials = "";
 $cur_page = preg_match('/^[0-9]+$/', $_REQUEST['page']?? '') ? $_REQUEST['page'] : 0;
 $per_page = 20;
@@ -21,8 +22,8 @@ foreach($stm->fetchAll() as $mat){
         </p>
 
         <div class="clearfix">
-            <a class="w49 left button button-green" title="Modifica il materiale::'.e($mat->_NAME).'" href="/admin/material/edit.php?id='.e($mat->_ID).'">Modifica</a>
-            <a class="w49 right button button-red" title="Elimina il materiale::'.e($mat->_NAME).'" href="/admin/material/delete.php?id='.e($mat->_ID).'">Elimina</a>
+            <a class="w49 left button button-green" title="Modifica il materiale:'.e($mat->_NAME).'&page='.e($_REQUEST['page'] ?? 0).'" href="/admin/material/edit.php?id='.e($mat->_ID).'">Modifica</a>
+            <a class="w49 right button button-red" title="Elimina il materiale:'.e($mat->_NAME).'" href="/admin/material/delete.php?id='.e($mat->_ID).'">Elimina</a>
         </div>
         <hr class="mt-3">
     </li>

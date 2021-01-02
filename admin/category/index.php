@@ -2,6 +2,7 @@
 require_once(__DIR__.'/../inc/header_php.php');
 redirectIfNotLogged();
 $page = page('../template_html/category/index.html');
+$page = str_replace('<page/>', ($_REQUEST['page'] ?? 0) + 1, $page);
 $categories = "";
 $cur_page = preg_match('/^[0-9]+$/', $_REQUEST['page']?? '') ? $_REQUEST['page'] : 0;
 $per_page = 4;
@@ -25,7 +26,7 @@ foreach($stm->fetchAll() as $cat){
             '.$cat->_DESCRIPTION.'
         </p>
         <div class="clearfix">
-            <a class="w49 left button button-green" href="/admin/category/edit.php?id='.e($cat->_ID).'" title="Modifica la categoria:'.e($cat->_NAME).'">Modifica</a>
+            <a class="w49 left button button-green" href="/admin/category/edit.php?id='.e($cat->_ID).'&page='.e($_REQUEST['page'] ?? 0).'"" title="Modifica la categoria:'.e($cat->_NAME).'">Modifica</a>
             <a class="w49 right button button-red" href="/admin/category/delete.php?id='.e($cat->_ID).'" title="Elimina la categoria:'.e($cat->_NAME).'">Elimina</a>
         </div>
         <hr class="mt-3">

@@ -3,6 +3,7 @@ require_once(__DIR__.'/../inc/header_php.php');
 redirectIfNotLogged();
 $page = page('../template_html/material/edit.html');
 $page = str_replace('<value-id/>', $_REQUEST['id'], $page);
+$page = str_replace('<page/>', ($_REQUEST['page'] ?? 0) , $page);
 
 if($_SERVER['REQUEST_METHOD'] == 'POST' ){
     $err = validate([
@@ -36,7 +37,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' ){
         ]);
         if($err === true){
             message("Materiale modificato correttamente");
-            redirectTo('/admin/material/index.php');
+            redirectTo('/admin/material/index.php?page='.$_REQUEST['page']);
         }
     }
     $page = str_replace("<value-name/>", $_POST["name"], $page);

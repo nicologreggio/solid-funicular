@@ -3,6 +3,7 @@ require_once(__DIR__.'/../inc/header_php.php');
 redirectIfNotLogged();
 $page = page('../template_html/product/edit.html');
 $page = str_replace('<value-id/>', $_REQUEST['id'], $page);
+$page = str_replace('<page/>', ($_REQUEST['page'] ?? 0) , $page);
 
 
 $stm = DBC::getInstance()->prepare("
@@ -126,7 +127,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' ){
                 ]);
             }
             message("Prodotto modificato correttamente");
-            redirectTo('/admin/product/index.php');
+            redirectTo('/admin/product/index.php?page='.$_REQUEST['page']);
         }    
     }
     $page = str_replace("<value-name/>", $_POST["name"], $page);
