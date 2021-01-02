@@ -11,3 +11,4 @@ require_once(__DIR__.'/../admin_helpers/page.php');
 require_once(__DIR__.'/../admin_helpers/output.php');
 require_once(__DIR__.'/../admin_helpers/error_view.php');
 require_once(__DIR__.'/../admin_helpers/value_view.php');
+require_once(__DIR__.'/../admin_helpers/pagination.php');
