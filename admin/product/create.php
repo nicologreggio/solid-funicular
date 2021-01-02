@@ -83,56 +83,27 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' ){
             }
         }
     }
-    
-    $page = str_replace("<value-name/>", $_POST["name"], $page);
-    $page = str_replace("<value-description/>", $_POST["description"], $page);
-    $page = str_replace("<value-meta-description/>", $_POST["meta-description"], $page);
-    $page = str_replace('<value-age/>', $_POST["age"], $page);
-    $page = str_replace('<value-dimensions/>', $_POST["dimensions"], $page);
-    $page = str_replace('<value-image-description/>', $_POST["dimensions"], $page);
-    $page = str_replace('<value-image-description/>', $_POST["image-description"], $page);
+    replaceValues([
+        "name" => $_POST["name"],
+        "description" => $_POST["description"],
+        "meta-description" => $_POST["meta-description"],
+        'age' => $_POST["age"],
+        'dimensions' => $_POST["dimensions"],
+        'image-description' => $_POST["image-description"],
+    ], $page, true);
 
     if($err === false){
-        $page = str_replace('<error-db/>', "C'è stato un errore durante l'inserimento", $page);
-        $page = str_replace('<error-name/>', "", $page);
-        $page = str_replace('<error-description/>', "" , $page);
-        $page = str_replace('<error-meta-description/>', "" , $page);
-        $page = str_replace('<error-age/>', "" , $page);
-        $page = str_replace('<error-dimensions/>', "" , $page);
-        $page = str_replace('<error-materials/>', "" , $page);
-        $page = str_replace('<error-image/>', "" , $page);
-        $page = str_replace('<error-image-description/>', "" , $page);
+        replaceErrors([
+            'db/>'=> "C'è stato un errore durante l'inserimento"
+        ], $page, true);
     }
     else if(is_array($err)){
-        $page = str_replace('<error-db/>', "", $page); // rimuovo placeholder per errore db
-        foreach($err as $k => $errors){
-            $msg = "<ul class='errors-list'>";
-            foreach($errors as $error){
-                $msg .= "<li> $error </li>";
-            }
-            $msg .= "</ul>";
-            $page = str_replace("<error-$k/>", $msg, $page);
-        }
+        replaceErrors($err, $page, true);
      }
 }
 else {
-    $page = str_replace("<value-name/>", "", $page);
-    $page = str_replace("<value-description/>", "", $page);
-    $page = str_replace("<value-meta-description/>", "", $page);
-    $page = str_replace('<value-age/>', "", $page);
-    $page = str_replace('<value-dimensions/>', "", $page);
-    $page = str_replace('<value-image-description/>', "", $page);
-    
-    $page = str_replace('<error-db/>', "", $page);
-    $page = str_replace('<error-name/>', "", $page);
-    $page = str_replace('<error-description/>', "" , $page);
-    $page = str_replace('<error-meta-description/>', "" , $page);
-    $page = str_replace('<error-age/>', "" , $page);
-    $page = str_replace('<error-dimensions/>', "" , $page);
-    $page = str_replace('<error-image/>', "" , $page);
-    $page = str_replace('<error-category/>', "" , $page);
-    $page = str_replace('<error-image-description/>', "" , $page);
-    $page = str_replace('<error-materials/>', "" , $page);
+    removeErrorsTag($page);
+    removeValuesTag($page);
 }
 
 $categories = DBC::getInstance()->query("
@@ -146,13 +117,12 @@ $page = str_replace('<categories/>', $out, $page);
 
 
 
-
 $materials = DBC::getInstance()->query("
     SELECT * FROM MATERIALS 
 ")->fetchAll();
 $out = "";
 foreach($materials as $mat){
-    $out.= '<option value="'.$mat->_ID.'" '.(in_array($mat->_ID, $_REQUEST['material'] ?? [] )? 'selected ' : '' ).' >'.$mat->_NAME.'</option>';
+    $out.= '<option value="'.$mat->_ID.'" '.(in_array($mat->_ID, $_REQUEST['materials'] ?? [] )? 'selected ' : '' ).' >'.$mat->_NAME.'</option>';
 }
 $page = str_replace('<materials/>', $out, $page);
 

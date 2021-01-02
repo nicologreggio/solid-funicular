@@ -2,14 +2,16 @@
 require_once(__DIR__.'/../inc/header_php.php');
 redirectIfNotLogged();
 $page = page('../template_html/product/index.html');
-$page = str_replace('<page/>', ($_REQUEST['page'] ?? 0) + 1, $page);
+
 $products = "";
 $cur_page = preg_match('/^[0-9]+$/', $_REQUEST['page']?? '') ? $_REQUEST['page'] : 0;
 $per_page = 8;
+
 $stm = DBC::getInstance()->prepare('SELECT * FROM PRODUCTS ORDER BY _ID LIMIT :limit OFFSET :offset');
 $stm->bindValue(':limit', (int) $per_page, PDO::PARAM_INT); 
 $stm->bindValue(':offset', (int) $cur_page * $per_page, PDO::PARAM_INT); 
 $stm->execute();
+
 foreach(($stm->fetchAll() ?? []) as $prod){
     $category_name = DBC::getInstance()->query("SELECT _NAME FROM CATEGORIES WHERE _ID = $prod->_CATEGORY LIMIT 1")->fetchColumn();
     $product_materials = DBC::getInstance()->query("

@@ -2,8 +2,8 @@
 require_once(__DIR__.'/../inc/header_php.php');
 redirectIfNotLogged();
 $page = page('../template_html/product/edit.html');
-$page = str_replace('<value-id/>', $_REQUEST['id'], $page);
-$page = str_replace('<page/>', ($_REQUEST['page'] ?? 0) , $page);
+
+replaceValues(['id' => $_REQUEST['id']], $page);
 
 
 $stm = DBC::getInstance()->prepare("
@@ -109,8 +109,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' ){
         ]);
         
 
-
-        
         if($err === true){
             DBC::getInstance()->prepare("
                 DELETE FROM `PRODUCT_MATERIAL` WHERE _PRODUCT_ID = ?
@@ -130,50 +128,27 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' ){
             redirectTo('/admin/product/index.php?page='.$_REQUEST['page']);
         }    
     }
-    $page = str_replace("<value-name/>", $_POST["name"], $page);
-    $page = str_replace("<value-description/>", $_POST["description"], $page);
-    $page = str_replace("<value-meta-description/>", $_POST["meta-description"], $page);
-    $page = str_replace('<value-age/>', $_POST["age"], $page);
-    $page = str_replace('<value-dimensions/>', $_POST["dimensions"], $page);
-    $page = str_replace('<value-image-description/>', $_POST["image-description"], $page);
+    replaceValues([
+        "name" => $_POST["name"],
+        "description" => $_POST["description"],
+        "meta-description" => $_POST["meta-description"],
+        'age' => $_POST["age"],
+        'dimensions' => $_POST["dimensions"],
+        'image-description' => $_POST["image-description"],
+    ], $page, true);
 
     if($err === false){
-        $page = str_replace('<error-db/>', "C'è stato un errore durante l'inserimento", $page);
-        $page = str_replace('<error-name/>', "", $page);
-        $page = str_replace('<error-description/>', "" , $page);
-        $page = str_replace('<error-meta-description/>', "" , $page);
-        $page = str_replace('<error-image-description/>', "" , $page);
+        replaceErrors([
+            'db/>'=> "C'è stato un errore durante l'inserimento"
+        ], $page, true);
     }
     else if(is_array($err)){
-        $page = str_replace('<error-db/>', "", $page); // rimuovo placeholder per errore db
-        foreach($err as $k => $errors){
-            $msg = "<ul class='errors-list'>";
-            foreach($errors as $error){
-                $msg .= "<li> $error </li>";
-            }
-            $msg .= "</ul>";
-            $page = str_replace("<error-$k/>", $msg, $page);
-        }
+        replaceErrors($err, $page, true);
      }
 }
 else {
-
-    $page = str_replace("<value-name/>", $product->_NAME, $page);
-    $page = str_replace("<value-description/>", $product->_DESCRIPTION, $page);
-    $page = str_replace("<value-meta-description/>", $product->_METADESCRIPTION, $page);
-    $page = str_replace('<value-age/>', $product->_AGE, $page);
-    $page = str_replace('<value-dimensions/>', $product->_DIMENSIONS, $page);
-    $page = str_replace('<value-image-description/>', $product->_MAIN_IMAGE_DESCRIPTION, $page);
-    
-    $page = str_replace('<error-db/>', "", $page);
-    $page = str_replace('<error-name/>', "", $page);
-    $page = str_replace('<error-description/>', "" , $page);
-    $page = str_replace('<error-meta-description/>', "" , $page);
-    $page = str_replace('<error-age/>', "" , $page);
-    $page = str_replace('<error-dimensions/>', "" , $page);
-    $page = str_replace('<error-image/>', "" , $page);
-    $page = str_replace('<error-category/>', "" , $page);
-    $page = str_replace('<error-image-description/>', "" , $page);
+    removeErrorsTag($page);
+    removeValuesTag($page);
 }
 $categories = DBC::getInstance()->query("
     SELECT _ID, _NAME FROM CATEGORIES 

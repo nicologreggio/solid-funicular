@@ -2,8 +2,21 @@
 require_once(__DIR__.'/../inc/header_php.php');
 redirectIfNotLogged();
 $page = page('../template_html/material/edit.html');
-$page = str_replace('<value-id/>', $_REQUEST['id'], $page);
-$page = str_replace('<page/>', ($_REQUEST['page'] ?? 0) , $page);
+replaceValues(['id' => $_REQUEST['id']], $page);
+
+$stm = DBC::getInstance()->prepare("
+    SELECT *
+    FROM MATERIALS
+    WHERE `_ID` = ?
+");
+$stm->execute([
+    $_REQUEST['id']
+]);
+$material = $stm->fetch();
+if($material === false){
+    error('Il materiale cercato non esiste');
+} 
+
 
 if($_SERVER['REQUEST_METHOD'] == 'POST' ){
     $err = validate([
@@ -40,43 +53,25 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' ){
             redirectTo('/admin/material/index.php?page='.$_REQUEST['page']);
         }
     }
-    $page = str_replace("<value-name/>", $_POST["name"], $page);
-    $page = str_replace("<value-description/>", $_POST["description"], $page);
+    replaceValues([
+        "name" => $_POST["name"],
+        "description" => $_POST["description"]
+    ], $page, true);
 
     if($err === false){
-        $page = str_replace('<error-db/>', "C'è stato un errore durante l'inserimento", $page);
-        $page = str_replace('<error-name/>', "", $page);
-        $page = str_replace('<error-description/>', "" , $page);
+        replaceErrors([
+            'db' => "C'è stato un errore durante l'inserimento"
+        ], $page, true);
     }
     else if(is_array($err)){
-        $page = str_replace('<error-db/>', "", $page); // rimuovo placeholder per errore db
-        foreach($err as $k => $errors){
-            $msg = "<ul class='errors-list'>";
-            foreach($errors as $error){
-                $msg .= "<li> $error </li>";
-            }
-            $msg .= "</ul>";
-            $page = str_replace("<error-$k/>", $msg, $page);
-        }
+        replaceErrors($err, $page, true);
      }
 }
 else {
-    $stm = DBC::getInstance()->prepare("
-        SELECT *
-        FROM MATERIALS
-        WHERE `_ID` = ?
-    ");
-    $stm->execute([
-        $_REQUEST['id']
-    ]);
-    $material = $stm->fetch();
-    if($material === false){
-        error('Il materiale cercato non esiste');
-    } 
-    $page = str_replace("<value-name/>", $material->_NAME, $page);
-    $page = str_replace("<value-description/>", $material->_DESCRIPTION, $page);
-    $page = str_replace('<error-db/>', "", $page);
-    $page = str_replace('<error-name/>', "", $page);
-    $page = str_replace('<error-description/>', "" , $page);
+    replaceValues([
+        "name" => $material->_NAME, 
+        "description" => $material->_DESCRIPTION, 
+    ], $page, true);
+    removeErrorsTag($page); 
 }
 echo $page;

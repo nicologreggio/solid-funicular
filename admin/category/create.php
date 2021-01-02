@@ -38,37 +38,25 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' ){
             redirectTo('/admin/category/index.php');
         }
     }
-    $page = str_replace("<value-name/>", $_POST["name"], $page);
-    $page = str_replace("<value-description/>", $_POST["description"], $page);
-    $page = str_replace("<value-meta-description/>", $_POST["meta-description"], $page);
-    $page = str_replace('<value-menu/>', (isset($_POST['menu']) ? 'checked' : ''), $page);
+
+    replaceValues([
+        "name" => $_POST["name"],
+        "description" => $_POST["description"],
+        "meta-description" => $_POST["meta-description"],
+        'menu' => (isset($_POST['menu']) ? 'checked' : ''),
+    ], $page);
 
     if($err === false){
-        $page = str_replace('<error-db/>', "C'è stato un errore durante l'inserimento", $page);
-        $page = str_replace('<error-name/>', "", $page);
-        $page = str_replace('<error-description/>', "" , $page);
-        $page = str_replace('<error-meta-description/>', "" , $page);
+        replaceErrors([
+            '<error-db/>' => "C'è stato un errore durante l'inserimento"
+        ], $page, true);
     }
     else if(is_array($err)){
-        $page = str_replace('<error-db/>', "", $page); // rimuovo placeholder per errore db
-        foreach($err as $k => $errors){
-            $msg = "<ul class='errors-list'>";
-            foreach($errors as $error){
-                $msg .= "<li> $error </li>";
-            }
-            $msg .= "</ul>";
-            $page = str_replace("<error-$k/>", $msg, $page);
-        }
+        replaceErrors($err, $page, true);
      }
 }
 else {
-    $page = str_replace("<value-name/>", "", $page);
-    $page = str_replace("<value-description/>", "", $page);
-    $page = str_replace("<value-meta-description/>", "", $page);
-    $page = str_replace('<error-db/>', "", $page);
-    $page = str_replace('<error-name/>', "", $page);
-    $page = str_replace('<error-description/>', "" , $page);
-    $page = str_replace('<error-meta-description/>', "" , $page);
-    $page = str_replace('<value-menu/>', '', $page);
+    removeValuesTag($page);
+    removeErrorsTag($page);
 }
 echo $page;

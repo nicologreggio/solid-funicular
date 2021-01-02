@@ -2,7 +2,7 @@
 require_once(__DIR__.'/../inc/header_php.php');
 redirectIfNotLogged();
 $page = page('../template_html/category/index.html');
-$page = str_replace('<page/>', ($_REQUEST['page'] ?? 0) + 1, $page);
+
 $categories = "";
 $cur_page = preg_match('/^[0-9]+$/', $_REQUEST['page']?? '') ? $_REQUEST['page'] : 0;
 $per_page = 4;

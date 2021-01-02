@@ -2,8 +2,21 @@
 require_once(__DIR__.'/../inc/header_php.php');
 redirectIfNotLogged();
 $page = page('../template_html/category/edit.html');
-$page = str_replace('<value-id/>', $_REQUEST['id'], $page);
-$page = str_replace('<page/>', ($_REQUEST['page'] ?? 0) , $page);
+replaceValues(['id', $_REQUEST['id'] ?? null], $page);
+
+$stm = DBC::getInstance()->prepare("
+    SELECT *
+    FROM CATEGORIES
+    WHERE `_ID` = ?
+");
+$stm->execute([
+    $_REQUEST['id']
+]);
+$category = $stm->fetch();
+if($category === false){
+    error('La categoria cercata non esiste');
+} 
+
 
 if($_SERVER['REQUEST_METHOD'] == 'POST' ){
     $err = validate([
@@ -49,49 +62,29 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' ){
             redirectTo('/admin/category/index.php?page='.$_REQUEST['page']);
         }
     }
-    $page = str_replace("<value-name/>", $_POST["name"], $page);
-    $page = str_replace("<value-description/>", $_POST["description"], $page);
-    $page = str_replace("<value-meta-description/>", $_POST["meta-description"], $page);
-    $page = str_replace('<value-menu/>', (isset($_POST['menu']) ? 'checked' : ''), $page);
+    replaceValues([
+        "name"=> $_POST["name"],
+        "description" => $_POST["description"],
+        "meta-description" => $_POST["meta-description"],
+        "menu" => (isset($_POST['menu']) ? 'checked' : ''),
+    ], $page, true);
 
     if($err === false){
-        $page = str_replace('<error-db/>', "C'è stato un errore durante l'inserimento", $page);
-        $page = str_replace('<error-name/>', "", $page);
-        $page = str_replace('<error-description/>', "" , $page);
-        $page = str_replace('<error-meta-description/>', "" , $page);
+        replaceErrors([
+            'db' => "C'è stato un errore durante l'inserimento" 
+        ], $page, true);
     }
     else if(is_array($err)){
-        $page = str_replace('<error-db/>', "", $page); // rimuovo placeholder per errore db
-        foreach($err as $k => $errors){
-            $msg = "<ul class='errors-list'>";
-            foreach($errors as $error){
-                $msg .= "<li> $error </li>";
-            }
-            $msg .= "</ul>";
-            $page = str_replace("<error-$k/>", $msg, $page);
-        }
+        replaceErrors($err, $page, true);
      }
 }
 else {
-    $stm = DBC::getInstance()->prepare("
-        SELECT *
-        FROM CATEGORIES
-        WHERE `_ID` = ?
-    ");
-    $stm->execute([
-        $_REQUEST['id']
-    ]);
-    $category = $stm->fetch();
-    if($category === false){
-        error('La categoria cercata non esiste');
-    } 
-    $page = str_replace("<value-name/>", $category->_NAME, $page);
-    $page = str_replace("<value-description/>", $category->_DESCRIPTION, $page);
-    $page = str_replace("<value-meta-description/>", $category->_METADESCRIPTION, $page);
-    $page = str_replace('<value-menu/>', $category->_MENU == '1' ? 'checked' : '', $page);
-    $page = str_replace('<error-db/>', "", $page);
-    $page = str_replace('<error-name/>', "", $page);
-    $page = str_replace('<error-description/>', "" , $page);
-    $page = str_replace('<error-meta-description/>', "" , $page);
+    replaceValues([
+        "name" => $category->_NAME,
+        "description" => $category->_DESCRIPTION,
+        "meta-description" => $category->_METADESCRIPTION,
+        'menu' => $category->_MENU == '1' ? 'checked' : '',
+    ], $page, true);
+    removeErrorsTag($page);
 }
 echo $page;
