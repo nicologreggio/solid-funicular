@@ -39,29 +39,33 @@ foreach(($stm->fetchAll() ?? []) as $prod){
             <img src="'.$prod->_MAIN_IMAGE.'" class="w20 w100-sm left" alt="'.$prod->_MAIN_IMAGE_DESCRIPTION.'">
             <div class="w80 w100-sm right pl-3 pl-0-sm pt-2-sm">
                 <h3 class="m0 p0"><abbr title="Identificativo" class="strong">ID:</abbr> '.e($prod->_ID).'</h3>
-                <p class="m0 p0 mt-2">
-                    <strong>Meta-descrizione: </strong> <br>
+                <p class="m0 p0 mt-2 strong">
+                    Meta-descrizione:
+                </p>
+                <p class="m0 p0">
                     '.e($prod->_METADESCRIPTION).'
                 </p>
-                <p class="m0 p0 mt-2">
-                    <strong>Descrizione: </strong><br>
+                <p class="m0 p0 mt-2 strong">
+                    Descrizione:
+                </p>
+                <p class="m0 p0">
                     '.e($prod->_DESCRIPTION).'
                 </p>';
     if($prod->_DIMENSIONS) $products.=
                 '<p class="m0 p0 mt-2">
-                    <strong>Dimensioni: </strong>
+                    <span class="strong">Dimensioni: </span>
                     '.e($prod->_DIMENSIONS).'
                 </p>';
     if($prod->_AGE) $products.=
                 '<p class="m0 p0 mt-2">
-                    <strong>Età consigliata: </strong>
+                    <span class="strong">Età consigliata: </span>
                     '.e($prod->_AGE).'
                 </p>';
     $products.=
-                '<p class="m0 p0 mt-2">
-                    <strong>Categoria: </strong> <br>
-                    <a href="/admin/category/index.php" title="Visualizza categorie"> '.e($category_name).' </a>
+                '<p class="m0 p0 mt-2 strong">
+                    Categoria: 
                 </p>
+                <a href="/admin/category/index.php" title="Visualizza categorie"> '.e($category_name).' </a>
                 '.$materials.'
             </div>
             <div class="clearfix">

@@ -1,3 +1,5 @@
+"use strict";
+
 function toggleMenu(e){
     e.preventDefault();
     document.querySelector('nav > ul').classList.toggle('visible');
