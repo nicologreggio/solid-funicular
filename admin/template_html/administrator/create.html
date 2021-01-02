@@ -75,117 +75,125 @@
             <p class="error"><error-db/></p>
             <form action="/admin/administrator/create.php" method="post" id="form-login" data-validate="1">
                 <p class="p-0 m-0">I campi obbligatori son segnati con <span class="color-red">*</span></p>
-                <label for="email">Email<span class="color-red">*</span></label>
-                <input 
-                    value="<value-email/>"
-                    id="email" 
-                    name="email" 
-                    type="email"
-                    placeholder="Inserisci email" 
-                    required="required" 
-                    autofocus="autofocus" 
-                    data-error-field="error-email" 
-                    aria-required="true"
-                    data-rules="required|email|max_length:100" 
-                    data-error-message="L'email inserita non è valida o troppo lunga (massimo 100 caratteri)">
-                <div id="error-email" class="error" role="alert" aria-relevant="all" aria-live="assertive"><error-email/></div>
 
-                <label for="password">Password<span class="color-red">*</span></label>
-                <input 
-                    id="password" 
-                    type="password"
-                    name="password" 
-                    placeholder="Inserisci password" 
-                    required="required" 
-                    aria-required="true"
-                    data-error-field="error-password" 
-                    data-rules="required|min_length:5|max_length:1024" 
-                    data-error-message="La password deve aver una lunghezza compresa tra 5 e 1024 caratteri">
-                <div id="error-password" class="error" role="alert" aria-relevant="all" aria-live="assertive"><error-password/></div>
+                <fieldset>
+                    <legend>Dati per l'accesso</legend>
+                    <label for="email">Email<span class="color-red">*</span></label>
+                    <input 
+                        value="<value-email/>"
+                        id="email" 
+                        name="email" 
+                        type="email"
+                        placeholder="Inserisci email" 
+                        required="required" 
+                        autofocus="autofocus" 
+                        data-error-field="error-email" 
+                        aria-required="true"
+                        data-rules="required|email|max_length:100" 
+                        data-error-message="L'email inserita non è valida o troppo lunga (massimo 100 caratteri)">
+                    <div id="error-email" class="error" role="alert" aria-relevant="all" aria-live="assertive"><error-email/></div>
 
-                <label for="confirm-password">Conferma password<span class="color-red">*</span></label>
-                <input 
-                    id="confirm-password" 
-                    type="password"
-                    name="confirm" 
-                    placeholder="Re-inserisci password" 
-                    required="required" 
-                    aria-required="true"
-                    data-error-field="error-confirm-password" 
-                    data-rules="required|equals:password" 
-                    data-error-message="La conferma non corrisponde alla password">
-                <div id="error-confirm-password" class="error" role="alert" aria-relevant="all" aria-live="assertive"><error-confirm/></div>
+                    <label for="password">Password<span class="color-red">*</span></label>
+                    <input 
+                        id="password" 
+                        type="password"
+                        name="password" 
+                        placeholder="Inserisci password" 
+                        required="required" 
+                        aria-required="true"
+                        data-error-field="error-password" 
+                        data-rules="required|min_length:5|max_length:1024" 
+                        data-error-message="La password deve aver una lunghezza compresa tra 5 e 1024 caratteri">
+                    <div id="error-password" class="error" role="alert" aria-relevant="all" aria-live="assertive"><error-password/></div>
 
-                <label for="name">Nome<span class="color-red">*</span></label>
-                <input 
-                    value="<value-name/>"
-                    id="name" 
-                    type="text"
-                    name="name" 
-                    placeholder="Inserisci il nome" 
-                    required="required" 
-                    aria-required="true"
-                    data-error-field="error-name" 
-                    data-rules="required|alphabetic|max_length:50|min_length:2" 
-                    data-error-message="Il nome può contenere solo lettere e spazi, deve essere più lungo di 1 carattere e può essere lungo al massimo 50 caratteri">
-                <div id="error-name" class="error" role="alert" aria-relevant="all" aria-live="assertive"><error-name/></div>
+                    <label for="confirm-password">Conferma password<span class="color-red">*</span></label>
+                    <input 
+                        id="confirm-password" 
+                        type="password"
+                        name="confirm" 
+                        placeholder="Re-inserisci password" 
+                        required="required" 
+                        aria-required="true"
+                        data-error-field="error-confirm-password" 
+                        data-rules="required|equals:password" 
+                        data-error-message="La conferma non corrisponde alla password">
+                    <div id="error-confirm-password" class="error" role="alert" aria-relevant="all" aria-live="assertive"><error-confirm/></div>
+                </fieldset>
+                <fieldset>
+                    <legend>Dati personali</legend>
+                    <label for="name">Nome<span class="color-red">*</span></label>
+                    <input 
+                        value="<value-name/>"
+                        id="name" 
+                        type="text"
+                        name="name" 
+                        placeholder="Inserisci il nome" 
+                        required="required" 
+                        aria-required="true"
+                        data-error-field="error-name" 
+                        data-rules="required|alphabetic|max_length:50|min_length:2" 
+                        data-error-message="Il nome può contenere solo lettere e spazi, deve essere più lungo di 1 carattere e può essere lungo al massimo 50 caratteri">
+                    <div id="error-name" class="error" role="alert" aria-relevant="all" aria-live="assertive"><error-name/></div>
 
-                <label for="surname">Cognome<span class="color-red">*</span></label>
-                <input 
-                    value="<value-surname/>"
-                    id="surname" 
-                    type="text"
-                    name="surname" 
-                    placeholder="Inserisci il cognome" 
-                    required="required" 
-                    aria-required="true"
-                    data-error-field="error-surname" 
-                    data-rules="required|alphabetic|max_length:100|min_length:2" 
-                    data-error-message="Il cognome può contenere solo lettere e spazi, deve essere più lungo di 1 carattere e può essere lungo al massimo 100 caratteri">
-                <div id="error-surname" class="error" role="alert" aria-relevant="all" aria-live="assertive"><error-surname/></div>
+                    <label for="surname">Cognome<span class="color-red">*</span></label>
+                    <input 
+                        value="<value-surname/>"
+                        id="surname" 
+                        type="text"
+                        name="surname" 
+                        placeholder="Inserisci il cognome" 
+                        required="required" 
+                        aria-required="true"
+                        data-error-field="error-surname" 
+                        data-rules="required|alphabetic|max_length:100|min_length:2" 
+                        data-error-message="Il cognome può contenere solo lettere e spazi, deve essere più lungo di 1 carattere e può essere lungo al massimo 100 caratteri">
+                    <div id="error-surname" class="error" role="alert" aria-relevant="all" aria-live="assertive"><error-surname/></div>
+                </fieldset>
 
-                <label for="city">Città<span class="color-red">*</span></label>
-                <input 
-                    value="<value-city/>"
-                    id="city" 
-                    type="text"
-                    name="city" 
-                    placeholder="Inserisci la città" 
-                    required="required" 
-                    aria-required="true"
-                    data-error-field="error-city" 
-                    data-rules="required|max_length:100|min_length:2" 
-                    data-error-message="La città deve essere almeno lungo 2 caratteri e al massimo 100 caratteri">
-                <div id="error-city" class="error" role="alert" aria-relevant="all" aria-live="assertive"><error-city/></div>
+                <fieldset>
+                    <legend>Indirizzo</legend>
+                    <label for="city">Città<span class="color-red">*</span></label>
+                    <input 
+                        value="<value-city/>"
+                        id="city" 
+                        type="text"
+                        name="city" 
+                        placeholder="Inserisci la città" 
+                        required="required" 
+                        aria-required="true"
+                        data-error-field="error-city" 
+                        data-rules="required|max_length:100|min_length:2" 
+                        data-error-message="La città deve essere almeno lungo 2 caratteri e al massimo 100 caratteri">
+                    <div id="error-city" class="error" role="alert" aria-relevant="all" aria-live="assertive"><error-city/></div>
 
-                <label for="address">Indirizzo<span class="color-red">*</span></label>
-                <input 
-                    value="<value-address/>"
-                    id="address" 
-                    type="text"
-                    name="address" 
-                    placeholder="Inserisci l'indirizzo" 
-                    required="required" 
-                    aria-required="true"
-                    data-error-field="error-address" 
-                    data-rules="required|max_length:100|min_length:2" 
-                    data-error-message="L'indirizzo' deve essere almeno lungo 2 caratteri e al massimo 100 caratteri">
-                <div id="error-address" class="error" role="alert" aria-relevant="all" aria-live="assertive"><error-address/></div>
+                    <label for="address">Indirizzo<span class="color-red">*</span></label>
+                    <input 
+                        value="<value-address/>"
+                        id="address" 
+                        type="text"
+                        name="address" 
+                        placeholder="Inserisci l'indirizzo" 
+                        required="required" 
+                        aria-required="true"
+                        data-error-field="error-address" 
+                        data-rules="required|max_length:100|min_length:2" 
+                        data-error-message="L'indirizzo' deve essere almeno lungo 2 caratteri e al massimo 100 caratteri">
+                    <div id="error-address" class="error" role="alert" aria-relevant="all" aria-live="assertive"><error-address/></div>
 
-                <label for="cap"><abbr title="Codice Avviamento Postale">CAP</abbr><span class="color-red">*</span></label>
-                <input 
-                    value="<value-cap/>"
-                    id="cap" 
-                    type="text"
-                    name="cap" 
-                    placeholder="Inserisci l'indirizzo" 
-                    required="required" 
-                    aria-required="true"
-                    data-error-field="error-cap" 
-                    data-rules="required|length:5|integer" 
-                    data-error-message="Il <abbr title='Codice Avviamento Postale'>CAP</abbr> deve essere lungo 5 caratteri e può essere composto da soli numeri">
-                <div id="error-cap" class="error" role="alert" aria-relevant="all" aria-live="assertive"><error-cap/></div>
-
+                    <label for="cap"><abbr title="Codice Avviamento Postale">CAP</abbr><span class="color-red">*</span></label>
+                    <input 
+                        value="<value-cap/>"
+                        id="cap" 
+                        type="text"
+                        name="cap" 
+                        placeholder="Inserisci l'indirizzo" 
+                        required="required" 
+                        aria-required="true"
+                        data-error-field="error-cap" 
+                        data-rules="required|length:5|integer" 
+                        data-error-message="Il <abbr title='Codice Avviamento Postale'>CAP</abbr> deve essere lungo 5 caratteri e può essere composto da soli numeri">
+                    <div id="error-cap" class="error" role="alert" aria-relevant="all" aria-live="assertive"><error-cap/></div>
+                </fieldset>
                 <button type="submit">
                     Crea
                 </button>
