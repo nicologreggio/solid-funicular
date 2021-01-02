@@ -89,7 +89,8 @@ CREATE TABLE QUOTE_PRODUCT(
 ) ENGINE=INNODB DEFAULT CHARSET=UTF8MB4;
 
 INSERT INTO `USERS` (`_ID`, `_NAME`, `_SURNAME`, `_CITY`, `_ADDRESS`, `_CAP`, `_ADMIN`, `_EMAIL`, `_PASSWORD`) VALUES
-(1, 'admin name', 'admin surname', 'admin city', 'admin address', '10010', b'1', 'admin@admin.admin', 'admin');
+(1, 'admin name', 'admin surname', 'admin city', 'admin address', '10010', b'1', 'admin@admin.admin', 'admin'),
+(2, 'Utente', 'Utente', 'Città', 'Via della città', '30010', b'0', 'utente@utente.utente', 'utente');
 
 INSERT INTO `CATEGORIES` (`_ID`, `_NAME`, `_DESCRIPTION`, `_METADESCRIPTION`, `_MENU`) VALUES
 (4, 'Arredo Urbano', 'Solid Funicular propone una vasta gamma di prodotti per l’arredo urbano quali panchine da esterno, fontane, cestini porta-rifiuti, rastrelliere, griglie per alberi, pensiline attesa autobus, dissuasori, fioriere, transenne e molti altri complementi.<br>\r\n<br>\r\nFunzionalità, stile e innovazione sono le peculiarità che fanno di ogni articolo una soluzione affidabile, destinata a durare nel tempo e che ben si adatta a contesti architettonici di ogni genere, grazie a un’esperienza ventennale e a un’accurata scelta dei materiali.<br>\r\n<br>\r\nIl nostro staff di arredo urbano è al tuo servizio per migliorare la qualità della vita, rispettando l’ambiente che ci circonda utilizzando anche prodotti riciclati e riciclabili.', 'Arredo Urbano. Prodotti per l’arredo urbano quali panchine da esterno, fontane, cestini portarifiuti, rastrelliere, griglie per alberi, pensiline attesa autobus, dissuasori, fioriere, transenne e molti altri complementi.', b'1'),
