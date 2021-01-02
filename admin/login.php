@@ -7,7 +7,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' ){
         redirectIfLogged();
     }
     else {
-        $page = str_replace('<error-login/>', '<p class="error">L\' cercato non è stato trovato</p>', $page);
+        $page = str_replace('<error-login/>', '<p class="error">L\'utente cercato non è stato trovato</p>', $page);
     }
 }
 echo $page;

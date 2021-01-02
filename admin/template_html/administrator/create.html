@@ -74,7 +74,8 @@
             </ul>
             <p class="error"><error-db/></p>
             <form action="/admin/administrator/create.php" method="post" id="form-login" data-validate="1">
-                <label for="email">Email</label>
+                <p class="p-0 m-0">I campi obbligatori son segnati con <span class="color-red">*</span></p>
+                <label for="email">Email<span class="color-red">*</span></label>
                 <input 
                     value="<value-email/>"
                     id="email" 
@@ -89,7 +90,7 @@
                     data-error-message="L'email inserita non è valida o troppo lunga (massimo 100 caratteri)">
                 <div id="error-email" class="error" role="alert" aria-relevant="all" aria-live="assertive"><error-email/></div>
 
-                <label for="password">Password</label>
+                <label for="password">Password<span class="color-red">*</span></label>
                 <input 
                     id="password" 
                     type="password"
@@ -102,7 +103,7 @@
                     data-error-message="La password deve aver una lunghezza compresa tra 5 e 1024 caratteri">
                 <div id="error-password" class="error" role="alert" aria-relevant="all" aria-live="assertive"><error-password/></div>
 
-                <label for="confirm-password">Conferma password</label>
+                <label for="confirm-password">Conferma password<span class="color-red">*</span></label>
                 <input 
                     id="confirm-password" 
                     type="password"
@@ -115,7 +116,7 @@
                     data-error-message="La conferma non corrisponde alla password">
                 <div id="error-confirm-password" class="error" role="alert" aria-relevant="all" aria-live="assertive"><error-confirm/></div>
 
-                <label for="name">Nome</label>
+                <label for="name">Nome<span class="color-red">*</span></label>
                 <input 
                     value="<value-name/>"
                     id="name" 
@@ -129,7 +130,7 @@
                     data-error-message="Il nome può contenere solo lettere e spazi, deve essere più lungo di 1 carattere e può essere lungo al massimo 50 caratteri">
                 <div id="error-name" class="error" role="alert" aria-relevant="all" aria-live="assertive"><error-name/></div>
 
-                <label for="surname">Cognome</label>
+                <label for="surname">Cognome<span class="color-red">*</span></label>
                 <input 
                     value="<value-surname/>"
                     id="surname" 
@@ -143,7 +144,7 @@
                     data-error-message="Il cognome può contenere solo lettere e spazi, deve essere più lungo di 1 carattere e può essere lungo al massimo 100 caratteri">
                 <div id="error-surname" class="error" role="alert" aria-relevant="all" aria-live="assertive"><error-surname/></div>
 
-                <label for="city">Città</label>
+                <label for="city">Città<span class="color-red">*</span></label>
                 <input 
                     value="<value-city/>"
                     id="city" 
@@ -157,7 +158,7 @@
                     data-error-message="La città deve essere almeno lungo 2 caratteri e al massimo 100 caratteri">
                 <div id="error-city" class="error" role="alert" aria-relevant="all" aria-live="assertive"><error-city/></div>
 
-                <label for="address">Indirizzo</label>
+                <label for="address">Indirizzo<span class="color-red">*</span></label>
                 <input 
                     value="<value-address/>"
                     id="address" 
@@ -171,7 +172,7 @@
                     data-error-message="L'indirizzo' deve essere almeno lungo 2 caratteri e al massimo 100 caratteri">
                 <div id="error-address" class="error" role="alert" aria-relevant="all" aria-live="assertive"><error-address/></div>
 
-                <label for="cap"><abbr title="Codice Avviamento Postale">CAP</abbr></label>
+                <label for="cap"><abbr title="Codice Avviamento Postale">CAP</abbr><span class="color-red">*</span></label>
                 <input 
                     value="<value-cap/>"
                     id="cap" 
