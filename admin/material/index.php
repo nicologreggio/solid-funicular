@@ -41,19 +41,19 @@ if($number_of_materials > $per_page){
     if($cur_page > 0){
         $pagination = '
         <a class="button" title="Vai alla prima pagina" href="/admin/material/index.php?page=0">
-            &lt;&lt; Prima
+            &lt;&lt; <span>Prima</span>
         </a>
         <a class="button" title="Vai alla pagina precedente" href="/admin/material/index.php?page='.($cur_page-1).'">
-            &lt; <abbr title="Pagina precedente">Prec.</abbr>
+            &lt; <span><abbr title="Pagina precedente">Prec.</abbr></span>
         </a>';
     }
     if($cur_page < $last){
         $pagination.= '
         <a class="button" title="Vai alla pagina successiva" href="/admin/material/index.php?page='.($cur_page+1).'">
-            <abbr title="Pagina successiva">Succ.</abbr> &gt; 
+            <span><abbr title="Pagina successiva">Succ.</abbr></span> &gt; 
         </a>
         <a class="button" title="Vai all\'ultima pagina" href="/admin/material/index.php?page='.($last).'">
-            Ultima &gt;&gt; 
+            <span>Ultima</span> &gt;&gt; 
         </a>';
     }
 }

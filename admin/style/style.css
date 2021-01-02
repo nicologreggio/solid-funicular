@@ -318,6 +318,7 @@ hr {
 .pagination{
     margin:auto;
     display: flex;
+    justify-content: center;
     max-width: 450px;
 }
 .pagination > *{
@@ -331,6 +332,7 @@ hr {
     border-width: 2px !important;
     color:  #007bff !important;
     border-color:  #007bff;
+    max-width: 102.5px;
 }
 
 .breadcrumb{
@@ -647,6 +649,12 @@ ul.breadcrumb{
 @media screen and (max-width: 852px) {
     main{
         padding: 2em 3em;
+    }
+}
+
+@media screen and (max-width: 560px) {
+    .pagination span{
+        display: none;
     }
 }
 
