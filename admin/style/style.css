@@ -377,7 +377,14 @@ hr {
 .h80vh{
     height: 80vh;
 }
-
+nav > button > svg{
+    clip: rect(0px, 0px, 32px, 32px);
+    width: 32px;
+    height:32px;
+}
+.strong{
+    font-weight: bold;
+} 
 
 form label:first-of-type {
     padding-top:0;

@@ -148,7 +148,14 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' ){
 }
 else {
     removeErrorsTag($page);
-    removeValuesTag($page);
+    replaceValues([
+        "name" => $product->_NAME,
+        "description" => $product->_DESCRIPTION,
+        "meta-description" => $product->_METADESCRIPTION,
+        'age' => $product->_AGE,
+        'dimensions' => $product->_DIMENSIONS,
+        'image-description' => $product->_MAIN_IMAGE_DESCRIPTION,
+    ], $page, true);
 }
 $categories = DBC::getInstance()->query("
     SELECT _ID, _NAME FROM CATEGORIES 

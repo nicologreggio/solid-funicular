@@ -64,7 +64,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' ){
     }
     replaceValues([
         "name"=> $_POST["name"],
-        "description" => $_POST["description"],
+        "description" => esty($_POST["description"]),
         "meta-description" => $_POST["meta-description"],
         "menu" => (isset($_POST['menu']) ? 'checked' : ''),
     ], $page, true);
@@ -81,7 +81,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' ){
 else {
     replaceValues([
         "name" => $category->_NAME,
-        "description" => $category->_DESCRIPTION,
+        "description" => e($category->_DESCRIPTION),
         "meta-description" => $category->_METADESCRIPTION,
         'menu' => $category->_MENU == '1' ? 'checked' : '',
     ], $page, true);

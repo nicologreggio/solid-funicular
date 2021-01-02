@@ -18,19 +18,19 @@ foreach(($stm->fetchAll() ?? []) as $prod){
         FROM MATERIALS JOIN PRODUCT_MATERIAL WHERE _ID = _MATERIAL_ID AND _PRODUCT_ID = $prod->_ID
     ")->fetchAll() ?? [];
     if(empty($product_materials)){
-        $materials = '<p class="m0 p0 mt-2"><strong>Nessun materiale associato a questo prodotto</strong></p>';
+        $materials = '<p class="m0 p0 mt-2 strong">Nessun materiale associato a questo prodotto></p>';
     }
     else {
         $materials = '
-        <p class="m0 p0 mt-2">
-            <strong>Materiali: </strong>
+        <div class="m0 p0 mt-2">
+            <p class="strong">Materiali: </p>
             <ul class="pl-2">' ;
         foreach($product_materials as $mat){
             $materials.="<li>".e($mat->_NAME)."</li>";
         }
         $materials.="
             </ul>
-        </p>";
+        </div>";
     }
     
     $products.='
@@ -65,7 +65,7 @@ foreach(($stm->fetchAll() ?? []) as $prod){
                 '.$materials.'
             </div>
             <div class="clearfix">
-                <a class="w49 left button button-green" title="Modifica il prodotto: '.e($prod->_NAME).'" href="/admin/product/edit.php?id='.e($prod->_ID).'&page='.e($_REQUEST['page'] ?? 0).'">Modifica</a>
+                <a class="w49 left button button-green" title="Modifica il prodotto: '.e($prod->_NAME).'" href="/admin/product/edit.php?id='.e($prod->_ID).'&amp;page='.e($_REQUEST['page'] ?? 0).'">Modifica</a>
                 <a class="w49 right button button-red"  title="Elimina il prodotto: '.e($prod->_NAME).'" href="/admin/product/delete.php?id='.e($prod->_ID).'">Elimina</a>
             </div>
             <hr class="mt-3">
