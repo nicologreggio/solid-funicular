@@ -136,3 +136,36 @@ html, body
 .buttons-control .button:hover {
     background-color:#01579B;
 }
+
+/* ========== GENERAL COLORS ========== */
+h1, h2{
+    color: #A70500
+}
+
+/* ========== HEADER & MENU ========== */
+header{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#header > a{
+    flex-basis: 1;
+}
+
+#titles{
+    text-align: center;
+}
+
+#titles > h1{
+    font-size: 4em;
+}
+
+#titles > h2{
+    font-size: 2em;
+}
+
+#menu > ul{
+    list-style-type: none;
+
+}
