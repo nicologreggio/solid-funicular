@@ -150,7 +150,7 @@ if(request()->method() == 'POST' ){
 
     if($err === false){
         replaceErrors([
-            'db/>'=> "C'è stato un errore durante l'inserimento"
+            'db'=> "C'è stato un errore durante l'inserimento"
         ], $page, true);
     }
     else if(is_array($err)){
