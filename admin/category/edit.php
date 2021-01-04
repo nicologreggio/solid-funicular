@@ -2,27 +2,37 @@
 require_once(__DIR__.'/../inc/header_php.php');
 redirectIfNotLogged();
 $page = page('../template_html/category/edit.html');
-replaceValues(['id' => $_REQUEST['id'] ?? null], $page);
+
+$request = request()->only([
+    'name',
+    'description',
+    'meta-description',
+    'menu',
+    'page'
+]);
+
+$id = request()->only([
+    'id'
+]);
+replaceValues($id, $page);
 
 $stm = DBC::getInstance()->prepare("
     SELECT *
     FROM CATEGORIES
     WHERE `_ID` = ?
 ");
-$stm->execute([
-    $_REQUEST['id']
-]);
+$stm->execute(array_values($id));
 $category = $stm->fetch();
 if($category === false){
     error('La categoria cercata non esiste');
 } 
 
 
-if($_SERVER['REQUEST_METHOD'] == 'POST' ){
+if(request()->method() == 'POST' ){
     $err = validate([
-        'name' => $_POST['name'] ?? "",
-        'description' => $_POST['description'] ?? "",
-        'meta-description' => $_POST['meta-description'] ?? "",
+        'name' => $request['name'],
+        'description' => $request['description'],
+        'meta-description' => $request['meta-description'],
     ],[
         'name' => ["required", "min_length:2", "max_length:100"],
         'description' => ["required", "min_length:30"],
@@ -39,7 +49,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' ){
         "description.required" => "E' obbligatorio inserire una descrizione",
         "description.min_length" => "La descrizione deve essere lunga almeno 30 caratteri",
     ]);
-
+    // validazione andata a buon fine
     if($err === true){
         $err = DBC::getInstance()->prepare("
             UPDATE CATEGORIES
@@ -51,24 +61,27 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' ){
             WHERE
             `_ID` = ?
         ")->execute([
-            $_POST['name'],
-            $_POST['description'],
-            $_POST['meta-description'],
-            isset($_POST['menu']),
-            $_POST['id']
+            $request['name'],
+            $request['description'],
+            $request['meta-description'],
+            $request['menu'] == true,
+            $id['id']
         ]);
         if($err === true){
             message("Categoria modificata correttamente");
-            redirectTo('/admin/category/index.php?page='.$_REQUEST['page']);
+            redirectTo('/admin/category/index.php?page='.$request['page']);
         }
     }
+
+    // altrimenti ripristino i valori degli input
     replaceValues([
-        "name"=> $_POST["name"],
-        "description" => esty($_POST["description"]),
-        "meta-description" => $_POST["meta-description"],
-        "menu" => (isset($_POST['menu']) ? 'checked' : ''),
+        "name"=> $request["name"],
+        "description" => $request["description"],
+        "meta-description" => $request["meta-description"],
+        "menu" => ($request['menu'] == true ? 'checked' : ''),
     ], $page, true);
 
+    // mostro gli errori
     if($err === false){
         replaceErrors([
             'db' => "C'è stato un errore durante l'inserimento" 
@@ -79,6 +92,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' ){
      }
 }
 else {
+    // altrimenti precompilo gli input
     replaceValues([
         "name" => $category->_NAME,
         "description" => e($category->_DESCRIPTION),

@@ -2,7 +2,15 @@
 require_once(__DIR__.'/../inc/header_php.php');
 redirectIfNotLogged();
 $page = page('../template_html/material/edit.html');
-replaceValues(['id' => $_REQUEST['id']], $page);
+
+$id = request()->only(['id']);
+$request = request()->only([
+    'name',
+    'description',
+    'id',
+    'page'
+]);
+replaceValues($id, $page);
 
 $stm = DBC::getInstance()->prepare("
     SELECT *
@@ -10,18 +18,19 @@ $stm = DBC::getInstance()->prepare("
     WHERE `_ID` = ?
 ");
 $stm->execute([
-    $_REQUEST['id']
+    $id['id']
 ]);
 $material = $stm->fetch();
+
 if($material === false){
     error('Il materiale cercato non esiste');
 } 
 
 
-if($_SERVER['REQUEST_METHOD'] == 'POST' ){
+if(request()->method() == 'POST' ){
     $err = validate([
-        'name' => $_POST['name'] ?? "",
-        'description' => $_POST['description'] ?? "",
+        'name' => $request['name'] ?? "",
+        'description' => $request['description'] ?? "",
     ],[
         'name' => ["required", "min_length:2", "max_length:50"],
         'description' => ["required", "min_length:10", "max_length:200"],
@@ -34,7 +43,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' ){
         "description.min_length" => "La descrizione deve essere lunga almeno 10 caratteri caratteri",
         "description.max_length" => "La descrizione può essere lunga al massimo 200 caratteri",
     ]);
-
+    // validazione andata a buon fine
     if($err === true){
         $err = DBC::getInstance()->prepare("
             UPDATE MATERIALS
@@ -44,20 +53,22 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' ){
             WHERE
             `_ID` = ?
         ")->execute([
-            $_POST['name'],
-            $_POST['description'],
-            $_POST['id']
+            $request['name'],
+            $request['description'],
+            $request['id']
         ]);
         if($err === true){
             message("Materiale modificato correttamente");
-            redirectTo('/admin/material/index.php?page='.$_REQUEST['page']);
+            redirectTo('/admin/material/index.php?page='.$request['page']);
         }
     }
-    replaceValues([
-        "name" => $_POST["name"],
-        "description" => $_POST["description"]
-    ], $page, true);
 
+    // altrimenti ripristino i valori degli input
+    replaceValues([
+        "name" => $request["name"],
+        "description" => $request["description"]
+    ], $page, true);
+    // mostro gli errori
     if($err === false){
         replaceErrors([
             'db' => "C'è stato un errore durante l'inserimento"
@@ -68,6 +79,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' ){
      }
 }
 else {
+    // precompilo i campi input 
     replaceValues([
         "name" => $material->_NAME, 
         "description" => $material->_DESCRIPTION, 

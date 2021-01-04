@@ -2,12 +2,15 @@
 require_once(__DIR__.'/../inc/header_php.php');
 redirectIfNotLogged();
 $page = page('../template_html/category/create.html');
-if($_SERVER['REQUEST_METHOD'] == 'POST' ){
-    $err = validate([
-        'name' => $_POST['name'] ?? "",
-        'description' => $_POST['description'] ?? "",
-        'meta-description' => $_POST['meta-description'] ?? "",
-    ],[
+if(request()->method() == 'POST' ){
+    $request = request()->only([
+        'name',
+        'description',
+        'meta-description',
+        'menu'
+    ]);
+    $err = validate( $request,
+    [
         'name' => ["required", "min_length:2", "max_length:100"],
         'description' => ["required", "min_length:30"],
         'meta-description' => ["required", "min_length:30", "max_length:500"],
@@ -23,32 +26,34 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' ){
         "description.required" => "E' obbligatorio inserire una descrizione",
         "description.min_length" => "La descrizione deve essere lunga almeno 30 caratteri",
     ]);
+    // validazione andata a buon fine
     if($err === true){
         $err = DBC::getInstance()->prepare("
             INSERT INTO CATEGORIES(`_NAME`, `_DESCRIPTION`, `_METADESCRIPTION`, `_MENU`) VALUES
             (?, ?, ?, b?)
         ")->execute([
-            $_POST['name'],
-            $_POST['description'],
-            $_POST['meta-description'],
-            isset($_POST['menu'])
+            $request['name'],
+            $request['description'],
+            $request['meta-description'],
+            $request['menu'] == true
         ]);
         if($err === true){
             message("Categoria creata correttamente");
             redirectTo('/admin/category/index.php');
         }
     }
-
+    // altrimenti ripristino i valori agli input
     replaceValues([
-        "name" => $_POST["name"],
-        "description" => $_POST["description"],
-        "meta-description" => $_POST["meta-description"],
-        'menu' => (isset($_POST['menu']) ? 'checked' : ''),
+        "name" => $request["name"],
+        "description" => $request["description"],
+        "meta-description" => $request["meta-description"],
+        'menu' => ($request['menu'] == true ? 'checked' : ''),
     ], $page);
 
+    // mostro gli errori
     if($err === false){
         replaceErrors([
-            '<error-db/>' => "C'è stato un errore durante l'inserimento"
+            'db' => "C'è stato un errore durante l'inserimento"
         ], $page, true);
     }
     else if(is_array($err)){

@@ -1,35 +1,46 @@
 <?php
 require_once(__DIR__.'/../inc/header_php.php');
 redirectIfNotLogged();
-$page = file_get_contents('../template_html/administrator/create.html');
-if($_SERVER['REQUEST_METHOD'] == 'POST' ){
+$page = page('../template_html/administrator/create.html');
+if(request()->method() == 'POST' ){
+    $request = request()->only([
+        'name',
+        'surname',
+        'city',
+        'address',
+        'cap',
+        'email',
+        'password',
+        'confirm'
+    ]);
     //$name, $surname, $city, $address, $cap, $email, $password, $confirm
     $register = auth()->register(
-        $_POST['name'] ?? "",
-        $_POST['surname'] ?? "",
-        $_POST['city'] ?? "",
-        $_POST['address'] ?? "",
-        $_POST['cap'] ?? "",
-        $_POST['email'] ?? "",
-        $_POST['password'] ?? "",
-        $_POST['confirm'] ?? ""
+        $request['name'],
+        $request['surname'],
+        $request['city'],
+        $request['address'],
+        $request['cap'],
+        $request['email'],
+        $request['password'],
+        $request['confirm']
     );
     // registrazione andata a buon fine
     if($register === true){
         redirectIfLogged();
     }
+    // altrimenti ripristino i valori inseriti
     replaceValues([
-        "email" => $_POST["email"],
-        "name" => $_POST["name"],
-        "surname" => $_POST["surname"],
-        "city" => $_POST["city"],
-        "address" => $_POST["address"],
-        "cap" => $_POST["cap"],
+        "email" => $request["email"],
+        "name" => $request["name"],
+        "surname" => $request["surname"],
+        "city" => $request["city"],
+        "address" => $request["address"],
+        "cap" => $request["cap"],
     ], $page, true);
     // registrazione fallita a lato DB
     if($register === false){
         replaceErrors([
-            '<error-db/>' => "C'è stato un errore durante l'inserimento, riprovare"
+            'db' => "C'è stato un errore durante l'inserimento, riprovare"
         ], $page, true);
     } 
     // registrazione fallita a lato validazione
@@ -40,6 +51,5 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' ){
 else {
     removeErrorsTag($page);
     removeValuesTag($page);
-
 }
 echo $page;

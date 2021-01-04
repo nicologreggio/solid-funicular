@@ -18,17 +18,30 @@ foreach($stm->fetchAll() as $cat){
         <h2 class="strong m0 p0 pt-1 pb-1">'.e($cat->_NAME).'</h2>
         <h3 class="m0 p0"><abbr title="Identificativo" class="strong">ID:</abbr> '.e($cat->_ID).'</h3>
         <p class="m0 p0">La categoria <strong>'.($cat->_MENU ? '': 'NON').' verrà mostrata</strong> nel menu</p>
-        <p class="m0 p0 mt-2">
-            <strong>Meta-descrizione:</strong> <br>
+        <p class="m0 p0 mt-2 strong">
+            Meta-descrizione:
+        <p class="m0 p0">
             '.e($cat->_METADESCRIPTION).'
         </p>
-        <p class="m0 p0 mt-2">
-            <strong>Descrizione:</strong><br>
+        <p class="m0 p0 mt-2 strong">
+            Descrizione:
+        </p>
+        <p class="m0 p0">
             '.$cat->_DESCRIPTION.'
         </p>
         <div class="clearfix">
-            <a class="w49 left button button-green" href="/admin/category/edit.php?id='.e($cat->_ID).'&amp;page='.e($_REQUEST['page'] ?? 0).'" title="Modifica la categoria:'.e($cat->_NAME).'">Modifica</a>
-            <a class="w49 right button button-red" href="/admin/category/delete.php?id='.e($cat->_ID).'" title="Elimina la categoria:'.e($cat->_NAME).'">Elimina</a>
+            <a 
+                class="w49 left button button-green" 
+                href="/admin/category/edit.php?id='.e($cat->_ID).'&amp;page='.e($_REQUEST['page'] ?? 0).'" 
+                title="Modifica la categoria:'.e($cat->_NAME).'">
+                    Modifica
+            </a>
+            <a 
+                class="w49 right button button-red" 
+                href="/admin/category/delete.php?id='.e($cat->_ID).'" 
+                title="Elimina la categoria:'.e($cat->_NAME).'">
+                    Elimina
+            </a>
         </div>
         <hr class="mt-3">
     </li>

@@ -2,17 +2,27 @@
 require_once(__DIR__.'/../inc/header_php.php');
 redirectIfNotLogged();
 $page = page('../template_html/product/create.html');
-if($_SERVER['REQUEST_METHOD'] == 'POST' ){
+if(request()->method() == 'POST' ){
+    $request = request()->only([
+        'name',
+        'description',
+        'meta-description',
+        'dimensions',
+        'age',
+        'category',
+        'image-description',
+        'materials'
+    ]);
     $err = validate([
-        'name' => $_POST['name'] ?? "",
-        'description' => $_POST['description'] ?? "",
-        'meta-description' => $_POST['meta-description'] ?? "",
-        'dimensions' => $_POST['dimensions'] ?? "",
-        'age' => $_POST['age'] ?? "",
+        'name' => $request['name'],
+        'description' => $request['description'],
+        'meta-description' => $request['meta-description'],
+        'dimensions' => $request['dimensions'],
+        'age' => $request['age'],
         'image' => $_FILES['image'] ?? null,
-        'category' => $_POST['category'] ?? "",
-        'image-description' => $_POST['image-description'] ?? "",
-        'materials' => $_POST['materials'] ?? []
+        'category' => $request['category'],
+        'image-description' => $request['image-description'],
+        'materials' => $request['materials'] ?? []
     ],[
         'name' => ["required", "min_length:2", "max_length:30"],
         'description' => ["required",  "min_length:30"],
@@ -50,25 +60,28 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' ){
 
         'materials.array_in_table' => "Uno o più dei materiali selezionati non è stato trovato nel database"
     ]);
+
+    // validazione andata a buon fine
     if($err === true){
+        // se riesco a salvare la foto
         if($file_path = saveFromRequest('image')){
             $err = DBC::getInstance()->prepare("
                 INSERT INTO `PRODUCTS`(`_NAME`, `_DESCRIPTION`, `_METADESCRIPTION`, `_DIMENSIONS`, `_AGE`, `_MAIN_IMAGE`, `_CATEGORY`, `_MAIN_IMAGE_DESCRIPTION`) VALUES
                 (?, ?, ?, ?, ?, ?, ?, ?)
             ")->execute([
-                $_POST['name'],
-                $_POST['description'],
-                $_POST['meta-description'],
-                $_POST['dimensions'],
-                $_POST['age'],
+                $request['name'],
+                $request['description'],
+                $request['meta-description'],
+                $request['dimensions'],
+                $request['age'],
                 $file_path,
-                $_POST['category'],
-                $_POST['image-description'],
+                $request['category'],
+                $request['image-description'],
             ]);
             if($err === true){
-                if(!empty($_POST['materials'] ?? [])){
+                if(!empty($request['materials'] ?? [])){
                     $prod_id = DBC::getInstance()->lastInsertId();
-                    foreach($_POST['materials'] ?? [] as $mat){
+                    foreach($request['materials'] ?? [] as $mat){
                         $err = DBC::getInstance()->prepare("
                             INSERT INTO `PRODUCT_MATERIAL`(`_MATERIAL_ID`, `_PRODUCT_ID`) VALUES
                             (?, ?)
@@ -83,18 +96,21 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' ){
             }
         }
     }
+
+    // altrimenti precompilo i campi
     replaceValues([
-        "name" => $_POST["name"],
-        "description" => $_POST["description"],
-        "meta-description" => $_POST["meta-description"],
-        'age' => $_POST["age"],
-        'dimensions' => $_POST["dimensions"],
-        'image-description' => $_POST["image-description"],
+        "name" => $request["name"],
+        "description" => $request["description"],
+        "meta-description" => $request["meta-description"],
+        'age' => $request["age"],
+        'dimensions' => $request["dimensions"],
+        'image-description' => $request["image-description"],
     ], $page, true);
 
+    // mostro l'errore
     if($err === false){
         replaceErrors([
-            'db/>'=> "C'è stato un errore durante l'inserimento"
+            'db'=> "C'è stato un errore durante l'inserimento o il salvataggio della foto"
         ], $page, true);
     }
     else if(is_array($err)){
