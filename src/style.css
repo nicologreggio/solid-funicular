@@ -130,7 +130,6 @@ body {
     background-color: #01579B;
 }
 
-
 /* ========== GENERAL COLORS ========== */
 
 h1,
@@ -192,4 +191,31 @@ header {
 
 li a:hover {
     background-color: #111111;
+}
+
+#breadcrumbs{
+    border-bottom: 2px solid #A70500;
+    margin: 0.5em;
+    padding: 0.2em;
+    font-size: 1.1em;
+}
+
+/* ========== MAIN CONTENT ========== */
+main{
+    max-width: 1024px;
+    margin-left: auto;
+    margin-right: auto;
+    border-left: 0.5px solid grey;
+    border-right: 0.5px solid grey;
+    padding: 1em;
+}
+
+
+/* ========== FOOTER ========== */
+footer{
+    text-align: center;
+    color: white;
+    background-color: #333;
+    padding: 1em;
+    margin-top: 2em;
 }
