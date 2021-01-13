@@ -23,9 +23,7 @@ $stm = DBC::getInstance()->prepare("
 ");
 $stm->execute(array_values($id));
 $category = $stm->fetch();
-if($category === false){
-    error('La categoria cercata non esiste');
-} 
+error_if($category === false, 'La categoria cercata non esiste');
 
 
 if(request()->method() == 'POST' ){

@@ -21,10 +21,8 @@ $stm->execute([
     $id['id']
 ]);
 $material = $stm->fetch();
-
-if($material === false){
-    error('Il materiale cercato non esiste');
-} 
+error_if($material === false, 'Il materiale cercato non esiste');
+ 
 
 
 if(request()->method() == 'POST' ){

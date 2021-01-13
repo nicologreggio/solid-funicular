@@ -29,9 +29,8 @@ $stm->execute([
 ]);
 $product = $stm->fetch();
 
-if($product === false){
-    error('Il prodotto cercato non esiste');
-} 
+error_if($product === false, 'Il prodotto cercato non esiste');
+ 
 
 
 if(request()->method() == 'POST' ){
