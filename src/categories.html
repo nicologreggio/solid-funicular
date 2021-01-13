@@ -3,6 +3,7 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title><cat-name /> | Solid Funicular</title>
     
@@ -15,7 +16,8 @@
 
     <meta name="author" content="Nicolo Greggio" />
     <meta name="language" content="italian it" />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="style/style.css" />
+    <link rel="stylesheet" type="text/css" href="style/small.css" media="handheld, screen and (max-width: 640px), and only screen and (max-device-width: 640px)" />
     <link rel="shortcut icon" type="image/x-icon" href="../images/favicon.ico" />
 </head>
 
@@ -32,31 +34,48 @@
             <a href="login/login.php"><img id="login" src="../images/icons/login.png" alt="Icona utente per login" /></a>
             <a href="shoppingCart.php"><img id=cart src="../images/icons/shopping_cart.png" alt="Carrello dei prodotti" /></a>
         </div>
+        <nav id="menu" class="desktop">
+            <ul>
+                <li xml:lang="en"><a href='index.php'>Home</a></li>
+                <li><a href="contacts.php">Contatti</a></li>
+                <cat-0/>
+                <cat-1/>
+                <cat-2/>
+                <cat-3/>
+                <cat-4/>
+            </ul>
+        </nav>
+        <details id="menu" class="mobile">
+            <summary>Menù</summary>
+            <nav>
+                <ul>
+                    <li xml:lang="en"><a href='index.php'>Home</a></li>
+                    <li><a href="contacts.php">Contatti</a></li>
+                    <cat-0/>
+                    <cat-1/>
+                    <cat-2/>
+                    <cat-3/>
+                    <cat-4/>
+                </ul>
+            </nav>
+        </details>
     </header>
 
-    <nav id="menu">
-        <ul>
-            <li xml:lang="en"><a href='index.php'>Home</a></li>
-            <li><a href="contacts.php">Contatti</a></li>
-            <li><cat-1/></li>
-            <li><cat-2/></li>
-            <li><cat-3/></li>
-            <li><cat-4/></li>
-            <li><cat-5/></li>
-        </ul>
-    </nav>
 
     <nav id="breadcrumbs">
-        <p>Ti trovi in: Contatti</p>
+        <p>Ti trovi in: <cat-name /></p>
     </nav>    
 
     <main>
-        <h2>Contatti</h2>
-        
+        <h2><cat-name /></h2>
+        <productsList />
+
+        <a href=#titles><p id="scroll-top">↑</p></a>
     </main>
 
     <footer>
-        <p xml:lang="en">© Solid Funicular &amp; <span>Tecnologie</span> Web - All rights reserved</p>
+        <p xml:lang="en">© Solid Funicular - All rights reserved</p>
+        <p>Tecnologie <span xml:lang="en">Web</span> <abbr title="Università degli Studi di Padova">Unipd</abbr></p>
     </footer>
 
 </body>

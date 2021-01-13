@@ -1,0 +1,30 @@
+.desktop{
+    display: none;
+}
+
+#menu > summary{
+    color: white;
+    text-align: center;
+    font-size: 1.5em;
+}
+
+#logo{
+    width: 20%;
+}
+
+h1{
+    font-size: 2em;
+}
+
+h2{
+    font-size: 1.5em;
+}
+
+#shortcuts{
+    margin: 0.1em 0 0.1em 0;
+}
+
+#menu li {
+    float:none;
+}
+

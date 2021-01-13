@@ -3,6 +3,7 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title xml:lang="en">Home | Solid Funicular</title>
     <meta name="title" content="Unipd Tecweb | Solid Funicular elementi d'arredo" /> 
@@ -13,7 +14,8 @@
 
     <meta name="author" content="Nicolo Greggio" />
     <meta name="language" content="italian it" />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="style/style.css" />
+    <link rel="stylesheet" type="text/css" href="style/small.css" media="handheld, screen and (max-width: 640px), and only screen and (max-device-width: 640px)" />
     <link rel="shortcut icon" type="image/x-icon" href="../images/favicon.ico" />
 </head>
 
@@ -30,24 +32,40 @@
             <a href="login/login.php"><img id="login" src="../images/icons/login.png" alt="Icona utente per login" /></a>
             <a href="shoppingCart.php"><img id=cart src="../images/icons/shopping_cart.png" alt="Carrello dei prodotti" /></a>
         </div>
+
+        <nav id="menu" class="desktop">
+            <ul>
+                <li xml:lang="en" id="currentLink">Home</li>
+                <li><a href="contacts.php">Contatti</a></li>
+                <!-- <li><a href="categories.php/1"><cat-1/></a></li>
+                <li><a href="categories.php/2"><cat-2/></a></li>
+                <li><a href="categories.php/3"><cat-3/></a></li>
+                <li><a href="categories.php/4"><cat-4/></a></li>
+                <li><a href="categories.php/5"><cat-5/></a></li> -->
+                <cat-0/>
+                <cat-1/>
+                <cat-2/>
+                <cat-3/>
+                <cat-4/>
+            </ul>
+        </nav>
+        <details id="menu" class="mobile">
+            <summary>Menù</summary>
+            <nav>
+                <ul>
+                    <li xml:lang="en" id="currentLink">Home</li>
+                    <li><a href="contacts.php">Contatti</a></li>
+                    <cat-0/>
+                    <cat-1/>
+                    <cat-2/>
+                    <cat-3/>
+                    <cat-4/>
+                </ul>
+            </nav>
+        </details>
     </header>
 
-    <nav id="menu">
-        <ul>
-            <li xml:lang="en" id="currentLink">Home</li>
-            <li><a href="contacts.php">Contatti</a></li>
-            <!-- <li><a href="categories.php/1"><cat-1/></a></li>
-            <li><a href="categories.php/2"><cat-2/></a></li>
-            <li><a href="categories.php/3"><cat-3/></a></li>
-            <li><a href="categories.php/4"><cat-4/></a></li>
-            <li><a href="categories.php/5"><cat-5/></a></li> -->
-            <li><cat-1/></li>
-            <li><cat-2/></li>
-            <li><cat-3/></li>
-            <li><cat-4/></li>
-            <li><cat-5/></li>
-        </ul>
-    </nav>
+    
 
     <nav id="breadcrumbs">
         <p>Ti trovi in: <span xml:lang="en">Home</span></p>
@@ -65,10 +83,12 @@
 
             Grazie alla nostra pluriennale esperienza siamo inoltre in grado di progettare qualsiasi tipo di prodotto custom made, dandovi l'opportunità di vedere realizzate le vostre idee. Con competenza e creatività il nostro team vi seguirà nella fasi di progettazione, disegno e realizzazione, garantendo senza eccezioni una soluzione ottimale e il più vicino possibile alle vostre aspettative.
         </p>
+        <a href=#titles><p id="scroll-top">↑</p></a>
     </main>
 
     <footer>
-        <p xml:lang="en">© Solid Funicular &amp; <span>Tecnologie</span> Web - All rights reserved</p>
+        <p xml:lang="en">© Solid Funicular - All rights reserved</p>
+        <p>Tecnologie <span xml:lang="en">Web</span> <abbr title="Università degli Studi di Padova">Unipd</abbr></p>
     </footer>
 
 </body>

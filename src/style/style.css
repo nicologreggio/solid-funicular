@@ -130,18 +130,31 @@ body {
     background-color: #01579B;
 }
 
-/* ========== GENERAL COLORS ========== */
+/* ========== HEADINGS ========== */
 
 h1,
 h2 {
     color: #A70500
 }
 
+h1 {
+    font-size: 4em;
+}
+
+h2 {
+    font-size: 2em;
+}
+
 
 /* ========== HEADER & MENU ========== */
 
+html{
+    scroll-behavior: smooth;
+}
+
 header {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-around;
     align-items: center;
 }
@@ -154,20 +167,16 @@ header {
     text-align: center;
 }
 
-#titles>h1 {
-    font-size: 4em;
+#menu{
+    width: 100%;
+    background-color: #A70500
 }
 
-#titles>h2 {
-    font-size: 2em;
-}
-
-#menu>ul {
+#menu ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #A70500;
 }
 
 #menu li {
@@ -198,11 +207,15 @@ li a:hover {
     margin: 0.5em;
     padding: 0.2em;
     font-size: 1.1em;
+    position: sticky;
+    top:0;
+    background-color: white;
 }
 
 /* ========== MAIN CONTENT ========== */
 main{
     max-width: 1024px;
+    min-height: 60vh;
     margin-left: auto;
     margin-right: auto;
     border-left: 0.5px solid grey;
@@ -210,6 +223,34 @@ main{
     padding: 1em;
 }
 
+#scroll-top{
+    background-color: #A70500;
+    color: white;
+    font-size: 1.2em;
+    float: right;
+    padding: 0.5em;
+    border-radius: 0.5em;
+}
+
+/* ========== CONTACTS ========== */
+#contacts{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+#contacts  p{
+    font-size: 1.5em;
+    border: 2px solid #A70500;
+    border-radius: 1.5em;
+    margin: 0.5em;
+    padding: 0.5em;
+}
+
+#contacts p:hover{
+    background-color: #A70500;
+    color: white;
+}
 
 /* ========== FOOTER ========== */
 footer{
@@ -218,4 +259,15 @@ footer{
     background-color: #333;
     padding: 1em;
     margin-top: 2em;
+    font-size: 0.8em;
+}
+
+footer>p{
+    padding: 0.2em;
+}
+
+@media only screen and (min-width: 640px){
+    .mobile{
+        display: none;
+    }
 }
