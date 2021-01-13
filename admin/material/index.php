@@ -28,13 +28,13 @@ foreach($stm->fetchAll() as $mat){
             <a 
                 class="w49 left button button-green" 
                 title="Modifica il materiale:'.e($mat->_NAME).'" 
-                href="/admin/material/edit.php?id='.e($mat->_ID).'&amp;page='.e($_REQUEST['page'] ?? 0).'">
+                href="edit.php?id='.e($mat->_ID).'&amp;page='.e($_REQUEST['page'] ?? 0).'">
                     Modifica
             </a>
             <a 
                 class="w49 right button button-red" 
                 title="Elimina il materiale:'.e($mat->_NAME).'" 
-                href="/admin/material/delete.php?id='.e($mat->_ID).'">
+                href="delete.php?id='.e($mat->_ID).'">
                     Elimina
             </a>
         </div>

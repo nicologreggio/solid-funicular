@@ -7,15 +7,15 @@
         <meta http-equiv="Content-Language" content="IT" />
         <meta name="robots" content="NOINDEX,NOFOLLOW" />
 
-        <link rel="shortcut icon" href="/images/logo.png" TYPE="image/png"/>
-        <link rel="stylesheet" href="/admin/style/style.css">
+        <link rel="shortcut icon" href="../../images/logo.png" TYPE="image/png"/>
+        <link rel="stylesheet" href="../style/style.css">
 
         <title>Crea un nuovo amministratore</title>
     </head>
     <body>
         <header role="banner">
             <nav>
-                <img src="/images/logo.png" alt="Logo dell'azienda rosso con dentro le iniziali S.F." title="logo dell'azienda">
+                <img src="../../images/logo.png" alt="Logo dell'azienda rosso con dentro le iniziali S.F." title="logo dell'azienda">
                 <button title="Espandi/chiudi menu" aria-label="Espandi/chiudi il menu" class="hidden-l show-m" aria-hidden="true" tabindex="-1">
                     <svg><path d="M4,10h24c1.104,0,2-0.896,2-2s-0.896-2-2-2H4C2.896,6,2,6.896,2,8S2.896,10,4,10z M28,14H4c-1.104,0-2,0.896-2,2  s0.896,2,2,2h24c1.104,0,2-0.896,2-2S29.104,14,28,14z M28,22H4c-1.104,0-2,0.896-2,2s0.896,2,2,2h24c1.104,0,2-0.896,2-2  S29.104,22,28,22z"/></svg>
                     <!-- <span aria-hidden="true">&times;</span>-->
@@ -27,27 +27,27 @@
                         </p>
                     </li>
                     <li>
-                        <a href="/admin/category/index.php" title="Vai alla pagina per la gestione delle categorie">
+                        <a href="../category/index.php" title="Vai alla pagina per la gestione delle categorie">
                             Categorie
                         </a>
                     </li>
                     <li>
-                        <a href="/admin/product/index.php" title="Vai alla pagina di gestione dei prodotti del sito">
+                        <a href="../product/index.php" title="Vai alla pagina di gestione dei prodotti del sito">
                             Prodotti
                         </a>
                     </li>
                     <li>
-                        <a href="/admin/material/index.php" title="Vai alla pagina di gestione dei materiali dei prodotti">
+                        <a href="../material/index.php" title="Vai alla pagina di gestione dei materiali dei prodotti">
                             Materiali
                         </a>
                     </li>
                     <li>
-                        <a href="/admin/queue/index.php" title="Vai alla pagina di gestione delle richieste di preventivo">
+                        <a href="../queue/index.php" title="Vai alla pagina di gestione delle richieste di preventivo">
                             Richieste di preventivo
                         </a>
                     </li>
                     <li>
-                        <a href="/admin/logout.php" title="effettua il logout">
+                        <a href="../logout.php" title="effettua il logout">
                             <span lang="en" xml:lang="en">Logout</span>
                         </a>
                     </li>
@@ -59,7 +59,7 @@
             <p class="pb-0 mb-0"> Ti trovi in: </p>
             <ul class="breadcrumb mt-0 pt-1" aria-label="Breadcrumb">
                 <li>
-                    <a href="/admin/home.php" title="torna alla homepage">
+                    <a href="../home.php" title="torna alla homepage">
                         Home
                     </a>
                     <p class="separator">
@@ -73,7 +73,7 @@
                 </li>
             </ul>
             <p class="error"><error-db/></p>
-            <form action="/admin/administrator/create.php" method="post" id="form-login" data-validate="1">
+            <form action="../administrator/create.php" method="post" id="form-login" data-validate="1">
                 <p class="p-0 m-0">I campi obbligatori son segnati con <span class="color-red">*</span></p>
 
                 <fieldset>
@@ -199,6 +199,6 @@
                 </button>
             </form>
         </main>
-        <script src="/src/validate.js"></script>
-        <script src="/admin/script/menu.js"></script>
+        <script src="../../src/validate.js"></script>
+        <script src="../script/menu.js"></script>
     </body>

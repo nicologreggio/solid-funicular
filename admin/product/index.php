@@ -65,12 +65,12 @@ foreach(($stm->fetchAll() ?? []) as $prod){
                 '<p class="m0 p0 mt-2 strong">
                     Categoria: 
                 </p>
-                <a href="/admin/category/index.php" title="Visualizza categorie"> '.e($category_name).' </a>
+                <a href="../category/index.php" title="Visualizza categorie"> '.e($category_name).' </a>
                 '.$materials.'
             </div>
             <div class="clearfix">
-                <a class="w49 left button button-green" title="Modifica il prodotto: '.e($prod->_NAME).'" href="/admin/product/edit.php?id='.e($prod->_ID).'&amp;page='.e($_REQUEST['page'] ?? 0).'">Modifica</a>
-                <a class="w49 right button button-red"  title="Elimina il prodotto: '.e($prod->_NAME).'" href="/admin/product/delete.php?id='.e($prod->_ID).'">Elimina</a>
+                <a class="w49 left button button-green" title="Modifica il prodotto: '.e($prod->_NAME).'" href="edit.php?id='.e($prod->_ID).'&amp;page='.e($_REQUEST['page'] ?? 0).'">Modifica</a>
+                <a class="w49 right button button-red"  title="Elimina il prodotto: '.e($prod->_NAME).'" href="delete.php?id='.e($prod->_ID).'">Elimina</a>
             </div>
             <hr class="mt-3">
         </li>

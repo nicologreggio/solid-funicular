@@ -32,13 +32,13 @@ foreach($stm->fetchAll() as $cat){
         <div class="clearfix">
             <a 
                 class="w49 left button button-green" 
-                href="/admin/category/edit.php?id='.e($cat->_ID).'&amp;page='.e($_REQUEST['page'] ?? 0).'" 
+                href="edit.php?id='.e($cat->_ID).'&amp;page='.e($_REQUEST['page'] ?? 0).'" 
                 title="Modifica la categoria:'.e($cat->_NAME).'">
                     Modifica
             </a>
             <a 
                 class="w49 right button button-red" 
-                href="/admin/category/delete.php?id='.e($cat->_ID).'" 
+                href="delete.php?id='.e($cat->_ID).'" 
                 title="Elimina la categoria:'.e($cat->_NAME).'">
                     Elimina
             </a>
