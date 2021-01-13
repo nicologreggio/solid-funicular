@@ -86,7 +86,7 @@ nav > ul > li{
         -ms-flex-align: center;
             align-items: center;
 
-    color: black;
+    color: rgb(172, 0, 0);
     font-weight: 600;
     font-size: 0.98em !important;
 }
@@ -94,15 +94,29 @@ nav > ul > li > a {
     position: relative;
     text-decoration: none;
     font-weight: 600;
-    color: rgba(0,0,0,.7);
+    color: rgba(0,0,0,.8);
     -webkit-transition: .5s all;
     -o-transition: .5s all;
     transition: .5s all;
     text-align: center;
 }
+
+nav > ul > li > a:visited {
+    color: rgb(0, 76, 184);
+}
 nav > ul > li:hover > a{
     color: rgba(0,0,0,.9);
 }
+
+nav > ul > li:hover > a:visited{
+    color: rgb(0, 57, 136);
+}
+
+nav > ul > li > a:visited::after{
+    background-color: rgb(0, 57, 136);
+
+}
+
 nav > ul > li > a::after{
     height: 1px;
     -webkit-transition: .3s linear all;
@@ -649,6 +663,11 @@ ul.breadcrumb{
 .hidden-l{
     display: none;
 } 
+
+.only-printer{
+    display: none !important;
+}
+
 @media screen and (max-width: 852px) {
     .hidden-l{
         display: block;

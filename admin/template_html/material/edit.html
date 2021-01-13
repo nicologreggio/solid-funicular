@@ -9,6 +9,7 @@
 
         <link rel="shortcut icon" href="../../images/logo.png" TYPE="image/png"/>
         <link rel="stylesheet" href="../style/style.css">
+        <link rel="stylesheet" type="text/css" media="print" href="../style/print.css" />
 
         <title>Modifica materiale numero <value-id/></title>
     </head>
@@ -56,7 +57,7 @@
         </header>
         <main>
             <h1>Modifica il materiale n.<value-id/></h1>
-            <p class="pb-0 mb-0"> Ti trovi in: </p>
+            <p class="pb-0 mb-0 breadcrumb-intro"> Ti trovi in: </p>
             <ul class="breadcrumb mt-0 pt-1" aria-label="Breadcrumb">
                 <li>
                     <a href="../home.php" title="torna alla homepage">
@@ -112,7 +113,7 @@
                     data-error-message="E' obbligatorio inserire una descrizione lunga almeno 30 caratteri e al massimo 200 caratteri"><value-description/></textarea>
                 <div id="error-description" class="error pb-2" role="alert" aria-relevant="all" aria-live="assertive"><error-description/></div>
 
-                <button type="submit">
+                <button type="submit" class="show-print">
                     Modifica
                 </button>
             </form>

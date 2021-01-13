@@ -9,6 +9,7 @@
 
         <link rel="shortcut icon" href="../../images/logo.png" TYPE="image/png"/>
         <link rel="stylesheet" href="../style/style.css">
+        <link rel="stylesheet" type="text/css" media="print" href="../style/print.css" />
 
         <title>Gestione prodotti del sito</title>
     </head>
@@ -54,7 +55,8 @@
         </header>
         <main>
             <h1 class="pb-1 mb-0">Prodotti</h1>
-            <p class="pb-0 mb-0"> Ti trovi in: </p>
+            <p class="only-printer pagination-index"><page-number-of/></p>
+            <p class="pb-0 mb-0 breadcrumb-intro"> Ti trovi in: </p>
             <ul class="breadcrumb mt-0 pt-1" aria-label="Breadcrumb">
                 <li>
                     <a href="../home.php" title="torna alla homepage">
@@ -77,7 +79,7 @@
             <div class="p-0 m-0 message mt-3 mb-2">
                 <message/>
             </div>
-            <ul class="main-list  p0 m0">
+            <ul class="main-list  p0 m0 dont-break-children">
                 <products/>
             </ul>
             <nav class="pagination" aria-label="Paginazione">

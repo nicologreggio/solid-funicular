@@ -9,6 +9,7 @@
 
         <link rel="shortcut icon" href="../../images/logo.png" TYPE="image/png"/>
         <link rel="stylesheet" href="../style/style.css">
+        <link rel="stylesheet" type="text/css" media="print" href="../style/print.css" />
 
         <title>Crea un nuovo amministratore</title>
     </head>
@@ -56,7 +57,7 @@
         </header>
         <main>
             <h1>Creazione nuovo amministratore</h1>
-            <p class="pb-0 mb-0"> Ti trovi in: </p>
+            <p class="pb-0 mb-0 breadcrumb-intro"> Ti trovi in: </p>
             <ul class="breadcrumb mt-0 pt-1" aria-label="Breadcrumb">
                 <li>
                     <a href="../home.php" title="torna alla homepage">
@@ -194,7 +195,7 @@
                         data-error-message="Il <abbr title='Codice Avviamento Postale'>CAP</abbr> deve essere lungo 5 caratteri e può essere composto da soli numeri">
                     <div id="error-cap" class="error" role="alert" aria-relevant="all" aria-live="assertive"><error-cap/></div>
                 </fieldset>
-                <button type="submit">
+                <button type="submit" class="show-print">
                     Crea
                 </button>
             </form>
