@@ -1,7 +1,7 @@
 <?php
 require_once(__DIR__.'/../inc/imports.php');
 function base(){
-    return file_get_contents('../../.base_path') ?? "";
+    return file_get_contents(__DIR__.'/../../.base_path') ?? "";
 }
 function redirectIfNotLogged() : void{
     if(!auth()->isLogged()){
