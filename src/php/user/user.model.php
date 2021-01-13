@@ -23,9 +23,11 @@ class UserModel
         $this->password = $password;
     }
 
-    public static function instanceFromUser($user)
+    public static function instanceFromUser($user) : UserModel
     {
-        return new UserModel($user->_EMAIL, $user->_NAME, $user->_SURNAME, $user->_CITY, $user->_ADDRESS, $user->_CAP, $user->_PASSWORD, $user->_ADMIN);
+        return new UserModel($user->_EMAIL, $user->_NAME, $user->_SURNAME, 
+                                $user->_CITY, $user->_ADDRESS, $user->_CAP,
+                                $user->_PASSWORD, $user->_ADMIN);
     }
 
     public function getEmail() : string

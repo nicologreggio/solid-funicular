@@ -2,7 +2,7 @@
 
 require_once(__DIR__."/../../helpers/validator.php");
 require_once(__DIR__."/../utils/utils.php");
-require_once(__DIR__."/../user/user.service.php");
+require_once(__DIR__."/../php/user/user.service.php");
 
 function signup(string $email, string $name, string $surname, string $password, string $city, string $address, int $cap) : bool
 {
