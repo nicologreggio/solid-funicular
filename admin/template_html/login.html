@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="it">
     <head>
-        <base href="/alsiniga/"/>
         <meta charset="utf-8"/>
         <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -9,42 +8,42 @@
         <meta name="robots" content="NOINDEX,NOFOLLOW" />
         <meta name="author" content="Solid Funicular" />
 
-        <link rel="shortcut icon" href="./images/logo.png" TYPE="image/png"/>
-        <link rel="stylesheet" href="./admin/style/style.css"/>
+        <link rel="shortcut icon" href="../images/logo.png" TYPE="image/png"/>
+        <link rel="stylesheet" href="style/style.css"/>
 
         <title>Login al pannello di amministrazione</title>
     </head>
     <body>
         <header role="banner">
             <nav>
-                <img src="/images/logo.png" alt="Logo dell'azienda rosso con dentro le iniziali S.F." title="logo dell'azienda">
+                <img src="../images/logo.png" alt="Logo dell'azienda rosso con dentro le iniziali S.F." title="logo dell'azienda">
                 <button title="Espandi/chiudi menu" aria-label="Espandi/chiudi il menu" class="hidden-l show-m" aria-hidden="true" tabindex="-1">
                     <svg><path d="M4,10h24c1.104,0,2-0.896,2-2s-0.896-2-2-2H4C2.896,6,2,6.896,2,8S2.896,10,4,10z M28,14H4c-1.104,0-2,0.896-2,2  s0.896,2,2,2h24c1.104,0,2-0.896,2-2S29.104,14,28,14z M28,22H4c-1.104,0-2,0.896-2,2s0.896,2,2,2h24c1.104,0,2-0.896,2-2  S29.104,22,28,22z"/></svg>
                     <!-- <span aria-hidden="true">&times;</span>-->
                 </button>
                 <ul aria-label="menu">
                     <li>
-                        <a href="/admin/administrator/create.php" title="Aggiungi un amministratore al sito">
+                        <a href="administrator/create.php" title="Aggiungi un amministratore al sito">
                             Aggiungi amministratore
                         </a>
                     </li>
                     <li>
-                        <a href="/admin/category/index.php" title="Vai alla pagina per la gestione delle categorie">
+                        <a href="category/index.php" title="Vai alla pagina per la gestione delle categorie">
                             Categorie
                         </a>
                     </li>
                     <li>
-                        <a href="/admin/product/index.php" title="Vai alla pagina di gestione dei prodotti del sito">
+                        <a href="product/index.php" title="Vai alla pagina di gestione dei prodotti del sito">
                             Prodotti
                         </a>
                     </li>
                     <li>
-                        <a href="/admin/material/index.php" title="Vai alla pagina di gestione dei materiali dei prodotti">
+                        <a href="material/index.php" title="Vai alla pagina di gestione dei materiali dei prodotti">
                             Materiali
                         </a>
                     </li>
                     <li>
-                        <a href="/admin/queue/index.php" title="Vai alla pagina di gestione delle richieste di preventivo">
+                        <a href="queue/index.php" title="Vai alla pagina di gestione delle richieste di preventivo">
                             Richieste di preventivo
                         </a>
                     </li>
@@ -56,7 +55,7 @@
             <div class="message">
                 <error-login/>
             </div>
-            <form action="/admin/login.php" method="post" id="form-login" data-validate="1">
+            <form action="login.php" method="post" id="form-login" data-validate="1">
                 <p class="p-0 m-0 pb-3">I campi obbligatori son segnati con <span class="color-red">*</span></p>
                 <label for="email">Email<span class="color-red">*</span></label>
                 <input 
@@ -90,6 +89,6 @@
                 </button>
             </form>
         </main>
-        <script src="/src/validate.js"></script>
-        <script src="/admin/script/menu.js"></script>
+        <script src="../src/validate.js"></script>
+        <script src="script/menu.js"></script>
     </body>
