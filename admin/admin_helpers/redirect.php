@@ -3,7 +3,7 @@ require_once(__DIR__.'/../inc/imports.php');
 function base(){
     return file_get_contents('../../.base_path') ?? "";
 }
-function redirectIfNotLogged($path_to_root) : void{
+function redirectIfNotLogged() : void{
     if(!auth()->isLogged()){
         echo "Ti stiamo redirezionando al login.";
         header("Location: ".base()."/admin/login.php");
