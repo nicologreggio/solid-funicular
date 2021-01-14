@@ -198,7 +198,7 @@ header {
     padding: 16px;
 }
 
-li a:hover {
+#menu li a:hover {
     background-color: #111111;
 }
 
@@ -250,6 +250,33 @@ main{
 #contacts p:hover{
     background-color: #A70500;
     color: white;
+}
+
+/* ========== CATEGORIES PRODUCTS LIST =========== */
+#products-list{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    list-style-type: none;
+}
+
+#products-list li{
+    float: left;
+    text-align: center;
+    border: 1px solid black;
+    margin: 0.2em; 
+    padding: 0.5em;
+    border-radius: 1em;
+    width: 30%;
+}
+
+#products-list li:hover{
+    -webkit-box-shadow: 2px 2px 5px 2px #000000;
+    box-shadow: 2px 2px 5px 2px #000000;
+}
+
+#products-list  img{
+    width: 90%;
 }
 
 /* ========== FOOTER ========== */

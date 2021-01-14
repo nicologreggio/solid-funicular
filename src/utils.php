@@ -25,22 +25,22 @@ function fetchAndFillProducts($page, $category){
     //fetch $category from db
 
     $products=[
-        ["prod 1", "desc 1", "price 1"],
-        ["prod 2", "desc 2", "price 2"],
-        ["prod 3", "desc 3", "price 3"],
-        ["prod 4", "desc 4", "price 4"],
-        ["prod 5", "desc 5", "price 5"],
-        ["prod 6", "desc 6", "price 6"],
-        ["prod 7", "desc 7", "price 7"],
-        ["prod 8", "desc 8", "price 8"]
+        ["../images/products/5feb1efc3d06f.jpeg", "name 1", ],
+        ["../images/products/5feb1efc3d06f.jpeg", "name 2", ],
+        ["../images/products/5feb1efc3d06f.jpeg", "name 3", ],
+        ["../images/products/5feb1efc3d06f.jpeg", "name 4", ],
+        ["../images/products/5feb1efc3d06f.jpeg", "name 5", ],
+        ["../images/products/5feb1efc3d06f.jpeg", "name 6", ],
+        ["../images/products/5feb1efc3d06f.jpeg", "name 7", ],
+        ["../images/products/5feb1efc3d06f.jpeg", "name 8", ]
     ];
 
-    $productsList='<ul>';
+    $productsList='<ul id="products-list">';
 
     
     
     for($i=0; $i<count($products); $i++){
-        $productsList .= '<li><p>' . $products[$i][0] . '</p>' . '<p>' . $products[$i][1] . '</p>' . '<p>' . $products[$i][2] . '</p></li>';
+        $productsList .= '<li class="category-product">' . '<a href="products.php?id="' . $i . '><img src="' . $products[$i][0] . '" />' . '<p>' . $products[$i][1] . '</p></a></li>';
     }
 
     $productsList .= '</ul>';
