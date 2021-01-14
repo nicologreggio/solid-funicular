@@ -4,7 +4,7 @@ function base(){
     return str_replace(PHP_EOL, '', file_get_contents(__DIR__.'/../../.base_path') ?? "");
 }
 function redirectIfNotLogged() : void{
-    if(!auth()->isLogged() && false){
+    if(!auth()->isLogged()){
         echo "Ti stiamo reindirizzando al login.";
         header("Location: ".base()."/admin/login.php");
         die();
