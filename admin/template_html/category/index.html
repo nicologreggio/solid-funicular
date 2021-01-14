@@ -1,71 +1,94 @@
 <!DOCTYPE html>
 <html lang="it">
     <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+         <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
         <meta http-equiv="Content-Language" content="IT" />
         <meta name="robots" content="NOINDEX,NOFOLLOW" />
 
-        <link rel="shortcut icon" href="/images/logo.png" TYPE="image/png">
-        <link rel="stylesheet" href="/admin/style/style.css">
+        <link rel="shortcut icon" href="../../images/logo.png" TYPE="image/png"/>
+        <link rel="stylesheet" href="../style/style.css">
+        <link rel="stylesheet" type="text/css" media="print" href="../style/print.css" />
 
         <title>Gestione categorie del sito</title>
     </head>
+    
     <body>
-        <header>
+        <a href="#main-content" class="only-screen-reader" title="Vai al contenuto della pagina">Vai al contenuto</a>
+        <header role="banner">
             <nav>
-                <img src="/images/logo.png">
-                <button title="Espandi/chiudi menu" aria-label="Espandi/chiudi il menu" class="hidden-l show-m">
-                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="32px" id="Layer_1"  version="1.1" viewBox="0 0 32 32" width="32px" xml:space="preserve"><path d="M4,10h24c1.104,0,2-0.896,2-2s-0.896-2-2-2H4C2.896,6,2,6.896,2,8S2.896,10,4,10z M28,14H4c-1.104,0-2,0.896-2,2  s0.896,2,2,2h24c1.104,0,2-0.896,2-2S29.104,14,28,14z M28,22H4c-1.104,0-2,0.896-2,2s0.896,2,2,2h24c1.104,0,2-0.896,2-2  S29.104,22,28,22z"/></svg>
+                <img src="../../images/logo.png" alt="Logo dell'azienda rosso con dentro le iniziali S.F." title="logo dell'azienda">
+                <button title="Espandi/chiudi menu" aria-label="Espandi/chiudi il menu" class="hidden-l show-m" aria-hidden="true" tabindex="-1">
+                    <svg><path d="M4,10h24c1.104,0,2-0.896,2-2s-0.896-2-2-2H4C2.896,6,2,6.896,2,8S2.896,10,4,10z M28,14H4c-1.104,0-2,0.896-2,2  s0.896,2,2,2h24c1.104,0,2-0.896,2-2S29.104,14,28,14z M28,22H4c-1.104,0-2,0.896-2,2s0.896,2,2,2h24c1.104,0,2-0.896,2-2  S29.104,22,28,22z"/></svg>
                     <!-- <span aria-hidden="true">&times;</span>-->
                 </button>
-                <ul>
+                <ul aria-label="menu">
                     <li>
-                        <a href="/admin/administrator/create.php">
+                        <a href="../administrator/create.php" title="Aggiungi un amministratore al sito">
                             Aggiungi amministratore
                         </a>
                     </li>
-                    <li>
+                    <li aria-current="page">
                         <p>
                             Categorie
                         </p>
                     </li>
                     <li>
-                        <a href="/admin/product/index.php">
+                        <a href="../product/index.php" title="Vai alla pagina di gestione dei prodotti del sito">
                             Prodotti
                         </a>
                     </li>
                     <li>
-                        <a href="/admin/material/index.php">
+                        <a href="../material/index.php" title="Vai alla pagina di gestione dei materiali dei prodotti">
                             Materiali
                         </a>
                     </li>
                     <li>
-                        <a href="/admin/queue/index.php">
+                        <a href="../quote/index.php" title="Vai alla pagina di gestione delle richieste di preventivo">
                             Richieste di preventivo
                         </a>
                     </li>
                     <li>
-                        <a href="/admin/logout.php">
+                        <a href="../logout.php" title="effettua il logout">
                             <span lang="en" xml:lang="en">Logout</span>
                         </a>
                     </li>
                 </ul>
             </nav>
         </header>
-        <main>
+        <main id="main-content">
             <h1 class="pb-1 mb-0">Categorie</h1>
-            <a href="/admin/category/create.php" class="button mt-2 mb-1">
+            <p class="only-printer pagination-index"><page-number-of/></p>
+            <p class="pb-0 mb-0 breadcrumb-intro"> Ti trovi in: </p>
+            <ul class="breadcrumb mt-0 pt-1" aria-label="Breadcrumb">
+                <li>
+                    <a href="../home.php" title="torna alla homepage">
+                        Home
+                    </a>
+                    <p class="separator">
+                        >>
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        Categorie (pagina <page/>)
+                    </p>
+                </li>
+            </ul>
+            <a href="../category/create.php" class="button mt-2 mb-1">
                 Nuova categoria
             </a>
             <hr>
+            <div class="p-0 m-0 message mt-3 mb-2">
+                <message/>
+            </div>
             <ul class="main-list  p0 m0">
                 <categories/>
             </ul>
-            <div class="pagination">
+            <nav class="pagination" aria-label="Paginazione">
                 <pagination/>
-            </div>
+            </nav>
         </main>
-        <script src="/admin/script/menu.js"></script>
+        <script src="../script/menu.js"></script>
     </body>

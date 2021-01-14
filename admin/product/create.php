@@ -1,18 +1,28 @@
 <?php
 require_once(__DIR__.'/../inc/header_php.php');
 redirectIfNotLogged();
-$page = file_get_contents('../template_html/product/create.html');
-if($_SERVER['REQUEST_METHOD'] == 'POST' ){
+$page = page('../template_html/product/create.html');
+if(request()->method() == 'POST' ){
+    $request = request()->only([
+        'name',
+        'description',
+        'meta-description',
+        'dimensions',
+        'age',
+        'category',
+        'image-description',
+        'materials'
+    ]);
     $err = validate([
-        'name' => $_POST['name'] ?? "",
-        'description' => $_POST['description'] ?? "",
-        'meta-description' => $_POST['meta-description'] ?? "",
-        'dimensions' => $_POST['dimensions'] ?? "",
-        'age' => $_POST['age'] ?? "",
+        'name' => $request['name'],
+        'description' => $request['description'],
+        'meta-description' => $request['meta-description'],
+        'dimensions' => $request['dimensions'],
+        'age' => $request['age'],
         'image' => $_FILES['image'] ?? null,
-        'category' => $_POST['category'] ?? "",
-        'image-description' => $_POST['image-description'] ?? "",
-        'materials' => $_POST['materials'] ?? []
+        'category' => $request['category'],
+        'image-description' => $request['image-description'],
+        'materials' => $request['materials'] ?? []
     ],[
         'name' => ["required", "min_length:2", "max_length:30"],
         'description' => ["required",  "min_length:30"],
@@ -50,25 +60,28 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' ){
 
         'materials.array_in_table' => "Uno o più dei materiali selezionati non è stato trovato nel database"
     ]);
+
+    // validazione andata a buon fine
     if($err === true){
+        // se riesco a salvare la foto
         if($file_path = saveFromRequest('image')){
             $err = DBC::getInstance()->prepare("
                 INSERT INTO `PRODUCTS`(`_NAME`, `_DESCRIPTION`, `_METADESCRIPTION`, `_DIMENSIONS`, `_AGE`, `_MAIN_IMAGE`, `_CATEGORY`, `_MAIN_IMAGE_DESCRIPTION`) VALUES
                 (?, ?, ?, ?, ?, ?, ?, ?)
             ")->execute([
-                $_POST['name'],
-                $_POST['description'],
-                $_POST['meta-description'],
-                $_POST['dimensions'],
-                $_POST['age'],
+                $request['name'],
+                $request['description'],
+                $request['meta-description'],
+                $request['dimensions'],
+                $request['age'],
                 $file_path,
-                $_POST['category'],
-                $_POST['image-description'],
+                $request['category'],
+                $request['image-description'],
             ]);
             if($err === true){
-                if(!empty($_POST['materials'] ?? [])){
+                if(!empty($request['materials'] ?? [])){
                     $prod_id = DBC::getInstance()->lastInsertId();
-                    foreach($_POST['materials'] ?? [] as $mat){
+                    foreach($request['materials'] ?? [] as $mat){
                         $err = DBC::getInstance()->prepare("
                             INSERT INTO `PRODUCT_MATERIAL`(`_MATERIAL_ID`, `_PRODUCT_ID`) VALUES
                             (?, ?)
@@ -78,60 +91,35 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' ){
                         ]);
                     }
                 }
+                message("Prodotto inserito correttamente");
                 redirectTo('/admin/product/index.php');
             }
         }
     }
-    
-    $page = str_replace("<value-name/>", $_POST["name"], $page);
-    $page = str_replace("<value-description/>", $_POST["description"], $page);
-    $page = str_replace("<value-meta-description/>", $_POST["meta-description"], $page);
-    $page = str_replace('<value-age/>', $_POST["age"], $page);
-    $page = str_replace('<value-dimensions/>', $_POST["dimensions"], $page);
-    $page = str_replace('<value-image-description/>', $_POST["dimensions"], $page);
-    $page = str_replace('<value-image-description/>', $_POST["image-description"], $page);
 
+    // altrimenti precompilo i campi
+    replaceValues([
+        "name" => $request["name"],
+        "description" => $request["description"],
+        "meta-description" => $request["meta-description"],
+        'age' => $request["age"],
+        'dimensions' => $request["dimensions"],
+        'image-description' => $request["image-description"],
+    ], $page, true);
+
+    // mostro l'errore
     if($err === false){
-        $page = str_replace('<error-db/>', "C'è stato un errore durante l'inserimento", $page);
-        $page = str_replace('<error-name/>', "", $page);
-        $page = str_replace('<error-description/>', "" , $page);
-        $page = str_replace('<error-meta-description/>', "" , $page);
-        $page = str_replace('<error-age/>', "" , $page);
-        $page = str_replace('<error-dimensions/>', "" , $page);
-        $page = str_replace('<error-materials/>', "" , $page);
-        $page = str_replace('<error-image/>', "" , $page);
-        $page = str_replace('<error-image-description/>', "" , $page);
+        replaceErrors([
+            'db'=> "C'è stato un errore durante l'inserimento o il salvataggio della foto"
+        ], $page, true);
     }
     else if(is_array($err)){
-        $page = str_replace('<error-db/>', "", $page); // rimuovo placeholder per errore db
-        foreach($err as $k => $errors){
-            $msg = "<ul class='errors-list'>";
-            foreach($errors as $error){
-                $msg .= "<li> $error </li>";
-            }
-            $msg .= "</ul>";
-            $page = str_replace("<error-$k/>", $msg, $page);
-        }
+        replaceErrors($err, $page, true);
      }
 }
 else {
-    $page = str_replace("<value-name/>", "", $page);
-    $page = str_replace("<value-description/>", "", $page);
-    $page = str_replace("<value-meta-description/>", "", $page);
-    $page = str_replace('<value-age/>', "", $page);
-    $page = str_replace('<value-dimensions/>', "", $page);
-    $page = str_replace('<value-image-description/>', "", $page);
-    
-    $page = str_replace('<error-db/>', "", $page);
-    $page = str_replace('<error-name/>', "", $page);
-    $page = str_replace('<error-description/>', "" , $page);
-    $page = str_replace('<error-meta-description/>', "" , $page);
-    $page = str_replace('<error-age/>', "" , $page);
-    $page = str_replace('<error-dimensions/>', "" , $page);
-    $page = str_replace('<error-image/>', "" , $page);
-    $page = str_replace('<error-category/>', "" , $page);
-    $page = str_replace('<error-image-description/>', "" , $page);
-    $page = str_replace('<error-materials/>', "" , $page);
+    removeErrorsTag($page);
+    removeValuesTag($page);
 }
 
 $categories = DBC::getInstance()->query("
@@ -145,13 +133,12 @@ $page = str_replace('<categories/>', $out, $page);
 
 
 
-
 $materials = DBC::getInstance()->query("
     SELECT * FROM MATERIALS 
 ")->fetchAll();
 $out = "";
 foreach($materials as $mat){
-    $out.= '<option value="'.$mat->_ID.'" '.(in_array($mat->_ID, $_REQUEST['material'] ?? [] )? 'selected ' : '' ).' >'.$mat->_NAME.'</option>';
+    $out.= '<option value="'.$mat->_ID.'" '.(in_array($mat->_ID, $_REQUEST['materials'] ?? [] )? 'selected ' : '' ).' >'.$mat->_NAME.'</option>';
 }
 $page = str_replace('<materials/>', $out, $page);
 

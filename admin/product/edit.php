@@ -1,9 +1,23 @@
 <?php
 require_once(__DIR__.'/../inc/header_php.php');
 redirectIfNotLogged();
-$page = file_get_contents('../template_html/product/edit.html');
-$page = str_replace('<value-id/>', $_REQUEST['id'], $page);
+$page = page('../template_html/product/edit.html');
 
+$id = request()->only(['id']);
+$request = request()->only([
+    'id',
+    'name',
+    'description',
+    'meta-description',
+    'dimensions',
+    'age',
+    'category',
+    'image-description',
+    'materials',
+    'page'
+]);
+
+replaceValues($id, $page);
 
 $stm = DBC::getInstance()->prepare("
     SELECT *
@@ -11,26 +25,25 @@ $stm = DBC::getInstance()->prepare("
     WHERE `_ID` = ?
 ");
 $stm->execute([
-    $_REQUEST['id']
+    $request['id']
 ]);
 $product = $stm->fetch();
-if($product === false){
-    error('Il prodotto cercato non esiste');
-} 
+
+error_if($product === false, 'Il prodotto cercato non esiste');
+ 
 
 
-if($_SERVER['REQUEST_METHOD'] == 'POST' ){
+if(request()->method() == 'POST' ){
     $err = validate([
-        'name' => $_POST['name'] ?? "",
-        'description' => $_POST['description'] ?? "",
-        'meta-description' => $_POST['meta-description'] ?? "",
-        'dimensions' => $_POST['dimensions'] ?? "",
-        'age' => $_POST['age'] ?? "",
+        'name' => $request['name'],
+        'description' => $request['description'],
+        'meta-description' => $request['meta-description'],
+        'dimensions' => $request['dimensions'],
+        'age' => $request['age'],
         'image' => $_FILES['image'] ?? null,
-        'category' => $_POST['category'],
-        'image' => $_FILES['image'],
-        'image-description' => $_POST['image-description'],
-        'materials' => $_POST['materials'] ?? []
+        'category' => $request['category'],
+        'image-description' => $request['image-description'],
+        'materials' => $request['materials'] ?? []
     ],[
         'name' => ["required", "min_length:2", "max_length:30"],
         'description' => ["required",  "min_length:30"],
@@ -39,7 +52,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' ){
         'age' => ['max_length:50'],
         'category' => ['in_table:CATEGORIES,_ID'],
         'image-description' => ['required', 'min_length:10', 'max_length:200'],
-        'image' => ($_FILES['image']['size'] == 0 ? [] : ['file:700', 'image']),
+        'image' => ((!isset($_FILES['image']) || $_FILES['image']['size'] == 0) ? [] : ['file:700', 'image']),
         'materials' => ['array_in_table:MATERIALS,_ID']
     ],[
         "name.required" => "E' obbligatorio inserire un nome",
@@ -68,7 +81,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' ){
 
         'materials.array_in_table' => "Uno o più dei materiali selezionati non è stato trovato nel database"
     ]);
-
+    // validazione andata a buon fine
     if($err === true){
         if($_FILES['image']['size'] != 0){
             $file_path = saveFromRequest('image');
@@ -83,8 +96,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' ){
             ]);
         }
         
-        
-
         $err = $err && DBC::getInstance()->prepare("
             UPDATE `PRODUCTS`
             SET
@@ -97,88 +108,71 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' ){
             `_MAIN_IMAGE_DESCRIPTION` = ?
             WHERE _ID = ?
         ")->execute([
-            $_POST['name'],
-            $_POST['description'],
-            $_POST['meta-description'],
-            $_POST['dimensions'],
-            $_POST['age'],
-            $_POST['category'],
-            $_POST['image-description'],
-            $_REQUEST['id'],
+            $request['name'],
+            $request['description'],
+            $request['meta-description'],
+            $request['dimensions'],
+            $request['age'],
+            $request['category'],
+            $request['image-description'],
+            $request['id'],
         ]);
         
 
-
-        
         if($err === true){
             DBC::getInstance()->prepare("
                 DELETE FROM `PRODUCT_MATERIAL` WHERE _PRODUCT_ID = ?
             ")->execute([
-                $_REQUEST['id']
+                $request['id']
             ]);
-            foreach($_POST['materials'] ?? [] as $mat){
+            foreach($request['materials'] ?? [] as $mat){
                 $err = DBC::getInstance()->prepare("
                     INSERT INTO `PRODUCT_MATERIAL`(`_MATERIAL_ID`, `_PRODUCT_ID`) VALUES
                     (?, ?)
                 ")->execute([
                     $mat,
-                    $_REQUEST['id']
+                    $request['id']
                 ]);
             }
-            redirectTo('/admin/product/index.php');
+            message("Prodotto modificato correttamente");
+            redirectTo('/admin/product/index.php?page='.$request['page']);
         }    
     }
-    $page = str_replace("<value-name/>", $_POST["name"], $page);
-    $page = str_replace("<value-description/>", $_POST["description"], $page);
-    $page = str_replace("<value-meta-description/>", $_POST["meta-description"], $page);
-    $page = str_replace('<value-age/>', $_POST["age"], $page);
-    $page = str_replace('<value-dimensions/>', $_POST["dimensions"], $page);
-    $page = str_replace('<value-image-description/>', $_POST["image-description"], $page);
+    replaceValues([
+        "name" => $request["name"],
+        "description" => $request["description"],
+        "meta-description" => $request["meta-description"],
+        'age' => $request["age"],
+        'dimensions' => $request["dimensions"],
+        'image-description' => $request["image-description"],
+    ], $page, true);
 
     if($err === false){
-        $page = str_replace('<error-db/>', "C'è stato un errore durante l'inserimento", $page);
-        $page = str_replace('<error-name/>', "", $page);
-        $page = str_replace('<error-description/>', "" , $page);
-        $page = str_replace('<error-meta-description/>', "" , $page);
-        $page = str_replace('<error-image-description/>', "" , $page);
+        replaceErrors([
+            'db'=> "C'è stato un errore durante l'inserimento"
+        ], $page, true);
     }
     else if(is_array($err)){
-        $page = str_replace('<error-db/>', "", $page); // rimuovo placeholder per errore db
-        foreach($err as $k => $errors){
-            $msg = "<ul class='errors-list'>";
-            foreach($errors as $error){
-                $msg .= "<li> $error </li>";
-            }
-            $msg .= "</ul>";
-            $page = str_replace("<error-$k/>", $msg, $page);
-        }
+        replaceErrors($err, $page, true);
      }
 }
 else {
-
-    $page = str_replace("<value-name/>", $product->_NAME, $page);
-    $page = str_replace("<value-description/>", $product->_DESCRIPTION, $page);
-    $page = str_replace("<value-meta-description/>", $product->_METADESCRIPTION, $page);
-    $page = str_replace('<value-age/>', $product->_AGE, $page);
-    $page = str_replace('<value-dimensions/>', $product->_DIMENSIONS, $page);
-    $page = str_replace('<value-image-description/>', $product->_MAIN_IMAGE_DESCRIPTION, $page);
-    
-    $page = str_replace('<error-db/>', "", $page);
-    $page = str_replace('<error-name/>', "", $page);
-    $page = str_replace('<error-description/>', "" , $page);
-    $page = str_replace('<error-meta-description/>', "" , $page);
-    $page = str_replace('<error-age/>', "" , $page);
-    $page = str_replace('<error-dimensions/>', "" , $page);
-    $page = str_replace('<error-image/>', "" , $page);
-    $page = str_replace('<error-category/>', "" , $page);
-    $page = str_replace('<error-image-description/>', "" , $page);
+    removeErrorsTag($page);
+    replaceValues([
+        "name" => $product->_NAME,
+        "description" => $product->_DESCRIPTION,
+        "meta-description" => $product->_METADESCRIPTION,
+        'age' => $product->_AGE,
+        'dimensions' => $product->_DIMENSIONS,
+        'image-description' => $product->_MAIN_IMAGE_DESCRIPTION,
+    ], $page, true);
 }
 $categories = DBC::getInstance()->query("
     SELECT _ID, _NAME FROM CATEGORIES 
 ")->fetchAll();
 $out = "";
 foreach($categories as $cat){
-    $out.= '<option value="'.$cat->_ID.'"'.((($_REQUEST['category'] ?? $product->_CATEGORY) === $cat->_ID )? 'selected' : '' ).'>'.$cat->_NAME.'</option>';
+    $out.= '<option value="'.$cat->_ID.'"'.((($request['category'] ?? $product->_CATEGORY) === $cat->_ID )? 'selected' : '' ).'>'.$cat->_NAME.'</option>';
 }
 $page = str_replace('<categories/>', $out, $page);
 
@@ -191,8 +185,8 @@ $materials = DBC::getInstance()->query("
 ")->fetchAll();
 $out = "";
 $current_materials = [];
-if(isset($_POST['materials'])){
-    $current_materials = $_POST['materials'];
+if($request['materials']){
+    $current_materials = $request['materials'];
 }
 else {
     $current_materials = DBC::getInstance()->query("

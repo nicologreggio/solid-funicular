@@ -1,87 +1,97 @@
 <!DOCTYPE html>
 <html lang="it">
     <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
         <meta http-equiv="Content-Language" content="IT" />
         <meta name="robots" content="NOINDEX,NOFOLLOW" />
+        <meta name="author" content="Solid Funicular" />
 
-        <link rel="shortcut icon" href="/images/logo.png" TYPE="image/png">
-        <link rel="stylesheet" href="/admin/style/style.css">
+        <link rel="shortcut icon" href="../images/logo.png" TYPE="image/png"/>
+        <link rel="stylesheet" href="style/style.css"/>
+        <link rel="stylesheet" type="text/css" media="print" href="style/print.css" />
 
         <title>Login al pannello di amministrazione</title>
     </head>
+    
     <body>
-        <header>
+        <a href="#main-content" class="only-screen-reader" title="Vai al contenuto della pagina">Vai al contenuto</a>
+        <header role="banner">
             <nav>
-                <img src="/images/logo.png">
-                <button title="Espandi/chiudi menu" aria-label="Espandi/chiudi il menu" class="hidden-l show-m">
-                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="32px" id="Layer_1"  version="1.1" viewBox="0 0 32 32" width="32px" xml:space="preserve"><path d="M4,10h24c1.104,0,2-0.896,2-2s-0.896-2-2-2H4C2.896,6,2,6.896,2,8S2.896,10,4,10z M28,14H4c-1.104,0-2,0.896-2,2  s0.896,2,2,2h24c1.104,0,2-0.896,2-2S29.104,14,28,14z M28,22H4c-1.104,0-2,0.896-2,2s0.896,2,2,2h24c1.104,0,2-0.896,2-2  S29.104,22,28,22z"/></svg>
+                <img src="../images/logo.png" alt="Logo dell'azienda rosso con dentro le iniziali S.F." title="logo dell'azienda">
+                <button title="Espandi/chiudi menu" aria-label="Espandi/chiudi il menu" class="hidden-l show-m" aria-hidden="true" tabindex="-1">
+                    <svg><path d="M4,10h24c1.104,0,2-0.896,2-2s-0.896-2-2-2H4C2.896,6,2,6.896,2,8S2.896,10,4,10z M28,14H4c-1.104,0-2,0.896-2,2  s0.896,2,2,2h24c1.104,0,2-0.896,2-2S29.104,14,28,14z M28,22H4c-1.104,0-2,0.896-2,2s0.896,2,2,2h24c1.104,0,2-0.896,2-2  S29.104,22,28,22z"/></svg>
                     <!-- <span aria-hidden="true">&times;</span>-->
                 </button>
-                <ul>
+                <ul aria-label="menu">
                     <li>
-                        <a href="/admin/administrator/create.php">
+                        <a href="administrator/create.php" title="Aggiungi un amministratore al sito">
                             Aggiungi amministratore
                         </a>
                     </li>
                     <li>
-                        <a href="/admin/category/index.php">
+                        <a href="category/index.php" title="Vai alla pagina per la gestione delle categorie">
                             Categorie
                         </a>
                     </li>
                     <li>
-                        <a href="/admin/product/index.php">
+                        <a href="product/index.php" title="Vai alla pagina di gestione dei prodotti del sito">
                             Prodotti
                         </a>
                     </li>
                     <li>
-                        <a href="/admin/material/index.php">
+                        <a href="material/index.php" title="Vai alla pagina di gestione dei materiali dei prodotti">
                             Materiali
                         </a>
                     </li>
                     <li>
-                        <a href="/admin/queue/index.php">
+                        <a href="quote/index.php" title="Vai alla pagina di gestione delle richieste di preventivo">
                             Richieste di preventivo
                         </a>
                     </li>
                 </ul>
             </nav>
         </header>
-        <main>
+        <main id="main-content">
             <h1>Login pannello di amministrazione</h1>
-            <form action="/admin/login.php" method="post" id="form-login" data-validate="1">
-                <label for="email">Email</label>
+            <div class="message">
+                <error-login/>
+            </div>
+            <form action="login.php" method="post" id="form-login" data-validate="1">
+                <p class="p-0 m-0 pb-3">I campi obbligatori son segnati con <span class="color-red">*</span></p>
+                <label for="email">Email<span class="color-red">*</span></label>
                 <input 
                     id="email" 
                     name="email" 
                     type="email"
                     placeholder="Inserisci email" 
                     required="required" 
+                    aria-required="true"
                     autofocus="autofocus" 
                     data-error-field="error-email" 
                     data-rules="required|email" 
                     data-error-message="L'email inserita non è valida">
-                <p id="error-email" class="error"></p>
+                <div id="error-email" class="error" role="alert" aria-relevant="all" aria-live="assertive"></div>
 
-                <label for="password">Password</label>
+                <label for="password">Password<span class="color-red">*</span></label>
                 <input 
                     id="password" 
                     type="password"
                     name="password" 
                     placeholder="Inserisci password" 
                     required="required" 
+                    aria-required="true"
                     data-error-field="error-password" 
                     data-rules="required" 
                     data-error-message="La password non può essere vuota">
-                <p id="error-password" class="error"></p>
+                <div id="error-password" class="error" role="alert" aria-relevant="all" aria-live="assertive"></div>
 
-                <button type="submit">
+                <button type="submit" class="show-print">
                     Accedi
                 </button>
             </form>
         </main>
-        <script src="/admin/script/validate.js"></script>
-        <script src="/admin/script/menu.js"></script>
+        <script src="../src/validate.js"></script>
+        <script src="script/menu.js"></script>
     </body>

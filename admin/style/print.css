@@ -1,0 +1,70 @@
+body{
+    padding:0; margin:0;
+	font-family: Georgia, "Times New Roman", sans-serif;
+	color: #212529;
+}
+header{
+    display:none;
+}
+.breadcrumb, .breadcrumb-intro{
+    display: none;
+}
+button, .button{
+    display: none;
+}
+.show-print{
+    display: block;
+}
+
+main > h1{
+    text-align: center;
+    font-weight: 600;
+    font-size: 45px;
+    text-transform: uppercase;
+    border-bottom-width: 0;
+}
+
+.main-list li img.w20{
+    width:30%;
+}
+.main-list li div.w80{
+    width:65%;
+}
+main{
+    max-width: 100%;
+    padding:0;
+    margin:0;
+}
+.main-list.dont-break-children li, main form fieldset, .dont-break{
+    break-inside: avoid;
+}
+.main-list li div.w80 *{
+    margin-top:3px !important;
+}
+.main-list li div.w80 *, .main-list li div.w80 * *{
+    margin-bottom:0 !important;
+    padding-bottom:0 !important;
+    padding-top:0 !important;
+    font-size:15px;
+}
+main > form input, main > form textarea{
+    width:95%;
+    box-shadow: none !important;
+}
+main > form select{
+    width:99%;
+    box-shadow: none !important;
+}
+.clearfix > *{
+    display: none;
+}
+button, .button{
+    -webkit-box-shadow: 0 0 0 0.2rem rgba(0,123,255,1);
+            box-shadow: 0 0 0 0.2rem rgba(0,123,255,1);
+    background-color: white;
+    color: #0462C9;
+    width:auto;
+    margin-left:0.2rem;
+    padding-left:20px;
+    padding-right:20px;
+}

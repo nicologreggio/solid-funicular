@@ -5,7 +5,8 @@ body {
 }
 header{
     border-bottom: 1px solid rgba(0,0,0,.2);
-    box-shadow: 0 0px 4px rgba(0, 0, 0, 0.2);
+    -webkit-box-shadow: 0 0px 4px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 0px 4px rgba(0, 0, 0, 0.2);
     margin:0;
     padding:0;
 }
@@ -15,13 +16,21 @@ nav {
     max-width: 1300px; 
     height: auto;
     padding: 1em 1.5em;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
 }
 nav > img {
-    object-fit:contain;
-    object-position: left;
+    -o-object-fit:contain;
+       object-fit:contain;
+    -o-object-position: left;
+       object-position: left;
     max-height: 3em;
 }
 nav > button{
@@ -31,6 +40,8 @@ nav > button{
     color: rgba(0,0,0,.5);
     padding:0;
     font-size:2em;
+    -webkit-transition: .5s all linear;
+    -o-transition: .5s all linear;
     transition: .5s all linear;
 }
 nav > button > svg{
@@ -43,22 +54,32 @@ nav > button:hover *{
     border-color: white;
     cursor: pointer;
     text-decoration: unset;
-    box-shadow: unset;
+    -webkit-box-shadow: unset;
+            box-shadow: unset;
     text-shadow: 0.2px 0.2px 10px rgba(0,0,0,.9);
 }
 
 nav > ul {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
     list-style-type: none;
+    margin: 0;
 }
 nav > ul > li{
     padding: 0 1.5em 0 0em;
     text-transform: uppercase;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
 
-    color: black;
+    color: rgb(172, 0, 0);
     font-weight: 600;
     font-size: 0.98em !important;
 }
@@ -66,15 +87,33 @@ nav > ul > li > a {
     position: relative;
     text-decoration: none;
     font-weight: 600;
-    color: rgba(0,0,0,.5);
+    color: rgba(0,0,0,.8);
+    -webkit-transition: .5s all;
+    -o-transition: .5s all;
     transition: .5s all;
     text-align: center;
+}
+
+nav > ul > li > a:visited {
+    color: rgb(0, 76, 184);
 }
 nav > ul > li:hover > a{
     color: rgba(0,0,0,.9);
 }
+
+nav > ul > li:hover > a:visited{
+    color: rgb(0, 57, 136);
+}
+
+nav > ul > li > a:visited::after{
+    background-color: rgb(0, 57, 136);
+
+}
+
 nav > ul > li > a::after{
     height: 1px;
+    -webkit-transition: .3s linear all;
+    -o-transition: .3s linear all;
     transition: .3s linear all;
     content: "";
     position: absolute;
@@ -128,8 +167,11 @@ form textarea {
     background-clip: padding-box;
     border: 1px solid #ced4da;
     border-radius: .25rem;
+    -webkit-transition: border-color .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;
+    transition: border-color .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;
+    -o-transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
     transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-    appearance: menulist-button;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;
     background-image: none !important;
     color: -internal-light-dark(black, white) !important;
 }
@@ -149,7 +191,8 @@ form textarea:focus{
     background-color: #fff;
     border-color: #80bdff;
     outline: 0;
-    box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+    -webkit-box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+            box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
 }
 form input.error,
 form select.error,
@@ -159,7 +202,8 @@ form textarea.error{
 form input.error:focus,
 form select.error:focus,
 form textarea.error:focus{
-    box-shadow: 0 0 0 0.2rem rgba(250, 0, 0, 0.25);
+    -webkit-box-shadow: 0 0 0 0.2rem rgba(250, 0, 0, 0.25);
+            box-shadow: 0 0 0 0.2rem rgba(250, 0, 0, 0.25);
 }
 
 form label{
@@ -172,7 +216,7 @@ form select{
 
 button, .button{
     color: #fff;
-    background-color: #007bff;
+    background-color: #0462C9;
     border-color: #007bff;
     display: inline-block;
     font-weight: 600;
@@ -182,14 +226,17 @@ button, .button{
     font-size: 1rem;
     line-height: 1.5;
     border-radius: .25rem;
+    -webkit-transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;
+    -o-transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
     transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;
     text-transform: none;
     margin: 2em 0 .2em 0;;
     width:100%;
     text-decoration: unset;
 
-    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
-    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */    /* Firefox, other Gecko */
     box-sizing: border-box;         /* Opera/IE 8+ */
 }
 button:hover, .button:hover{
@@ -198,16 +245,16 @@ button:hover, .button:hover{
     border-color: #0062cc;
     cursor: pointer;
     text-decoration: unset;
-    box-shadow: 0 0 0 0.2rem rgba(0,123,255,.5);
+    -webkit-box-shadow: 0 0 0 0.2rem rgba(0,123,255,.5);
+            box-shadow: 0 0 0 0.2rem rgba(0,123,255,.5);
 
-    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
-    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */    /* Firefox, other Gecko */
     box-sizing: border-box;         /* Opera/IE 8+ */
 }
 
 .button-green{
     color: #fff !important;
-    background-color: #28a745;
+    background-color: #01821e;
     border-color: #28a745;
 }
 .button-green:hover{
@@ -215,7 +262,8 @@ button:hover, .button:hover{
     border-color: #218838;
     cursor: pointer;
     text-decoration: unset;
-    box-shadow: 0 0 0 0.2rem rgba(40,167,69,.5);
+    -webkit-box-shadow: 0 0 0 0.2rem rgba(40,167,69,.5);
+            box-shadow: 0 0 0 0.2rem rgba(40,167,69,.5);
 }
 
 .button-red{
@@ -228,7 +276,8 @@ button:hover, .button:hover{
     border-color: #bd2130;
     cursor: pointer;
     text-decoration: unset;
-    box-shadow: 0 0 0 0.2rem rgba(220,53,69,.5);
+    -webkit-box-shadow: 0 0 0 0.2rem rgba(220,53,69,.5);
+            box-shadow: 0 0 0 0.2rem rgba(220,53,69,.5);
 
 }
 
@@ -273,38 +322,32 @@ hr {
 
 .w100{
     width:100%;
-    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
-    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */    /* Firefox, other Gecko */
     box-sizing: border-box;         /* Opera/IE 8+ */
 }
 .w50{
     width:50%;
-    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
-    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */    /* Firefox, other Gecko */
     box-sizing: border-box;         /* Opera/IE 8+ */
 }
 .w49{
     width:49%;
-    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
-    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */    /* Firefox, other Gecko */
     box-sizing: border-box;         /* Opera/IE 8+ */
 }
 .w45{
     width:45%;
-    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
-    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */    /* Firefox, other Gecko */
     box-sizing: border-box;         /* Opera/IE 8+ */
 }
 .w80{    
     width:80%;
-    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
-    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */    /* Firefox, other Gecko */
     box-sizing: border-box;         /* Opera/IE 8+ */
 }
 .w20{    
     width:20%;
-    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
-    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */    /* Firefox, other Gecko */
     box-sizing: border-box;         /* Opera/IE 8+ */
 }
 .left{
@@ -316,11 +359,18 @@ hr {
 
 .pagination{
     margin:auto;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
     max-width: 450px;
 }
 .pagination > *{
-    flex:1 1 auto;
+    -webkit-box-flex:1;
+        -ms-flex:1 1 auto;
+            flex:1 1 auto;
     margin:5px;
 }
 
@@ -328,24 +378,116 @@ hr {
 .pagination > .button{
     background-color: white !important;
     border-width: 2px !important;
-    color:  #007bff !important;
+    color:  #005abc !important;
     border-color:  #007bff;
+    max-width: 102.5px;
 }
 
+.breadcrumb{
+    display: block;
+    list-style: none;
+    padding:0;
+}
+.breadcrumb *{
+    display: inline;
+}
+.breadcrumb a{
+    color: #a22620
+}
+.breadcrumb .separator{
+    padding: 0 5px;
+}
 
+.message p {
+    border: 1px solid transparent;
+    border-radius: .25rem;
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+    margin: 0;
+    padding:1em;
+}
 
+.message p.error{
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+}
 .flex-col{
-    flex-direction: column;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
 } 
 .justify-center{
-    justify-content: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
 } 
 .content-center{
-    align-items: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
 }
 .h80vh{
     height: 80vh;
 }
+nav > button > svg{
+    clip: rect(0px, 0px, 32px, 32px);
+    width: 32px;
+    height:32px;
+}
+.strong{
+    font-weight: bold;
+} 
+
+form label:first-of-type {
+    padding-top:0;
+    margin-top:0;
+}
+  
+form fieldset{
+    border-width: 0;
+    padding-left:0;
+    margin-left: 0;
+}
+form fieldset legend{
+    font-weight: 700;
+    padding-top:2em;
+    width:100%;
+    font-size:1.1em;
+    padding-bottom:5px;
+    margin-bottom:10px;
+    border-bottom: 1px solid rgba(0,0,0,.2);
+}
+form > form + label {
+    padding-top:0;
+    margin-top:0;
+}
+form > p:first-of-type{
+    font-weight: 600;
+    margin-bottom:0;
+    padding-bottom:0;
+    padding-top:.5em;
+}
+.color-red{
+    color:rgb(218, 26, 26);
+}
+label > span.color-red{
+    padding-left:0.2em;
+}
+
+ul.breadcrumb{
+    padding-bottom:1.5em;
+    border-bottom: 1px solid rgba(0,0,0,.2);
+}
+
+
+
+
+
+
+
 
 .d-initial{
     display: initial;
@@ -354,6 +496,8 @@ hr {
     display: inline;
 }
 .d-flex{
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
 }
 .d-block{
@@ -512,13 +656,70 @@ hr {
 .hidden-l{
     display: none;
 } 
+.color-white{
+    color: white !important;
+}
+.only-printer{
+    display: none !important;
+}
+.quote-products-list img{
+    max-width: 100%;
+}
+.quote-products-list{
+    margin-left:0;
+    padding-left:0;
+    display: flex;
+    flex-wrap: wrap;
+    list-style-type: none;
+}
+.quote-products-list li{
+    border: 1px solid rgba(0,0,0,.2);
+    padding-bottom:10px;
+    flex: 0 1 30%;
+    justify-content: space-between;
+    margin: 1.5%;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: rgba(0,0,0,.1);
+}
+.quote-products-list li a{
+    color: black;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+.only-screen-reader {
+	position: absolute;
+	width: 0;
+	height: 0;
+	padding: 0;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap;
+	border: 0;
+}
+
+.only-screen-reader:active,
+.only-screen-reader:focus {
+	position: static;
+	width: auto;
+	height: auto;
+	overflow: visible;
+	clip: auto;
+	white-space: normal;
+}
+
 @media screen and (max-width: 852px) {
+    .quote-products-list li{
+        flex: 0 1 45%;
+    }
     .hidden-l{
         display: block;
     }
     nav > ul{
         clip: rect(1px, 1px, 1px, 1px);
-        clip-path: inset(50%);
+        -webkit-clip-path: inset(50%);
+                clip-path: inset(50%);
         height: 1px;
         width: 1px;
         margin: -1px;
@@ -528,7 +729,8 @@ hr {
     }
     nav > ul.visible{
         clip: initial;
-        clip-path: initial;
+        -webkit-clip-path: initial;
+                clip-path: initial;
         height: auto;
         width: auto;
         margin: auto;
@@ -542,12 +744,17 @@ hr {
     }
 
     nav{
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
-        flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
         height: auto;
     }
     nav > *{
-        flex-grow: 1;
+        -webkit-box-flex: 1;
+            -ms-flex-positive: 1;
+                flex-grow: 1;
         width: 50%;
     }
     nav > ul > li{
@@ -584,5 +791,30 @@ hr {
 @media screen and (max-width: 852px) {
     main{
         padding: 2em 3em;
+    }
+}
+
+@media screen and (max-width: 560px) {
+    .quote-products-list li{
+        flex: 0 1 100%;
+        margin:2%;
+    }
+}
+
+@media screen and (max-width: 560px) {
+    .pagination span{
+        display: none;
+    }
+}
+
+/*
+    Annullare le durate delle animazioni per essere consistente con le scelte dell'utente
+    https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion
+*/
+@media (prefers-reduced-motion) {
+    * {
+       -webkit-transition-duration: 0s !important;
+            -o-transition-duration: 0s !important;
+               transition-duration: 0s !important;
     }
 }

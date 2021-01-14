@@ -1,5 +1,6 @@
 ### Del progetto ###
 .credentials
+.base_path
 
 ### macOS ###
 # General

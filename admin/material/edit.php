@@ -1,13 +1,34 @@
 <?php
 require_once(__DIR__.'/../inc/header_php.php');
 redirectIfNotLogged();
-$page = file_get_contents('../template_html/material/edit.html');
-$page = str_replace('<value-id/>', $_REQUEST['id'], $page);
+$page = page('../template_html/material/edit.html');
 
-if($_SERVER['REQUEST_METHOD'] == 'POST' ){
+$id = request()->only(['id']);
+$request = request()->only([
+    'name',
+    'description',
+    'id',
+    'page'
+]);
+replaceValues($id, $page);
+
+$stm = DBC::getInstance()->prepare("
+    SELECT *
+    FROM MATERIALS
+    WHERE `_ID` = ?
+");
+$stm->execute([
+    $id['id']
+]);
+$material = $stm->fetch();
+error_if($material === false, 'Il materiale cercato non esiste');
+ 
+
+
+if(request()->method() == 'POST' ){
     $err = validate([
-        'name' => $_POST['name'] ?? "",
-        'description' => $_POST['description'] ?? "",
+        'name' => $request['name'] ?? "",
+        'description' => $request['description'] ?? "",
     ],[
         'name' => ["required", "min_length:2", "max_length:50"],
         'description' => ["required", "min_length:10", "max_length:200"],
@@ -20,7 +41,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' ){
         "description.min_length" => "La descrizione deve essere lunga almeno 10 caratteri caratteri",
         "description.max_length" => "La descrizione può essere lunga al massimo 200 caratteri",
     ]);
-
+    // validazione andata a buon fine
     if($err === true){
         $err = DBC::getInstance()->prepare("
             UPDATE MATERIALS
@@ -30,51 +51,37 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' ){
             WHERE
             `_ID` = ?
         ")->execute([
-            $_POST['name'],
-            $_POST['description'],
-            $_POST['id']
+            $request['name'],
+            $request['description'],
+            $request['id']
         ]);
         if($err === true){
-            redirectTo('/admin/material/index.php');
+            message("Materiale modificato correttamente");
+            redirectTo('/admin/material/index.php?page='.$request['page']);
         }
     }
-    $page = str_replace("<value-name/>", $_POST["name"], $page);
-    $page = str_replace("<value-description/>", $_POST["description"], $page);
 
+    // altrimenti ripristino i valori degli input
+    replaceValues([
+        "name" => $request["name"],
+        "description" => $request["description"]
+    ], $page, true);
+    // mostro gli errori
     if($err === false){
-        $page = str_replace('<error-db/>', "C'è stato un errore durante l'inserimento", $page);
-        $page = str_replace('<error-name/>', "", $page);
-        $page = str_replace('<error-description/>', "" , $page);
+        replaceErrors([
+            'db' => "C'è stato un errore durante l'inserimento"
+        ], $page, true);
     }
     else if(is_array($err)){
-        $page = str_replace('<error-db/>', "", $page); // rimuovo placeholder per errore db
-        foreach($err as $k => $errors){
-            $msg = "<ul class='errors-list'>";
-            foreach($errors as $error){
-                $msg .= "<li> $error </li>";
-            }
-            $msg .= "</ul>";
-            $page = str_replace("<error-$k/>", $msg, $page);
-        }
+        replaceErrors($err, $page, true);
      }
 }
 else {
-    $stm = DBC::getInstance()->prepare("
-        SELECT *
-        FROM MATERIALS
-        WHERE `_ID` = ?
-    ");
-    $stm->execute([
-        $_REQUEST['id']
-    ]);
-    $material = $stm->fetch();
-    if($material === false){
-        error('Il materiale cercato non esiste');
-    } 
-    $page = str_replace("<value-name/>", $material->_NAME, $page);
-    $page = str_replace("<value-description/>", $material->_DESCRIPTION, $page);
-    $page = str_replace('<error-db/>', "", $page);
-    $page = str_replace('<error-name/>', "", $page);
-    $page = str_replace('<error-description/>', "" , $page);
+    // precompilo i campi input 
+    replaceValues([
+        "name" => $material->_NAME, 
+        "description" => $material->_DESCRIPTION, 
+    ], $page, true);
+    removeErrorsTag($page); 
 }
 echo $page;
