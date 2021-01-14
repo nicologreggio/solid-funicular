@@ -36,7 +36,7 @@ foreach(($stm->fetchAll() ?? []) as $prod){
     $products.='
         <li>
             <h2 class="strong m0 p0 pt-1 pb-1 img-product">'.e($prod->_NAME).'</h2>
-            <img src="'.$prod->_MAIN_IMAGE.'" class="w20 w100-sm left" alt="'.$prod->_MAIN_IMAGE_DESCRIPTION.'">
+            <img src="'.base().$prod->_MAIN_IMAGE.'" class="w20 w100-sm left" alt="'.$prod->_MAIN_IMAGE_DESCRIPTION.'">
             <div class="w80 w100-sm right pl-3 pl-0-sm pt-2-sm">
                 <h3 class="m0 p0"><abbr title="Identificativo" class="strong">ID:</abbr> '.e($prod->_ID).'</h3>
                 <p class="m0 p0 mt-2 strong">
@@ -80,7 +80,7 @@ $page = str_replace('<products/>', $products, $page);
 
 
 
-pagination($page, $per_page, $cur_page, "product",  DBC::getInstance()->query(
+pagination($page, $per_page, $cur_page,  DBC::getInstance()->query(
     "SELECT count(*) FROM PRODUCTS"
 )->fetchColumn());
 echo str_replace('<products/>', $products, $page);

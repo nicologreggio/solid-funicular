@@ -49,7 +49,7 @@ foreach($stm->fetchAll() as $cat){
 }
 
 
-pagination($page, $per_page, $cur_page, "category", DBC::getInstance()->query(
+pagination($page, $per_page, $cur_page, DBC::getInstance()->query(
     "SELECT count(*) FROM CATEGORIES"
 )->fetchColumn());
 

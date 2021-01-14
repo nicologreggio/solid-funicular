@@ -44,7 +44,7 @@ foreach($stm->fetchAll() as $mat){
 }
 
 
-pagination($page, $per_page, $cur_page, "material", DBC::getInstance()->query(
+pagination($page, $per_page, $cur_page, DBC::getInstance()->query(
     "SELECT count(*) FROM MATERIALS"
 )->fetchColumn());
 

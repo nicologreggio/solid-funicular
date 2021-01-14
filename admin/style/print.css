@@ -35,7 +35,7 @@ main{
     padding:0;
     margin:0;
 }
-.main-list.dont-break-children li, main form fieldset{
+.main-list.dont-break-children li, main form fieldset, .dont-break{
     break-inside: avoid;
 }
 .main-list li div.w80 *{

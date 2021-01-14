@@ -1,5 +1,5 @@
 <?php
-function pagination(&$page, $per_page, $cur_page, $url, $total_of_products){
+function pagination(&$page, $per_page, $cur_page, $total_of_products){
     $pagination = "";
     if($total_of_products > $per_page){
         $last = ceil($total_of_products / $per_page) - 1;
