@@ -15,6 +15,6 @@ class UserService
     {
         $user = new UserModel($email, $name, $surname, $city, $address, $cap, $password, $isAdmin);
 
-        return UserRepository::insertOne($user);
+        return UserRepository::insertOne($email, $name, $surname, $city, $address, $cap, $password, $isAdmin);
     }
 }

@@ -22,13 +22,12 @@ function validateLoginData(string $email, string $password)
         'password' => $password
     ], [
         'email' => ['required', 'email'],
-        'validate' => ['required', 'password']
+        'password' => ['required']
     ], [
         'email.required' => "È obbligatorio inserire una email",
         'email.email' => "L'email inserita non è valida",
 
         'password.required' => "È obbligatorio inserire una password",
-        'password.password' => "La password inserita non è valida"
     ]);
 
     return $err;
@@ -52,7 +51,6 @@ function fillPageWithErrorAndValue($page, $err)
 
     if($err === true)
     {
-        $page = str_replace('<error-db/>', "C'è stato un errore nel database", $page);
         $page = str_replace('<error-email/>', "", $page);
         $page = str_replace('<error-password/>', "", $page);
     } else if(is_array($err))

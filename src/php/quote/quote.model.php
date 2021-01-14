@@ -7,6 +7,7 @@ class QuoteModel
     private string $reason;
     private string $company;
     private string $telephone;
+    private array $products;
 
     public function __construct(int $id, string $reason, string $company, string $telephone, int $user)
     {

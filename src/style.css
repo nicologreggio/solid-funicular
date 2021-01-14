@@ -46,19 +46,23 @@ html, body
     list-style-type: none;
 }
 
-.authentication-form fieldset
+form fieldset
 {
     border: none;
     padding: 20px;
     padding-top: 0;
 }
 
-.authentication-form legend
+textarea {
+    resize: vertical;
+}
+
+form legend
 {
     margin-bottom: 0.5em;
 }
 
-.authentication-form h2 {
+form h2 {
     background: #0288D1;
     padding: 30px 20px;
     color: white;
@@ -68,18 +72,18 @@ html, body
     margin-bottom: 20px;
 }
 
-.authentication-form legend
+form legend
 {
     font-size: 1.2em;
     font-weight: bold;
 }
 
-.authentication-form legend + label
+form legend + label
 {
     margin-top: 0em;
 }
 
-.authentication-form label {
+form label {
     display: inline-block;
     margin-top: 1.0em;
     margin-bottom: 0.5em;
@@ -87,7 +91,7 @@ html, body
     font-weight: bold;
 }
 
-.authentication-form input {
+form input {
     display: inline-block;
     width: 100%;
     font-size: 1em;
@@ -98,9 +102,14 @@ html, body
     border-bottom: 2px solid #ccc;
 }
 
-.authentication-form input:focus
+form input:focus
 {
     border-bottom: 2px solid #0288D1;
+}
+
+form textarea
+{
+    width: 100%;
 }
 
 .authentication-form #password {

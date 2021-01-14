@@ -13,6 +13,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
         $_SESSION['cart'][$productId] = $quantity;
     }
 
+    print_r(($_SESSION['cart']));
 
-    header('Location: ' . $_SERVER['HTTP_REFERER']);
+    // header('Location: ' . $_SERVER['HTTP_REFERER']);
 }

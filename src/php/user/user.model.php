@@ -2,6 +2,7 @@
 
 class UserModel
 {
+    private string $id;
     private string $email;
     private string $name;
     private string $surname;
@@ -11,8 +12,9 @@ class UserModel
     private bool $isAdmin;
     private string $password;
 
-    public function __construct(string $email, string $name, string $surname, string $city, string $address, int $cap, string $password, bool $isAdmin)
+    public function __construct(string $id, string $email, string $name, string $surname, string $city, string $address, int $cap, string $password, bool $isAdmin)
     {
+        $this->id = $id;
         $this->email = $email;
         $this->name = $name;
         $this->surname = $surname;
@@ -25,9 +27,14 @@ class UserModel
 
     public static function instanceFromUser($user) : UserModel
     {
-        return new UserModel($user->_EMAIL, $user->_NAME, $user->_SURNAME, 
+        return new UserModel($user->_ID, $user->_EMAIL, $user->_NAME, $user->_SURNAME, 
                                 $user->_CITY, $user->_ADDRESS, $user->_CAP,
                                 $user->_PASSWORD, $user->_ADMIN);
+    }
+
+    public function getId() : string
+    {
+        return $this->id;
     }
 
     public function getEmail() : string
