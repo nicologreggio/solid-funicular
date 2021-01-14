@@ -76,7 +76,7 @@ class ProductModel
         return $this->mainImageDescription;
     }
 
-    public function getCategory() : int
+    public function getCategory() : string
     {
         return $this->category;
     }

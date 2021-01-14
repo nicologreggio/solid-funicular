@@ -24,9 +24,13 @@ class ProductRepository
             $product = ProductModel::instanceFromProduct($product);
             
             $product->addMaterials(MaterialService::getMaterialsReleatedToProduct($id));
+            
+            return $product;
         }
-
-        return $product;
+        else
+        {
+            return null;
+        }
     }
 
     public static function getAllWhere(array $search, int $limit) : array
