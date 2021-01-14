@@ -18,13 +18,13 @@ function fillPageWithDetails(string $page, ProductModel $product)
     {
         $removeForm = "<form class='form-quotation' method='POST' action='../php/remove-from-cart-quotation.php'><button type='submit'>Rimuovi il prodotto</button></form>";
         $quantity = $_SESSION['cart'][$product->getId()];
-        $addOrUpdateString = "Aggiungi al preventivo";
+        $addOrUpdateString = "Modifica la quantità";
     }
     else
     {
         $removeForm = "";
         $quantity = 1;
-        $addOrUpdateString = "Modifica la quantità";
+        $addOrUpdateString = "Aggiungi al preventivo";
     }
 
     $page = str_replace("<removeProductForm/>", $removeForm, $page);
