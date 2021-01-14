@@ -33,6 +33,31 @@ class ProductRepository
         }
     }
 
+    public static function getAllWhereCategory(int $categoryId, int $page, int $limit) : array
+    {
+        $stm = DBC::getInstance()->prepare(
+            "SELECT * FROM `PRODUCTS` where _CATEGORY = :categoryId LIMIT :lim OFFSET :of"
+        );
+
+        $stm->bindValue(":categoryId", $categoryId, PDO::PARAM_INT);
+        $stm->bindValue(":lim", $limit, PDO::PARAM_INT);
+        $stm->bindValue(":of", self::calculateOffset($limit, $page), PDO::PARAM_INT);
+
+        $stm->execute();
+
+        $products = $stm->fetchAll();
+
+        $productsModel = [];
+
+        foreach($products as $product)
+        {
+            $productModel = ProductModel::instanceFromProduct($product);
+            $productsModel[] = $productModel;
+        }
+
+        return $productsModel;
+    }
+
     public static function getAllWhere(array $search, int $limit) : array
     {
         $page = $search["page"];
@@ -59,7 +84,7 @@ class ProductRepository
             $stm->bindValue(":category", $category, PDO::PARAM_STR);
         }
         $stm->bindValue(":lim", $limit, PDO::PARAM_INT);
-        $stm->bindValue(":of", ($limit * ($page - 1)), PDO::PARAM_INT);
+        $stm->bindValue(":of", self::calculateOffset($limit, $page), PDO::PARAM_INT);
 
         $stm->execute();
 
@@ -107,4 +132,9 @@ class ProductRepository
         
         return $filterCategory;
     }
+
+    private static function calculateOffset(int $limit, int $page) : int
+    {
+        return ($limit * ($page - 1));
+    } 
 }

@@ -2,6 +2,7 @@
 session_start();
 
 require_once(__DIR__."/../php/product/product.service.php");
+require_once(__DIR__."/../utils/utils.php");
 
 function fillPageWithDetails(string $page, ProductModel $product)
 {
@@ -59,7 +60,10 @@ if($id = $_GET['id'])
     if($product)
     {
         $_SESSION['actual-product-id'] = $id;
-        echo fillPageWithDetails(file_get_contents('./product-details-page.html'), $product);
+        $page=file_get_contents('./product-details-page.html');
+        $page=fetchAndFillCategories($page);
+        $page=fillPageWithDetails($page, $product);
+        echo $page;
     }
     else
     {

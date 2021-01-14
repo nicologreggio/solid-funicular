@@ -14,4 +14,9 @@ class ProductService
     {
         return ProductRepository::getAllWhere($search, $limit);
     }
+
+    public static function getProductsWhereCategory(int $categoryId, int $page, int $limit = 25) : array
+    {
+        return ProductRepository::getAllWhereCategory($categoryId, $page, $limit);
+    } 
 }
