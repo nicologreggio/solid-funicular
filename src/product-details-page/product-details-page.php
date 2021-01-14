@@ -58,6 +58,7 @@ if($id = $_GET['id'])
     
     if($product)
     {
+        $_SESSION['actual-product-id'] = $id;
         echo fillPageWithDetails(file_get_contents('./product-details-page.html'), $product);
     }
     else
