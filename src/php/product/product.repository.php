@@ -81,7 +81,7 @@ class ProductRepository
         $stm->bindValue(":name", "%{$name}%", PDO::PARAM_STR);
         if(!empty($category))
         {
-            $stm->bindValue(":category", $category, PDO::PARAM_STR);
+            $stm->bindValue(":category", $category, PDO::PARAM_INT);
         }
         $stm->bindValue(":lim", $limit, PDO::PARAM_INT);
         $stm->bindValue(":of", self::calculateOffset($limit, $page), PDO::PARAM_INT);
@@ -102,6 +102,37 @@ class ProductRepository
         return $productsModel;
     }
 
+    public static function countAllWhere(array $search) : int
+    {
+        $name = $search["name"];
+        $category = $search["category"];
+
+        $filterCategory = self::filterForCategory($category);
+        $filterMaterials = self::filterForMaterials($search["materials"]);
+
+        $stm = DBC::getInstance()->prepare(
+            "SELECT count(`PRODUCTS`._ID) as total
+            FROM (`PRODUCTS` inner join (select _ID, _NAME as NAME_CATEGORY from CATEGORIES {$filterCategory}) c 
+                on c._ID = _CATEGORY)
+            inner join (select * from PRODUCT_MATERIAL join MATERIALS on PRODUCT_MATERIAL._MATERIAL_ID = MATERIALS._ID {$filterMaterials} group by PRODUCT_MATERIAL._PRODUCT_ID) pm 
+                on pm._PRODUCT_ID = PRODUCTS._ID
+            WHERE `PRODUCTS`._NAME like :name
+            "
+        );
+
+        $stm->bindValue(":name", "%{$name}%", PDO::PARAM_STR);
+        if(!empty($category))
+        {
+            $stm->bindValue(":category", $category, PDO::PARAM_STR);
+        }
+
+        $stm->execute();
+
+        $count = $stm->fetch();
+
+        return $count->total;
+    }
+
     private static function filterForMaterials(?array $materials) : string
     {
         $filterMaterials = "";
@@ -112,22 +143,22 @@ class ProductRepository
             
             foreach($materials as $index => $material)
             {
-                $filterMaterials .= "`MATERIALS`._NAME = ".$material;
+                $filterMaterials .= "`MATERIALS`._ID = ".$material;
 
-                if($index + 1 != count($materials)) $filterMaterials .= " OR ";
+                if($index + 1 != count($materials)) $filterMaterials .= " AND ";
             }
         }
 
         return $filterMaterials;
     }
 
-    private static function filterForCategory(?string $category) : string
+    private static function filterForCategory(?int $category) : string
     {
         $filterCategory = "";
 
         if(!empty($category))
         {
-            $filterCategory = "WHERE NAME_CATEGORY = :category";
+            $filterCategory = "WHERE `CATEGORIES`._ID = :category";
         }
         
         return $filterCategory;

@@ -4,19 +4,25 @@ class MaterialModel
 {
     private int $id;
     private string $name;
-    private string $description;
+    private ?string $description;
 
-    public function __construct(int $id, string $name, ?string $description)
+    public function __construct(int $id, string $name, ?string $description = null)
     {
         $this->id = $id;
         $this->name = $name;
-        
-        if($description) $this->description = $description;
+        $this->description = $description;
     }
 
     public static function instanceFromMaterial($material) : MaterialModel
     {
-        return new MaterialModel($material->_ID, $material->_NAME, $material->_DESCRIPTION);
+        $newModel = new MaterialModel($material->_ID, $material->_NAME);
+
+        if(isset($material->_DESCRIPTION))
+        {
+            $newModel->setDescription($material->_DESCRIPTION);
+        }
+
+        return $newModel;
     }
 
     public function getId() : int
@@ -29,8 +35,13 @@ class MaterialModel
         return $this->name;
     }
 
-    public function getDescription() : string
+    public function getDescription() : ?string
     {
         return $this->description;
+    }
+
+    public function setDescription(string $description)
+    {
+        $this->description = $description;
     }
 }

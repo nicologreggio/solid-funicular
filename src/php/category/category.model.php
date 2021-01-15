@@ -7,7 +7,7 @@ class CategoryModel
     private ?string $description;
     private ?string $metaDescription;
 
-    public function __construct(int $id, string $name, ?string $description, ?string $metaDescription)
+    public function __construct(int $id, string $name, ?string $description = null, ?string $metaDescription = null)
     {
         $this->id = $id;
         $this->name = $name;
@@ -17,7 +17,19 @@ class CategoryModel
 
     public static function instanceFromCategory($category) : CategoryModel
     {
-        return new CategoryModel($category->_ID, $category->_NAME, $category->_DESCRIPTION, $category->_METADESCRIPTION);
+        $newModel = new CategoryModel($category->_ID, $category->_NAME);
+
+        if(isset($category->_DESCRIPTION))
+        {
+            $newModel->setDescription($category->_DESCRIPTION);
+        }
+
+        if(isset($category->_METADESCRIPTION))
+        {
+            $newModel->setMetaDescription($category->_METADESCRIPTION);
+        }
+
+        return $newModel;
     }
 
     public function getId() : int
@@ -35,8 +47,18 @@ class CategoryModel
         return $this->description;
     }
 
+    public function setDescription(string $description)
+    {
+        $this->description = $description;
+    }
+
     public function getMetaDescription() : ?string
     {
         return $this->metaDescription;
+    }
+
+    public function setMetaDescription(string $metaDescription)
+    {
+        $this->metaDescription = $metaDescription;
     }
 }

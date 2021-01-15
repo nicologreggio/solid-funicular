@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 require_once(__DIR__."/../../helpers/validator.php");
 require_once(__DIR__."/../utils/utils.php");
@@ -9,7 +10,7 @@ function signup(string $email, string $name, string $surname, string $password, 
     $user = UserService::signup($email, $name, $surname, $city, $address, $cap, $password);
     $exist = $user != null;
 
-    if($exist) $_SESSION['user'] = $user;
+    if($exist) $_SESSION['user'] = $user->getId();
 
     return $exist;
 }

@@ -5,6 +5,26 @@ require_once(__DIR__."/material.model.php");
 
 class MaterialRepository
 {
+    public static function getAll() : array
+    {
+        $stm = DBC::getInstance()->prepare(
+            "SELECT _ID, _NAME from `MATERIALS`"
+        );
+
+        $stm->execute();
+
+        $materials = $stm->fetchAll();
+
+        $materialsModel = array();
+
+        foreach($materials as $material)
+        {
+            $materialsModel[] = MaterialModel::instanceFromMaterial($material);
+        }
+
+        return $materialsModel;
+    }
+
     public static function getAllWhereProduct(int $id) : array
     {
         $stm = DBC::getInstance()->prepare(

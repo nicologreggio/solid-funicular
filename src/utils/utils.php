@@ -41,3 +41,8 @@ function fetchAndFillCategories($page, $current=-1, $isProduct=false)
 
     return $page;
 }
+
+function base()
+{
+    return str_replace(PHP_EOL, '', file_get_contents(__DIR__.'/../.base_path') ?? "");
+}

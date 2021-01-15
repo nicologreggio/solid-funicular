@@ -3,6 +3,7 @@ session_start();
 
 require_once(__DIR__."/../../helpers/validator.php");
 require_once(__DIR__."/../utils/utils.php");
+require_once(__DIR__."/../php/quote/quote.service.php");
 require_once(__DIR__."/../php/product/product.service.php");
 
 function fillPagewithCartProducts($page)
@@ -105,16 +106,18 @@ function validateQuoteData(string $company, string $telephone)
 {
     $err = validate([
         'company' => $company,
-        'telephone' => $telephone
+        // 'telephone' => $telephone
     ], [
-        'company' => ['required'],
-        'telephone' => ['required', 'integer']
+        // 'company' => ['required'],
+        // 'telephone' => ['required']
     ], [
         'company.required' => "Il nome dell'azienda è obbligatorio",
-
-        'telephone.required' => "Il numero di telefono è obbligatorio",
-        'telephone.integer' => "Il numero di telefono deve essere composto solo da numeri"
+        
+        // 'telephone.required' => "Il numero di telefono è obbligatorio",
+        // 'telephone.integer' => "Il numero di telefono deve essere composto solo da numeri"
     ]);
+    
+    var_dump($err);
 
     return $err;
 }
@@ -139,15 +142,16 @@ function fillPageWithErrorsAndValues($page, $err)
 
 if($_SERVER['REQUEST_METHOD'] == 'POST')
 {
-    $err = validateQuoteData($_POST['company'], $_POST['telephone']);
+    $company = $_POST['company'];
+    $telephone = $_POST['telephone'];
+    $reason = $_POST['reason'];
+    $user = $_SESSION['user'];
 
-    var_dump($err);
+    $err = validateQuoteData($company, $telephone);
 
-    if($err === false)
+    if($err === true)
     {
-        // echo $_POST['company'].$_POST['telephone'].$_POST['reason'];
-
-        var_dump($_SESSION['user']);
+        QuoteService::addQuotation($company, $telephone, $reason, $_SESSION['user'], $_SESSION['cart']);
     }
     else
     {

@@ -1,15 +1,16 @@
 <?php
+session_start();
 
 require_once(__DIR__."/../../helpers/validator.php");
 require_once(__DIR__."/../utils/utils.php");
-require_once(__DIR__."/../user/user.service.php");
+require_once(__DIR__."/../php/user/user.service.php");
 
 function login(string $email, string $password) : bool
 {
     $user = UserService::login($email, $password);
     $exist = $user != null;
 
-    if($exist) $_SESSION['user'] = $user;
+    if($exist) $_SESSION['user'] = $user->getId();
 
     return $exist;
 }
@@ -21,13 +22,12 @@ function validateLoginData(string $email, string $password)
         'password' => $password
     ], [
         'email' => ['required', 'email'],
-        'validate' => ['required', 'password']
+        'validate' => ['required']
     ], [
         'email.required' => "È obbligatorio inserire una email",
         'email.email' => "L'email inserita non è valida",
 
         'password.required' => "È obbligatorio inserire una password",
-        'password.password' => "La password inserita non è valida"
     ]);
 
     return $err;

@@ -20,7 +20,7 @@ class QuoteRepository
 
         return $res ? DBC::getInstance()->lastInsertId("QUOTES") : null;
     }
-
+    
     public static function insertProductReleatedToQuote(int $quoteId, array $cart) : bool
     {
         $stm = DBC::getInstance()->prepare("

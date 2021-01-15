@@ -76,5 +76,3 @@ function fetchAndFillProducts($page, $category){
 
     return $page;
 }
-
-?>
