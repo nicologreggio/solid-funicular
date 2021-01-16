@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="UTF-8">
         <!-- <link rel="stylesheet" href="../style.css"> -->
-        <link rel="stylesheet" href="../style/style.css" />
+        <link rel="stylesheet" href="./style/style.css" />
         <link rel="stylesheet" type="text/css" href="../style/small.css" media="handheld, screen and (max-width: 640px), and only screen and (max-device-width: 640px)" />
 		<link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico" />
 	</head>
@@ -59,40 +59,16 @@
                 <h2 id="product-name"><productName/></h2>
                 <img id="product-image" src="<productMainImage/>" alt="<productMainImageDescription/>" />
                 <p id="product-description"><productDescription/></p>
-                <!-- <div id="product-details">
-                    <div class="pill-container">
-                        <p class="pill-text">Categoria:</p>
-                        <p class="pill" id="product-category"><productCategory/></p>
-                    </div>
-                    <div class="pill-container">
-                        <p class="pill-text">Dimensione:</p>
-                        <p class="pill" id="product-dimensions"><productDimensions/></p>
-                    </div>
-                    <div class="pill-container">
-                        <p class="pill-text">Anno di produzione:</p>
-                        <p class="pill" id="product-age"><productAge/></p>
-                    </div>
-                </div> -->
-
-                <ul id="product-details">
+                <ul id='product-details'>
                     <li>
                         <b>Categoria:</b>
                         <span class="product-detail" id="product-category"><productCategory/></span>
                     </li>
-                    <li>
-                        <b>Dimensione:</b>
-                        <span class="product-detail" id="product-dimensions"><productDimensions/></span><br />
-                    </li>
-                    <li>
-                        <b>Anno:</b>
-                        <span class="product-detail" id="product-age"><productAge/></span>
-                    </li>
-                    <li>
-                        <b>Materiali:</b>
-                        <span class="product-materials"><productMaterials/></span>
-                    </li>
+                    <productDimensions/>
+                    <productAge/>
+                    <productMaterials/>
                 </ul>
-                <form class="form-quotation" action="../php/add-to-cart-quotation.php" method="POST">
+                <form class="form-quotation" action="./php/add-to-cart-quotation.php" method="POST">
                     <label for="quantity">Quantità:</label>
                     <input id="quantity" value="<productQuantity/>" name="quantity" type="number" min="1" />
                     <button type="submit"><addOrUpdateToQuote/></button>

@@ -1,9 +1,9 @@
 <?php
 session_start();
 
-require_once(__DIR__."/../../helpers/validator.php");
-require_once(__DIR__."/../utils/utils.php");
-require_once(__DIR__."/../php/user/user.service.php");
+require_once(__DIR__."/../helpers/validator.php");
+require_once(__DIR__."/utils/utils.php");
+require_once(__DIR__."/php/user/user.service.php");
 
 function login(string $email, string $password) : bool
 {
@@ -70,19 +70,15 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
     {
         if(login($_POST['email'], $_POST['password']))
         {
-            echo "log";
-        }
-        else
-        {
-            echo "Not exist";
+            header('Location: ' . $_SERVER['HTTP_REFERER']);
         }
     }
     else
     {
-        echo fillPageWithErrorAndValue(file_get_contents('./login.html'), $err);
+        echo fillPageWithErrorAndValue(file_get_contents('./login/login.html'), $err);
     }
 }
 else
 {
-    echo cleanPage(file_get_contents('./login.html'));
+    echo cleanPage(file_get_contents('./login/login.html'));
 }

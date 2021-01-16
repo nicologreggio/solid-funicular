@@ -1,23 +1,39 @@
 <?php
 session_start();
 
-require_once(__DIR__."/../php/product/product.service.php");
-require_once(__DIR__."/../utils/utils.php");
+require_once(__DIR__."/php/product/product.service.php");
+require_once(__DIR__."/utils/utils.php");
 
 function fillPageWithDetails(string $page, ProductModel $product)
 {
-    // $page = str_replace("<productId/>", $product->getId(), $page);
     $page = str_replace("<productName/>", $product->getName(), $page);
-    $page = str_replace("<productDescription/>", $product->getDescription(), $page);
-    $page = str_replace("<productDimensions/>", $product->getDimensions(), $page);
-    $page = str_replace("<productAge/>", $product->getAge(), $page);
+    $page = str_replace("<productDescription/>", $product->getMetaDescription(), $page);
+
+    $dimensions = $product->getDimensions();
+    $dimensionsStr = $dimensions ? "
+        <li>
+            <b>Dimensione:</b>
+            <span class='product-detail'>{$dimensions}</span><br />
+        </li>
+    " : "";
+    $page = str_replace("<productDimensions/>", $dimensionsStr, $page);
+
+    $age = $product->getAge();
+    $ageStr = $age ? "
+        <li>
+            <b>Età indicata:</b>
+            <span class='product-detail'>{$age}</span><br />
+        </li>
+    " : "";
+    $page = str_replace("<productAge/>", $ageStr, $page);
+    
     $page = str_replace("<productMainImage/>", $product->getMainImage(), $page);
     $page = str_replace("<productMainImageDescription/>", $product->getMainImageDescription(), $page);
     $page = str_replace("<productCategory/>", $product->getCategory(), $page);
 
     if($_SESSION['cart'][$product->getId()])
     {
-        $removeForm = "<form class='form-quotation' method='POST' action='../php/remove-from-cart-quotation.php'><button type='submit'>Rimuovi il prodotto</button></form>";
+        $removeForm = "<form class='form-quotation' method='POST' action='./php/remove-from-cart-quotation.php'><button type='submit'>Rimuovi il prodotto</button></form>";
         $quantity = $_SESSION['cart'][$product->getId()];
         $addOrUpdateString = "Modifica la quantità";
     }
@@ -33,17 +49,28 @@ function fillPageWithDetails(string $page, ProductModel $product)
     $page = str_replace("<addOrUpdateToQuote/>", $addOrUpdateString, $page);
 
     $productMaterials = '';
-
     $materials = $product->getMaterials();
-
-    foreach($materials as $index => $material)
+    
+    if(!empty($materials))
     {
-        $productMaterials .= "{$material->getName()}";
+        $productMaterials .= '
+            <li>
+                <b>Materiali:</b>
+                <span class="product-materials">
+        ';
 
-        if(($index + 1) != count($materials))
+
+        foreach($materials as $index => $material)
         {
-            $productMaterials .= ", ";
+            $productMaterials .= "{$material->getName()}";
+
+            if(($index + 1) != count($materials))
+            {
+                $productMaterials .= ", ";
+            }
         }
+
+        $productMaterials .= "</span></li>";
     }
 
     $page = str_replace("<productMaterials/>", $productMaterials, $page);
@@ -60,7 +87,7 @@ if($id = $_GET['id'])
     if($product)
     {
         $_SESSION['actual-product-id'] = $id;
-        $page=file_get_contents('./product-details-page.html');
+        $page=file_get_contents('./product-details-page/product-details-page.html');
         $page=fetchAndFillCategories($page);
         $page=fillPageWithDetails($page, $product);
         echo $page;

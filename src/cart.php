@@ -1,10 +1,10 @@
 <?php
 session_start();
 
-require_once(__DIR__."/../../helpers/validator.php");
-require_once(__DIR__."/../utils/utils.php");
-require_once(__DIR__."/../php/quote/quote.service.php");
-require_once(__DIR__."/../php/product/product.service.php");
+require_once(__DIR__."/../helpers/validator.php");
+require_once(__DIR__."/utils/utils.php");
+require_once(__DIR__."/php/quote/quote.service.php");
+require_once(__DIR__."/php/product/product.service.php");
 
 function fillPagewithCartProducts($page)
 {
@@ -155,10 +155,10 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
     }
     else
     {
-        echo fillPageWithErrorsAndValues(fillPagewithCartProducts(file_get_contents("./cart.html")), $err);
+        echo fillPageWithErrorsAndValues(fillPagewithCartProducts(file_get_contents("./cart/cart.html")), $err);
     }
 }
 else
 {
-    echo cleanPage(fillPagewithCartProducts(file_get_contents("./cart.html")));
+    echo cleanPage(fillPagewithCartProducts(file_get_contents("./cart/cart.html")));
 }

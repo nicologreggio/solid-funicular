@@ -2,13 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it" lang="it">
 	<head>
 		<meta charset="UTF-8">
-		<link rel="stylesheet" href="../style.css" />
+		<link rel="stylesheet" href="./style/style.css" />
 		<link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico" />
-		<script src="../validate.js"></script>
-		<script src="../scripts/authentication.js"></script>
+		<script src="./validate.js"></script>
+		<script src="./scripts/authentication.js"></script>
 	</head>
 	<body>
-		<div class="authentication-container">
+		<main class='authentication-container'>
 			<form class="authentication-form" action="./login.php" method="POST" data-validate="1">
 				<h2>ACCEDI</h2>
 				<fieldset>
@@ -41,10 +41,10 @@
 					<div id="error-password" class="error"><error-password/></div>
 				</fieldset>
 				<div class="buttons-control">
-					<a class="button" href="/src/signup/signup.php">Registrati</a>
-					<button class="button" type="submit">Accedi</button>
+					<button type="submit">Accedi</button>
+					<a href="./signup.php">Non sei ancora registrato? Fallo subito cliccando qui!</a>
 				</div>
 			</form>
-		</div>
+		</main>
 	</body>
 </html>
