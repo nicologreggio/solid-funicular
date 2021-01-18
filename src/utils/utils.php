@@ -85,7 +85,7 @@ function fetchAndFillProducts($page, $category){
     $productsList='<ul id="products-list">';
 
     foreach($products as $product){
-        $productsList .= '<li class="category-product">' . '<a href="./product-details-page.php?id=' . $product->getId() . '"><img src="' . $product->getMainImage() . '" />' . '<p>' . $product->getName() . '</p></a></li>';
+        $productsList .= '<li class="category-product">' . '<a href="./product-details-page.php?cat=' . $category .'&id=' . $product->getId() . '"><img src="' . $product->getMainImage() . '" />' . '<p>' . $product->getName() . '</p></a></li>';
     }
 
     
