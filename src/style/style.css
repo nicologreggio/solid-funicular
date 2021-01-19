@@ -134,7 +134,7 @@ body {
 /* ========== HEADINGS ========== */
 
 h1,
-h2 {
+h2, h3 {
     color: #A70500
 }
 
@@ -144,6 +144,11 @@ h1 {
 
 h2 {
     font-size: 2em;
+}
+
+h3{
+    font-size: 1.5em;
+    margin-bottom: 0.3em;
 }
 
 
@@ -228,6 +233,10 @@ button {
     background-color: white;
 }
 
+body{
+    height: auto;
+}
+
 /* ========== MAIN CONTENT ========== */
 main{
     max-width: 1024px;
@@ -247,6 +256,11 @@ main{
     float: right;
     padding: 0.5em;
     border-radius: 0.5em;
+}
+
+
+hr{
+    margin: 1em 0 1em 0;
 }
 
 /* ========== CONTACTS ========== */

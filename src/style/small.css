@@ -6,6 +6,7 @@
     color: white;
     text-align: center;
     font-size: 1.5em;
+    padding: 0.4em 0 0.4em 0;
 }
 
 #logo{
@@ -28,3 +29,6 @@ h2{
     float:none;
 }
 
+#products-list li{
+    width: 100%;
+}
