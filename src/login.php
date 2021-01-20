@@ -5,7 +5,7 @@ require_once(__DIR__."/../helpers/validator.php");
 require_once(__DIR__."/utils/utils.php");
 require_once(__DIR__."/php/user/user.service.php");
 
-function login(string $email, string $password) : bool
+function login(string $email, string $password)
 {
     $user = UserService::login($email, $password);
     $exist = $user != null;
@@ -21,13 +21,12 @@ function validateLoginData(string $email, string $password)
         'email' => $email,
         'password' => $password
     ], [
-        'email' => ['required', 'email'],
-        'validate' => ['required']
+        'email' => ['required'],
+        'password' => ['required']
     ], [
-        'email.required' => "È obbligatorio inserire una email",
-        'email.email' => "L'email inserita non è valida",
+        'email.required' => "L'email non è stata inserita",
 
-        'password.required' => "È obbligatorio inserire una password",
+        'password.required' => "La password non è stata inserita",
     ]);
 
     return $err;
@@ -49,28 +48,40 @@ function fillPageWithErrorAndValue($page, $err)
     $page = str_replace("<value-email/>", $_POST['email'], $page);
     $page = str_replace("<value-password/>", $_POST['password'], $page);
 
-    if($err === true)
-    {
-        $page = str_replace('<error-db/>', "C'è stato un errore nel database", $page);
-        $page = str_replace('<error-email/>', "", $page);
-        $page = str_replace('<error-password/>', "", $page);
-    } else if(is_array($err))
+    if(is_array($err))
     {
         $page = fillPageWithError($page, $err);
     }
+    else
+    {
+        $page = str_replace('<error-email/>', "", $page);
+        $page = str_replace('<error-password/>', "", $page);
+    }
 
     return $page;
+}
+
+function setHttpReferFromLogin()
+{
+    if(!strpos($_SERVER['HTTP_REFERER'], 'signup.php'))
+    {
+        $_SESSION['HTTP_REFERER'] = $_SERVER['HTTP_REFERER'];
+    }
 }
 
 if($_SERVER['REQUEST_METHOD'] == 'POST')
 {
     $err = validateLoginData($_POST['email'], $_POST['password']);
     
-    if($err === false)
+    if($err === true)
     {
         if(login($_POST['email'], $_POST['password']))
         {
-            header('Location: ' . $_SERVER['HTTP_REFERER']);
+            header('Location: ' . $_SESSION['HTTP_REFERER']);
+        }
+        else
+        {
+            echo fillPageWithErrorAndValue(file_get_contents('./login/login.html'), ["password" => [ "Email o password sbagliata" ]]);
         }
     }
     else
@@ -80,5 +91,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
 }
 else
 {
+    setHttpReferFromLogin();
+
     echo cleanPage(file_get_contents('./login/login.html'));
 }

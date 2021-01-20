@@ -8,7 +8,7 @@ require_once(__DIR__."/php/product/product.service.php");
 
 function fillPagewithCartProducts($page)
 {
-    $listProducts = "<div id='list-quote-products'><h2>Riepilogo preventivo</h2>";
+    $listProducts = "";
 
     foreach($_SESSION['cart'] as $id => $quantity)
     {
@@ -30,51 +30,8 @@ function fillPagewithCartProducts($page)
             $listProducts .= "</div>";
         }
     }
-    
-    $listProducts .= "</div>";
 
-    $formQuote = "
-        <form action='./cart.php' method='POST' data-validate='1'>
-            <h2>Form di richiesta preventivo</h2>
-            <fieldset>
-                <label for='company'>Azienda*:</label><br />
-                <input
-                    id='company'
-                    name='company'
-                    value='<value-company/>'
-                    required='required'
-                    data-error-field='error-company' 
-                    data-rules='required'
-                    data-error-message=\"Il nome dell'azienda è obbligatorio\"
-                    />
-                <div id='error-company' class='error'><error-company/></div>
-
-                <label for='telephone'>Telefono*:</label><br />
-                <input
-                    id='telephone'
-                    name='telephone'
-                    value='<value-telephone/>'
-                    required='required'
-                    data-error-field='error-telephone'
-                    data-rules='required|integer'
-                    data-error-message='Il numero di telefono è obbligatorio e deve essere composto solo da numeri'
-                    />
-                <div id='error-telephone' class='error'><error-telephone/></div>
-
-                <label for='reason'>Ragione della richiesta del preventivo:</label><br />
-                <textarea
-                    id='reason'
-                    name='reason'><value-reason/></textarea>
-            </fieldset>
-            <div class='buttons-control'>
-                <button class='button' type='submit'>Richiedi preventivo</button>
-            </div>
-        </form>
-    ";
-
-    $page = str_replace("<noProducts/>", "", $page);
     $page = str_replace("<listProducts/>", $listProducts, $page);
-    $page = str_replace("<formQuote/>", $formQuote, $page);
 
     return $page;
 }
@@ -106,7 +63,7 @@ function validateQuoteData(string $company, string $telephone)
         'telephone' => $telephone
     ], [
         'company' => ['required'],
-        'telephone' => ['required']
+        'telephone' => ['required', 'integer']
     ], [
         'company.required' => "Il nome dell'azienda è obbligatorio",
         
@@ -147,6 +104,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
     if($err === true)
     {
         QuoteService::addQuotation($company, $telephone, $reason, $_SESSION['user'], $_SESSION['cart']);
+        echo "DONE";
     }
     else
     {

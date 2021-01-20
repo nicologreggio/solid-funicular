@@ -22,22 +22,22 @@
 						placeholder="Inserisci la tua email"
 						autofocus="autofocus" 
 						data-error-field="error-email" 
-						data-rules="required|email|max_length:100" 
-						data-error-message="L'email inserita non è valida o troppo lunga (massimo 100 caratteri)" />
+						data-rules="required" 
+						data-error-message="L'email non è stata inserita" />
 					<div id="error-email" class="error"><error-email/></div>
 
 					<label for="password">Password*: </label><br />
 					<input
 						id="password"
 						value="<value-password/>"
-						name="password" 
-						type="password" 
+						name="password"
+						type="password"
 						required="required" 
 						placeholder="Inserisci la password"
 						data-error-field="error-password" 
-						data-rules="required" />
+						data-rules="required"
+						data-error-message="La password non è stata inserita" />
 					<img id="hide-show-password" class="clickable" src="/images/icons/eye-off.svg" alt="" />
-					<div class="suggestion">La password deve essere lunga almeno 8 caratteri, contenere almeno una lettera maiuscola e almeno un numero</div>
 					<div id="error-password" class="error"><error-password/></div>
 				</fieldset>
 				<div class="buttons-control">

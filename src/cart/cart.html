@@ -16,6 +16,7 @@
         <meta name="author" content="Nicolo Greggio" />
         <meta name="language" content="italian it" />
         <link rel="stylesheet" href="style/style.css" />
+        <script src="./validate.js"></script>
         <link rel="stylesheet" type="text/css" href="style/small.css" media="handheld, screen and (max-width: 640px), and only screen and (max-device-width: 640px)" />
         <link rel="shortcut icon" type="image/x-icon" href="../images/favicon.ico" />
 	</head>
@@ -66,8 +67,46 @@
 		</nav>
 		
         <main>
-            <listProducts/>
-            <formQuote/>
+            <h2>Riepilogo preventivo</h2>
+            <div id='list-quote-products'>
+                <listProducts/>
+            </div>
+            <h2>Form di richiesta preventivo</h2>
+            <form id='form-quotation' action='./cart.php' method='POST' data-validate='1'>
+                <fieldset>
+                    <label for='company'>Azienda*:</label><br />
+                    <input
+                        id='company'
+                        name='company'
+                        value='<value-company/>'
+                        required='required'
+                        data-error-field='error-company' 
+                        data-rules='required'
+                        data-error-message="Il nome dell'azienda è obbligatorio"
+                        />
+                    <div id='error-company' class='error'><error-company/></div>
+    
+                    <label for='telephone'>Telefono*:</label><br />
+                    <input
+                        id='telephone'
+                        name='telephone'
+                        value='<value-telephone/>'
+                        required='required'
+                        data-error-field='error-telephone'
+                        data-rules='required|integer'
+                        data-error-message='Il numero di telefono è obbligatorio e deve essere composto solo da numeri'
+                        />
+                    <div id='error-telephone' class='error'><error-telephone/></div>
+    
+                    <label for='reason'>Ragione della richiesta del preventivo:</label><br />
+                    <textarea
+                        id='reason'
+                        name='reason'><value-reason/></textarea>
+                </fieldset>
+                <div class='buttons-control'>
+                    <button class='button' type='submit'>Richiedi preventivo</button>
+                </div>
+            </form>
         </main>
 	</body>
 </html>

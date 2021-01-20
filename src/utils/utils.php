@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 require_once(__DIR__.'/../php/product/product.service.php');
 require_once(__DIR__.'/../php/category/category.service.php');
@@ -16,7 +17,7 @@ function fillPageWithError($page, $err)
         {
             $msg .= "<li> $error </li>";
         }
-        
+
         $msg .= "</ul>";
         $page = str_replace("<error-$k/>", $msg, $page);
     }
@@ -100,4 +101,3 @@ function fetchAndFillProducts($page, $category){
 
     return $page;
 }
-

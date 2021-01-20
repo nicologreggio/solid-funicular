@@ -130,7 +130,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
     {
         if(signup($_POST['email'], $_POST['name'], $_POST['surname'], $_POST['password'], $_POST['city'], $_POST['address'], $_POST['cap']))
         {
-            header('Location: ' . $_SERVER['HTTP_REFERER']);
+            header('Location: ' . $_SESSION['HTTP_REFERER']);
         }
     }
     else

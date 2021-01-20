@@ -47,9 +47,12 @@ body {
     padding-top: 0;
 }
 
-.authentication-form legend {
-    margin-bottom: 0.5em;
+fieldset {
+    border: none;
+    padding: 1.25em;
+    padding-top: 0;
 }
+
 
 .authentication-form h2 {
     background: #A70500;
@@ -64,13 +67,14 @@ body {
 .authentication-form legend {
     font-size: 1.2em;
     font-weight: bold;
+    margin-bottom: 0.5em;
 }
 
 .authentication-form legend+label {
     margin-top: 0em;
 }
 
-.authentication-form label {
+label {
     display: inline-block;
     margin-top: 1.0em;
     margin-bottom: 0.5em;
@@ -78,19 +82,17 @@ body {
     font-weight: bold;
 }
 
-.authentication-form input {
+input {
     display: inline-block;
     width: 100%;
     font-size: 1em;
     border-radius: 3px;
-    border: none;
-    outline: none;
     margin-top: 0.5em;
-    border-bottom: 2px solid #ccc;
+    border: 2px solid #ccc;
 }
 
 .authentication-form input:focus {
-    border-bottom: 2px solid #0288D1;
+    border: 2px solid #0288D1;
 }
 
 #password {
@@ -109,6 +111,10 @@ body {
 
 .error {
     color: #B71C1C;
+}
+
+.error ul {
+    list-style-type: none;
 }
 
 .buttons-control
@@ -164,10 +170,6 @@ header {
     justify-content: space-around;
     align-items: center;
 }
-
-/* ul {
-    list-style-type: none;
-} */
 
 button {
     color: white;
@@ -393,6 +395,48 @@ footer > p{
     margin-top: 1em;
 }
 
+/* ========= CART ========== */
+
+#list-quote-products
+{
+    margin-top: 1em;
+    margin-bottom: 2em;
+}
+
+.quote-product
+{
+    height: 5em;
+    border-bottom: black 1px solid;
+    padding: 0.5em;
+}
+
+.quote-product img
+{
+    height: 5em;
+    float: left;
+    margin-right: 0.5em;
+}
+
+.quote-product .product-quantity
+{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    float: right;
+    border-left: black 1px solid;
+    text-align: center;
+    height: 100%;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+}
+
+#form-quotation textarea
+{
+    width: 100%;
+    resize: vertical;
+}
+
 /* ========= MEDIA ========= */
 
 @media only screen and (min-width: 640px){
@@ -404,7 +448,7 @@ footer > p{
         border-radius: 0;
     }
 
-    .buttons-control *
+    /* .buttons-control *
     {
         width: 100%;
     }
@@ -414,11 +458,11 @@ footer > p{
         position: relative;
     }
 
-    .buttons-control button[type='submit']
+    /* .buttons-control button[type='submit']
     {
         margin-bottom: 0.5em;
         float: none;
-    }
+    } */ */
 }
 
 
@@ -599,52 +643,6 @@ form textarea
 #product-details li
 {
     margin-bottom: 0.3em;
-}
-
-#quantity
-{
-    width: 100%;
-    height: 42px;
-    line-height: 1.65;
-    float: left;
-    display: block;
-    padding: 0;
-    margin: 0;
-    padding-left: 20px;
-    justify-self: end;
-}
-
-#list-quote-products
-{
-    width: 100%;
-}
-
-.quote-product
-{
-    height: 5em;
-    border-bottom: black 1px solid;
-    padding: 0.5em;
-}
-
-.quote-product img
-{
-    height: 5em;
-    float: left;
-    margin-right: 0.5em;
-}
-
-.quote-product .product-quantity
-{
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    float: right;
-    border-left: black 1px solid;
-    text-align: center;
-    height: 100%;
-    padding-left: 0.5em;
-    padding-right: 0.5em;
 }
 
 main

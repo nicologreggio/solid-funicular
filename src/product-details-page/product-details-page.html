@@ -5,14 +5,14 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
         <title><cat-name /> | Solid Funicular</title>
-        
+
         <!-- TODO -->
         <meta name="title" content="Unipd Tecweb | Solid Funicular elementi d'arredo" /> 
         <meta name="description" content="Sito per il progetto del corso di tecweb unipd che fornisce un catalogo di elementi d'arredo per i quali è possibile richiedere un preventivo" />
     
         <!-- TODO -->
-        <meta name="keywords" /> 
-    
+        <meta name="keywords" />
+
         <meta name="author" content="Nicolo Greggio" />
         <meta name="language" content="italian it" />
         <link rel="stylesheet" href="style/style.css" />
@@ -83,14 +83,8 @@
                     <productMaterials/>
                 </ul>
                 <div id="form-wrapper">
-                    <form class="form-quotation" action="./php/add-to-cart-quotation.php" method="POST">
-                        <fieldset>
-                            <legend>Gestione quantità</legend>
-                            <!-- <label for="quantity">Quantità:</label> -->
-                            <input id="quantity" value="<productQuantity/>" name="quantity" type="number" min="1" />
-                            <button type="submit"><addOrUpdateToQuote/></button>
-                        </fieldset>
-                    </form>
+                    <goToLoginPage/>
+                    <addProductForm/>
                     <removeProductForm/> 
                 </div>
             </div>
