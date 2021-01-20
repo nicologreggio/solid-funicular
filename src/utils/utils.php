@@ -36,6 +36,9 @@ function fetchAndFillCategories($page, $currentCat=-1)
     //$categories = ["La Categoria 1", "Categoria num 2", "Terza Categoria", "4 di numero", "L'ultima si, la 5"];
     $categories=CategoryService::getAll();
     $idx=0;
+
+    $header=file_get_contents('./utils/header.html');
+    $page=str_replace('<header-navigation />', $header, $page);
         
     foreach($categories as $cat){
         if($cat->getId() == $currentCat){
