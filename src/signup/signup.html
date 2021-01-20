@@ -1,90 +1,157 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1-strict.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it" lang="it">
-	<head>
-		<meta charset="UTF-8">
-        <link rel="stylesheet" href="./style/style.css">
-		<link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico" />
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title xml:lang="en">Registrati | Solid Funicular</title>
+    <meta name="title" content="Unipd Tecweb | Solid Funicular elementi d'arredo" /> 
+    <meta name="description" content="Sito per il progetto del corso di tecweb unipd che fornisce un catalogo di elementi d'arredo per i quali è possibile richiedere un preventivo" />
+
+    <!-- TODO -->
+    <meta name="keywords" /> 
+
+    <meta name="author" content="Nicolo Greggio" />
+    <meta name="language" content="italian it" />
+    <link rel="stylesheet" href="style/style.css" />
+    <link rel="stylesheet" type="text/css" href="style/small.css" media="handheld, screen and (max-width: 640px), and only screen and (max-device-width: 640px)" />
+	<link rel="shortcut icon" type="image/x-icon" href="../images/favicon.ico" />
+	<script src="./validate.js"></script>
+	<script src="./scripts/authentication.js"></script>	
 		<script src="./validate.js"></script>
 		<script src="./scripts/authentication.js"></script>
-	</head>
-	<body>
-		<div class="authentication-container">
-			<form class="authentication-form" action="./signup.php" method="POST" data-validate="1">
-				<h2>REGISTRAZIONE</h2>
-				<fieldset>
+</head>
+<body>
+    <header>
+        <img id="logo" src="../images/logo2.png" alt="Funiculare solida con persona a bordo" />
+        <div id="titles">
+            <h1 xml:lang="en">Solid Funicular</h1>
+            <h2>Elementi d'arredo</h2>
+        </div>
+        <!-- probabilmente non vanno bene per accesibilita', forse va aggiunto testo in a da nascondere poi -->
+        <div id="shortcuts">
+            <a href="./search.php"><img id="search" src="../images/icons/search.png" alt="Lente d'ingradimento per la ricerca" /></a>
+            <a href="./login.php"><img id="login" src="../images/icons/login.png" alt="Icona utente per login" /></a>
+            <a href="./cart.php"><img id=cart src="../images/icons/shopping_cart.png" alt="Carrello dei prodotti" /></a>
+        </div>
+
+        <nav class="menu desktop">
+            <ul>
+                <li xml:lang="en" id="currentLink">Home</li>
+                <li><a href="contacts.php">Contatti</a></li>
+                <!-- <li><a href="categories.php/1"><cat-1/></a></li>
+                <li><a href="categories.php/2"><cat-2/></a></li>
+                <li><a href="categories.php/3"><cat-3/></a></li>
+                <li><a href="categories.php/4"><cat-4/></a></li>
+                <li><a href="categories.php/5"><cat-5/></a></li> -->
+                <cat-0/>
+                <cat-1/>
+                <cat-2/>
+                <cat-3/>
+                <cat-4/>
+                <cat-5/>
+            </ul>
+        </nav>
+        <details class="menu mobile">
+            <summary>Menù</summary>
+            <nav>
+                <ul>
+                    <li xml:lang="en" id="currentLink">Home</li>
+                    <li><a href="contacts.php">Contatti</a></li>
+                    <cat-0/>
+                    <cat-1/>
+                    <cat-2/>
+                    <cat-3/>
+                    <cat-4/>
+                    <cat-5/>
+                </ul>
+            </nav>
+        </details>
+    </header>
+
+    <nav id="breadcrumbs">
+        <p>Ti trovi in: Accedi</p>
+    </nav>  
+    <main>
+
+        <div class="authentication-container">
+            <form class="authentication-form" action="./signup.php" method="POST" data-validate="1">
+                <h2>Registrazione</h2>
+                <fieldset>
                     <legend>Informazioni generali</legend>
-                     
+                        
                     <label for="email">Email*: </label><br />
                     <input 
                         id="email"
-						value="<value-email/>"
+                        value="<value-email/>"
                         name="email"
                         type="email" 
-						autofocus="autofocus"
+                        autofocus="autofocus"
                         placeholder="Inserisci la tua email"
                         required="required"
                         data-error-field="error-email" 
-						data-rules="required|email|max_length:100" 
-						data-error-message="L'email inserita non è valida o troppo lunga (massimo 100 caratteri)"
+                        data-rules="required|email|max_length:100" 
+                        data-error-message="L'email inserita non è valida o troppo lunga (massimo 100 caratteri)"
                         />
-					<div id="error-email" class="error"><error-email/></div>
+                    <div id="error-email" class="error"><error-email/></div>
                     
                     <label for="name">Nome*:</label>
                     <input
                         id="name"
-						value="<value-name/>"
+                        value="<value-name/>"
                         name="name" 
                         type="text" 
                         placeholder="Inserisci il tuo nome"
                         required="required"
                         data-error-field="error-name" 
-						data-rules="required|max_length:50" 
-						data-error-message="Il nome è obbligatorio e deve essere lungo massimo 50 caratteri"
+                        data-rules="required|max_length:50" 
+                        data-error-message="Il nome è obbligatorio e deve essere lungo massimo 50 caratteri"
                         />
-					<div id="error-name" class="error"><error-name/></div>
+                    <div id="error-name" class="error"><error-name/></div>
                     
                     <label for="surname">Cognome*:</label>
                     <input 
                         id="surname"
-						value="<value-surname/>"
+                        value="<value-surname/>"
                         name="surname" 
                         type="text" 
                         placeholder="Inserisci il tuo cognome"
                         required="required"
                         data-error-field="error-surname" 
-						data-rules="required|max_length:100" 
-						data-error-message="Il cognome è obbligatorio e deve essere lungo massimo 100 caratteri"
+                        data-rules="required|max_length:100" 
+                        data-error-message="Il cognome è obbligatorio e deve essere lungo massimo 100 caratteri"
                         />
-					<div id="error-surname" class="error"><error-surname/></div>
+                    <div id="error-surname" class="error"><error-surname/></div>
                     
                     <label for="password">Password*: </label>
                     <input
                         id="password" 
-						value="<value-password/>"
+                        value="<value-password/>"
                         name="password" 
                         type="password"
                         required="required"
                         placeholder="Inserisci la password"
-						data-error-field="error-password" 
-						data-rules="required|password"
+                        data-error-field="error-password" 
+                        data-rules="required|password"
                         />
-					<img id="hide-show-password" class="clickable" src="/images/icons/eye-off.svg" alt="" />
+                    <img id="hide-show-password" class="clickable" src="/images/icons/eye-off.svg" alt="" />
                     <div class="suggestion">La password deve essere lunga almeno 8 caratteri, contenere almeno una lettera maiuscola e almeno un numero</div>
-					<div id="error-password" class="error"><error-password/></div>
-
+                    <div id="error-password" class="error"><error-password/></div>
+    
                     <label for="confirm-password">Conferma Password*: </label><br />
                     <input 
                         id="confirm-password"
-						value="<value-confirm-password/>"
+                        value="<value-confirm-password/>"
                         name="confirm-password"
                         type="password" 
                         required="required" 
                         placeholder="Inserisci di nuovo la password"
                         data-error-field="error-confirm-password"
                         data-rules="required|password|equals:password"
-						data-error-message="La password e la password di conferma non corrispondono"
+                        data-error-message="La password e la password di conferma non corrispondono"
                     />
-					<div id="error-confirm-password" class="error"><error-confirm-password/></div>
+                    <div id="error-confirm-password" class="error"><error-confirm-password/></div>
                 </fieldset>
                 <fieldset>
                     <legend>Residenza</legend>
@@ -92,30 +159,30 @@
                     <label for="city">Città*: </label><br />
                     <input 
                         id="city"
-						value="<value-city/>"
+                        value="<value-city/>"
                         name="city" 
                         type="text" 
                         placeholder="Inserisci la città di residenza" 
                         required="required"
                         data-error-field="error-city" 
-						data-rules="required|max_length:100" 
-						data-error-message="La città è obbligatoria e deve essere lunga massimo 100 caratteri"
+                        data-rules="required|max_length:100" 
+                        data-error-message="La città è obbligatoria e deve essere lunga massimo 100 caratteri"
                         />
-					<div id="error-city" class="error"><error-city/></div>
+                    <div id="error-city" class="error"><error-city/></div>
                     
                     <label for="address">Indirizzo*:</label>
                     <input 
                         id="address" 
-						value="<value-address/>"
+                        value="<value-address/>"
                         name="address" 
                         type="text" 
                         placeholder="Inserisci l'indirizzo di residenza"
                         required="required"
                         data-error-field="error-address" 
-						data-rules="required|max_length:100" 
-						data-error-message="L'indirizzo è obbligatorio e deve essere lungo massimo 100 caratteri"
+                        data-rules="required|max_length:100" 
+                        data-error-message="L'indirizzo è obbligatorio e deve essere lungo massimo 100 caratteri"
                         />
-					<div id="error-address" class="error"><error-address/></div>
+                    <div id="error-address" class="error"><error-address/></div>
                     
                     <label for="cap">CAP*:</label>
                     <input
@@ -128,15 +195,20 @@
                         maxlength="5"
                         data-error-field="error-cap"
                         data-rules="required|integer|length:5"
-						data-error-message="Il CAP è obbligatorio e deve essere composto esattamente da 5 numeri"
+                        data-error-message="Il CAP è obbligatorio e deve essere composto esattamente da 5 numeri"
                         />
-					<div id="error-cap" class="error"><error-cap/></div>
+                    <div id="error-cap" class="error"><error-cap/></div>
                 </fieldset>
-				<div class="buttons-control">
+                <div class="buttons-control">
                     <button class="button" type="submit">Registrati</button>
-					<a class="button" href="/src/login/login.php">Sei già registrato? Accedi cliccando qua!</a>
-				</div>
-			</form>
-		</div>
-	</body>
+                    <a class="button" href="/src/login/login.php">Sei già registrato? Accedi cliccando qua!</a>
+                </div>
+            </form>
+        </div>
+    </main>
+    <footer>
+        <p xml:lang="en">© Solid Funicular - All rights reserved</p>
+        <p>Tecnologie <span xml:lang="en">Web</span> <abbr title="Università degli Studi di Padova">Unipd</abbr></p>
+    </footer>
+</body>
 </html>
