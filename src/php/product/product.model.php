@@ -101,7 +101,7 @@ class ProductModel
 
     public function setDescription(string $description)
     {
-        $this->description;
+        $this->description=$description;
     }
 
     public function getMetaDescription(): ?string
