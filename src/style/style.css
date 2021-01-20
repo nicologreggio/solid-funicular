@@ -165,9 +165,9 @@ header {
     align-items: center;
 }
 
-ul {
+/* ul {
     list-style-type: none;
-}
+} */
 
 button {
     color: white;
@@ -177,7 +177,8 @@ button {
     font-size: 1.3em;
     border-radius: 3px;
     cursor: pointer;
-    background-color: #0288D1;
+    /* background-color: #0288D1; */
+    background-color: #A70500;
     text-decoration: none;
 }
 
@@ -198,6 +199,7 @@ button {
     margin: 0;
     padding: 0;
     overflow: hidden;
+    list-style-type: none;
 }
 
 #menu li {
@@ -310,6 +312,17 @@ hr{
     width: 90%;
 }
 
+/* ========== PRODCUT INFORMATION ========= */
+/* #product-informations{
+    display: flex;
+    flex-direction: column;
+}
+
+#product-image{
+    width:40%;
+} */
+
+
 /* ========== FOOTER ========== */
 footer{
     text-align: center;
@@ -324,7 +337,7 @@ footer>p{
     padding: 0.2em;
 }
 
-/* PDP */
+/* ========== PDP ===========*/
 #product-image {
     display: block;
     text-align: center;
@@ -340,19 +353,47 @@ footer>p{
 
 #product-details
 {
-    display: inline-block;
-    width: 70%;
-    list-style-type: none;
+    /* display: inline-block;
+    width: 100%; */
+    list-style-type: disc;
+    padding-left: 2em;
 }
 
-.form-quotation
-{
-    display: inline-flex;
-    flex-direction: column;
-    width: 30%;
-    align-items: center;
-    float: right;
+.form-quotation{
+    width: 40%;
+    display: inline;
+    font-size: 1em;
 }
+
+.form-quotation fieldset
+{
+    display: inline;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.8em;
+    height: 100%;
+    /* width: 20%; */
+    /* float: right; */
+}
+
+.form-quotation button{
+    font-size: 1em;
+    margin-top: 0.3em;
+}
+
+.form-quotation input{
+    /* height: 2em; */
+    width: 3em;
+    font-size: 0.8em;
+    padding: 0.2em 0 0.2em 1em;
+}
+
+#form-wrapper{
+    text-align: center;
+    margin-top: 1em;
+}
+
+/* ========= MEDIA ========= */
 
 @media only screen and (min-width: 640px){
     .mobile{

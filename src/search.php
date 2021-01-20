@@ -84,7 +84,7 @@ function fillMaterials($page)
 
 function fillProductsList($page)
 {
-    $products = ProductService::getProductsList($_SESSION['search']);
+    $products = ProductService::getProductsList($_SESSION['search'], 15);
     $productsStr = "";
 
     if(count($products) == 0)
@@ -107,8 +107,9 @@ function fillProductsList($page)
 
 function fillPagination($page)
 {
-    $limit = 25;
+    $limit = 15;
     $count = ProductService::getProductsListCount($_SESSION['search']);
+    echo $count;
  
     $paginationStr = "
         <fieldset id='pagination'>
@@ -116,7 +117,7 @@ function fillPagination($page)
 
     $numberPages = floor($count / $limit) + 1;
 
-    for($i = 1; $i < $numberPages; ++$i)
+    for($i = 1; $i <= $numberPages; ++$i)
     {
         $paginationStr .= "<button class='pages' name='page' value='{$i}'>{$i}</button>";
     }

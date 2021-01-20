@@ -12,7 +12,7 @@ function fillPageWithDetails(string $page, ProductModel $product)
     //$page=str_replace("<product-")
     
     $page = str_replace("<productName/>", $product->getName(), $page);
-    $page = str_replace("<productDescription/>", $product->getMetaDescription(), $page);
+    $page = str_replace("<productDescription/>", $product->getDescription(), $page);
 
     $dimensions = $product->getDimensions();
     $dimensionsStr = $dimensions ? "
@@ -38,7 +38,14 @@ function fillPageWithDetails(string $page, ProductModel $product)
 
     if($_SESSION['cart'][$product->getId()])
     {
-        $removeForm = "<form class='form-quotation' method='POST' action='./php/remove-from-cart-quotation.php'><button type='submit'>Rimuovi il prodotto</button></form>";
+        $removeForm = "
+            <form class='form-quotation' method='POST' action='./php/remove-from-cart-quotation.php'>
+                <fieldset>
+                    <legend>Rimozione dal preventivo</legend>
+                    <button type='submit'>Rimuovi il prodotto</button>
+                </fieldset>
+            </form>
+        ";
         $quantity = $_SESSION['cart'][$product->getId()];
         $addOrUpdateString = "Modifica la quantità";
     }

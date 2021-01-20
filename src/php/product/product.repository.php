@@ -74,7 +74,7 @@ class ProductRepository
                 on c._ID = _CATEGORY)
             inner join (select * from PRODUCT_MATERIAL join MATERIALS on PRODUCT_MATERIAL._MATERIAL_ID = MATERIALS._ID {$filterMaterials} group by PRODUCT_MATERIAL._PRODUCT_ID) pm 
                 on pm._PRODUCT_ID = PRODUCTS._ID
-            WHERE `PRODUCTS`._NAME like :name LIMIT :lim OFFSET :of
+            WHERE `PRODUCTS`._NAME like :name OR `PRODUCTS`._DESCRIPTION like :name LIMIT :lim OFFSET :of
             "
         );
 
