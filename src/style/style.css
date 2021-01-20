@@ -192,23 +192,23 @@ button {
     text-align: center;
 }
 
-#menu{
+.menu{
     width: 100%;
     background-color: #A70500;
 }
 
-#menu ul {
+.menu ul {
     margin: 0;
     padding: 0;
     overflow: hidden;
     list-style-type: none;
 }
 
-#menu li {
+.menu li {
     float: left;
 }
 
-#menu li a{
+.menu li a{
     display: block;
     color: white;
     text-align: center;
@@ -223,7 +223,7 @@ button {
     padding: 16px;
 }
 
-#menu li a:hover {
+.menu li a:hover {
     background-color: #111111;
 }
 
@@ -435,6 +435,18 @@ footer > p{
 {
     width: 100%;
     resize: vertical;
+
+}
+
+/* ========== SEARCH ========== */
+#filters{
+    padding: 0.5em;
+}
+
+#materials-wrapper{
+    border: 1px solid black;
+    margin-top: 0.2em;
+    padding: 0.2em;
 }
 
 /* ========= MEDIA ========= */
@@ -465,6 +477,11 @@ footer > p{
     } */ */
 }
 
+@media only screen and (max-width: 640px){
+    .desktop{
+        display: none;
+    }
+}
 
 
 /* ===== FILIPPO ===== */

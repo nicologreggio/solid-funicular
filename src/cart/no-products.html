@@ -4,10 +4,10 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-        <title><cat-name /> | Solid Funicular</title>
+        <title>Carrello vuoto | Solid Funicular</title>
         
         <!-- TODO -->
-        <meta name="title" content="Unipd Tecweb | Solid Funicular elementi d'arredo" /> 
+        <meta name="title" content="Carrello | Solid Funicular elementi d'arredo" /> 
         <meta name="description" content="Sito per il progetto del corso di tecweb unipd che fornisce un catalogo di elementi d'arredo per i quali è possibile richiedere un preventivo" />
     
         <!-- TODO -->
@@ -28,14 +28,14 @@
             </div>
             <!-- probabilmente non vanno bene per accesibilita', forse va aggiunto testo in a da nascondere poi -->
             <div id="shortcuts">
-                <a href="searchProducts.html"><img id="search" src="../../images/icons/search.png" alt="Lente d'ingradimento per la ricerca" /></a>
-                <a href="login/login.php"><img id="login" src="../../images/icons/login.png" alt="Icona utente per login" /></a>
-                <a href="cart/cart.php"><img id=cart src="../../images/icons/shopping_cart.png" alt="Carrello dei prodotti" /></a>
+                <a href="./search.php"><img id="search" src="../../images/icons/search.png" alt="Lente d'ingradimento per la ricerca" /></a>
+                <a href="./login.php"><img id="login" src="../../images/icons/login.png" alt="Icona utente per login" /></a>
+                <!-- <a href="./cart.php"><img id=cart src="../../images/icons/shopping_cart.png" alt="Carrello dei prodotti" /></a> -->
             </div>
-            <nav id="menu" class="desktop">
+            <nav class="menu desktop">
                 <ul>
                     <li xml:lang="en"><a href='index.php'>Home</a></li>
-                    <li><a href="contacts.php">Contatti</a></li>
+                    <li><a href="./contacts.php">Contatti</a></li>
                     <cat-0/>
                     <cat-1/>
                     <cat-2/>
@@ -44,7 +44,7 @@
                     <cat-5/>
                 </ul>
             </nav>
-            <details id="menu" class="mobile">
+            <details class="menu mobile">
                 <summary>Menù</summary>
                 <nav>
                     <ul>
@@ -60,13 +60,16 @@
                 </nav>
             </details>
         </header>
-    
-        <nav id="breadcrumbs">
-            <p>Ti trovi in: <cat-link /> >> <productName/></p>
-        </nav>
 
+        <nav id="breadcrumbs">
+            <p>Ti trovi in: Carrello</p>
+		</nav>
+		
         <main>
-            
+            <h2>Carrello vuoto</h2>
+            <p>Non hai inserito ancora alcun prodotto. Per richiedere un preventivo devi averne selezionato almento uno. </p>
+            <a href="./index.php">Torna all pagina principale</a>
         </main>
-    </body>
+
+
 </html>

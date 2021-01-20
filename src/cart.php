@@ -92,6 +92,8 @@ function fillPageWithErrorsAndValues($page, $err)
     return $page;
 }
 
+
+
 if($_SERVER['REQUEST_METHOD'] == 'POST')
 {
     $company = $_POST['company'];
@@ -108,17 +110,23 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
     }
     else
     {
-        echo fillPageWithErrorsAndValues(fillPagewithCartProducts(file_get_contents("./cart/cart.html")), $err);
+        $page=fillPagewithCartProducts(file_get_contents("./cart/cart.html"));
+        $page=fetchAndFillCategories($page);
+        echo fillPageWithErrorsAndValues($page, $err);
     }
 }
 else
 {
     if(!empty($_SESSION['cart']))
     {
-        echo cleanPage(fillPagewithCartProducts(file_get_contents("./cart/cart.html")));
+        $page=fillPagewithCartProducts(file_get_contents("./cart/cart.html"));
+        $page=fetchAndFillCategories($page);
+        echo cleanPage($page);
     }
     else
     {
-        echo cleanPage(noProductsPage(file_get_contents("./cart/no-products.html")));
+        $page=fillPagewithCartProducts(file_get_contents("./cart/no-products.html"));
+        $page=fetchAndFillCategories($page);
+        echo cleanPage($page);
     }
 }

@@ -1,8 +1,4 @@
-.desktop{
-    display: none;
-}
-
-#menu > summary{
+.menu > summary{
     color: white;
     text-align: center;
     font-size: 1.5em;
@@ -25,7 +21,7 @@ h2{
     margin: 0.1em 0 0.1em 0;
 }
 
-#menu li {
+.menu li {
     float:none;
 }
 
