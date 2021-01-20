@@ -306,7 +306,7 @@ hr{
     box-shadow: 2px 2px 5px 2px #000000;
 }
 
-#products-list  img{
+#products-list img{
     width: 90%;
 }
 
@@ -320,7 +320,7 @@ footer{
     font-size: 0.8em;
 }
 
-footer>p{
+footer > p{
     padding: 0.2em;
 }
 

@@ -17,7 +17,7 @@ function fillPageWithDetails(string $page, ProductModel $product)
     $dimensions = $product->getDimensions();
     $dimensionsStr = $dimensions ? "
         <li>
-            <b>Dimensione:</b>
+            <strong>Dimensione:</strong>
             <span class='product-detail'>{$dimensions}</span><br />
         </li>
     " : "";
@@ -26,7 +26,7 @@ function fillPageWithDetails(string $page, ProductModel $product)
     $age = $product->getAge();
     $ageStr = $age ? "
         <li>
-            <b>Età indicata:</b>
+            <strong>Età indicata:</strong>
             <span class='product-detail'>{$age}</span><br />
         </li>
     " : "";
@@ -60,7 +60,7 @@ function fillPageWithDetails(string $page, ProductModel $product)
     {
         $productMaterials .= '
             <li>
-                <b>Materiali:</b>
+                <strong>Materiali:</strong>
                 <span class="product-materials">
         ';
 
