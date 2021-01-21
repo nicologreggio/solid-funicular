@@ -17,7 +17,8 @@
     <link rel="stylesheet" href="style/style.css" />
     <link rel="stylesheet" type="text/css" href="style/small.css" media="screen and (max-width: 768px), and only screen and (max-device-width: 768px)" />
 	<link rel="shortcut icon" type="image/x-icon" href="../images/favicon.ico" />
-	<script src="./validate.js"></script>
+    <link rel="stylesheet" type="text/css" href="style/print.css" media="print" />
+    <script src="./validate.js"></script>
 	<script src="./scripts/authentication.js"></script>	
 </head>
 <body>
@@ -44,7 +45,7 @@
                     />
                 <div id="error-email" class="error"><error-email/></div>
                 
-                <label for="name">Nome*:</label>
+                <label for="name">Nome*:</label><br />
                 <input
                     id="name"
                     value="<value-name/>"
@@ -58,7 +59,7 @@
                     />
                 <div id="error-name" class="error"><error-name/></div>
                 
-                <label for="surname">Cognome*:</label>
+                <label for="surname">Cognome*:</label><br />
                 <input 
                     id="surname"
                     value="<value-surname/>"
@@ -72,7 +73,7 @@
                     />
                 <div id="error-surname" class="error"><error-surname/></div>
                 
-                <label for="password">Password*: </label>
+                <label for="password">Password*: </label><br />
                 <input
                     id="password" 
                     value="<value-password/>"
@@ -118,7 +119,7 @@
                     />
                 <div id="error-city" class="error"><error-city/></div>
                 
-                <label for="address">Indirizzo*:</label>
+                <label for="address">Indirizzo*:</label><br />
                 <input 
                     id="address" 
                     value="<value-address/>"
@@ -132,7 +133,7 @@
                     />
                 <div id="error-address" class="error"><error-address/></div>
                 
-                <label for="cap">CAP*:</label>
+                <label for="cap">CAP*:</label><br />
                 <input
                     id="cap"
                     value="<value-cap/>"

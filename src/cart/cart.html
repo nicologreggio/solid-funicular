@@ -18,6 +18,7 @@
         <link rel="stylesheet" href="style/style.css" />
         <script src="./validate.js"></script>
         <link rel="stylesheet" type="text/css" href="style/small.css" media="screen and (max-width: 768px), and only screen and (max-device-width: 768px)" />
+        <link rel="stylesheet" type="text/css" href="style/print.css" media="print" />
         <link rel="shortcut icon" type="image/x-icon" href="../images/favicon.ico" />
 	</head>
 	<body>
@@ -35,6 +36,7 @@
                     <input
                         id='company'
                         name='company'
+                        placeholder="Inserisci il nome dell'azienda"
                         value='<value-company/>'
                         required='required'
                         data-error-field='error-company' 
@@ -48,6 +50,7 @@
                         id='telephone'
                         name='telephone'
                         value='<value-telephone/>'
+                        placeholder="Inserisci il numero di telefono da contattare"
                         required='required'
                         data-error-field='error-telephone'
                         data-rules='required|integer'
@@ -58,6 +61,7 @@
                     <label for='reason'>Ragione della richiesta del preventivo:</label><br />
                     <textarea
                         id='reason'
+                        placeholder="Inserisci la ragione del tuo preventivo"
                         name='reason'><value-reason/></textarea>
                 </fieldset>
                 <div class='buttons-control'>

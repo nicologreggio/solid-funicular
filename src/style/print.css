@@ -1,0 +1,96 @@
+html {
+    font: 'Times New Roman', Times, serif;
+}
+
+h1,
+h2, h3 {
+    color: black;
+}
+
+h1 {
+    font-size: 2em;
+}
+
+h2 {
+    font-size: 1.5em;
+    margin-bottom: 0.3em;
+}
+
+h3 {
+    font-size: 1.2em;
+    margin-bottom: 0.3em;
+    margin-top: 0.3em;
+}
+
+hr {
+    display: none;
+}
+
+footer {
+    display: none;
+}
+
+#breadcrumbs {
+    border: none;
+}
+
+#scroll-top {
+    display: none;
+}
+
+#logo {
+    display: none;
+}
+
+.menu {
+    display: none;
+}
+
+#shortcuts {
+    display: none;
+}
+
+main {
+    padding: 0 1em;
+    text-align: justify;
+}
+
+#contacts a {
+    text-decoration: none;
+    color: black
+}
+
+.sf-form fieldset {
+    border: none;
+    padding: 1em;
+    padding-top: 0;
+}
+
+.sf-form label {
+    color: black;
+}
+
+.sf-form input {
+    display: inline-block;
+    width: 25%;
+}
+
+.error {
+    color: black;
+}
+
+a {
+    color: black;
+}
+
+#hide-show-password {
+    display: none;
+}
+
+.buttons-control {
+    display: none;
+}
+
+.remove-product {
+    display: none;
+}
