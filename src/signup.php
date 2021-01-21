@@ -122,6 +122,11 @@ function fillPageWithErrorAndValue($page, $err)
     return $page;
 }
 
+$page=file_get_contents('./signup/signup.html');
+$page=fillHeader($page);
+$page=str_replace('<breadcrumbs-location />', 'Registrati', $page);
+$page=str_replace('<a href="./login.php"><img id="login" src="../images/icons/login.png" alt="Icona utente per login" /></a>', '', $page);
+
 if($_SERVER['REQUEST_METHOD'] == 'POST')
 {
     $err = validateSignupData($_POST['email'], $_POST['name'], $_POST['surname'], $_POST['password'], $_POST['confirm-password'], $_POST['city'], $_POST['address'], $_POST['cap']);
@@ -135,10 +140,10 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
     }
     else
     {
-        echo fillPageWithErrorAndValue(file_get_contents('./signup/signup.html'), $err);
+        echo fillPageWithErrorAndValue($page, $err);
     }
 }
 else
 {
-    echo cleanPage(file_get_contents('./signup/signup.html'));
+    echo cleanPage($page);
 }

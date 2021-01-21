@@ -11,6 +11,8 @@
 html,
 body {
     height: 100%;
+    /* max-width: 1200px;
+    margin: auto; */
     font-family: 'Fira Sans', sans-serif;
 }
 
@@ -186,6 +188,11 @@ button {
 
 #shortcuts>a {
     margin-left: 2em;
+    transition: 0.3s;
+}
+
+#shortcuts img:active{
+    transform: scale(1.5);
 }
 
 #titles {
@@ -202,11 +209,14 @@ button {
     padding: 0;
     overflow: hidden;
     list-style-type: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.menu li {
+/* .menu li {
     float: left;
-}
+} */
 
 .menu li a{
     display: block;
@@ -218,7 +228,7 @@ button {
 
 #currentLink{
     color: black;
-    display: block;
+    /* display: block; */
     text-align: center;
     padding: 16px;
 }
@@ -297,17 +307,23 @@ hr{
 
 #products-list li{
     float: left;
+    background-color: white;
     text-align: center;
     border: 1px solid black;
     margin: 0.2em; 
     padding: 0.5em;
     border-radius: 1em;
     width: 30%;
+    transition: 0.3s ease-out;
 }
 
 #products-list li:hover{
     -webkit-box-shadow: 2px 2px 5px 2px #000000;
     box-shadow: 2px 2px 5px 2px #000000;
+}
+
+#products-list li:active{
+    transform: scale(1.5);
 }
 
 #products-list img{
@@ -474,7 +490,7 @@ footer > p{
     {
         margin-bottom: 0.5em;
         float: none;
-    } */ */
+    } */
 }
 
 @media only screen and (max-width: 640px){

@@ -111,7 +111,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
     else
     {
         $page=fillPagewithCartProducts(file_get_contents("./cart/cart.html"));
-        $page=fetchAndFillCategories($page);
+        $page=fillHeader($page);
         echo fillPageWithErrorsAndValues($page, $err);
     }
 }
@@ -120,13 +120,14 @@ else
     if(!empty($_SESSION['cart']))
     {
         $page=fillPagewithCartProducts(file_get_contents("./cart/cart.html"));
-        $page=fetchAndFillCategories($page);
-        echo cleanPage($page);
     }
     else
     {
         $page=fillPagewithCartProducts(file_get_contents("./cart/no-products.html"));
-        $page=fetchAndFillCategories($page);
-        echo cleanPage($page);
     }
+
+    $page=fillHeader($page);
+    $page=str_replace('<breadcrumbs-location />', 'Carrello', $page);
+    $page=str_replace('<a href="./cart.php"><img id=cart src="../images/icons/shopping_cart.png" alt="Carrello dei prodotti" /></a>', '', $page);
+    echo cleanPage($page);
 }
