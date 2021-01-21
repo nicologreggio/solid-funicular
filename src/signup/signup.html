@@ -1,5 +1,5 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it" lang="it">
+<!DOCTYPE html>
+<html lang="it">
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -21,55 +21,10 @@
 	<script src="./scripts/authentication.js"></script>	
 </head>
 <body>
-    <!-- <header>
-        <img id="logo" src="../images/logo2.png" alt="Funiculare solida con persona a bordo" />
-        <div id="titles">
-            <h1 xml:lang="en">Solid Funicular</h1>
-            <h2>Elementi d'arredo</h2>
-        </div>
-        <div id="shortcuts">
-            <a href="./search.php"><img id="search" src="../images/icons/search.png" alt="Lente d'ingradimento per la ricerca" /></a>
-            <a href="./login.php"><img id="login" src="../images/icons/login.png" alt="Icona utente per login" /></a>
-            <a href="./cart.php"><img id=cart src="../images/icons/shopping_cart.png" alt="Carrello dei prodotti" /></a>
-        </div>
-
-        <nav class="menu desktop">
-            <ul>
-                <li xml:lang="en" id="currentLink">Home</li>
-                <li><a href="contacts.php">Contatti</a></li>
-                <cat-0/>
-                <cat-1/>
-                <cat-2/>
-                <cat-3/>
-                <cat-4/>
-                <cat-5/>
-            </ul>
-        </nav>
-        <details class="menu mobile">
-            <summary>Menù</summary>
-            <nav>
-                <ul>
-                    <li xml:lang="en" id="currentLink">Home</li>
-                    <li><a href="contacts.php">Contatti</a></li>
-                    <cat-0/>
-                    <cat-1/>
-                    <cat-2/>
-                    <cat-3/>
-                    <cat-4/>
-                    <cat-5/>
-                </ul>
-            </nav>
-        </details>
-    </header>
-
-    <nav id="breadcrumbs">
-        <p>Ti trovi in: Registrati</p>
-    </nav>   -->
-
     <header-navigation />
 
     <main>
-        <form class="sf-form" action="./signup.php" method="POST" data-validate="1">
+        <form class="sf-form" action="./signup.php" method="post" data-validate="1">
             <h2>Registrazione</h2>
             <fieldset>
                 <legend>Informazioni generali</legend>
@@ -128,7 +83,7 @@
                     data-error-field="error-password" 
                     data-rules="required|password"
                     />
-                <img id="hide-show-password" class="clickable" src="/images/icons/eye-off.svg" alt="" />
+                <img id="hide-show-password" src="/images/icons/eye-off.svg" alt="" />
                 <div class="suggestion">La password deve essere lunga almeno 8 caratteri, contenere almeno una lettera maiuscola e almeno un numero</div>
                 <div id="error-password" class="error"><error-password/></div>
 
@@ -197,6 +152,7 @@
                 <a class="button" href="./login.php">Sei già registrato? Accedi cliccando qua!</a>
             </div>
         </form>
+        <a href="#titles" id="scroll-top">↑</a>
     </main>
     <footer>
         <p xml:lang="en">© Solid Funicular - All rights reserved</p>

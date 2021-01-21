@@ -10,8 +10,8 @@ class ProductRepository
     public static function getOne(int $id) : ?ProductModel
     {
         $stm = DBC::getInstance()->prepare(
-            "SELECT `PRODUCTS`._ID, _NAME, _DESCRIPTION, _METADESCRIPTION, _DIMENSIONS, _AGE, _MAIN_IMAGE, _MAIN_IMAGE_DESCRIPTION, NAME_CATEGORY as _CATEGORY 
-            FROM `PRODUCTS` join (select _ID, _NAME as NAME_CATEGORY from CATEGORIES) c on c._ID = _CATEGORY 
+            "SELECT `PRODUCTS`._ID, _NAME, _DESCRIPTION, _METADESCRIPTION, _DIMENSIONS, _AGE, _MAIN_IMAGE, _MAIN_IMAGE_DESCRIPTION, NAME_CATEGORY as _CATEGORY, _CATEGORY_ID
+            FROM `PRODUCTS` join (select _ID as _CATEGORY_ID, _NAME as NAME_CATEGORY from CATEGORIES) c on c._CATEGORY_ID = _CATEGORY 
             where `PRODUCTS`._ID = ?"
         );
 
@@ -33,31 +33,6 @@ class ProductRepository
         }
     }
 
-    public static function getAllWhereCategory(int $categoryId, int $page, int $limit) : array
-    {
-        $stm = DBC::getInstance()->prepare(
-            "SELECT * FROM `PRODUCTS` where _CATEGORY = :categoryId LIMIT :lim OFFSET :of"
-        );
-
-        $stm->bindValue(":categoryId", $categoryId, PDO::PARAM_INT);
-        $stm->bindValue(":lim", $limit, PDO::PARAM_INT);
-        $stm->bindValue(":of", self::calculateOffset($limit, $page), PDO::PARAM_INT);
-
-        $stm->execute();
-
-        $products = $stm->fetchAll();
-
-        $productsModel = [];
-
-        foreach($products as $product)
-        {
-            $productModel = ProductModel::instanceFromProduct($product);
-            $productsModel[] = $productModel;
-        }
-
-        return $productsModel;
-    }
-
     public static function getAllWhere(array $search, int $limit) : array
     {
         $page = $search["page"];
@@ -69,9 +44,9 @@ class ProductRepository
 
         $stm = DBC::getInstance()->prepare(
             "SELECT `PRODUCTS`._ID, `PRODUCTS`._NAME, `PRODUCTS`._DESCRIPTION, `PRODUCTS`._METADESCRIPTION, 
-            _MAIN_IMAGE, _MAIN_IMAGE_DESCRIPTION, NAME_CATEGORY as _CATEGORY 
-            FROM (`PRODUCTS` inner join (select _ID, _NAME as NAME_CATEGORY from CATEGORIES {$filterCategory}) c 
-                on c._ID = _CATEGORY)
+            _MAIN_IMAGE, _MAIN_IMAGE_DESCRIPTION, NAME_CATEGORY as _CATEGORY, _CATEGORY_ID
+            FROM (`PRODUCTS` inner join (select _ID as _CATEGORY_ID, _NAME as NAME_CATEGORY from CATEGORIES {$filterCategory}) c 
+                on c._CATEGORY_ID = _CATEGORY)
             inner join (select * from PRODUCT_MATERIAL join MATERIALS on PRODUCT_MATERIAL._MATERIAL_ID = MATERIALS._ID {$filterMaterials} group by PRODUCT_MATERIAL._PRODUCT_ID) pm 
                 on pm._PRODUCT_ID = PRODUCTS._ID
             WHERE `PRODUCTS`._NAME like :name OR `PRODUCTS`._DESCRIPTION like :name LIMIT :lim OFFSET :of

@@ -13,6 +13,7 @@ class ProductModel
     private ?string $mainImage;
     private ?string $mainImageDescription;
     private ?string $category;
+    private ?int $categoryId; 
     private ?array $materials;
 
     public function __construct(
@@ -25,6 +26,7 @@ class ProductModel
         ?string $mainImage = null,
         ?string $mainImageDescription = null,
         ?string $category = null,
+        ?int $categoryId =null,
         ?array $materials = null
     ) {
         $this->id = $id;
@@ -36,6 +38,7 @@ class ProductModel
         $this->mainImage = $mainImage;
         $this->mainImageDescription = $mainImageDescription;
         $this->category = $category;
+        $this->categoryId = $categoryId;
         $this->$materials = $materials;
     }
 
@@ -79,6 +82,11 @@ class ProductModel
         if(isset($product->_CATEGORY))
         {
             $newModel->setCategory($product->_CATEGORY);
+        }
+
+        if(isset($product->_CATEGORY_ID))
+        {
+            $newModel->setCategoryId($product->_CATEGORY_ID);
         }
 
         return $newModel;
@@ -162,6 +170,16 @@ class ProductModel
     public function setCategory(string $category)
     {
         $this->category = $category;
+    }
+
+    public function getCategoryId() : ?int
+    {
+        return $this->categoryId;
+    }
+
+    public function setCategoryId(int $categoryId)
+    {
+        $this->categoryId = $categoryId;
     }
 
     public function getMaterials(): ?array

@@ -1,5 +1,5 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it" lang="it">
+<!DOCTYPE html>
+<html lang="it">
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -24,7 +24,7 @@
 
     <main>
         <h2>Ricerca Prodotti</h2>
-        <form id='search-form' action="./search.php" method="GET">
+        <form id='search-form' action="./search.php" method="get">
             <searchbar/>
             <br />
             <fieldset id="filters">
@@ -37,10 +37,12 @@
             </fieldset>
             <button id='search-button' type="submit">CERCA</button>
             <br />
+            <hr>
+            <h3>Risultati</h3>
             <productsList/>
             <pagination/>
         </form>
-        <a href=#titles><p id="scroll-top">↑</p></a>
+        <a href="#titles" id="scroll-top">↑</a>
     </main>
     <footer>
         <p xml:lang="en">© Solid Funicular - All rights reserved</p>

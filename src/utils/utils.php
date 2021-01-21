@@ -79,7 +79,7 @@ function fillProducts($page, $products){
     foreach($products as $product){
         $productsList .= "
             <li class='category-product'>
-                <a href='./product-details-page.php?id={$product->getId()}'>
+                <a href='./product-details-page.php?cat={$product->getCategoryId()}&amp;id={$product->getId()}'>
                     <img src='{$product->getMainImage()}' alt='{$product->getMainImageDescription()}' />
                     <p>{$product->getName()}</p>
                 </a>
@@ -105,11 +105,19 @@ function fillPagination($page, $count, $currentPage)
     {
         $paginationStr .= "
             <fieldset id='pagination'>
+            <legend>Pagine:&nbsp;</legend>
         ";
 
         for($i = 1; $i <= $numberPages; ++$i)
         {
-            $paginationStr .= "<button class='pages ".($currentPage == $i ? "current" : "")."' name='page' value='{$i}'>{$i}</button>";
+            if($currentPage == $i)
+            {
+                $paginationStr .= "<button class='pages current' name='page' value='{$i}' disabled='disabled'>{$i}</button>";                
+            }
+            else
+            {
+                $paginationStr .= "<button class='pages' name='page' value='{$i}'>{$i}</button>";
+            }
         }
         
         $paginationStr .= "</fieldset>";

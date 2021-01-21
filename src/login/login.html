@@ -1,6 +1,5 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it" lang="it">
-
+<!DOCTYPE html>
+<html lang="it">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,7 +23,7 @@
 	<header-navigation />
 
 	<main>
-		<form class="sf-form" action="./login.php" method="POST" data-validate="1">
+		<form class="sf-form" action="./login.php" method="post" data-validate="1">
 			<h2>Accedi</h2>
 			<fieldset>
 				<label for="email">Email*: </label><br />
@@ -35,7 +34,6 @@
 				type="email" 
 				required="required" 
 				placeholder="Inserisci la tua email"
-				autofocus="autofocus" 
 				data-error-field="error-email" 
 				data-rules="required" 
 				data-error-message="L'email non è stata inserita" />
@@ -52,7 +50,7 @@
 					data-error-field="error-password" 
 					data-rules="required"
 					data-error-message="La password non è stata inserita" />
-				<img id="hide-show-password" class="clickable" src="/images/icons/eye-off.svg" alt="" />
+				<img id="hide-show-password" src="/images/icons/eye-off.svg" alt="" />
 				<div id="error-password" class="error"><error-password/></div>
 			</fieldset>
 			<div class="buttons-control">

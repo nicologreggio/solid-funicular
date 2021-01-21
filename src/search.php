@@ -49,7 +49,6 @@ function fillCategories($page)
 
 function fillMaterials($page)
 {
-    // $materialsStr = "<fieldset id='search-materials'><legend>Cerca per materiali:</legend>";
     $materialsStr="";
 
     $materials = MaterialService::getAll();
@@ -70,8 +69,6 @@ function fillMaterials($page)
         
         $materialsStr .= "/><label for='search-material-{$index}'>{$material->getName()}</label></p>";
     }
-
-    $materialsStr .= "</fieldset>";
 
     $page = str_replace("<materials/>", $materialsStr, $page);
 

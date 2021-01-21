@@ -1,5 +1,5 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it" lang="it">
+<!DOCTYPE html>
+<html lang="it">
 	<head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,14 +22,14 @@
 	</head>
 	<body>
         <header-navigation />
-		
+
         <main>
             <h2>Riepilogo preventivo</h2>
             <div id='list-quote-products'>
                 <listProducts/>
             </div>
             <h2>Form di richiesta preventivo</h2>
-            <form id='form-quotation' class='sf-form' action='./cart.php' method='POST' data-validate='1'>
+            <form id='form-quotation' class='sf-form' action='./cart.php' method='post' data-validate='1'>
                 <fieldset>
                     <label for='company'>Azienda*:</label><br />
                     <input
@@ -64,6 +64,7 @@
                     <button class='button' type='submit'>Richiedi preventivo</button>
                 </div>
             </form>
+            <a href="#titles" id="scroll-top">↑</a>
         </main>
 
         <footer>
