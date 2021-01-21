@@ -3,10 +3,14 @@ session_start();
 
 require_once './utils/utils.php';
 
+$page=file_get_contents('./index.html');
 
-echo fetchAndFillCategories(file_get_contents('./index.html')); //mette i link nell'header coi nomi dal db
+$page=fillHeader($page); 
 
-//eventuale altra roba propria di index, same per altre pagine
+$page=str_replace('<li xml:lang="en"><a href="index.php">Home</a></li>', '<li xml:lang="en" id="currentLink">Home</li>', $page);
 
+$page=str_replace('<breadcrumbs-location />', '<span xml:lang="en">Home</span>', $page);
+
+echo $page;
 
 ?>

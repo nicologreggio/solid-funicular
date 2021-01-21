@@ -118,7 +118,9 @@ $_SESSION['search'] = [
 ];
 
 $page=file_get_contents("./search/search.html");
-$page=fetchAndFillCategories($page);
+$page=fillHeader($page);
+$page=str_replace('<breadcrumbs-location />', 'Ricerca', $page);
+$page=str_replace('<a href="./search.php"><img id="search" src="../images/icons/search.png" alt="Lente d\'ingradimento per la ricerca" /></a>', '', $page);
 $page=fillPage($page);
 
 echo $page;

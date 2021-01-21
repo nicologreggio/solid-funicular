@@ -10,7 +10,7 @@ $search = [
     "page" => ($_GET['page']) ? (int) ($_GET['page']) : 1
 ];
 
-$page = fetchAndFillCategories($page, $category);
+$page=fillHeader($page, $category);
 
 $page = str_replace("<categoryDescription/>", CategoryService::getOne($category)->getDescription(), $page);
 $page = str_replace("<catId/>", $category, $page);

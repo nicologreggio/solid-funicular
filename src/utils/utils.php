@@ -32,17 +32,21 @@ function base()
     return str_replace(PHP_EOL, '', file_get_contents(__DIR__.'/../.base_path') ?? "");
 }
 
-function fetchAndFillCategories($page, $currentCat=-1)
+function fillHeader($page, $currentCat=-1)
 {
     //do the real db job
     //$categories = ["La Categoria 1", "Categoria num 2", "Terza Categoria", "4 di numero", "L'ultima si, la 5"];
     $categories=CategoryService::getAll();
     $idx=0;
+
+    $header=file_get_contents('./utils/header.html');
+    $page=str_replace('<header-navigation />', $header, $page);
         
     foreach($categories as $cat){
         if($cat->getId() == $currentCat){
             $link='<li id="currentLink">' . $cat->getName() . '</li>';
             $page=str_replace("<cat-name />", $cat->getName(), $page);
+            $page=str_replace("<breadcrumbs-location />", $cat->getName(), $page);
         }
         else{
             $link='<li><a href="categories.php?cat=' . $cat->getId() . '">' . $cat->getName() . '</a></li>';

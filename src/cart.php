@@ -100,13 +100,13 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
     {
         QuoteService::addQuotation($company, $telephone, $reason, $_SESSION['user'], $_SESSION['cart']);
         $page = file_get_contents("./cart/thank-you-page.html");
-        $page = fetchAndFillCategories($page);
+        $page = fillHeader($page);
         echo $page;
     }
     else
     {
         $page=fillPagewithCartProducts(file_get_contents("./cart/cart.html"));
-        $page=fetchAndFillCategories($page);
+        $page=fillHeader($page);
         echo fillPageWithErrorsAndValues($page, $err);
     }
 }
@@ -117,20 +117,19 @@ else
         if(!empty($_SESSION['cart']))
         {
             $page=fillPagewithCartProducts(file_get_contents("./cart/cart.html"));
-            $page=fetchAndFillCategories($page);
-            echo cleanPage($page);
         }
         else
         {
             $page = file_get_contents("./cart/no-products.html");
-            $page = fetchAndFillCategories($page);
-            echo $page;
         }
     }
     else
     {
         $page = file_get_contents("./cart/go-to-login-page.html");
-        $page = fetchAndFillCategories($page);
-        echo $page;
     }
+
+    $page=fillHeader($page);
+    $page=str_replace('<breadcrumbs-location />', 'Carrello', $page);
+    $page=str_replace('<a href="./cart.php"><img id=cart src="../images/icons/shopping_cart.png" alt="Carrello dei prodotti" /></a>', '', $page);
+    echo cleanPage($page);
 }

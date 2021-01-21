@@ -69,6 +69,12 @@ function setHttpReferFromLogin()
     }
 }
 
+
+$page=file_get_contents('./login/login.html');
+$page=fillHeader($page);
+$page=str_replace('<breadcrumbs-location />', 'Accedi', $page);
+$page=str_replace('<a href="./login.php"><img id="login" src="../images/icons/login.png" alt="Icona utente per login" /></a>', '', $page);
+
 if($_SERVER['REQUEST_METHOD'] == 'POST')
 {
     $err = validateLoginData($_POST['email'], $_POST['password']);
@@ -81,17 +87,17 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
         }
         else
         {
-            echo fillPageWithErrorAndValue(file_get_contents('./login/login.html'), ["password" => [ "Email o password sbagliata" ]]);
+            echo fillPageWithErrorAndValue($page, ["password" => [ "Email o password sbagliata" ]]);
         }
     }
     else
     {
-        echo fillPageWithErrorAndValue(file_get_contents('./login/login.html'), $err);
+        echo fillPageWithErrorAndValue($page, $err);
     }
 }
 else
 {
     setHttpReferFromLogin();
 
-    echo cleanPage(file_get_contents('./login/login.html'));
+    echo cleanPage($page);
 }

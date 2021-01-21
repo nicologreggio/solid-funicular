@@ -5,6 +5,10 @@
     padding: 0.4em 0 0.4em 0;
 }
 
+.menu ul{
+    flex-direction: column;
+}
+
 #logo{
     width: 20%;
 }
