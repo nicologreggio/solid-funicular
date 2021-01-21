@@ -19,18 +19,23 @@ function fillPagewithCartProducts($page)
             $listProducts .= "
                 <div class='quote-product'>
                     <img class='quote-product-img' src='{$product->getMainImage()}' alt='{$product->getMainImageDescription()}' />
+                    <div class='quote-information'>
+                        <strong>{$product->getName()}</strong><br />
+                        <strong>Categoria: </strong><span>{$product->getCategory()}</span></br/>
+                    </div>
                     <div class='quote-control'>
                         <div class='product-quantity'>
                             <p>Quantità:</p>
                             <strong>{$quantity}</strong>
                         </div>
-                        <form action='./php/remove-from-cart-quotation' class='remove-product'>
-                            <img src='../images/icons/remove.png' alt='Rimuovi il prodotto dal carrello' />
-                            <p>Rimuovi</p>
+                        <form class='remove-product' action='./php/remove-from-cart-quotation.php' method='POST'>
+                            <input type='hidden' name='product-id' value='{$product->getId()}' />
+                            <button type='submit'>
+                                <img src='../images/icons/remove.png' alt='Rimuovi il prodotto dal carrello' />
+                                <p>Rimuovi</p>
+                            </button>
                         </form>
                     </div>
-                    <strong>{$product->getName()}</strong><br />
-                    <strong>Categoria: </strong><span>{$product->getCategory()}</span></br/>
                 </div>
             ";
         }
