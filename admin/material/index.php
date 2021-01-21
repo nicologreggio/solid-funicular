@@ -4,7 +4,7 @@ redirectIfNotLogged();
 $page = page('../template_html/material/index.html');
 
 $cur_page = preg_match('/^[0-9]+$/', $_REQUEST['page']?? '') ? $_REQUEST['page'] : 0;
-$per_page = 10;
+$per_page = MATERIALS_PER_PAGE;
 
 $stm = DBC::getInstance()->prepare('SELECT * FROM MATERIALS ORDER BY _ID DESC LIMIT :limit OFFSET :offset');
 $stm->bindValue(':limit', (int) $per_page, PDO::PARAM_INT); 

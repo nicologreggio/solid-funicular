@@ -101,7 +101,7 @@ else {
 }
 if($category->_MENU == false && DBC::getInstance()->query(
     "SELECT count(*) FROM CATEGORIES WHERE _MENU = 1"
-)->fetchColumn() >= 5){
+)->fetchColumn() >= MAX_MENU_CATEGORIES){
     $page = str_replace("<disabled-menu/>", 'disabled="disabled"', $page);
     $page = str_replace("<menu-message/>", 'Al momento non è possibile inserire questa categoria nel menu in quanto si è già raggiunto il numero massimo di categorie inseribili', $page);
 } else {

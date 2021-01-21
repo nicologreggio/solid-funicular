@@ -12,8 +12,7 @@ header{
 }
 nav {
     margin:auto;
-    /* come il nostro amato stackoverflow */
-    max-width: 1300px; 
+    max-width: 1100px; 
     height: auto;
     padding: 1em 1.5em;
     display: -webkit-box;
@@ -129,7 +128,7 @@ nav > ul > li:hover > a::after{
 
 main{
     margin:auto;
-    max-width: 1200px; 
+    max-width: 1000px; 
     padding: 2em 5em;
 }
 
@@ -484,8 +483,12 @@ ul.breadcrumb{
     padding-bottom:1.5em;
     border-bottom: 1px solid rgba(0,0,0,.2);
 }
-
-
+.useful-links{
+    padding-left:20px;
+}
+.useful-links li{
+    padding-top: 7px;
+}
 
 
 

@@ -3,8 +3,8 @@ require_once(__DIR__.'/../inc/header_php.php');
 redirectIfNotLogged();
 $page = page('../template_html/product/index.html');
 
-$cur_page = preg_match('/^[0-9]+$/', $_REQUEST['page']?? '') ? $_REQUEST['page'] : 0;
-$per_page = 8;
+$cur_page = (int)($_REQUEST['page'] ?? 0) ;
+$per_page = PRODUCTS_PER_PAGE;
 $stm = DBC::getInstance()->prepare('SELECT * FROM PRODUCTS ORDER BY _ID DESC LIMIT :limit OFFSET :offset');
 $stm->bindValue(':limit', (int) $per_page, PDO::PARAM_INT); 
 $stm->bindValue(':offset', (int) $cur_page * $per_page, PDO::PARAM_INT); 
