@@ -168,7 +168,7 @@ button {
 }
 
 #shortcuts img{
-    width: 3em;
+    width: 2em;
 }
 
 #shortcuts span{
@@ -440,10 +440,6 @@ footer > p{
 }
 
 /* ========== SEARCH ========== */
-#filters{
-    padding: 0.5em;
-}
-
 #searchbar {
     width: calc(100% - 2em);
     padding: 1em;
@@ -455,18 +451,27 @@ footer > p{
     padding-left: 0.2em;
 }
 
-#search-form fieldset {
+/* #search-form fieldset {
     border: 0;
-}
+} */
 
-#search-form legend {
+/* #search-form legend {
     border: 0;
+} */
+
+#filters{
+    margin: 1em 0 1em 0;
+    padding: 0.5em;
 }
 
 #materials-wrapper{
     border: 1px solid black;
-    margin-top: 0.2em;
+    margin-top: 0.5em;
     padding: 0.2em;
+}
+
+#materials-wrapper input{
+    margin-right: 1em;
 }
 
 #products-list {
