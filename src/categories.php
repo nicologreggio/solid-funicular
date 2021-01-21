@@ -6,8 +6,6 @@ $category = (int) $_GET['cat'];
 $currentPage = ($_GET['page']) ? (int) ($_GET['page']) : 1;
 $page = file_get_contents('./categories/categories.html');
 
-echo $currentPage;
-
 $search = [ 
     "category" => $category,
     "page" => $currentPage
