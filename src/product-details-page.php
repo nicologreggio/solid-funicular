@@ -33,7 +33,11 @@ function fillPageWithDetails(string $page, ProductModel $product)
 	
 	$page = str_replace("<productMainImage/>", $product->getMainImage(), $page);
 	$page = str_replace("<productMainImageDescription/>", $product->getMainImageDescription(), $page);
-	$page = str_replace("<productCategory/>", $product->getCategory(), $page);
+	//$page = str_replace("<productCategory/>", $product->getCategory(), $page);
+	$page = str_replace("<productCategory/>", '<li>
+			<strong>Categoria:</strong>
+			<span class="product-detail" id="product-category">' . $product->getCategory() . '</span>
+		</li>', $page);
 
 	$removeForm = "";
 	$addForm = "";

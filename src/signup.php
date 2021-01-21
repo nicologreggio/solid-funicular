@@ -10,7 +10,11 @@ function signup(string $email, string $name, string $surname, string $password, 
     $user = UserService::signup($email, $name, $surname, $city, $address, $cap, $password);
     $exist = $user != null;
 
-    if($exist) $_SESSION['user'] = $user->getId();
+    if($exist) 
+    {
+        $_SESSION['user'] = $user->getId();
+        $_SESSION['username'] = $user->getName().' '.$user->getSurname();
+    }
 
     return $exist;
 }
@@ -131,10 +135,11 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
 {
     $err = validateSignupData($_POST['email'], $_POST['name'], $_POST['surname'], $_POST['password'], $_POST['confirm-password'], $_POST['city'], $_POST['address'], $_POST['cap']);
 
-    if($err === false)
+    if($err === true)
     {
         if(signup($_POST['email'], $_POST['name'], $_POST['surname'], $_POST['password'], $_POST['city'], $_POST['address'], $_POST['cap']))
         {
+            echo $_SESSION['HTTP_REFERER'];
             header('Location: ' . $_SESSION['HTTP_REFERER']);
         }
     }

@@ -4,6 +4,13 @@ require_once(__DIR__."/user.repository.php");
 
 class UserService
 {
+    static public function get(string $email) : ?UserModel
+    {
+        $user = UserRepository::getOne($email);
+
+        return $user;
+    }
+
     static public function login(string $email, string $password) : ?UserModel
     {
         $user = UserRepository::getOne($email);

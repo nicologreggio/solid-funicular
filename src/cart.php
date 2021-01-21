@@ -16,18 +16,23 @@ function fillPagewithCartProducts($page)
 
         if($product)
         {
-            $listProducts .= "<div class='quote-product'>";
-
-            $listProducts .= "<img src='{$product->getMainImage()}' alt='{$product->getMainImageDescription()}' />";
             $listProducts .= "
-                <div class='product-quantity'>
-                    <p>Quantità:</p>
-                    <b>{$quantity}</b>
-                </div>";
-            $listProducts .= "<b>{$product->getName()}</b><br />";
-            $listProducts .= "<b>Categoria: </b><span>{$product->getCategory()}</span></br/>";
-
-            $listProducts .= "</div>";
+                <div class='quote-product'>
+                    <img class='quote-product-img' src='{$product->getMainImage()}' alt='{$product->getMainImageDescription()}' />
+                    <div class='quote-control'>
+                        <div class='product-quantity'>
+                            <p>Quantità:</p>
+                            <strong>{$quantity}</strong>
+                        </div>
+                        <form action='./php/remove-from-cart-quotation' class='remove-product'>
+                            <img src='../images/icons/remove.png' alt='Rimuovi il prodotto dal carrello' />
+                            <p>Rimuovi</p>
+                        </form>
+                    </div>
+                    <strong>{$product->getName()}</strong><br />
+                    <strong>Categoria: </strong><span>{$product->getCategory()}</span></br/>
+                </div>
+            ";
         }
     }
 
@@ -130,6 +135,6 @@ else
 
     $page=fillHeader($page);
     $page=str_replace('<breadcrumbs-location />', 'Carrello', $page);
-    $page=str_replace('<a href="./cart.php"><img id=cart src="../images/icons/shopping_cart.png" alt="Carrello dei prodotti" /></a>', '', $page);
+    $page=str_replace('<a href="./cart.php"><img src="../images/icons/shopping_cart.png" alt="Carrello dei prodotti" /><span>Carrello</span></a>', '', $page);
     echo cleanPage($page);
 }

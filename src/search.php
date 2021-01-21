@@ -115,12 +115,13 @@ $_SESSION['search'] = [
     'category' => (int) $_GET['category'],
     'materials' => $_GET['materials'],
     'page' => ($_GET['page']) ? (int) ($_GET['page']) : 1
-];
+];+
 
 $page=file_get_contents("./search/search.html");
 $page=fillHeader($page);
 $page=str_replace('<breadcrumbs-location />', 'Ricerca', $page);
-$page=str_replace('<a href="./search.php"><img id="search" src="../images/icons/search.png" alt="Lente d\'ingradimento per la ricerca" /></a>', '', $page);
+$page=str_replace('<a href="./search.php"><img src="../images/icons/search.png" alt="Lente d\'ingradimento per la ricerca" /><span>Cerca</span></a>', '', $page);
+
 $page=fillPage($page);
 
 echo $page;

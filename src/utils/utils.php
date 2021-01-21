@@ -4,7 +4,7 @@ session_start();
 require_once(__DIR__.'/../php/product/product.service.php');
 require_once(__DIR__.'/../php/category/category.service.php');
 
-$limit = 6;
+$limit = 9;
 
 function fillPageWithError($page, $err)
 {
@@ -34,13 +34,29 @@ function base()
 
 function fillHeader($page, $currentCat=-1)
 {
-    //do the real db job
-    //$categories = ["La Categoria 1", "Categoria num 2", "Terza Categoria", "4 di numero", "L'ultima si, la 5"];
     $categories=CategoryService::getAll();
     $idx=0;
 
     $header=file_get_contents('./utils/header.html');
     $page=str_replace('<header-navigation />', $header, $page);
+    if(isset($_SESSION['user'])){
+        //var_dump($_SERVER['REQUEST_URI']);
+        $page=str_replace('<account-icon />', '<a href="./logout.php">
+                <img src="../images/icons/logout.png" alt="Icona di uscita per effetturare il logout" />
+                <span>' . $_SESSION['username'] . '</span>
+            </a>', $page);
+    }
+    else{
+        if(!strpos($_SERVER['REQUEST_URI'], 'signup.php') && !strpos($_SERVER['REQUEST_URI'], 'login.php')){
+            $page=str_replace('<account-icon />', '<a href="./login.php">
+                    <img src="../images/icons/login.png" alt="Icona utente per effettuare login" />
+                    <span>Accedi</span>
+                </a>', $page);
+        }
+        else{
+            $page=str_replace('<account-icon />', '', $page);
+        }
+    }
         
     foreach($categories as $cat){
         if($cat->getId() == $currentCat){

@@ -10,7 +10,11 @@ function login(string $email, string $password)
     $user = UserService::login($email, $password);
     $exist = $user != null;
 
-    if($exist) $_SESSION['user'] = $user->getId();
+    if($exist) 
+    {
+        $_SESSION['user'] = $user->getId();
+        $_SESSION['username'] = $user->getName().' '.$user->getSurname();
+    }
 
     return $exist;
 }
