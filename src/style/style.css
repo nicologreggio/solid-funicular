@@ -399,6 +399,7 @@ footer > p{
 
 .quote-product
 {
+    display: flex;
     height: 5em;
     border-bottom: black 1px solid;
     padding: 0.5em;
@@ -411,21 +412,32 @@ footer > p{
     margin-right: 0.5em;
 }
 
+.quote-information
+{
+    flex: 1;
+}
+
 .quote-control {
-    float: right;
     display: flex;
 }
 
-.quote-product .remove-product, .quote-product .product-quantity
-{
+.quote-control > * {
     position: relative;
     display: inline-flex;
     flex-direction: column;
     justify-content: center;
     border-left: black 1px solid;
+    border-right: black 1px solid;
     padding-left: 0.5em;
     padding-right: 0.5em;
     align-items: center;
+    border-collapse: collapse;
+}
+
+.quote-control button {
+    background: none;
+    color: inherit;
+    font: inherit;
 }
 
 .remove-product img {

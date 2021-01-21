@@ -63,3 +63,26 @@ h2{
 .form-quotation fieldset{
     width: 80%;
 }
+
+.quote-product
+{
+    flex-direction: column;
+    height: auto;
+}
+
+.quote-product-img
+{
+    width: 60%;
+    padding: 0 20%;
+    height: auto;
+    /* float: left; */
+    margin: auto;
+}
+
+.quote-information
+{
+}
+
+.quote-control {
+    align-self: center;
+}
