@@ -30,7 +30,7 @@ if(isset($_REQUEST['id'])){
     ")->fetchAll() as $prod){
         $products .= '
         <li>
-            <img src="'.base().$prod->_MAIN_IMAGE.'" alt="'.e($prod->_MAIN_IMAGE_DESCRIPTION).'">
+            <img src="'.base().$prod->_MAIN_IMAGE.'" alt="'.e($prod->_MAIN_IMAGE_DESCRIPTION).'" />
             <a href="../product/index.php" class="pt-2 d-block" title="visualizza prodotti">'.e($prod->_NAME).'</a>
             <p class="pl-2 pb-0 mb-1">Quantità: '.($prod->_QNT).'</p>
         </li>';

@@ -6,7 +6,7 @@ $page = page('../template_html/material/index.html');
 $cur_page = preg_match('/^[0-9]+$/', $_REQUEST['page']?? '') ? $_REQUEST['page'] : 0;
 $per_page = 10;
 
-$stm = DBC::getInstance()->prepare('SELECT * FROM MATERIALS ORDER BY _ID LIMIT :limit OFFSET :offset');
+$stm = DBC::getInstance()->prepare('SELECT * FROM MATERIALS ORDER BY _ID DESC LIMIT :limit OFFSET :offset');
 $stm->bindValue(':limit', (int) $per_page, PDO::PARAM_INT); 
 $stm->bindValue(':offset', (int) $cur_page * $per_page, PDO::PARAM_INT); 
 $stm->execute();
@@ -14,13 +14,11 @@ $stm->execute();
 $materials = "";
 foreach($stm->fetchAll() as $mat){
     $materials.='
-    <li>
+    <li id="material-'.e($mat->_ID).'">
         <h2 class="strong m0 p0 pt-1 pb-1">'.e($mat->_NAME).'</h2>
         <h3 class="m0 p0"><abbr title="Identificativo" class="strong">ID:</abbr> '.e($mat->_ID).'</h3>
-        <p class="m0 p0 mt-2 strong"> 
-            Descrizione:
-        </p>
-        <p class="m0 p0 mt-2"> 
+        <p class="m0 p0 mt-2 "> 
+            <span class="strong">Descrizione:</span><br />
             '.e($mat->_DESCRIPTION).'
         </p>
 
@@ -38,7 +36,7 @@ foreach($stm->fetchAll() as $mat){
                     Elimina
             </a>
         </div>
-        <hr class="mt-3">
+        <hr class="mt-3" />
     </li>
     ';
 }

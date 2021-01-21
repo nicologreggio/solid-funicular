@@ -64,4 +64,14 @@ else {
     removeValuesTag($page);
     removeErrorsTag($page);
 }
+if(DBC::getInstance()->query(
+    "SELECT count(*) FROM CATEGORIES WHERE _MENU = 1"
+)->fetchColumn() >= 5){
+    $page = str_replace("<disabled-menu/>", 'disabled="disabled"', $page);
+    $page = str_replace("<menu-message/>", 'Al momento non è possibile inserire questa categoria nel menu in quanto si è già raggiunto il numero massimo di categorie inseribili', $page);
+} else {
+    $page = str_replace("<disabled-menu/>", '', $page);
+    $page = str_replace("<menu-message/>", 'Visualizzazione su menu principale', $page);
+    
+}
 echo $page;

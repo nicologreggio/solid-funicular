@@ -135,7 +135,7 @@ if(request()->method() == 'POST' ){
                 ]);
             }
             message("Prodotto modificato correttamente");
-            redirectTo('/admin/product/index.php?page='.$request['page']);
+            redirectTo('/admin/product/index.php?page='.$request['page'].'#product-'.$product->_ID);
         }    
     }
     replaceValues([
@@ -170,9 +170,9 @@ else {
 $categories = DBC::getInstance()->query("
     SELECT _ID, _NAME FROM CATEGORIES 
 ")->fetchAll();
-$out = "";
+$out = "<option value=''>Seleziona la categoria di questo prodotto</option>";
 foreach($categories as $cat){
-    $out.= '<option value="'.$cat->_ID.'"'.((($request['category'] ?? $product->_CATEGORY) === $cat->_ID )? 'selected' : '' ).'>'.$cat->_NAME.'</option>';
+    $out.= '<option value="'.$cat->_ID.'" '.((($request['category'] ?? $product->_CATEGORY) === $cat->_ID )? 'selected="selected"' : '' ).'>'.$cat->_NAME.'</option>';
 }
 $page = str_replace('<categories/>', $out, $page);
 
@@ -197,7 +197,7 @@ else {
 }
 foreach($materials as $mat){
     $select = in_array( $mat->_ID, $current_materials );
-    $out.= '<option value="'.$mat->_ID.'" '.($select ? 'selected ' : '' ).'>'.$mat->_NAME.'</option>';
+    $out.= '<option value="'.$mat->_ID.'" '.($select ? 'selected="selected" ' : '' ).'>'.$mat->_NAME.'</option>';
 }
 $page = str_replace('<materials/>', $out, $page);
 

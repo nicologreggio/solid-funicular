@@ -5,7 +5,7 @@ $page = page('../template_html/product/index.html');
 
 $cur_page = preg_match('/^[0-9]+$/', $_REQUEST['page']?? '') ? $_REQUEST['page'] : 0;
 $per_page = 8;
-$stm = DBC::getInstance()->prepare('SELECT * FROM PRODUCTS ORDER BY _ID LIMIT :limit OFFSET :offset');
+$stm = DBC::getInstance()->prepare('SELECT * FROM PRODUCTS ORDER BY _ID DESC LIMIT :limit OFFSET :offset');
 $stm->bindValue(':limit', (int) $per_page, PDO::PARAM_INT); 
 $stm->bindValue(':offset', (int) $cur_page * $per_page, PDO::PARAM_INT); 
 $stm->execute();
@@ -34,21 +34,17 @@ foreach(($stm->fetchAll() ?? []) as $prod){
     }
     
     $products.='
-        <li>
+        <li id="product-'.e($prod->_ID).'">
             <h2 class="strong m0 p0 pt-1 pb-1 img-product">'.e($prod->_NAME).'</h2>
-            <img src="'.base().$prod->_MAIN_IMAGE.'" class="w20 w100-sm left" alt="'.$prod->_MAIN_IMAGE_DESCRIPTION.'">
+            <img src="'.base().$prod->_MAIN_IMAGE.'" class="w20 w100-sm left" alt="'.$prod->_MAIN_IMAGE_DESCRIPTION.'" />
             <div class="w80 w100-sm right pl-3 pl-0-sm pt-2-sm">
                 <h3 class="m0 p0"><abbr title="Identificativo" class="strong">ID:</abbr> '.e($prod->_ID).'</h3>
-                <p class="m0 p0 mt-2 strong">
-                    Meta-descrizione:
-                </p>
-                <p class="m0 p0">
+                <p class="m0 p0 mt-2">
+                    <span class="strong">"Meta-descrizione:</span><br />
                     '.e($prod->_METADESCRIPTION).'
                 </p>
-                <p class="m0 p0 mt-2 strong">
-                    Descrizione:
-                </p>
-                <p class="m0 p0">
+                <p class="m0 p0 mt-2">
+                    <span class="strong">Descrizione:</span><br />
                     '.e($prod->_DESCRIPTION).'
                 </p>';
     if($prod->_DIMENSIONS) $products.=
@@ -62,17 +58,17 @@ foreach(($stm->fetchAll() ?? []) as $prod){
                     '.e($prod->_AGE).'
                 </p>';
     $products.=
-                '<p class="m0 p0 mt-2 strong">
-                    Categoria: 
+                '<p class="m0 p0 mt-2">
+                    <span class="strong">Categoria:</span> <br />
+                    <a href="../category/index.php" title="Visualizza categorie"> '.e($category_name).' </a>
                 </p>
-                <a href="../category/index.php" title="Visualizza categorie"> '.e($category_name).' </a>
                 '.$materials.'
             </div>
             <div class="clearfix">
                 <a class="w49 left button button-green" title="Modifica il prodotto: '.e($prod->_NAME).'" href="edit.php?id='.e($prod->_ID).'&amp;page='.e($_REQUEST['page'] ?? 0).'">Modifica</a>
                 <a class="w49 right button button-red"  title="Elimina il prodotto: '.e($prod->_NAME).'" href="delete.php?id='.e($prod->_ID).'">Elimina</a>
             </div>
-            <hr class="mt-3">
+            <hr class="mt-3" />
         </li>
     ';
 }
