@@ -3,11 +3,12 @@
 require_once(__DIR__.'/utils/utils.php');
 
 $category = (int) $_GET['cat']; 
+$currentPage = ($_GET['page']) ? (int) ($_GET['page']) : 1;
 $page = file_get_contents('./categories/categories.html');
 
 $search = [ 
     "category" => $category,
-    "page" => ($_GET['page']) ? (int) ($_GET['page']) : 1
+    "page" => $currentPage
 ];
 
 $page=fillHeader($page, $category);
@@ -21,6 +22,6 @@ $page = fillProducts($page, $products);
 
 $count = ProductService::getProductsListCount($search);
 
-$page = fillPagination($page, $count);
+$page = fillPagination($page, $count, $currentPage);
 
 echo $page;

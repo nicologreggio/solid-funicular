@@ -4,7 +4,7 @@ session_start();
 require_once(__DIR__.'/../php/product/product.service.php');
 require_once(__DIR__.'/../php/category/category.service.php');
 
-$limit = 9;
+$limit = 6;
 
 function fillPageWithError($page, $err)
 {
@@ -44,7 +44,7 @@ function fillHeader($page, $currentCat=-1)
         
     foreach($categories as $cat){
         if($cat->getId() == $currentCat){
-            $link='<li id="currentLink">' . $cat->getName() . '</li>';
+            $link='<li class="current">' . $cat->getName() . '</li>';
             $page=str_replace("<cat-name />", $cat->getName(), $page);
             $page=str_replace("<breadcrumbs-location />", $cat->getName(), $page);
         }
@@ -53,20 +53,6 @@ function fillHeader($page, $currentCat=-1)
         }
         $page=str_replace(("<cat-" . ($idx++) . "/>"), $link, $page);
     }
-
-    /* foreach ($categories as $idx => $cat) {
-        //<a href="categories.php/2"><cat-2/></a>
-        //TODO substitute with id from categ
-        if($idx == $currentCat){
-            $link='<li id="currentLink">' . $cat . '</li>';
-            $page=str_replace("<cat-name />", $cat, $page);
-        }
-        else{
-            $link='<li><a href="categories.php?cat=' . $idx . '">' . $cat . '</a></li>';
-        }
-        $page=str_replace(("<cat-" . $idx . "/>"), $link, $page);
-        //echo "<cat-" . ($idx+1) . "/>";
-    } */
 
     return $page;
 }
@@ -91,7 +77,7 @@ function fillProducts($page, $products){
     return $page;
 }
 
-function fillPagination($page, $count)
+function fillPagination($page, $count, $currentPage)
 {
     global $limit;
     
@@ -107,7 +93,7 @@ function fillPagination($page, $count)
 
         for($i = 1; $i <= $numberPages; ++$i)
         {
-            $paginationStr .= "<button class='pages' name='page' value='{$i}'>{$i}</button>";
+            $paginationStr .= "<button class='pages ".($currentPage == $i ? "current" : "")."' name='page' value='{$i}'>{$i}</button>";
         }
         
         $paginationStr .= "</fieldset>";

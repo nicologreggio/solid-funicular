@@ -105,7 +105,7 @@ function fillPage($page)
 
     $count = ProductService::getProductsListCount($_SESSION['search']);
 
-    $page = fillPagination($page, $count);
+    $page = fillPagination($page, $count, $_SESSION['search']['page']);
 
     return $page;
 }

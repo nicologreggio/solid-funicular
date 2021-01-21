@@ -1,3 +1,23 @@
+.desktop{
+    display: none;
+}
+
+.buttons-control *
+{
+    width: 100%;
+}
+
+.buttons-control a
+{
+    position: relative;
+}
+
+.buttons-control button[type='submit']
+{
+    margin-bottom: 0.5em;
+    float: none;
+}
+
 .menu > summary{
     color: white;
     text-align: center;
@@ -27,6 +47,8 @@ h2{
 
 .menu li {
     float:none;
+    width: 100%;
+    text-align: center;
 }
 
 #products-list li{

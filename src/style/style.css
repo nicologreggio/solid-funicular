@@ -33,13 +33,14 @@ body {
 }
 
 .sf-form h2 {
-    background: #A70500;
+    /* background: #A70500;
     padding: 1.8em 1.25em;
     color: white;
+    co: #A70500;
     font-size: 1.2em;
     font-weight: 600;
     border-radius: 10px 10px 0 0;
-    margin-bottom: 20px;
+    margin-bottom: 20px; */
 }
 
 .sf-form legend {
@@ -168,7 +169,6 @@ button {
 
 #titles {
     text-align: center;
-    width: 45%;
 }
 
 #shortcuts {
@@ -194,9 +194,9 @@ button {
     justify-content: center;
 }
 
-/* .menu li {
+.menu li {
     float: left;
-} */
+}
 
 .menu li a{
     display: block;
@@ -204,16 +204,18 @@ button {
     text-align: center;
     padding: 16px;
     text-decoration: none;
+    padding: 16px;
 }
 
-#currentLink{
+.menu li.current{
+    padding: 16px;
+}
+
+.current {
     color: white;
     font-weight: bold;
     background-color: black;
-    display: block;
-    color: black;
     text-align: center;
-    padding: 16px;
 }
 
 .menu li a:hover {
@@ -221,9 +223,10 @@ button {
 }
 
 #breadcrumbs{
+    max-width: 1200px;
     border-bottom: 2px solid #A70500;
-    margin: 0.5em;
     padding: 0.2em;
+    margin: 0.5em auto 0.5em auto;
     font-size: 1.1em;
     position: sticky;
     top:0;
@@ -239,10 +242,10 @@ body{
 main {
     padding: 1em;
     max-width: 1024px;
-    /* min-height: 60vh; */
+    min-height: 60vh;
     margin: auto;
-    /* border-left: 0.5px solid grey; */
-    /* border-right: 0.5px solid grey; */
+    border-left: 0.5px solid grey;
+    border-right: 0.5px solid grey;
     overflow: auto;
 }
 
@@ -451,10 +454,15 @@ footer > p{
     padding: 0.5em;
 }
 
-#search-form input {
+#searchbar {
     width: calc(100% - 2em);
     padding: 1em;
     margin-bottom: 0.5em;
+}
+
+.search-material
+{
+    padding-left: 0.2em;
 }
 
 #search-form fieldset {
@@ -477,21 +485,18 @@ footer > p{
 
 #pagination {
     text-align: center;
+    border: 0;
 }
 
 /* ========= MEDIA ========= */
 
-@media only screen and (min-width: 640px){
+@media only screen and (min-width: 769px){
     .mobile{
         display: none;
     }
-
-    .authentication-form h2 {
-        border-radius: 0;
-    }
 }
 
-@media only screen and (max-width: 640px){
+/* @media only screen and (max-width: 768px){
     .desktop{
         display: none;
     }
@@ -511,10 +516,4 @@ footer > p{
         margin-bottom: 0.5em;
         float: none;
     }
-}
-
-@media only screen and (max-width: 640px){
-    .desktop{
-        display: none;
-    }
-}
+} */
