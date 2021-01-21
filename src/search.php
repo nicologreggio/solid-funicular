@@ -1,6 +1,7 @@
 <?php
 session_start();
 
+require_once(__DIR__."/utils/utils.php");
 require_once(__DIR__."/php/category/category.service.php");
 require_once(__DIR__."/php/material/material.service.php");
 require_once(__DIR__."/php/product/product.service.php");
@@ -8,8 +9,8 @@ require_once(__DIR__."/php/product/product.service.php");
 function fillSearchbar($page)
 {
     $searchbarStr = "
-        <label for='searchbar'>Termine di ricerca:</label><br />
-        <input id='searchbar' name='searchbar' value='{$_SESSION['search']['name']}' />
+        <label for='searchbar'>Termini di ricerca:</label><br />
+        <input id='searchbar' placeholder='Inserisci dei termini di ricerca' name='searchbar' value='{$_SESSION['search']['name']}' />
     ";
 
     $page = str_replace("<searchbar/>", $searchbarStr, $page);
@@ -68,12 +69,6 @@ function fillMaterials($page)
         }
         
         $materialsStr .= "/><label for='search-material-{$index}'>{$material->getName()}</label></p>";
-    
-        if($index + 1 != count($materials))
-        {
-            // $materialsStr .= "<br />";
-        }
-
     }
 
     $materialsStr .= "</fieldset>";
@@ -85,47 +80,18 @@ function fillMaterials($page)
 
 function fillProductsList($page)
 {
-    $products = ProductService::getProductsList($_SESSION['search'], 15);
-    $productsStr = "";
+    global $limit;
+    $products = ProductService::getProductsList($_SESSION['search'], $limit);
 
     if(count($products) == 0)
     {
-        $productsStr .= "No products";
+        $productsStr = "No products";
+        $page = str_replace("<products-list/>", $productsStr, $page);
     }
     else
     {
-        foreach($products as $product)
-        {
-            $productsStr .= $product->getName()."<br />";
-        }
+        $page = fillProducts($page, $products);
     }
-
-
-    $page = str_replace("<products-list/>", $productsStr, $page);
-
-    return $page;
-}
-
-function fillPagination($page)
-{
-    $limit = 15;
-    $count = ProductService::getProductsListCount($_SESSION['search']);
-    // echo $count;
- 
-    $paginationStr = "
-        <fieldset id='pagination'>
-    ";
-
-    $numberPages = floor($count / $limit) + 1;
-
-    for($i = 1; $i <= $numberPages; ++$i)
-    {
-        $paginationStr .= "<button class='pages' name='page' value='{$i}'>{$i}</button>";
-    }
-
-    $paginationStr .= "</fieldset>";
-
-    $page = str_replace("<pagination/>", $paginationStr, $page);
 
     return $page;
 }
@@ -136,7 +102,10 @@ function fillPage($page)
     $page = fillCategories($page);
     $page = fillMaterials($page);
     $page = fillProductsList($page);
-    $page = fillPagination($page);
+
+    $count = ProductService::getProductsListCount($_SESSION['search']);
+
+    $page = fillPagination($page, $count);
 
     return $page;
 }

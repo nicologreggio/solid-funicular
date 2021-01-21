@@ -20,7 +20,6 @@
     <link rel="stylesheet" type="text/css" href="style/small.css" media="handheld, screen and (max-width: 640px), and only screen and (max-device-width: 640px)" />
     <link rel="shortcut icon" type="image/x-icon" href="../images/favicon.ico" />
 </head>
-
 <body>
     <header>
         <img id="logo" src="../images/logo2.png" alt="Funiculare solida con persona a bordo" />
@@ -70,10 +69,13 @@
 
     <main>
         <h2><cat-name /></h2>
-        <category-description />
+        <categoryDescription/>
         <hr />
         <h3>I prodotti</h3>
-        <productsList />
+        <productsList/>
+        <form action="./categories.php?cat=<catId/>" method="GET">
+            <pagination/>
+        </form>
 
         <a href=#titles><p id="scroll-top">↑</p></a>
     </main>

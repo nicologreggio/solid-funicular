@@ -4,6 +4,8 @@ session_start();
 require_once(__DIR__.'/../php/product/product.service.php');
 require_once(__DIR__.'/../php/category/category.service.php');
 
+$limit = 9;
+
 function fillPageWithError($page, $err)
 {
     $page = str_replace('<error-db/>', "", $page);
@@ -65,39 +67,49 @@ function fetchAndFillCategories($page, $currentCat=-1)
     return $page;
 }
 
-function fetchAndFillProducts($page, $category){
-    //fetch $category from db
-
-    /* $products=[
-        ["../images/products/5feb1efc3d06f.jpeg", "name 1", ],
-        ["../images/products/5feb1efc3d06f.jpeg", "name 2", ],
-        ["../images/products/5feb1efc3d06f.jpeg", "name 3", ],
-        ["../images/products/5feb1efc3d06f.jpeg", "name 4", ],
-        ["../images/products/5feb1efc3d06f.jpeg", "name 5", ],
-        ["../images/products/5feb1efc3d06f.jpeg", "name 6", ],
-        ["../images/products/5feb1efc3d06f.jpeg", "name 7", ],
-        ["../images/products/5feb1efc3d06f.jpeg", "name 8", ]
-    ]; */
-
-    $page=str_replace("<category-description />", CategoryService::getOne($category)->getDescription(), $page);
-    $products=ProductService::getProductsWhereCategory($category, 1);
-    //$products[]=new ProductModel(1, "cavallo", "un cavallo è un vettore", "noh", "", 8, "../images/products/5feb1efc3d06f.jpeg", "panca", "cat");
-
+function fillProducts($page, $products){
     $productsList='<ul id="products-list">';
 
     foreach($products as $product){
-        $productsList .= '<li class="category-product">' . '<a href="./product-details-page.php?cat=' . $category .'&id=' . $product->getId() . '"><img src="' . $product->getMainImage() . '" />' . '<p>' . $product->getName() . '</p></a></li>';
+        $productsList .= "
+            <li class='category-product'>
+                <a href='./product-details-page.php?id={$product->getId()}'>
+                    <img src='{$product->getMainImage()}' alt='{$product->getMainImageDescription()}' />
+                    <p>{$product->getName()}</p>
+                </a>
+            </li>";
     }
-
-    
-    
-    /* for($i=0; $i<count($products); $i++){
-        $productsList .= '<li class="category-product">' . '<a href="products.php?id="' . $i . '><img src="' . $products[$i][0] . '" />' . '<p>' . $products[$i][1] . '</p></a></li>';
-    } */
 
     $productsList .= '</ul>';
 
-    $page=str_replace('<productsList />', $productsList, $page);
+    $page = str_replace('<productsList/>', $productsList, $page);
+
+    return $page;
+}
+
+function fillPagination($page, $count)
+{
+    global $limit;
+    
+    $paginationStr = '';
+    
+    $numberPages = floor($count / $limit) + ($count % $limit == 0 ? 0 : 1);
+    
+    if($numberPages != 1)
+    {
+        $paginationStr .= "
+            <fieldset id='pagination'>
+        ";
+
+        for($i = 1; $i <= $numberPages; ++$i)
+        {
+            $paginationStr .= "<button class='pages' name='page' value='{$i}'>{$i}</button>";
+        }
+        
+        $paginationStr .= "</fieldset>";
+    }
+
+    $page = str_replace("<pagination/>", $paginationStr, $page);
 
     return $page;
 }

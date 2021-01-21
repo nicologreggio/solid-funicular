@@ -10,7 +10,7 @@ class ProductService
         return ProductRepository::getOne($id);
     }
 
-    public static function getProductsList(array $search, int $limit = 25) : array
+    public static function getProductsList(array $search, int $limit) : array
     {
         return ProductRepository::getAllWhere($search, $limit);
     }

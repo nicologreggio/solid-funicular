@@ -35,7 +35,7 @@
 
         <nav class="menu desktop">
             <ul>
-                <li xml:lang="en" id="currentLink">Home</li>
+                <li xml:lang="en">Home</li>
                 <li><a href="contacts.php">Contatti</a></li>
                 <!-- <li><a href="categories.php/1"><cat-1/></a></li>
                 <li><a href="categories.php/2"><cat-2/></a></li>
@@ -76,7 +76,6 @@
             <searchbar/>
             <br />
             <fieldset id="filters">
-                <legend>Filtri</legend>
                 <categories/>
                 <details id="materials-wrapper">
                     <summary>Materiali:</summary>
@@ -85,9 +84,14 @@
             </fieldset>
             <button id='search-button' type="submit">CERCA</button>
             <br />
-            <products-list/>
+            <productsList/>
             <pagination/>
         </form>
+        <a href=#titles><p id="scroll-top">↑</p></a>
     </main>
+    <footer>
+        <p xml:lang="en">© Solid Funicular - All rights reserved</p>
+        <p>Tecnologie <span xml:lang="en">Web</span> <abbr title="Università degli Studi di Padova">Unipd</abbr></p>
+    </footer>
 </body>
 </html>

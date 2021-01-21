@@ -36,13 +36,6 @@ function fillPagewithCartProducts($page)
     return $page;
 }
 
-function noProductsPage($page)
-{
-    $page = str_replace("<noProducts/>", "", $page);
-
-    return $page;
-}
-
 function cleanPage($page)
 {
     $page = str_replace("<value-company/>", "", $page);
@@ -106,7 +99,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
     if($err === true)
     {
         QuoteService::addQuotation($company, $telephone, $reason, $_SESSION['user'], $_SESSION['cart']);
-        echo "DONE";
+        $page = file_get_contents("./cart/thank-you-page.html");
+        $page = fetchAndFillCategories($page);
+        echo $page;
     }
     else
     {
@@ -117,16 +112,25 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
 }
 else
 {
-    if(!empty($_SESSION['cart']))
+    if(isset($_SESSION['user']))
     {
-        $page=fillPagewithCartProducts(file_get_contents("./cart/cart.html"));
-        $page=fetchAndFillCategories($page);
-        echo cleanPage($page);
+        if(!empty($_SESSION['cart']))
+        {
+            $page=fillPagewithCartProducts(file_get_contents("./cart/cart.html"));
+            $page=fetchAndFillCategories($page);
+            echo cleanPage($page);
+        }
+        else
+        {
+            $page = file_get_contents("./cart/no-products.html");
+            $page = fetchAndFillCategories($page);
+            echo $page;
+        }
     }
     else
     {
-        $page=fillPagewithCartProducts(file_get_contents("./cart/no-products.html"));
-        $page=fetchAndFillCategories($page);
-        echo cleanPage($page);
+        $page = file_get_contents("./cart/go-to-login-page.html");
+        $page = fetchAndFillCategories($page);
+        echo $page;
     }
 }

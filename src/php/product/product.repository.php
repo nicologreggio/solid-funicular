@@ -79,6 +79,7 @@ class ProductRepository
         );
 
         $stm->bindValue(":name", "%{$name}%", PDO::PARAM_STR);
+
         if(!empty($category))
         {
             $stm->bindValue(":category", $category, PDO::PARAM_INT);
