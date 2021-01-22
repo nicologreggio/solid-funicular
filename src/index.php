@@ -1,7 +1,6 @@
 <?php
-session_start();
-
-require_once './utils/utils.php';
+require_once(__DIR__.'/utils/utils.php');
+require_once(__DIR__.'/inc/header_php.php');
 
 $page=file_get_contents('./index.html');
 
