@@ -101,7 +101,7 @@ function fillPagination($page, $count, $currentPage)
     
     $numberPages = floor($count / $limit) + ($count % $limit == 0 ? 0 : 1);
     
-    if($numberPages != 1)
+    if($numberPages != 1 & $numberPages != 0)
     {
         $paginationStr .= "
             <fieldset id='pagination'>
@@ -112,11 +112,11 @@ function fillPagination($page, $count, $currentPage)
         {
             if($currentPage == $i)
             {
-                $paginationStr .= "<button class='pages current' name='page' value='{$i}' disabled='disabled'>{$i}</button>";                
+                $paginationStr .= "<button class='button pages current' name='page' value='{$i}' disabled='disabled'>{$i}</button>";                
             }
             else
             {
-                $paginationStr .= "<button class='pages' name='page' value='{$i}'>{$i}</button>";
+                $paginationStr .= "<button class='button pages' name='page' value='{$i}'>{$i}</button>";
             }
         }
         
