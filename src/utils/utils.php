@@ -103,7 +103,7 @@ function fillPagination($page, $count, $currentPage)
     if($numberPages != 1 & $numberPages != 0)
     {
         $paginationStr .= "
-            <fieldset id='pagination' role='tablist'>
+            <fieldset id='pagination'>
             <legend>Pagine:&nbsp;</legend>
         ";
 
@@ -115,6 +115,7 @@ function fillPagination($page, $count, $currentPage)
                     <button 
                         class='button current'
                         name='page'
+                        type='submit'
                         aria-selected='true'
                         value='{$i}'
                         aria-label='Sei alla pagina numero {$i}'
@@ -128,6 +129,7 @@ function fillPagination($page, $count, $currentPage)
                 $paginationStr .= "
                     <button
                         class='button'
+                        type='submit'
                         name='page'
                         aria-selected='false'
                         aria-label='Vai alla pagina numero {$i}'
