@@ -60,9 +60,13 @@ h3{
 
 /* ========== FORMS ========== */
 
+.sf-form {
+    padding: 1.25em;
+    padding-top: 0;
+}
+
 .sf-form fieldset {
     border: none;
-    padding: 1.25em;
     padding-top: 0;
 }
 
@@ -70,6 +74,10 @@ h3{
     font-size: 1.2em;
     font-weight: bold;
     margin-bottom: 0.5em;
+}
+
+.sf-form fieldset legend {
+    padding-top: 1.25em;
 }
 
 .sf-form legend + label {
@@ -113,7 +121,7 @@ h3{
 
 .buttons-control
 {
-    padding: 0em 1.25em;
+    padding: 1.25em 1.25em;
 }
 
 .buttons-control button[type='submit']
