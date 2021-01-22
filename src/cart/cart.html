@@ -32,47 +32,45 @@
             </div>
             <h2>Form di richiesta preventivo</h2>
             <form id='form-quotation' class='sf-form' action='./cart.php' method='post' data-validate='1'>
-                <fieldset>
-                    <label for='company'>Azienda*:</label>
-                    <input
-                        id='company'
-                        name='company'
-                        placeholder="Inserisci il nome dell'azienda"
-                        value='<value-company/>'
-                        required='required'
-                        data-error-field='error-company' 
-                        data-rules='required'
-                        data-error-message="Il nome dell'azienda è obbligatorio"
-                        aria-required="true"
-                        aria-label="Inserisci il nome dell'azienda"
-                        aria-describedby="error-company"
-                        />
-                    <p id='error-company' class='error' role="alert"><error-company/></p>
+                <label for='company'>Azienda*:</label>
+                <input
+                    id='company'
+                    name='company'
+                    placeholder="Inserisci il nome dell'azienda"
+                    value='<value-company/>'
+                    required='required'
+                    data-error-field='error-company' 
+                    data-rules='required'
+                    data-error-message="Il nome dell'azienda è obbligatorio"
+                    aria-required="true"
+                    aria-label="Inserisci il nome dell'azienda"
+                    aria-describedby="error-company"
+                    />
+                <p id='error-company' class='error' role="alert"><error-company/></p>
 
-                    <label for='telephone'>Telefono*:</label>
-                    <input
-                        id='telephone'
-                        name='telephone'
-                        value='<value-telephone/>'
-                        placeholder="Inserisci il numero di telefono da contattare"
-                        required='required'
-                        data-error-field='error-telephone'
-                        data-rules='required|integer'
-                        data-error-message='Il numero di telefono è obbligatorio e deve essere composto solo da numeri'
-                        aria-required="true"
-                        aria-label="Inserisci il numero di telefono da contattare"
-                        aria-describedby="error-telephone"
-                        />
-                    <p id='error-telephone' class='error' role="alert"><error-telephone/></p>
+                <label for='telephone'>Telefono*:</label>
+                <input
+                    id='telephone'
+                    name='telephone'
+                    value='<value-telephone/>'
+                    placeholder="Inserisci il numero di telefono da contattare"
+                    required='required'
+                    data-error-field='error-telephone'
+                    data-rules='required|integer'
+                    data-error-message='Il numero di telefono è obbligatorio e deve essere composto solo da numeri'
+                    aria-required="true"
+                    aria-label="Inserisci il numero di telefono da contattare"
+                    aria-describedby="error-telephone"
+                    />
+                <p id='error-telephone' class='error' role="alert"><error-telephone/></p>
 
-                    <label for='reason'>Ragione della richiesta del preventivo:</label>
-                    <textarea
-                        id='reason'
-                        placeholder="Inserisci la ragione del tuo preventivo"
-                        name='reason'
-                        aria-label="Inserisci la ragione del tuo preventivo"
-                        ><value-reason/></textarea>
-                </fieldset>
+                <label for='reason'>Ragione della richiesta del preventivo:</label>
+                <textarea
+                    id='reason'
+                    placeholder="Inserisci la ragione del tuo preventivo"
+                    name='reason'
+                    aria-label="Inserisci la ragione del tuo preventivo"
+                    ><value-reason/></textarea>
                 <div class='buttons-control'>
                     <button class='button' type='submit'>Invia il preventivo</button>
                 </div>

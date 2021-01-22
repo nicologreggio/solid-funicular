@@ -24,41 +24,39 @@
 	<header-navigation />
 
 	<main id="main-content">
+		<h2>Accedi</h2>
 		<form class="sf-form" action="./login.php" method="post" data-validate="1">
-			<h2>Accedi</h2>
-			<fieldset>
-				<label for="email">Email*: </label>
-				<input
-				id="email"
-				value="<value-email/>"
-				name="email" 
-				type="email" 
-				required="required" 
-				placeholder="Inserisci la tua email"
-				aria-label="Inserisci la tua email"
-				aria-required="true"
-				data-error-field="error-email" 
-				data-rules="required"
-				data-error-message="L'email non è stata inserita"
-				aria-describedby="error-email" />
-				<p id="error-email" class="error" role="alert"><error-email/></p>
+			<label for="email">Email*: </label>
+			<input
+			id="email"
+			value="<value-email/>"
+			name="email" 
+			type="email" 
+			required="required" 
+			placeholder="Inserisci la tua email"
+			aria-label="Inserisci la tua email"
+			aria-required="true"
+			data-error-field="error-email" 
+			data-rules="required"
+			data-error-message="L'email non è stata inserita"
+			aria-describedby="error-email" />
+			<p id="error-email" class="error" role="alert"><error-email/></p>
 
-				<label for="password">Password*: </label>
-				<input
-					id="password"
-					value="<value-password/>"
-					name="password"
-					type="password"
-					required="required" 
-					placeholder="Inserisci la password"
-					aria-label="Inserisci la password"
-					aria-required="true"
-					data-error-field="error-password" 
-					data-rules="required"
-					data-error-message="La password non è stata inserita"
-					aria-describedby="error-password" />
-				<p id="error-password" class="error" role="alertdialog"><error-password/></p>
-			</fieldset>
+			<label for="password">Password*: </label>
+			<input
+				id="password"
+				value="<value-password/>"
+				name="password"
+				type="password"
+				required="required" 
+				placeholder="Inserisci la password"
+				aria-label="Inserisci la password"
+				aria-required="true"
+				data-error-field="error-password" 
+				data-rules="required"
+				data-error-message="La password non è stata inserita"
+				aria-describedby="error-password" />
+			<p id="error-password" class="error" role="alertdialog"><error-password/></p>
 			<div class="buttons-control">
 				<button class='button' type="submit">Accedi</button>
 				<a href="./signup.php">Non sei ancora registrato? Fallo subito cliccando qui!</a>
