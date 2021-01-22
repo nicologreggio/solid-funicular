@@ -46,8 +46,12 @@ h2{
     font-size: 1.5em;
 }
 
+h3{
+    font-size: 1.3em;
+}
+
 #shortcuts{
-    margin: 0.1em 0 0.1em 0;
+    margin: 0.2em 0 0.2em 0;
 }
 
 .menu li {

@@ -129,7 +129,7 @@ function fillPageWithErrorAndValue($page, $err)
 $page=file_get_contents('./signup/signup.html');
 $page=fillHeader($page);
 $page=str_replace('<breadcrumbs-location />', 'Registrati', $page);
-$page=str_replace('<a href="./login.php"><img id="login" src="../images/icons/login.png" alt="Icona utente per login" /></a>', '', $page);
+$page=str_replace('<a href="./login.php"><img id="login" src="../images/icons/login.svg" alt="Icona utente per login" /></a>', '', $page);
 
 if($_SERVER['REQUEST_METHOD'] == 'POST')
 {

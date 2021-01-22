@@ -42,14 +42,14 @@ function fillHeader($page, $currentCat=-1)
     if(isset($_SESSION['user'])){
         //var_dump($_SERVER['REQUEST_URI']);
         $page=str_replace('<account-icon />', '<a href="./logout.php">
-                <img src="../images/icons/logout.png" alt="Icona di uscita per effetturare il logout" />
+                <img src="../images/icons/logout.svg" alt="Icona di uscita per effetturare il logout" />
                 <span>' . $_SESSION['username'] . '</span>
             </a>', $page);
     }
     else{
         if(!strpos($_SERVER['REQUEST_URI'], 'signup.php') && !strpos($_SERVER['REQUEST_URI'], 'login.php')){
             $page=str_replace('<account-icon />', '<a href="./login.php">
-                    <img src="../images/icons/login.png" alt="Icona utente per effettuare login" />
+                    <img src="../images/icons/login.svg" alt="Icona utente per effettuare login" />
                     <span>Accedi</span>
                 </a>', $page);
         }
