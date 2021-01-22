@@ -119,7 +119,7 @@ class ProductRepository
             
             foreach($materials as $index => $material)
             {
-                $filterMaterials .= "`MATERIALS`._ID = ".$material;
+                $filterMaterials .= "`MATERIALS`._ID = ".filter_var($material, FILTER_VALIDATE_INT);
 
                 if($index + 1 != count($materials)) $filterMaterials .= " AND ";
             }
