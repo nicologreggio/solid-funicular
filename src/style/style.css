@@ -226,6 +226,10 @@ header {
     background-color: #111111;
 }
 
+#logo {
+    margin-bottom: 0.1em;
+}
+
 /* ========== BREADCRUMBS ========== */
 
 #breadcrumbs {
