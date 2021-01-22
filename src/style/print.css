@@ -253,14 +253,6 @@ a {
     display: block;
 }
 
-#materials-wrapper {
-    display: none;
-}
-
-#materials-wrapper[open] {
-    display: block;
-}
-
 #extra-link {
     display: none;
 }

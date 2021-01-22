@@ -7,14 +7,11 @@
 
 html, body {
     height: 100%;
-    /* max-width: 1200px;
-    margin: auto; */
     font-family: 'Fira Sans', sans-serif;
     background-color: white;
 }
 
 html {
-    /* background-image: url(../../images/bg.png); */
     scroll-behavior: smooth;
 }
 
@@ -100,17 +97,6 @@ h3{
 
 .sf-form input:focus {
     border: 2px solid #0288D1;
-}
-
-#password {
-    max-width: 90%;
-}
-
-#hide-show-password
-{
-    float: right;
-    transform: translateY(50%);
-    cursor: pointer;
 }
 
 .suggestion, .error {
