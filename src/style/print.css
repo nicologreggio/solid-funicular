@@ -137,12 +137,7 @@ a {
     display: none;
 }
 
-#products-list {
-    page-break-inside: auto;
-}
-
 #products-list li {
-    page-break-inside: auto;
     width: 20%;
     box-shadow: none !important;
     transform: scale(1) !important;
