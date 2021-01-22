@@ -126,9 +126,8 @@ if($id = $_GET['id'])
 	{
 		$_SESSION['actual-product-id'] = $id;
 		$page=file_get_contents('./product-details-page/product-details-page.html');
-		// $page=str_replace("<cat-name />", $product->getName() . ' | ' . $product->getCategory(), $page);
 		$page=fillHeader($page);
-		$page=str_replace('<breadcrumbs-location />', '<cat-link /> >> <productName/>', $page);
+		$page=str_replace('<breadcrumbs-location />', '<cat-link /> <span aria-hidden="true"> >> </span> <productName/>', $page);
 		$page=fillPageWithDetails($page, $product);
 		echo $page;
 	}

@@ -10,7 +10,7 @@ function fillSearchbar($page)
 {
     $searchbarStr = "
         <label for='searchbar'>Termini di ricerca:</label>
-        <input id='searchbar' placeholder='Inserisci dei termini di ricerca' name='searchbar' value='{$_SESSION['search']['name']}' />
+        <input id='searchbar' placeholder='Inserisci i termini per cui ricercare' name='searchbar' value='{$_SESSION['search']['name']}' />
     ";
 
     $page = str_replace("<searchbar/>", $searchbarStr, $page);
@@ -114,10 +114,10 @@ $_SESSION['search'] = [
     'page' => ($_GET['page']) ? (int) ($_GET['page']) : 1
 ];+
 
-$page=file_get_contents("./search/search.html");
-$page=fillHeader($page);
-$page=str_replace('<breadcrumbs-location />', 'Ricerca', $page);
-$page=str_replace('<a href="./search.php"><img src="../images/icons/search.svg" alt="Lente d\'ingradimento per la ricerca" /><span>Cerca</span></a>', '', $page);
+$page = file_get_contents("./search/search.html");
+$page = fillHeader($page);
+$page = str_replace('<breadcrumbs-location />', 'Ricerca', $page);
+$page = str_replace('<a href="./search.php"><img src="../images/icons/search.svg" alt="Lente d\'ingradimento per la ricerca" /><span>Cerca</span></a>', '', $page);
 
 $page=fillPage($page);
 

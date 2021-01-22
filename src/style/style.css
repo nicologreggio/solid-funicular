@@ -139,7 +139,7 @@ h3{
     background-color: #4f0300;
 }
 
-#reset-button {
+#search-button {
     float: right;
 }
 
@@ -508,7 +508,12 @@ footer > p{
 
 .search-material
 {
-    padding-left: 0.2em;   
+    padding: 0.5em 0 0.5em 0.2em;
+}
+
+.search-material label
+{
+    width: 100%;
 }
 
 /* ========= PAGINATION ========= */

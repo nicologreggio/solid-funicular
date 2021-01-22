@@ -5,18 +5,16 @@
         <h2>Elementi d'arredo</h2>
     </div>
     <a class="helpers" href="#main-content">Vai al contenuto</a>
-    <!-- probabilmente non vanno bene per accesibilita', forse va aggiunto testo in a da nascondere poi -->
     <div id="shortcuts">
-        <a href="./search.php"><img src="../images/icons/search.svg" alt="Lente d'ingradimento per la ricerca" /><span>Cerca</span></a>
-        <!-- <a href="./login.php"><img id="login" src="../images/icons/login.svg" alt="Icona utente per login" /></a> -->
+        <a href="./search.php" aria-label="Vai alla pagina di ricerca"><img src="../images/icons/search.svg" alt="Lente d'ingradimento per la ricerca" /><span>Cerca</span></a>
         <account-icon />
-        <a href="./cart.php"><img src="../images/icons/shopping_cart.svg" alt="Carrello dei prodotti" /><span>Carrello</span></a>
+        <a href="./cart.php" aria-label="Vai alla pagina del carrello"><img src="../images/icons/shopping_cart.svg" alt="Carrello dei prodotti" /><span>Carrello</span></a>
     </div>
 
     <nav class="menu desktop">
         <ul>
-            <li xml:lang="en"><a href="index.php">Home</a></li>
-            <li><a href="contacts.php">Contatti</a></li>
+            <li role="tab" aria-selected="false" aria-label="Vai alla pagina principale" xml:lang="en"><a href="index.php">Home</a></li>
+            <li role="tab" aria-selected="false" aria-label="Vai alla pagina dei contatti"><a href="contacts.php">Contatti</a></li>
             <cat-0/>
             <cat-1/>
             <cat-2/>
@@ -28,8 +26,8 @@
         <summary>Menù</summary>
         <nav>
             <ul>
-                <li xml:lang="en"><a href="index.php">Home</a></li>
-                <li><a href="contacts.php">Contatti</a></li>
+                <li role="tab" aria-selected="false" aria-label="Vai alla pagina principale" xml:lang="en"><a href="index.php">Home</a></li>
+                <li role="tab" aria-selected="false" aria-label="Vai alla pagina dei contatti"><a href="contacts.php">Contatti</a></li>
                 <cat-0/>
                 <cat-1/>
                 <cat-2/>

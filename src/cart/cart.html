@@ -42,9 +42,12 @@
                         data-error-field='error-company' 
                         data-rules='required'
                         data-error-message="Il nome dell'azienda è obbligatorio"
+                        aria-required="true"
+                        aria-label="Inserisci il nome dell'azienda"
+                        aria-describedby="error-company"
                         />
-                    <div id='error-company' class='error'><error-company/></div>
-    
+                    <p id='error-company' class='error' role="alert"><error-company/></p>
+
                     <label for='telephone'>Telefono*:</label>
                     <input
                         id='telephone'
@@ -55,20 +58,25 @@
                         data-error-field='error-telephone'
                         data-rules='required|integer'
                         data-error-message='Il numero di telefono è obbligatorio e deve essere composto solo da numeri'
+                        aria-required="true"
+                        aria-label="Inserisci il numero di telefono da contattare"
+                        aria-describedby="error-telephone"
                         />
-                    <div id='error-telephone' class='error'><error-telephone/></div>
-    
+                    <p id='error-telephone' class='error' role="alert"><error-telephone/></p>
+
                     <label for='reason'>Ragione della richiesta del preventivo:</label>
                     <textarea
                         id='reason'
                         placeholder="Inserisci la ragione del tuo preventivo"
-                        name='reason'><value-reason/></textarea>
+                        name='reason'
+                        aria-label="Inserisci la ragione del tuo preventivo"
+                        ><value-reason/></textarea>
                 </fieldset>
                 <div class='buttons-control'>
-                    <button class='button' type='submit'>Richiedi preventivo</button>
+                    <button class='button' type='submit'>Invia il preventivo</button>
                 </div>
             </form>
-            <a href="#titles" id="scroll-top">↑</a>
+            <a href="#titles" id="scroll-top" aria-label="Torna all'inizio della pagina">↑</a>
         </main>
 
         <footer>

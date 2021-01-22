@@ -35,10 +35,13 @@
 				type="email" 
 				required="required" 
 				placeholder="Inserisci la tua email"
+				aria-label="Inserisci la tua email"
+				aria-required="true"
 				data-error-field="error-email" 
 				data-rules="required" 
-				data-error-message="L'email non è stata inserita" />
-				<div id="error-email" class="error"><error-email/></div>
+				data-error-message="L'email non è stata inserita"
+				aria-describedby="error-mail" />
+				<p id="error-email" class="error" role="alert"><error-email/></p>
 
 				<label for="password">Password*: </label>
 				<input
@@ -48,17 +51,21 @@
 					type="password"
 					required="required" 
 					placeholder="Inserisci la password"
+					aria-label="Inserisci la password"
+					aria-required="true"
 					data-error-field="error-password" 
 					data-rules="required"
-					data-error-message="La password non è stata inserita" />
-				<img id="hide-show-password" src="/images/icons/eye-off.svg" alt="" />
-				<div id="error-password" class="error"><error-password/></div>
+					data-error-message="La password non è stata inserita"
+					aria-describedby="error-password" />
+				<img id="hide-show-password" src="/images/icons/eye-off.svg" alt="" tabindex="-1" aria-hidden="true" />
+				<p id="error-password" class="error" role="alertdialog"><error-password/></p>
 			</fieldset>
 			<div class="buttons-control">
 				<button class='button' type="submit">Accedi</button>
 				<a href="./signup.php">Non sei ancora registrato? Fallo subito cliccando qui!</a>
 			</div>
 		</form>
+        <a href="#titles" id="scroll-top" class="helpers" aria-label="Torna all'inizio della pagina">↑</a>
 	</main>
 
 	<footer>

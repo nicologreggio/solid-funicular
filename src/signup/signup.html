@@ -39,11 +39,14 @@
                     autofocus="autofocus"
                     placeholder="Inserisci la tua email"
                     required="required"
+                    aria-required="true"
                     data-error-field="error-email" 
                     data-rules="required|email|max_length:100" 
                     data-error-message="L'email inserita non è valida o troppo lunga (massimo 100 caratteri)"
+                    aria-label="Inserisci la tua email"
+                    aria-describedby="error-email"
                     />
-                <div id="error-email" class="error"><error-email/></div>
+                <p id="error-email" class="error" role="alert"><error-email/></p>
                 
                 <label for="name">Nome*:</label>
                 <input
@@ -53,11 +56,14 @@
                     type="text" 
                     placeholder="Inserisci il tuo nome"
                     required="required"
+                    aria-required="true"
                     data-error-field="error-name" 
                     data-rules="required|max_length:50" 
                     data-error-message="Il nome è obbligatorio e deve essere lungo massimo 50 caratteri"
+                    aria-label="Inserisci il tuo nome"
+                    aria-describedby="error-name"
                     />
-                <div id="error-name" class="error"><error-name/></div>
+                <p id="error-name" class="error" role="alert"><error-name/></p>
                 
                 <label for="surname">Cognome*:</label>
                 <input 
@@ -67,11 +73,14 @@
                     type="text" 
                     placeholder="Inserisci il tuo cognome"
                     required="required"
+                    aria-required="true"
                     data-error-field="error-surname" 
                     data-rules="required|max_length:100" 
                     data-error-message="Il cognome è obbligatorio e deve essere lungo massimo 100 caratteri"
+                    aria-label="Inserisci il tuo cognome"
+                    aria-describedby="error-surname"
                     />
-                <div id="error-surname" class="error"><error-surname/></div>
+                <p id="error-surname" class="error" role="alert"><error-surname/></p>
                 
                 <label for="password">Password*: </label>
                 <input
@@ -80,13 +89,18 @@
                     name="password" 
                     type="password"
                     required="required"
+                    aria-required="true"
+                    aria-labelledby="suggestion-password"
                     placeholder="Inserisci la password"
                     data-error-field="error-password" 
                     data-rules="required|password"
+                    aria-label="Inserisci la password"
+                    aria-labelledby="suggestion-password"
+                    aria-describedby="error-password"
                     />
-                <img id="hide-show-password" src="/images/icons/eye-off.svg" alt="" />
-                <div class="suggestion">La password deve essere lunga almeno 8 caratteri, contenere almeno una lettera maiuscola e almeno un numero</div>
-                <div id="error-password" class="error"><error-password/></div>
+                <img id="hide-show-password" src="/images/icons/eye-off.svg" alt="" tabindex="-1" aria-hidden="true" />
+                <p id="suggestion-password" class="suggestion">La password deve essere lunga almeno 8 caratteri, contenere almeno una lettera maiuscola e almeno un numero</p>
+                <p id="error-password" class="error" role="alert"><error-password/></p>
 
                 <label for="confirm-password">Conferma Password*: </label>
                 <input 
@@ -94,13 +108,16 @@
                     value="<value-confirm-password/>"
                     name="confirm-password"
                     type="password" 
-                    required="required" 
+                    required="required"
+                    aria-required="true" 
                     placeholder="Inserisci di nuovo la password"
                     data-error-field="error-confirm-password"
                     data-rules="required|password|equals:password"
                     data-error-message="La password e la password di conferma non corrispondono"
+                    aria-label="Inserisci di nuovo la password come conferma"
+                    aria-describedby="error-confirm-password"
                 />
-                <div id="error-confirm-password" class="error"><error-confirm-password/></div>
+                <p id="error-confirm-password" class="error" role="alert"><error-confirm-password/></p>
             </fieldset>
             <fieldset>
                 <legend>Residenza</legend>
@@ -113,11 +130,14 @@
                     type="text" 
                     placeholder="Inserisci la città di residenza" 
                     required="required"
+                    aria-required="true"
                     data-error-field="error-city" 
                     data-rules="required|max_length:100" 
                     data-error-message="La città è obbligatoria e deve essere lunga massimo 100 caratteri"
+                    aria-label="Inserisci la città di residenza"
+                    aria-describedby="error-city"
                     />
-                <div id="error-city" class="error"><error-city/></div>
+                <p id="error-city" class="error" role="alert"><error-city/></p>
                 
                 <label for="address">Indirizzo*:</label>
                 <input 
@@ -127,11 +147,14 @@
                     type="text" 
                     placeholder="Inserisci l'indirizzo di residenza"
                     required="required"
+                    aria-required="true"
                     data-error-field="error-address" 
                     data-rules="required|max_length:100" 
                     data-error-message="L'indirizzo è obbligatorio e deve essere lungo massimo 100 caratteri"
+                    aria-label="Inserisci l'indirizzo di residenza"
+                    aria-describedby="error-address"
                     />
-                <div id="error-address" class="error"><error-address/></div>
+                <p id="error-address" class="error" role="alert"><error-address/></p>
                 
                 <label for="cap">CAP*:</label>
                 <input
@@ -141,19 +164,22 @@
                     type="number" 
                     placeholder="Inserisci il CAP di residenza"
                     required="required"
+                    aria-required="true"
                     maxlength="5"
                     data-error-field="error-cap"
                     data-rules="required|integer|length:5"
                     data-error-message="Il CAP è obbligatorio e deve essere composto esattamente da 5 numeri"
+                    aria-label="Inserisci il CAP di residenza"
+                    aria-describedby="error-cap"
                     />
-                <div id="error-cap" class="error"><error-cap/></div>
+                <p id="error-cap" class="error" role="alert"><error-cap/></p>
             </fieldset>
             <div class="buttons-control">
                 <button class="button" type="submit">Registrati</button>
                 <a href="./login.php">Sei già registrato? Accedi cliccando qua!</a>
             </div>
         </form>
-        <a href="#titles" id="scroll-top">↑</a>
+        <a href="#titles" id="scroll-top" aria-label="Torna all'inizio della pagina">↑</a>
     </main>
     <footer>
         <p xml:lang="en">© Solid Funicular - All rights reserved</p>
