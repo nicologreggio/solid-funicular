@@ -30,7 +30,7 @@ function fillPagewithCartProducts($page)
                         </div>
                         <form class='remove-product' action='./php/remove-from-cart-quotation.php' method='POST'>
                             <input type='hidden' name='product-id' value='{$product->getId()}' />
-                            <button type='submit'>
+                            <button class='button' type='submit'>
                                 <img src='../images/icons/remove.svg' alt='Rimuovi il prodotto dal carrello' />
                                 <p>Rimuovi</p>
                             </button>

@@ -52,7 +52,7 @@ function fillPageWithDetails(string $page, ProductModel $product)
 				<form class='form-quotation' method='POST' action='./php/remove-from-cart-quotation.php'>
 					<fieldset>
 						<legend>Rimozione dal preventivo</legend>
-						<button type='submit'>Rimuovi il prodotto</button>
+						<button class='button' type='submit'>Rimuovi il prodotto</button>
 					</fieldset>
 				</form>
 			";
@@ -69,7 +69,7 @@ function fillPageWithDetails(string $page, ProductModel $product)
 						<fieldset>
 							<legend>Gestione quantità</legend>
 							<input id='quantity' value='{$quantity}' name='quantity' type='number' min='1' />
-							<button type='submit'>{$addOrUpdateString}</button>
+							<button class='button' type='submit'>{$addOrUpdateString}</button>
 						</fieldset>
 					</form>
 		";	
