@@ -2,9 +2,9 @@
 
 class MaterialModel
 {
-    private int $id;
-    private string $name;
-    private ?string $description;
+    private $id;
+    private $name;
+    private $description;
 
     public function __construct(int $id, string $name, ?string $description = null)
     {

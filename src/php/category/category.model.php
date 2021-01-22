@@ -2,10 +2,10 @@
 
 class CategoryModel
 {
-    private int $id;
-    private string $name;
-    private ?string $description;
-    private ?string $metaDescription;
+    private $id;
+    private $name;
+    private $description;
+    private $metaDescription;
 
     public function __construct(int $id, string $name, ?string $description = null, ?string $metaDescription = null)
     {

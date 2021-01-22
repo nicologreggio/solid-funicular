@@ -4,17 +4,17 @@ require_once(__DIR__."/../../utils/utils.php");
 
 class ProductModel
 {
-    private int $id;
-    private string $name;
-    private ?string $description;
-    private ?string $metaDescription;
-    private ?string $dimensions;
-    private ?string $age;
-    private ?string $mainImage;
-    private ?string $mainImageDescription;
-    private ?string $category;
-    private ?int $categoryId; 
-    private ?array $materials;
+    private $id;
+    private $name;
+    private $description;
+    private $metaDescription;
+    private $dimensions;
+    private $age;
+    private $mainImage;
+    private $mainImageDescription;
+    private $category;
+    private $categoryId; 
+    private $materials;
 
     public function __construct(
         int $id,

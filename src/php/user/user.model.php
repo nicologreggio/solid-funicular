@@ -2,15 +2,15 @@
 
 class UserModel
 {
-    private string $id;
-    private string $email;
-    private string $name;
-    private string $surname;
-    private string $city;
-    private string $address;
-    private int $cap;
-    private bool $isAdmin;
-    private string $password;
+    private $id;
+    private $email;
+    private $name;
+    private $surname;
+    private $city;
+    private $address;
+    private $cap;
+    private $isAdmin;
+    private $password;
 
     public function __construct(string $id, string $email, string $name, string $surname, string $city, string $address, int $cap, string $password, bool $isAdmin)
     {

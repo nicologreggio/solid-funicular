@@ -2,12 +2,11 @@
 
 class QuoteModel
 {
-    private int $id;
-    private int $user;
-    private string $reason;
-    private string $company;
-    private string $telephone;
-    private array $products;
+    private $id;
+    private $user;
+    private $reason;
+    private $company;
+    private $telephone;
 
     public function __construct(int $id, string $reason, string $company, string $telephone, int $user)
     {
