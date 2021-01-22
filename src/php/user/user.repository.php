@@ -18,7 +18,7 @@ class UserRepository
         return $user ? UserModel::instanceFromUser($user) : null;
     }
 
-    static public function insertOne(UserModel $user) : ?UserModel
+    static public function insertOne(string $email, string $name, string $surname, string $city, string $address, int $cap, string $password, bool $isAdmin = false) : ?UserModel
     {
         $stm = DBC::getInstance()->prepare("
             INSERT INTO `USERS`(`_EMAIL`, `_NAME`, `_SURNAME`, `_CITY`, `_ADDRESS`, `_CAP`, `_ADMIN`, `_PASSWORD`) 
@@ -26,16 +26,16 @@ class UserRepository
         ");
 
         $res = $stm->execute([
-            $user->getEmail(),
-            $user->getName(),
-            $user->getSurname(),
-            $user->getCity(),
-            $user->getAddress(),
-            $user->getCap(),
-            $user->isAdmin(),
-            $user->getPassword()
+            $email,
+            $name,
+            $surname,
+            $city,
+            $address,
+            $cap,
+            $isAdmin,
+            $password
         ]);
 
-        return $res ? $user : null;
+        return $res ? new UserModel(DBC::getInstance()->lastInsertId("USERS"), $email, $name, $surname, $city, $address, $cap, $password, $isAdmin) : null;
     }
 }

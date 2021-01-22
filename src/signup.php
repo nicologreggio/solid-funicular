@@ -1,15 +1,20 @@
 <?php
+session_start();
 
-require_once(__DIR__."/../../helpers/validator.php");
-require_once(__DIR__."/../utils/utils.php");
-require_once(__DIR__."/../php/user/user.service.php");
+require_once(__DIR__."/../helpers/validator.php");
+require_once(__DIR__."/utils/utils.php");
+require_once(__DIR__."/php/user/user.service.php");
 
 function signup(string $email, string $name, string $surname, string $password, string $city, string $address, int $cap) : bool
 {
     $user = UserService::signup($email, $name, $surname, $city, $address, $cap, $password);
     $exist = $user != null;
 
-    if($exist) $_SESSION['user'] = $user;
+    if($exist) 
+    {
+        $_SESSION['user'] = $user->getId();
+        $_SESSION['username'] = $user->getName().' '.$user->getSurname();
+    }
 
     return $exist;
 }
@@ -121,27 +126,28 @@ function fillPageWithErrorAndValue($page, $err)
     return $page;
 }
 
+$page=file_get_contents('./signup/signup.html');
+$page=fillHeader($page);
+$page=str_replace('<breadcrumbs-location />', 'Registrati', $page);
+$page=str_replace('<a href="./login.php"><img id="login" src="../images/icons/login.svg" alt="Icona utente per login" /></a>', '', $page);
+
 if($_SERVER['REQUEST_METHOD'] == 'POST')
 {
     $err = validateSignupData($_POST['email'], $_POST['name'], $_POST['surname'], $_POST['password'], $_POST['confirm-password'], $_POST['city'], $_POST['address'], $_POST['cap']);
 
-    if($err === false)
+    if($err === true)
     {
         if(signup($_POST['email'], $_POST['name'], $_POST['surname'], $_POST['password'], $_POST['city'], $_POST['address'], $_POST['cap']))
         {
-            echo "signup";
-        }
-        else
-        {
-            echo "not signup";
+            header('Location: ' . $_SESSION['HTTP_REFERER']);
         }
     }
     else
     {
-        echo fillPageWithErrorAndValue(file_get_contents('./signup.html'), $err);
+        echo fillPageWithErrorAndValue($page, $err);
     }
 }
 else
 {
-    echo cleanPage(file_get_contents('./signup.html'));
+    echo cleanPage($page);
 }

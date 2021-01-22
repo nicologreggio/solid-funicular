@@ -37,7 +37,7 @@ function removeError(input){
     input.classList.add('error')
     if(input.dataset.errorMessage)
     {
-        document.getElementById(input.dataset.errorField).innerHTML = "<p class='error'>"+input.dataset.errorMessage+"</p>";
+        document.getElementById(input.dataset.errorField).innerHTML = input.dataset.errorMessage+"<br />";
     }
 }
 function validateInput(input){

@@ -35,7 +35,7 @@ class Rules{
         return false;
     }
     public static function required($value){
-        return $value != null && $value != "" && $value == true ;
+        return $value != null && $value != "" && ($value == true || $value == 0) ;
     }
     public static function regex($value, $regex){
         return preg_match($regex, $value) == true;

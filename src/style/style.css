@@ -1,0 +1,539 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    height: 100%;
+    /* max-width: 1200px;
+    margin: auto; */
+    font-family: 'Fira Sans', sans-serif;
+    background-color: white;
+}
+
+html {
+    /* background-image: url(../../images/bg.png); */
+    scroll-behavior: smooth;
+}
+
+body {
+    height: auto;
+}
+
+/* ========== GENERALS ========== */
+
+summary {
+    cursor: pointer;
+}
+
+.button {
+    color: white;
+    border: none;
+    padding: 0.3125em 0.9375em;
+    font-size: 1.3em;
+    border-radius: 3px;
+    cursor: pointer;
+    background-color: #A70500;
+    text-decoration: none;
+}
+
+/* ========== HEADINGS ========== */
+
+h1,
+h2, h3 {
+    color: #A70500;
+}
+
+h1 {
+    font-size: 4em;
+}
+
+h2 {
+    font-size: 2em;
+    margin-bottom: 0.3em;
+}
+
+h3{
+    font-size: 1.5em;
+    margin-bottom: 0.3em;
+    margin-top: 0.8em;
+}
+
+/* ========== FORMS ========== */
+
+.sf-form fieldset {
+    border: none;
+    padding: 1.25em;
+    padding-top: 0;
+}
+
+.sf-form legend {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: 0.5em;
+}
+
+.sf-form legend + label {
+    margin-top: 0em;
+}
+
+.sf-form label {
+    display: block;
+    margin-top: 1.0em;
+    margin-bottom: 0.5em;
+    color: #01579B;
+    font-weight: bold;
+}
+
+.sf-form input {
+    display: inline-block;
+    width: calc(100% - 0.3em);
+    font-size: 1em;
+    border-radius: 3px;
+    margin-top: 0.5em;
+    border: 2px solid #ccc;
+    padding: 0.3em;
+}
+
+.sf-form input:focus {
+    border: 2px solid #0288D1;
+}
+
+#password {
+    max-width: 90%;
+}
+
+#hide-show-password
+{
+    float: right;
+    transform: translateY(50%);
+    cursor: pointer;
+}
+
+.suggestion, .error {
+    font-size: 1em;
+}
+
+.error {
+    color: #B71C1C;
+}
+
+.error ul {
+    list-style-type: none;
+}
+
+.buttons-control
+{
+    padding: 0em 1.25em;
+}
+
+.buttons-control button[type='submit']
+{
+    float: right;
+}
+
+.buttons-control button[type='submit']:hover {
+    transition: 0.3s;
+    background-color: #4f0300;
+}
+
+#search-button {
+    float: right;
+}
+
+/* ========== HEADER & MENU ========== */
+
+.helpers{
+    position: absolute;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+    clip: rect(1px, 1px, 1px, 1px);
+}
+
+header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: auto;
+}
+
+#shortcuts > a {
+    margin-left: 2em;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#shortcuts img{
+    width: 2em;
+}
+
+#shortcuts span{
+    max-width: 10em;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+#shortcuts img:active{
+    /* transition: 0.3s; */
+    transform: scale(1.5);
+}
+
+#titles {
+    text-align: center;
+    flex: 1;
+}
+
+.menu {
+    width: 100%;
+    background-color: #A70500;
+    border-radius: 0.5em;
+}
+
+.menu ul {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.menu li a, .menu .current{
+    display: inline-block;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    padding: 1em 0.6em;
+}
+
+.current {
+    font-weight: bold;
+    background-color: black;
+    text-align: center;
+    color: white;
+    cursor: default;
+}
+
+.menu li a:hover {
+    background-color: #111111;
+}
+
+/* ========== BREADCRUMBS ========== */
+
+#breadcrumbs {
+    max-width: 1200px;
+    border-bottom: 2px solid #A70500;
+    padding: 0.2em;
+    margin: 0.5em auto 0.5em auto;
+    font-size: 1.1em;
+    position: sticky;
+    top:0;
+    background-color: white;
+}
+
+/* ========== MAIN CONTENT ========== */
+
+main {
+    padding: 1em;
+    max-width: 1024px;
+    min-height: 60vh;
+    margin: auto;
+    border-left: 0.5px solid grey;
+    border-right: 0.5px solid grey;
+    overflow: auto;
+}
+
+main hr{
+    margin: 1em 0 1em 0;
+}
+
+#scroll-top{
+    text-decoration: none;
+    background-color: #A70500;
+    color: white;
+    font-size: 1.2em;
+    float: right;
+    padding: 0.5em;
+    border-radius: 0.5em;
+    margin-top: 0.4em;
+    clear: both;
+}
+
+/* ========== STAFF FAV ========== */
+
+#staff-fav > div {
+    border: 1px solid grey;
+    border-radius: 1em;
+    margin-bottom: 1em;
+    padding: 1em;
+}
+
+#staff-fav img {
+    width: 50%;
+}
+
+#staff-fav p {
+    width: 50%;
+    float: right;
+    margin-top: 1em;
+}
+
+#staff-fav div:nth-child(even) p {
+    float: left;
+}
+
+#staff-fav h3 {
+    text-align: center;
+}
+
+/* ========== CONTACTS ========== */
+
+#contacts
+{
+    padding-left: 2em;
+}
+
+#contacts li
+{
+    margin-bottom: 0.3em;
+}
+
+/* ========== CATEGORIES PRODUCTS LIST =========== */
+
+#products-list{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    list-style-type: none;
+}
+
+#products-list li{
+    float: left;
+    background-color: white;
+    text-align: center;
+    border: 1px solid black;
+    margin: 0.2em; 
+    padding: 0.5em;
+    border-radius: 1em;
+    width: 30%;
+}
+
+#products-list li:hover{
+    -webkit-box-shadow: 2px 2px 5px 2px #000000;
+    box-shadow: 2px 2px 5px 2px #000000;
+    transition: 0.3s ease-out;
+}
+
+#products-list li:active{
+    transform: scale(1.1);
+    transition: 0.3s ease-out;
+}
+
+#products-list img{
+    width: 90%;
+}
+
+/* ========== FOOTER ========== */
+
+footer{
+    text-align: center;
+    color: white;
+    background-color: #333;
+    padding: 1em;
+    margin-top: 2em;
+    font-size: 0.8em;
+}
+
+footer > p{
+    padding: 0.2em;
+}
+
+/* ========== PDP =========== */
+
+#product-image {
+    display: block;
+    text-align: center;
+    max-width: 50%;
+    margin: auto;
+    margin-bottom: 1em;
+}
+
+#product-description
+{
+    margin-bottom: 0.5em;
+}
+
+#product-details
+{
+    list-style-type: disc;
+    padding-left: 2em;
+}
+
+.form-quotation{
+    width: 40%;
+    display: inline;
+    font-size: 1em;
+}
+
+.form-quotation fieldset
+{
+    display: inline;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.8em;
+    height: 100%;
+}
+
+.form-quotation button{
+    font-size: 1em;
+    margin-top: 0.3em;
+}
+
+.form-quotation input{
+    /* height: 2em; */
+    width: 3em;
+    font-size: 0.8em;
+    padding: 0.2em 0 0.2em 1em;
+}
+
+#form-wrapper{
+    text-align: center;
+    margin-top: 1em;
+}
+
+/* ========= CART ========== */
+
+#list-quote-products
+{
+    margin-top: 1em;
+    margin-bottom: 2em;
+}
+
+.quote-product
+{
+    display: flex;
+    height: 5em;
+    border-bottom: black 1px solid;
+    padding: 0.5em;
+}
+
+.quote-product-img
+{
+    height: 5em;
+    float: left;
+    margin-right: 0.5em;
+}
+
+.quote-information
+{
+    flex: 1;
+}
+
+.quote-control {
+    display: flex;
+}
+
+.quote-control > * {
+    position: relative;
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    align-items: center;
+    border-collapse: collapse;
+}
+
+.quote-control .product-quantity {
+    border-left: black 1px solid;
+    border-right: black 1px solid;
+}
+
+.quote-control .remove-product {
+    border-right: black 1px solid;
+}
+
+.quote-control button {
+    background: none;
+    color: inherit;
+    font: inherit;
+    padding: 0;
+}
+
+.remove-product img {
+    width: 3em;
+}
+
+#form-quotation textarea
+{
+    width: 100%;
+    resize: vertical;
+
+}
+
+/* ========== SEARCH ========== */
+
+#searchbar {
+    width: calc(100% - 2em);
+    padding: 1em;
+    margin-bottom: 0.5em;
+}
+
+#filters {
+    margin: 1em 0 1em 0;
+    padding: 0.5em;
+}
+
+#materials-wrapper {
+    border: 1px solid black;
+    margin-top: 0.5em;
+    padding: 0.2em;
+}
+
+#materials-wrapper input {
+    margin-right: 1em;
+}
+
+#products-list {
+    margin-bottom: 1em;
+}
+
+.search-material
+{
+    padding: 0.5em 0 0.5em 0.2em;
+}
+
+.search-material label
+{
+    width: 100%;
+}
+
+/* ========= PAGINATION ========= */
+
+#pagination-form, #pagination{
+    text-align: center;
+    padding: 0.5em;
+}
+
+#pagination button {
+    padding: 0;
+    width: 2em;
+    height: 2em;
+    margin-right: 0.2em;
+}
+
+/* ========= MEDIA ========= */
+
+@media only screen and (min-width: 769px){
+    .mobile{
+        display: none;
+    }
+}

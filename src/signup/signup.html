@@ -1,142 +1,189 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it" lang="it">
-	<head>
-		<meta charset="UTF-8">
-        <link rel="stylesheet" href="../style.css">
-		<link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico" />
-		<script src="../validate.js"></script>
-		<script src="../scripts/authentication.js"></script>
-	</head>
-	<body>
-		<div class="authentication-container">
-			<form class="authentication-form" action="./signup.php" method="POST" data-validate="1">
-				<h2>REGISTRAZIONE</h2>
-				<fieldset>
-                    <legend>Informazioni generali</legend>
-                     
-                    <label for="email">Email*: </label><br />
-                    <input 
-                        id="email"
-						value="<value-email/>"
-                        name="email"
-                        type="email" 
-						autofocus="autofocus" 
-                        placeholder="Inserisci la tua email"
-                        required="required"
-                        data-error-field="error-email" 
-						data-rules="required|email|max_length:100" 
-						data-error-message="L'email inserita non è valida o troppo lunga (massimo 100 caratteri)"
-                        />
-					<div id="error-email" class="error"><error-email/></div>
-                    
-                    <label for="name">Nome*:</label>
-                    <input
-                        id="name"
-						value="<value-name/>"
-                        name="name" 
-                        type="text" 
-                        placeholder="Inserisci il tuo nome"
-                        required="required"
-                        data-error-field="error-name" 
-						data-rules="required|max_length:50" 
-						data-error-message="Il nome è obbligatorio e deve essere lungo massimo 50 caratteri"
-                        />
-					<div id="error-name" class="error"><error-name/></div>
-                    
-                    <label for="surname">Cognome*:</label>
-                    <input 
-                        id="surname"
-						value="<value-surname/>"
-                        name="surname" 
-                        type="text" 
-                        placeholder="Inserisci il tuo cognome"
-                        required="required"
-                        data-error-field="error-surname" 
-						data-rules="required|max_length:100" 
-						data-error-message="Il cognome è obbligatorio e deve essere lungo massimo 100 caratteri"
-                        />
-					<div id="error-surname" class="error"><error-surname/></div>
-                    
-                    <label for="password">Password*: </label>
-                    <input
-                        id="password" 
-						value="<value-password/>"
-                        name="password" 
-                        type="password"
-                        required="required"
-                        placeholder="Inserisci la password"
-						data-error-field="error-password" 
-						data-rules="required|password"
-                        />
-					<img id="hide-show-password" class="clickable" src="/images/icons/eye-off.svg" alt="" />
-                    <div class="suggestion">La password deve essere lunga almeno 8 caratteri, contenere almeno una lettera maiuscola e almeno un numero</div>
-					<div id="error-password" class="error"><error-password/></div>
+<!DOCTYPE html>
+<html lang="it">
 
-                    <label for="confirm-password">Conferma Password*: </label><br />
-                    <input 
-                        id="confirm-password"
-						value="<value-confirm-password/>"
-                        name="confirm-password"
-                        type="password" 
-                        required="required" 
-                        placeholder="Inserisci di nuovo la password"
-                        data-error-field="error-confirm-password"
-                        data-rules="required|password|equals:password"
-						data-error-message="La password e la password di conferma non corrispondono"
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title xml:lang="en">Registrati | Solid Funicular</title>
+    <meta name="title" content="Unipd Tecweb | Solid Funicular elementi d'arredo" /> 
+    <meta name="description" content="Sito per il progetto del corso di tecweb unipd che fornisce un catalogo di elementi d'arredo per i quali è possibile richiedere un preventivo" />
+
+    <!-- TODO -->
+    <meta name="keywords" /> 
+
+    <meta name="author" content="Nicolo Greggio" />
+    <meta name="language" content="italian it" />
+    <link rel="stylesheet" href="style/style.css" />
+    <link rel="stylesheet" type="text/css" href="style/small.css" media="screen and (max-width: 768px), and only screen and (max-device-width: 768px)" />
+	<link rel="shortcut icon" type="image/x-icon" href="../images/favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="style/print.css" media="print" />
+    <script src="./validate.js"></script>
+	<script src="./scripts/authentication.js"></script>	
+</head>
+<body>
+    <header-navigation />
+
+    <main id="main-content">
+        <form class="sf-form" action="./signup.php" method="post" data-validate="1">
+            <h2>Registrazione</h2>
+            <fieldset>
+                <legend>Informazioni generali</legend>
+                    
+                <label for="email">Email*: </label>
+                <input 
+                    id="email"
+                    value="<value-email/>"
+                    name="email"
+                    type="email" 
+                    autofocus="autofocus"
+                    placeholder="Inserisci la tua email"
+                    required="required"
+                    aria-required="true"
+                    data-error-field="error-email" 
+                    data-rules="required|email|max_length:100" 
+                    data-error-message="L'email inserita non è valida o troppo lunga (massimo 100 caratteri)"
+                    aria-label="Inserisci la tua email"
+                    aria-describedby="error-email"
                     />
-					<div id="error-confirm-password" class="error"><error-confirm-password/></div>
-                </fieldset>
-                <fieldset>
-                    <legend>Residenza</legend>
-                    
-                    <label for="city">Città*: </label><br />
-                    <input 
-                        id="city"
-						value="<value-city/>"
-                        name="city" 
-                        type="text" 
-                        placeholder="Inserisci la città di residenza" 
-                        required="required"
-                        data-error-field="error-city" 
-						data-rules="required|max_length:100" 
-						data-error-message="La città è obbligatoria e deve essere lunga massimo 100 caratteri"
-                        />
-					<div id="error-city" class="error"><error-city/></div>
-                    
-                    <label for="address">Indirizzo*:</label>
-                    <input 
-                        id="address" 
-						value="<value-address/>"
-                        name="address" 
-                        type="text" 
-                        placeholder="Inserisci l'indirizzo di residenza"
-                        required="required"
-                        data-error-field="error-address" 
-						data-rules="required|max_length:100" 
-						data-error-message="L'indirizzo è obbligatorio e deve essere lungo massimo 100 caratteri"
-                        />
-					<div id="error-address" class="error"><error-address/></div>
-                    
-                    <label for="cap">CAP*:</label>
-                    <input
-                        id="cap"
-                        value="<value-cap/>"
-                        name="cap" 
-                        type="number" 
-                        placeholder="Inserisci il CAP di residenza"
-                        required="required"
-                        maxlength="5"
-                        data-error-field="error-cap"
-                        data-rules="required|integer|length:5"
-						data-error-message="Il CAP è obbligatorio e deve essere composto esattamente da 5 numeri"
-                        />
-					<div id="error-cap" class="error"><error-cap/></div>
-                </fieldset>
-				<div class="buttons-control">
-					<a class="button" href="/src/login/login.php">Accedi</a>
-					<button class="button" type="submit">Registrati</button>
-				</div>
-			</form>
-		</div>
-	</body>
+                <p id="error-email" class="error" role="alert"><error-email/></p>
+                
+                <label for="name">Nome*:</label>
+                <input
+                    id="name"
+                    value="<value-name/>"
+                    name="name" 
+                    type="text" 
+                    placeholder="Inserisci il tuo nome"
+                    required="required"
+                    aria-required="true"
+                    data-error-field="error-name" 
+                    data-rules="required|max_length:50" 
+                    data-error-message="Il nome è obbligatorio e deve essere lungo massimo 50 caratteri"
+                    aria-label="Inserisci il tuo nome"
+                    aria-describedby="error-name"
+                    />
+                <p id="error-name" class="error" role="alert"><error-name/></p>
+                
+                <label for="surname">Cognome*:</label>
+                <input 
+                    id="surname"
+                    value="<value-surname/>"
+                    name="surname" 
+                    type="text" 
+                    placeholder="Inserisci il tuo cognome"
+                    required="required"
+                    aria-required="true"
+                    data-error-field="error-surname" 
+                    data-rules="required|max_length:100" 
+                    data-error-message="Il cognome è obbligatorio e deve essere lungo massimo 100 caratteri"
+                    aria-label="Inserisci il tuo cognome"
+                    aria-describedby="error-surname"
+                    />
+                <p id="error-surname" class="error" role="alert"><error-surname/></p>
+                
+                <label for="password">Password*: </label>
+                <input
+                    id="password" 
+                    value="<value-password/>"
+                    name="password" 
+                    type="password"
+                    required="required"
+                    aria-required="true"
+                    aria-labelledby="suggestion-password"
+                    placeholder="Inserisci la password"
+                    data-error-field="error-password" 
+                    data-rules="required|password"
+                    aria-label="Inserisci la password"
+                    aria-labelledby="suggestion-password"
+                    aria-describedby="error-password"
+                    />
+                <img id="hide-show-password" src="/images/icons/eye-off.svg" alt="" tabindex="-1" aria-hidden="true" />
+                <p id="suggestion-password" class="suggestion">La password deve essere lunga almeno 8 caratteri, contenere almeno una lettera maiuscola e almeno un numero</p>
+                <p id="error-password" class="error" role="alert"><error-password/></p>
+
+                <label for="confirm-password">Conferma Password*: </label>
+                <input 
+                    id="confirm-password"
+                    value="<value-confirm-password/>"
+                    name="confirm-password"
+                    type="password" 
+                    required="required"
+                    aria-required="true" 
+                    placeholder="Inserisci di nuovo la password"
+                    data-error-field="error-confirm-password"
+                    data-rules="required|password|equals:password"
+                    data-error-message="La password e la password di conferma non corrispondono"
+                    aria-label="Inserisci di nuovo la password come conferma"
+                    aria-describedby="error-confirm-password"
+                />
+                <p id="error-confirm-password" class="error" role="alert"><error-confirm-password/></p>
+            </fieldset>
+            <fieldset>
+                <legend>Residenza</legend>
+                
+                <label for="city">Città*: </label>
+                <input 
+                    id="city"
+                    value="<value-city/>"
+                    name="city" 
+                    type="text" 
+                    placeholder="Inserisci la città di residenza" 
+                    required="required"
+                    aria-required="true"
+                    data-error-field="error-city" 
+                    data-rules="required|max_length:100" 
+                    data-error-message="La città è obbligatoria e deve essere lunga massimo 100 caratteri"
+                    aria-label="Inserisci la città di residenza"
+                    aria-describedby="error-city"
+                    />
+                <p id="error-city" class="error" role="alert"><error-city/></p>
+                
+                <label for="address">Indirizzo*:</label>
+                <input 
+                    id="address" 
+                    value="<value-address/>"
+                    name="address" 
+                    type="text" 
+                    placeholder="Inserisci l'indirizzo di residenza"
+                    required="required"
+                    aria-required="true"
+                    data-error-field="error-address" 
+                    data-rules="required|max_length:100" 
+                    data-error-message="L'indirizzo è obbligatorio e deve essere lungo massimo 100 caratteri"
+                    aria-label="Inserisci l'indirizzo di residenza"
+                    aria-describedby="error-address"
+                    />
+                <p id="error-address" class="error" role="alert"><error-address/></p>
+                
+                <label for="cap">CAP*:</label>
+                <input
+                    id="cap"
+                    value="<value-cap/>"
+                    name="cap" 
+                    type="number" 
+                    placeholder="Inserisci il CAP di residenza"
+                    required="required"
+                    aria-required="true"
+                    maxlength="5"
+                    data-error-field="error-cap"
+                    data-rules="required|integer|length:5"
+                    data-error-message="Il CAP è obbligatorio e deve essere composto esattamente da 5 numeri"
+                    aria-label="Inserisci il CAP di residenza"
+                    aria-describedby="error-cap"
+                    />
+                <p id="error-cap" class="error" role="alert"><error-cap/></p>
+            </fieldset>
+            <div class="buttons-control">
+                <button class="button" type="submit">Registrati</button>
+                <a href="./login.php">Sei già registrato? Accedi cliccando qua!</a>
+            </div>
+        </form>
+        <a href="#titles" id="scroll-top" aria-label="Torna all'inizio della pagina">↑</a>
+    </main>
+    <footer>
+        <p xml:lang="en">© Solid Funicular - All rights reserved</p>
+        <p>Tecnologie <span xml:lang="en">Web</span> <abbr title="Università degli Studi di Padova">Unipd</abbr></p>
+    </footer>
+</body>
 </html>

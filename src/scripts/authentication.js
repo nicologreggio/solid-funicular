@@ -3,7 +3,16 @@ document.addEventListener("DOMContentLoaded", function() {
     var $passwordField = document.getElementById("password");
 
 
-    $hideShowPassword.addEventListener("click", function() {
+    $hideShowPassword.addEventListener("click", showHidePassword);
+
+    $hideShowPassword.addEventListener("keyup", function(event) {
+        if (event.keyCode === 13 || event.keyCode === 32)
+        {
+            showHidePassword();
+        }
+      });
+
+    function showHidePassword() {
         var eyeOffSrc = "/images/icons/eye-off.svg";
         var eyeOnSrc = "/images/icons/eye-on.svg";
 
@@ -17,5 +26,5 @@ document.addEventListener("DOMContentLoaded", function() {
             $hideShowPassword.src = eyeOffSrc;
             $passwordField.type = "password";
         }
-    });
+    }
 });

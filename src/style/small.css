@@ -1,0 +1,106 @@
+header
+{
+    justify-content: space-evenly;
+}
+
+.desktop{
+    display: none;
+}
+
+.buttons-control *
+{
+    width: 100%;
+}
+
+.buttons-control a
+{
+    position: relative;
+}
+
+.buttons-control button[type='submit']
+{
+    margin-bottom: 0.5em;
+    float: none;
+}
+
+.menu > summary{
+    color: white;
+    text-align: center;
+    font-size: 1.5em;
+    padding: 0.4em 0 0.4em 0;
+}
+
+.menu ul{
+    flex-direction: column;
+}
+
+.menu li a{
+    width: 100%;
+}
+
+#logo{
+    width: 20%;
+}
+
+h1{
+    font-size: 2em;
+}
+
+h2{
+    font-size: 1.5em;
+}
+
+h3{
+    font-size: 1.3em;
+}
+
+#shortcuts{
+    margin: 0.2em 0 0.2em 0;
+    min-width: 100%;
+    text-align: center;
+}
+
+.menu li {
+    float:none;
+    width: 100%;
+    text-align: center;
+}
+
+#staff-fav > div{
+    display: flex;
+    flex-direction: column;
+}
+
+#staff-fav img, #staff-fav p{
+    width: 100%;
+}
+
+#products-list li{
+    width: 100%;
+}
+
+.form-quotation fieldset{
+    width: 80%;
+}
+
+.quote-product
+{
+    flex-direction: column;
+    height: auto;
+}
+
+.quote-product-img
+{
+    width: 60%;
+    padding: 0 20%;
+    height: auto;
+    margin: auto;
+}
+
+.quote-control {
+    align-self: center;
+}
+
+#password {
+    max-width: 80%;
+}
