@@ -162,6 +162,10 @@ header {
     margin: auto;
 }
 
+#shortcuts {
+    margin-right: 0.6em;
+}
+
 #shortcuts > a {
     margin-left: 2em;
     display: inline-flex;
@@ -228,6 +232,7 @@ header {
 
 #logo {
     margin-bottom: 0.1em;
+    margin-left: 0.6em;
 }
 
 /* ========== BREADCRUMBS ========== */
