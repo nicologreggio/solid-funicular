@@ -465,6 +465,7 @@ footer > p{
     background: none;
     color: inherit;
     font: inherit;
+    padding: 0;
 }
 
 .remove-product img {
@@ -518,6 +519,9 @@ footer > p{
 }
 
 #pagination button {
+    padding: 0;
+    width: 2em;
+    height: 2em;
     margin-right: 0.2em;
 }
 

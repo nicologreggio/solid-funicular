@@ -112,11 +112,11 @@ function fillPagination($page, $count, $currentPage)
         {
             if($currentPage == $i)
             {
-                $paginationStr .= "<button class='button pages current' name='page' value='{$i}' disabled='disabled'>{$i}</button>";                
+                $paginationStr .= "<button class='button current' name='page' value='{$i}' disabled='disabled'>{$i}</button>";                
             }
             else
             {
-                $paginationStr .= "<button class='button pages' name='page' value='{$i}'>{$i}</button>";
+                $paginationStr .= "<button class='button' name='page' value='{$i}'>{$i}</button>";
             }
         }
         

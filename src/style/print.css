@@ -4,11 +4,11 @@ html {
     padding-left: 0.3em;
     padding-right: 0.3em;
     font-size: 12pt;
-    cursor: none !important;
 }
 
 html, body {
     height: auto;
+    cursor: none !important;
 }
 
 h1,
@@ -89,6 +89,7 @@ main {
 
 .sf-form label {
     color: black;
+    display: inline-block;
 }
 
 .sf-form input, .sf-form textarea {
@@ -157,6 +158,8 @@ a {
 
 #pagination button {
     display: none;
+    height: auto;
+    width: auto;
 }
 
 #pagination .current {
