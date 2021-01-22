@@ -288,7 +288,7 @@ p{
 }
 
 
-p.error, .errors-list , .errors-list *{
+.error, .errors-list , .errors-list *{
     color:rgb(187, 23, 23);
     font-size: 1em;
 }
