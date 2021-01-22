@@ -31,7 +31,7 @@ summary {
 .button {
     color: white;
     border: none;
-    padding: 5px 15px;
+    padding: 0.3125em 0.9375em;
     font-size: 1.3em;
     border-radius: 3px;
     cursor: pointer;
@@ -43,7 +43,7 @@ summary {
 
 h1,
 h2, h3 {
-    color: #A70500
+    color: #A70500;
 }
 
 h1 {
@@ -69,17 +69,6 @@ h3{
     padding-top: 0;
 }
 
-/* .sf-form h2 {
-    /* background: #A70500;
-    padding: 1.8em 1.25em;
-    color: white;
-    co: #A70500;
-    font-size: 1.2em;
-    font-weight: 600;
-    border-radius: 10px 10px 0 0;
-    margin-bottom: 20px;
-} */
-
 .sf-form legend {
     font-size: 1.2em;
     font-weight: bold;
@@ -91,7 +80,7 @@ h3{
 }
 
 .sf-form label {
-    display: inline-block;
+    display: block;
     margin-top: 1.0em;
     margin-bottom: 0.5em;
     color: #01579B;
@@ -100,7 +89,7 @@ h3{
 
 .sf-form input {
     display: inline-block;
-    width: 95%;
+    width: calc(100% - 0.3em);
     font-size: 1em;
     border-radius: 3px;
     margin-top: 0.5em;
@@ -113,7 +102,7 @@ h3{
 }
 
 #password {
-    max-width: 95%;
+    max-width: 90%;
 }
 
 #hide-show-password
@@ -146,7 +135,8 @@ h3{
 }
 
 .buttons-control button[type='submit']:hover {
-    background-color: #01579B;
+    transition: 0.3s;
+    background-color: #4f0300;
 }
 
 #reset-button {

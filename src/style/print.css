@@ -200,6 +200,12 @@ a {
 
 #filters {
     margin: 0;
+    border: 0;
+    padding: 0;
+}
+
+#filters legend {
+    display: none;
 }
 
 #materials-wrapper {
