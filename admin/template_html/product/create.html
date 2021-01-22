@@ -2,13 +2,12 @@
 <html lang="it">
     <head>
          <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1"/>
-        <meta http-equiv="Content-Language" content="IT" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="robots" content="NOINDEX,NOFOLLOW" />
 
-        <link rel="shortcut icon" href="../../images/logo.png" TYPE="image/png"/>
-        <link rel="stylesheet" href="../style/style.css">
+        <link rel="shortcut icon" href="../../images/logo.png" TYPE="image/png" />
+        <link rel="stylesheet" href="../style/style.css" />
         <link rel="stylesheet" type="text/css" media="print" href="../style/print.css" />
 
         <title>Crea un nuovo prodotto</title>
@@ -18,9 +17,9 @@
         <a href="#main-content" class="only-screen-reader" title="Vai al contenuto della pagina">Vai al contenuto</a>
         <header role="banner">
             <nav>
-                <img src="../../images/logo.png" alt="Logo dell'azienda rosso con dentro le iniziali S.F." title="logo dell'azienda">
+                <img src="../../images/logo.png" alt="Logo dell'azienda rosso con dentro le iniziali S.F." title="logo dell'azienda" />
                 <button title="Espandi/chiudi menu" aria-label="Espandi/chiudi il menu" class="hidden-l show-m" aria-hidden="true" tabindex="-1">
-                    <svg><path d="M4,10h24c1.104,0,2-0.896,2-2s-0.896-2-2-2H4C2.896,6,2,6.896,2,8S2.896,10,4,10z M28,14H4c-1.104,0-2,0.896-2,2  s0.896,2,2,2h24c1.104,0,2-0.896,2-2S29.104,14,28,14z M28,22H4c-1.104,0-2,0.896-2,2s0.896,2,2,2h24c1.104,0,2-0.896,2-2  S29.104,22,28,22z"/></svg>
+                    <svg><path d="M4,10h24c1.104,0,2-0.896,2-2s-0.896-2-2-2H4C2.896,6,2,6.896,2,8S2.896,10,4,10z M28,14H4c-1.104,0-2,0.896-2,2  s0.896,2,2,2h24c1.104,0,2-0.896,2-2S29.104,14,28,14z M28,22H4c-1.104,0-2,0.896-2,2s0.896,2,2,2h24c1.104,0,2-0.896,2-2  S29.104,22,28,22z" /></svg>
                     <!-- <span aria-hidden="true">&times;</span>-->
                 </button>
                 <ul aria-label="menu">
@@ -90,7 +89,7 @@
 
                 <fieldset>
                     <legend>Dati del prodotto</legend>
-                    <label for="name">Nome<span class="color-red">*</span></label>
+                    <label for="name">Nome (tra 2 e 30 caratteri)<span class="color-red">*</span></label>
                     <input 
                         value="<value-name/>"
                         id="name" 
@@ -102,10 +101,10 @@
                         autofocus="autofocus" 
                         data-error-field="error-name" 
                         data-rules="required|min_length:2|max_length:30" 
-                        data-error-message="Il nome è obbligatorio e deve essere almeno lungo 2 caratteri e lungo al massimo 30 caratteri">
+                        data-error-message="Il nome è obbligatorio e deve essere almeno lungo 2 caratteri e lungo al massimo 30 caratteri" />
                     <div id="error-name" class="error" role="alert" aria-relevant="all" aria-live="assertive"><error-name/></div>
 
-                    <label for="meta-description">Meta-descrizione<span class="color-red">*</span></label>
+                    <label for="meta-description">Meta-descrizione (tra 30 e 500 caratteri)<span class="color-red">*</span></label>
                     <textarea 
                         id="meta-description" 
                         name="meta-description" 
@@ -117,7 +116,7 @@
                         data-error-message="E' obbligatorio inserire una meta-descrizione che sia più lunga di 30 caratteri e lunga al massimo 500 caratteri"><value-meta-description/></textarea>
                     <div id="error-meta-description" class="error" role="alert" aria-relevant="all" aria-live="assertive"><error-meta-description/></div>
                     
-                    <label for="description">Descrizione<span class="color-red">*</span></label>
+                    <label for="description">Descrizione (almeno 30 caratteri)<span class="color-red">*</span></label>
                     <textarea 
                         id="description" 
                         name="description" 
@@ -129,7 +128,7 @@
                         data-error-message="E' obbligatorio inserire una descrizione lunga almeno 30 caratteri"><value-description/></textarea>
                     <div id="error-description" class="error" role="alert" aria-relevant="all" aria-live="assertive"><error-description/></div>
 
-                    <label for="age">Età consigliata</label>
+                    <label for="age">Età consigliata (al massimo 50 caratteri)</label>
                     <input 
                         value="<value-age/>"
                         id="age" 
@@ -138,10 +137,10 @@
                         placeholder="Inserisci l'età consigliata"
                         data-error-field="error-age" 
                         data-rules="max_length:50" 
-                        data-error-message="L'età consigliata deve essere più breve di 50 caratteri">
+                        data-error-message="L'età consigliata deve essere più breve di 50 caratteri" />
                     <div id="error-age" class="error" role="alert" aria-relevant="all" aria-live="assertive"><error-age/></div>
 
-                    <label for="dimensions">Dimensioni del prodotto</label>
+                    <label for="dimensions">Dimensioni del prodotto (al massimo 300 caratteri)</label>
                     <input 
                         value="<value-dimensions/>"
                         id="dimensions" 
@@ -150,7 +149,7 @@
                         placeholder="Inserisci le dimensioni del prodotto"
                         data-error-field="error-dimensions" 
                         data-rules="max_length:300" 
-                        data-error-message="Le dimensioni del prodotto possono essere lunghe al massimo 300 caratteri">
+                        data-error-message="Le dimensioni del prodotto possono essere lunghe al massimo 300 caratteri" />
                     <div id="error-dimensions" class="error" role="alert" aria-relevant="all" aria-live="assertive"><error-dimensions/></div>
 
                     <label for="image">Immagine del prodotto<span class="color-red">*</span></label>
@@ -162,14 +161,13 @@
                         id="image" 
                         name="image" 
                         type="file"
-                        placeholder="Inserisci un'immagine del prodotto"
                         data-error-field="error-image" 
                         data-rules="file_required" 
                         required="required"
                         aria-required="true"
-                        data-error-message="E' obbligatorio selezionare un'immagine">
+                        data-error-message="E' obbligatorio selezionare un'immagine" />
                     <div id="error-image" class="error pb-2" role="alert" aria-relevant="all" aria-live="assertive"><error-image/></div>
-                    <label for="image-description">Descrizione immagine del prodotto<span class="color-red">*</span></label>
+                    <label for="image-description">Descrizione immagine del prodotto (tra 10 e 200 caratteri)<span class="color-red">*</span></label>
                     <input 
                         value="<value-image-description/>"
                         id="image-description" 
@@ -180,7 +178,7 @@
                         required="required"
                         aria-required="true"
                         data-rules="required|min_length:10|max_length:200" 
-                        data-error-message="La descrizione del prodotto deve essere di lunghezza compresa tra 10 e 200 caratteri">
+                        data-error-message="La descrizione del prodotto deve essere di lunghezza compresa tra 10 e 200 caratteri" />
                     <div id="error-image-description" class="error" role="alert" aria-relevant="all" aria-live="assertive"><error-image-description/></div>
                 </fieldset>
 
@@ -216,3 +214,4 @@
         <script src="../../src/validate.js"></script>
         <script src="../script/menu.js"></script>
     </body>
+</html>

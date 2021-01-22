@@ -57,7 +57,7 @@ if(request()->method() == 'POST' ){
         ]);
         if($err === true){
             message("Materiale modificato correttamente");
-            redirectTo('/admin/material/index.php?page='.$request['page']);
+            redirectTo('/admin/material/index.php?page='.$request['page'].'#material-'.$material->_ID);
         }
     }
 

@@ -21,17 +21,20 @@ if(isset($_REQUEST['id'])){
         FROM USERS
         WHERE _ID = $quote->_USER
     ")->fetch();
-
+    $tot_product = DBC::getInstance()->query("SELECT count(*) FROM PRODUCTS")->fetchColumn();
     $products = ""; 
     foreach(DBC::getInstance()->query("
         SELECT P.*, QP._QUANTITY as _QNT
         FROM PRODUCTS P JOIN QUOTE_PRODUCT QP ON P._ID = QP._PRODUCT_ID
         WHERE QP._QUOTE_ID = $quote->_ID
-    ")->fetchAll() as $prod){
+    ")->fetchAll() as $prod){ 
+        $cur_page = floor(($tot_product-$prod->_ID)/PRODUCTS_PER_PAGE);
+        
+
         $products .= '
         <li>
-            <img src="'.base().$prod->_MAIN_IMAGE.'" alt="'.e($prod->_MAIN_IMAGE_DESCRIPTION).'">
-            <a href="../product/index.php" class="pt-2 d-block" title="visualizza prodotti">'.e($prod->_NAME).'</a>
+            <img src="'.base().$prod->_MAIN_IMAGE.'" alt="'.e($prod->_MAIN_IMAGE_DESCRIPTION).'" />
+            <a href="../product/index.php?page='.$cur_page.'#product-'.$prod->_ID.'" class="pt-2 d-block" title="visualizza '.e($prod->_NAME).'">'.e($prod->_NAME).'</a>
             <p class="pl-2 pb-0 mb-1">Quantità: '.($prod->_QNT).'</p>
         </li>';
     }

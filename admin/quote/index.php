@@ -22,22 +22,18 @@ foreach(($stm->fetchAll() ?? []) as $quote){// 2021-01-02 19:50:49
     <li>
         <h2 class="strong m0 p0 pt-1 pb-1"><abbr title="Identificativo" class="strong">ID:</abbr> '.$quote->_ID.'</h2>
         <p class="m0 p0">Richiesta effettuata il <time datetime="'.$quote->_CREATED_AT.'">'.$date->format('d-m-Y').' alle '.$date->format('H:i').'</time></p>
-        <p class="m0 p0 mt-2 strong">
-            Utente:
-        </p>
-        <p class="m0 p0">
+        <p class="m0 p0 mt-2">
+            <span class="strong">Utente:</span> <br />
             <a href="mailto:'.e($user->_EMAIL).'" title="Invia email all\'indirizzo '.e($user->_EMAIL).'">'.e($user->_NAME.' '.$user->_SURNAME).' ('.e($user->_EMAIL).')</a>
         </p>
-        <p class="m0 p0 mt-2 strong">
-            Città:
-        </p>
-        <p class="m0 p0">
+        <p class="m0 p0 mt-2">
+            <span class="strong">Città:</span> <br />
             '.e($user->_ADDRESS.' '.$user->_CITY.' ('.$user->_CAP.')').'
         </p>
         <a href="show.php?id='.$quote->_ID.'" class="button mt-2 mb-1 color-white" title="visualizza richiesta numero '.$quote->_ID.'">
             Visualizza richiesta di preventivo
         </a>
-        <hr class="mt-3">
+        <hr class="mt-3" />
     </li>
     ';
 }

@@ -1,0 +1,5 @@
+<?php
+const PRODUCTS_PER_PAGE = 8;
+const CATEGORIES_PER_PAGE = 4;
+const MAX_MENU_CATEGORIES = 5;
+const MATERIALS_PER_PAGE = 10;

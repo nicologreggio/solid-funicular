@@ -7,6 +7,13 @@ function toggleMenu(e){
 document.addEventListener("DOMContentLoaded", function() {
     document.querySelector('nav > button').addEventListener('click', toggleMenu);
     document.querySelector('nav > button').addEventListener('touchstart', toggleMenu);
+    if(document.location.hash) {
+        setTimeout(()=> {
+            document
+              .querySelector(document.location.hash)
+              .scrollIntoView({ block: "start" })
+        }, 300)
+      }
 });
 
 

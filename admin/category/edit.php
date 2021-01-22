@@ -67,7 +67,7 @@ if(request()->method() == 'POST' ){
         ]);
         if($err === true){
             message("Categoria modificata correttamente");
-            redirectTo('/admin/category/index.php?page='.$request['page']);
+            redirectTo('/admin/category/index.php?page='.$request['page'].'#category-'.$category->_ID);
         }
     }
 
@@ -98,5 +98,15 @@ else {
         'menu' => $category->_MENU == '1' ? 'checked' : '',
     ], $page, true);
     removeErrorsTag($page);
+}
+if($category->_MENU == false && DBC::getInstance()->query(
+    "SELECT count(*) FROM CATEGORIES WHERE _MENU = 1"
+)->fetchColumn() >= MAX_MENU_CATEGORIES){
+    $page = str_replace("<disabled-menu/>", 'disabled="disabled"', $page);
+    $page = str_replace("<menu-message/>", 'Al momento non è possibile inserire questa categoria nel menu in quanto si è già raggiunto il numero massimo di categorie inseribili', $page);
+} else {
+    $page = str_replace("<disabled-menu/>", '', $page);
+    $page = str_replace("<menu-message/>", 'Visualizzazione su menu principale', $page);
+    
 }
 echo $page;

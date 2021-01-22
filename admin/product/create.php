@@ -125,9 +125,9 @@ else {
 $categories = DBC::getInstance()->query("
     SELECT _ID, _NAME FROM CATEGORIES 
 ")->fetchAll();
-$out = "<option value='' ".(isset($_REQUEST['category']) ? '' : 'selected' ).">Seleziona la categoria di questo prodotto</option>";
+$out = "<option value='' ".(isset($_REQUEST['category']) ? '' : ' selected="selected"' ).">Seleziona la categoria di questo prodotto</option>";
 foreach($categories as $cat){
-    $out.= '<option value="'.$cat->_ID.'"'.(($_REQUEST['category'] ?? null === $cat->_ID )? 'selected' : '' ).'>'.$cat->_NAME.'</option>';
+    $out.= '<option value="'.$cat->_ID.'"'.((($_REQUEST['category'] ?? null) === $cat->_ID )? ' selected="selected"' : '' ).'>'.$cat->_NAME.'</option>';
 }
 $page = str_replace('<categories/>', $out, $page);
 
@@ -138,7 +138,7 @@ $materials = DBC::getInstance()->query("
 ")->fetchAll();
 $out = "";
 foreach($materials as $mat){
-    $out.= '<option value="'.$mat->_ID.'" '.(in_array($mat->_ID, $_REQUEST['materials'] ?? [] )? 'selected ' : '' ).' >'.$mat->_NAME.'</option>';
+    $out.= '<option value="'.$mat->_ID.'" '.(in_array($mat->_ID, $_REQUEST['materials'] ?? [] )? ' selected="selected" ' : '' ).' >'.$mat->_NAME.'</option>';
 }
 $page = str_replace('<materials/>', $out, $page);
 
