@@ -3,7 +3,6 @@
 * {
     margin: 0;
     padding: 0;
-    font-family: ;
 }
 
 html, body {
@@ -88,7 +87,7 @@ h3{
     font-weight: bold;
 }
 
-.sf-form input, .sf-form textarea, .sf-form select   {
+.sf-form input, .sf-form textarea, .sf-form select {
     display: inline-block;
     width: calc(100% - 0.3em);
     font-size: 1em;
