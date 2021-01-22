@@ -20,7 +20,6 @@
 	<link rel="shortcut icon" type="image/x-icon" href="../images/favicon.ico" />
     <link rel="stylesheet" type="text/css" href="style/print.css" media="print" />
     <script src="./validate.js"></script>
-	<script src="./scripts/authentication.js"></script>	
 </head>
 <body>
     <header-navigation />
@@ -59,8 +58,8 @@
                     required="required"
                     aria-required="true"
                     data-error-field="error-name" 
-                    data-rules="required|max_length:50" 
-                    data-error-message="Il nome è obbligatorio e deve essere lungo massimo 50 caratteri"
+                    data-rules="required|alphabetic|max_length:50" 
+                    data-error-message="Il nome è obbligatorio, contenere solo caratteri e non deve essere lungo massimo 50 caratteri"
                     aria-label="Inserisci il tuo nome"
                     aria-describedby="error-name"
                     />
@@ -76,8 +75,8 @@
                     required="required"
                     aria-required="true"
                     data-error-field="error-surname" 
-                    data-rules="required|max_length:100" 
-                    data-error-message="Il cognome è obbligatorio e deve essere lungo massimo 100 caratteri"
+                    data-rules="required|alphabetic|max_length:100" 
+                    data-error-message="Il cognome è obbligatorio, contenere solo caratteri e non deve essere lungo massimo 100 caratteri"
                     aria-label="Inserisci il tuo cognome"
                     aria-describedby="error-surname"
                     />
@@ -99,7 +98,6 @@
                     aria-labelledby="suggestion-password"
                     aria-describedby="error-password"
                     />
-                <img id="hide-show-password" src="/images/icons/eye-off.svg" alt="" tabindex="-1" aria-hidden="true" />
                 <p id="suggestion-password" class="suggestion">La password deve essere lunga almeno 8 caratteri, contenere almeno una lettera maiuscola e almeno un numero</p>
                 <p id="error-password" class="error" role="alert"><error-password/></p>
 
