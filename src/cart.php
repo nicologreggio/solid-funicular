@@ -31,7 +31,7 @@ function fillPagewithCartProducts($page)
                         <form class='remove-product' action='./php/remove-from-cart-quotation.php' method='POST'>
                             <input type='hidden' name='product-id' value='{$product->getId()}' />
                             <button type='submit'>
-                                <img src='../images/icons/remove.png' alt='Rimuovi il prodotto dal carrello' />
+                                <img src='../images/icons/remove.svg' alt='Rimuovi il prodotto dal carrello' />
                                 <p>Rimuovi</p>
                             </button>
                         </form>
@@ -145,6 +145,6 @@ else
 
     $page=fillHeader($page);
     $page=str_replace('<breadcrumbs-location />', 'Carrello', $page);
-    $page=str_replace('<a href="./cart.php"><img src="../images/icons/shopping_cart.png" alt="Carrello dei prodotti" /><span>Carrello</span></a>', '', $page);
+    $page=str_replace('<a href="./cart.php"><img src="../images/icons/shopping_cart.svg" alt="Carrello dei prodotti" /><span>Carrello</span></a>', '', $page);
     echo cleanPage($page);
 }
