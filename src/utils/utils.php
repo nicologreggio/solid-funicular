@@ -80,7 +80,7 @@ function fillProducts($page, $products){
             <li class='category-product'>
                 <a href='./product-details-page.php?cat={$product->getCategoryId()}&amp;id={$product->getId()}'>
                     <img src='{$product->getMainImage()}' alt='{$product->getMainImageDescription()}' />
-                    <p aria-label='Vai alla pagina del prodotto'>{$product->getName()}</p>
+                    <p role='link' aria-label='Vai alla pagina del prodotto'>{$product->getName()}</p>
                 </a>
             </li>";
     }
