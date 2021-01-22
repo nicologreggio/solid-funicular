@@ -108,10 +108,15 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
 
     if($err === true)
     {
-        QuoteService::addQuotation($company, $telephone, $reason, $_SESSION['user'], $_SESSION['cart']);
-        $page = file_get_contents("./cart/thank-you-page.html");
-        $page = fillHeader($page);
-        echo $page;
+        $res = QuoteService::addQuotation($company, $telephone, $reason, $_SESSION['user'], $_SESSION['cart']);
+
+        if($res != -1)
+        {
+            unset($_SESSION['cart']);
+            $page = file_get_contents("./cart/thank-you-page.html");
+            $page = fillHeader($page);
+            echo $page;
+        }
     }
     else
     {

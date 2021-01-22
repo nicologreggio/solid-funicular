@@ -9,7 +9,7 @@ require_once(__DIR__."/php/product/product.service.php");
 function fillSearchbar($page)
 {
     $searchbarStr = "
-        <label for='searchbar'>Termini di ricerca:</label><br />
+        <label for='searchbar'>Termini di ricerca:</label>
         <input id='searchbar' placeholder='Inserisci dei termini di ricerca' name='searchbar' value='{$_SESSION['search']['name']}' />
     ";
 
@@ -21,9 +21,9 @@ function fillSearchbar($page)
 function fillCategories($page)
 {
     $categoriesStr = "
-        <label for='categories'>Categoria:</label><br />
+        <label for='categories'>Categoria:</label>
         <select id='categories' name='category'>
-            <option value=''>Seleziona una categoria</option>
+            <option value=''>Tutte le categorie</option>
     ";
 
     $categories = CategoryService::getAll();

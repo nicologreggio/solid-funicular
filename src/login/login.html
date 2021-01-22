@@ -15,6 +15,7 @@
     <meta name="language" content="italian it" />
     <link rel="stylesheet" href="style/style.css" />
     <link rel="stylesheet" type="text/css" href="style/small.css" media="screen and (max-width: 768px), and only screen and (max-device-width: 768px)" />
+    <link rel="stylesheet" type="text/css" href="style/print.css" media="print" />
 	<link rel="shortcut icon" type="image/x-icon" href="../images/favicon.ico" />
 	<script src="./validate.js"></script>
 	<script src="./scripts/authentication.js"></script>	
@@ -26,7 +27,7 @@
 		<form class="sf-form" action="./login.php" method="post" data-validate="1">
 			<h2>Accedi</h2>
 			<fieldset>
-				<label for="email">Email*: </label><br />
+				<label for="email">Email*: </label>
 				<input
 				id="email"
 				value="<value-email/>"
@@ -39,7 +40,7 @@
 				data-error-message="L'email non è stata inserita" />
 				<div id="error-email" class="error"><error-email/></div>
 
-				<label for="password">Password*: </label><br />
+				<label for="password">Password*: </label>
 				<input
 					id="password"
 					value="<value-password/>"
