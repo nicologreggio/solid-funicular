@@ -103,7 +103,7 @@ function fillPagination($page, $count, $currentPage)
     if($numberPages != 1 & $numberPages != 0)
     {
         $paginationStr .= "
-            <fieldset id='pagination'>
+            <fieldset id='pagination' role='tablist'>
             <legend>Pagine:&nbsp;</legend>
         ";
 
