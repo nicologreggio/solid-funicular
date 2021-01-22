@@ -3,6 +3,7 @@
 * {
     margin: 0;
     padding: 0;
+    font-family: ;
 }
 
 html, body {
@@ -87,7 +88,7 @@ h3{
     font-weight: bold;
 }
 
-.sf-form input {
+.sf-form input, .sf-form textarea, .sf-form select   {
     display: inline-block;
     width: calc(100% - 0.3em);
     font-size: 1em;
@@ -246,6 +247,7 @@ header {
     position: sticky;
     top:0;
     background-color: white;
+    z-index: 999;
 }
 
 /* ========== MAIN CONTENT ========== */
