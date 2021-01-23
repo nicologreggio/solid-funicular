@@ -309,6 +309,9 @@ p{
 .main-list *:visited{
     color: rgb(63, 65, 223);
 }
+.quote-products-list li a:visited{
+    color: rgb(63, 65, 223);
+}
 
 .clearfix::after {
     content: "";
