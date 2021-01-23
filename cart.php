@@ -147,6 +147,6 @@ else
 }
 
 $page=str_replace('<breadcrumbs-location />', 'Carrello', $page);
-$page=str_replace('<a href="./cart.php" aria-label="Vai alla pagina del carrello"><img src="../images/icons/shopping_cart.svg" alt="Carrello dei prodotti" /><span>Carrello</span></a>', '', $page);
+$page=str_replace('<a href="./cart.php" title="Vai alla pagina del carrello"><img src="../images/icons/shopping_cart.svg" alt="Carrello stilizzato" /><span>Carrello</span></a>', '', $page);
 
 echo $page;
