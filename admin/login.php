@@ -12,4 +12,5 @@ if(request()->method() == 'POST' ){
     }
 }
 removeErrorsTag($page);
+removeValuesTag($page);
 echo $page;
