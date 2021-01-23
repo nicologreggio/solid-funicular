@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="it">
+	<head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+        <title>Carrello | Solid Funicular</title>
+        
+        
+        <meta name="title" content="Carrello | Solid Funicular elementi d'arredo" /> 
+        <meta name="description" content="Sito per il progetto del corso di tecweb unipd che fornisce un catalogo di elementi d'arredo per i quali è possibile richiedere un preventivo" />
+    
+        <meta name="keywords" content="arredo, mobili, panchine, giardino, panchina, arredamento">
+    
+        <meta name="author" content="Nicolo Greggio" />
+        <meta name="language" content="italian it" />
+        <link rel="stylesheet" href="style/style.css" />
+        <script src="./scripts/validate.js"></script>
+        <!-- only screen and (max-device-width: 768px) deprecato -->
+        <link rel="stylesheet" type="text/css" href="./style/small.css" media="screen and (max-width: 768px)" />
+        <link rel="stylesheet" type="text/css" href="style/print.css" media="print" />
+        <link rel="shortcut icon" type="image/x-icon" href="../images/favicon.ico" />
+	</head>
+	<body>
+        <header-navigation />
+
+        <main id="main-content">
+            <h2>Riepilogo preventivo</h2>
+            <div id='list-quote-products'>
+                <listProducts/>
+            </div>
+            <h2>Form di richiesta preventivo</h2>
+            <form id='form-quotation' class='sf-form' action='./cart.php' method='post' data-validate='1'>
+                <label for='company'>Azienda*:</label>
+                <input
+                    id='company'
+                    name='company'
+                    placeholder="Inserisci il nome dell'azienda"
+                    value='<value-company/>'
+                    required='required'
+                    data-error-field='error-company' 
+                    data-rules='required'
+                    data-error-message="Il nome dell'azienda è obbligatorio"
+                    aria-required="true"
+                    aria-label="Inserisci il nome dell'azienda"
+                    aria-describedby="error-company"
+                    />
+                <div id='error-company' class='error' role="alert"><error-company/></div>
+
+                <label for='telephone'>Telefono*:</label>
+                <input
+                    id='telephone'
+                    name='telephone'
+                    value='<value-telephone/>'
+                    placeholder="Inserisci il numero di telefono da contattare"
+                    required='required'
+                    data-error-field='error-telephone'
+                    data-rules='required|integer'
+                    data-error-message='Il numero di telefono è obbligatorio e deve essere composto solo da numeri'
+                    aria-required="true"
+                    aria-label="Inserisci il numero di telefono da contattare"
+                    aria-describedby="error-telephone"
+                    />
+                <div id='error-telephone' class='error' role="alert"><error-telephone/></div>
+
+                <label for='reason'>Ragione della richiesta del preventivo:</label>
+                <textarea
+                    id='reason'
+                    placeholder="Inserisci la ragione del tuo preventivo"
+                    name='reason'
+                    aria-label="Inserisci la ragione del tuo preventivo"
+                    ><value-reason/></textarea>
+                <div class='buttons-control'>
+                    <button class='button' type='submit'>Invia il preventivo</button>
+                </div>
+            </form>
+            <a href="#titles" id="scroll-top" title="Torna all'inizio della pagina">↑</a>
+        </main>
+
+        <footer>
+            <p xml:lang="en" lang="en">© Solid Funicular - All rights reserved</p>
+            <p>Tecnologie <span xml:lang="en" lang="en">Web</span> <abbr title="Università degli Studi di Padova">Unipd</abbr></p>
+        </footer>
+	</body>
+</html>
