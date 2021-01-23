@@ -60,7 +60,7 @@ h2 {
     margin-bottom: 0.3em;
 }
 
-h3{
+h3 {
     font-size: 1.5em;
     margin-bottom: 0.3em;
     margin-top: 0.8em;
@@ -214,23 +214,14 @@ header {
     justify-content: center;
 }
 
-/* .menu li a, .menu .current{
+.menu li a, .menu .current {
     display: inline-block;
     text-align: center;
-    padding: 1em 0.3em;
-    border-right: 1px solid #A70500;
-} */
-
-.menu li{
-    display: inline-block;
-    /* color: white; */
-    text-align: center;
-    /* text-decoration: none; */
     padding: 1em 0.3em;
     border-right: 1px solid #A70500;
 }
 
-.menu li:last-child{
+.menu li:last-child a {
     border-right: none;
 }
 
@@ -241,8 +232,6 @@ header {
     color: white;
     cursor: default;
 }
-
-
 
 .menu li:hover:not(.current) {
     background-color: #ff9a97;
@@ -336,6 +325,21 @@ main hr{
 #contacts li
 {
     margin-bottom: 0.3em;
+}
+
+/* ========== CATEGORIES LIST ========= */
+
+#categories-list{
+    margin-left: 2em;
+}
+
+#categories-list li{
+    margin-bottom: 1em;
+    width: 100%;
+}
+
+.product-counter {
+    float: right;
 }
 
 /* ========== CATEGORIES PRODUCTS LIST =========== */

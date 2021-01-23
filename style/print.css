@@ -24,11 +24,12 @@ h1 {
 h2 {
     font-size: 1.5em;
     margin: 0.5em 0;
+    margin-top: 1em;
 }
 
 h3 {
     font-size: 1.2em;
-    margin: 0.3em 0;
+    margin-top: 0.5em;
 }
 
 hr {
@@ -212,6 +213,11 @@ a {
 }
 
 #materials-wrapper {
+    display: none;
+}
+
+#materials-wrapper[open] {
+    display: block;
     border: none;
     padding: 0;
 }
@@ -238,6 +244,7 @@ a {
 }
 
 #materials-wrapper input[type=checkbox]:checked + label {
+    display: inline-block;
     font-size: 10pt;
     font-weight: 600;
     color: black;

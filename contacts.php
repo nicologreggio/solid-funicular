@@ -8,7 +8,7 @@ $page=fillHeader($page);
 
 $countReplace = 2;
 $page=str_replace(
-    '<li role="tab" aria-selected="false" aria-label="Vai alla pagina dei contatti"><a href="contacts.php">Contatti</a></li>',
+    '<li role="tab" aria-selected="false"><a title="Vai alla pagina dei contatti" href="contacts.php">Contatti</a></li>',
     '<li role="tab" aria-selected="true" aria-label="Pagina attuale dei contatti" class="current">Contatti</li>',
     $page, $countReplace
 );

@@ -34,7 +34,7 @@ function base()
 
 function fillHeader($page, $currentCat=-1)
 {
-    $categories=CategoryService::getAll();
+    $categories=CategoryService::getAll(4);
     $idx=0;
 
     $header=file_get_contents('./utils/header.html');
@@ -65,7 +65,7 @@ function fillHeader($page, $currentCat=-1)
                 </li>
             ";
             $page=str_replace("<cat-name />", $cat->getName(), $page);
-            $page=str_replace("<breadcrumbs-location />", $cat->getName(), $page);
+            $page=str_replace("<breadcrumbs-location />", "<a title='Vai alla pagina di tutte le categorie' href='allcategories.php'>Categorie</a> >> {$cat->getName()}", $page);
         }
         else{
             $link="
@@ -151,6 +151,29 @@ function fillPagination($page, $count, $currentPage)
     }
 
     $page = str_replace("<pagination/>", $paginationStr, $page);
+
+    return $page;
+}
+
+function fillCategoriesList($page){
+    $categories=CategoryService::getAll();
+
+    $categoriesList='<ul id="categories-list">';
+
+    foreach($categories as $cat){
+        $catCount=ProductService::getProductsListCount([ "category" => $cat->getId() ]);
+        $categoriesList .="
+            <li>
+                <a title='Vai alla pagina della categoria {$cat->getName()} con {$catCount} prodotti' href='categories.php?cat={$cat->getId()}'>
+                    {$cat->getName()}
+                </a>
+                <span class='product-counter'>({$catCount} prodotti)</span>
+            </li>";
+    }
+
+    $categoriesList .= '</ul>';
+
+    $page=str_replace('<categories-list />', $categoriesList, $page);
 
     return $page;
 }

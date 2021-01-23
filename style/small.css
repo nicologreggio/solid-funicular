@@ -83,6 +83,15 @@ h3{
     width: 100%;
 }
 
+#categories-list a{
+    display: block;
+}
+
+.product-counter{
+    margin-left: 1em;
+    float: none;
+}
+
 .form-quotation fieldset{
     width: 80%;
 }
