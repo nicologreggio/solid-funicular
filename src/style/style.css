@@ -25,6 +25,10 @@ summary {
     cursor: pointer;
 }
 
+abbr{
+    text-decoration: none;
+}
+
 .button {
     color: white;
     border: none;
@@ -283,6 +287,10 @@ main hr{
     border-radius: 1em;
     margin-bottom: 1em;
     padding: 1em;
+}
+
+#staff-fav a{
+    display: block;
 }
 
 #staff-fav img {
