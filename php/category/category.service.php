@@ -10,8 +10,8 @@ class CategoryService
         return CategoryRepository::getOne($id);
     }
 
-    public static function getAll() : array
+    public static function getAll(int $limit = -1) : array
     {
-        return CategoryRepository::getAll();
+        return CategoryRepository::getAll($limit);
     }
 }

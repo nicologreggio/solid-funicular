@@ -13,6 +13,7 @@ function fillSearchbar($page)
         <input 
             id='searchbar'
             placeholder='Inserisci i termini di ricerca'
+            aria-label='Inserisci i termini di ricerca'
             name='searchbar'
             value='{$_SESSION['search']['name']}'
         />
@@ -62,7 +63,14 @@ function fillMaterials($page)
 
     foreach($materials as $index => $material)
     {
-        $materialsStr .= "<p class='search-material'><input id='search-material-{$index}' type='checkbox' name='materials[]' value='{$material->getId()}' ";
+        $materialsStr .= "
+            <p class='search-material'>
+                <input
+                    id='search-material-{$index}'
+                    type='checkbox'
+                    name='materials[]'
+                    value='{$material->getId()}' 
+            ";
 
         if($searchedMaterials)
         {

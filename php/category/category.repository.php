@@ -17,11 +17,23 @@ class CategoryRepository
         return CategoryModel::instanceFromCategory($category);
     }
 
-    public static function getAll() : array
+    public static function getAll(int $limit = -1) : array
     {
+        $limitStr = "";
+
+        if($limit != -1)
+        {
+            $limitStr .= "LIMIT :lim";
+        }
+
         $stm = DBC::getInstance()->prepare(
-            "SELECT * FROM `CATEGORIES`"
+            "SELECT * FROM `CATEGORIES` ".$limitStr
         );
+
+        if($limit != -1)
+        {
+            $stm->bindValue(":lim", $limit, PDO::PARAM_INT);
+        }
 
         $stm->execute();
 

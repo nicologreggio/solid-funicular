@@ -30,12 +30,18 @@
             <fieldset id="filters">
                 <legend>Filtri:</legend>
                 <categories/>
-                <details id="materials-wrapper">
+                <details
+                    id="materials-wrapper"
+                    aria-label="Seleziona i materiali per cui vuoi filtrare">
                     <summary>Materiali:</summary>
                     <materials/>
                 </details>
         </fieldset>
-        <input id='reset-button' class='button' type="reset" value="Cancella tutto" />
+        <!-- 
+            Per evitare l'utilizzo di javascript abbiamo utilizzato input type='reset', 
+            però dopo aver effettuato una ricerca si ottiene che non svuota i campi ma li riporta allo stato di quest'ultima fatta 
+        -->
+        <input id='reset-button' class='button' type="reset" value="Cancella tutto" aria-label="Cancella la ricerca appena effettuata" />
         <button id='search-button' class='button' type="submit">CERCA</button>
             <hr />
             <h3>Risultati</h3>
