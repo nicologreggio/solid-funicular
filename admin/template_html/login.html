@@ -57,6 +57,7 @@
             <div class="message">
                 <error-login/>
             </div>
+            <p>Per fare login usare email <span class="strong">admin@admin.admin</span> e <span xml:lang="en" lang="en">password</span> <span class="strong">admin</span></p>
             <form action="login.php" method="post" id="form-login" data-validate="1">
                 <p class="p-0 m-0 pb-3">I campi obbligatori son segnati con <span class="color-red">*</span></p>
                 <label for="email">Email<span class="color-red">*</span></label>
@@ -65,6 +66,7 @@
                     id="email" 
                     name="email" 
                     type="email"
+                    value="<value-email/>"
                     placeholder="Inserisci email" 
                     required="required" 
                     aria-required="true"

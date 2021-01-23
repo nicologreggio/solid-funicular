@@ -7,7 +7,8 @@ if(request()->method() == 'POST' ){
         redirectIfLogged();
     }
     else {
-        $page = str_replace('<error-login/>', '<p class="error">L\'utente cercato non è stato trovato</p>', $page);
+        $page = str_replace('<error-login/>', '<p class="error">L\'utente cercato non è stato trovato o i dati inseriti non son validi</p>', $page);
+        $page = str_replace('<value-email/>',$_POST['email'] , $page);
     }
 }
 removeErrorsTag($page);
