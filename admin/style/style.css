@@ -306,7 +306,9 @@ p{
 .main-list * {
     color:rgb(61, 58, 58)
 }
-
+.main-list *:visited{
+    color: rgb(63, 65, 223);
+}
 
 .clearfix::after {
     content: "";
