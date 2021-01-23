@@ -83,6 +83,8 @@
                     <legend>Dati per l'accesso</legend>
                     <label for="email">Email (massimo 100 caratteri)<span class="color-red">*</span></label>
                     <input 
+                        inputmode="email"
+                        autocomplete="off"
                         value="<value-email/>"
                         id="email" 
                         name="email" 
@@ -98,6 +100,7 @@
 
                     <label for="password">Password (tra 5 e 1024 caratteri)<span class="color-red">*</span></label>
                     <input 
+                        autocomplete="off"
                         id="password" 
                         type="password"
                         name="password" 
@@ -111,6 +114,7 @@
 
                     <label for="confirm-password">Conferma password<span class="color-red">*</span></label>
                     <input 
+                        autocomplete="off"
                         id="confirm-password" 
                         type="password"
                         name="confirm" 
@@ -185,6 +189,7 @@
 
                     <label for="cap"><abbr title="Codice Avviamento Postale">CAP</abbr><span class="color-red">*</span></label>
                     <input 
+                        inputmode="numeric"
                         value="<value-cap/>"
                         id="cap" 
                         type="text"
