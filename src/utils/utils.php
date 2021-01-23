@@ -41,14 +41,14 @@ function fillHeader($page, $currentCat=-1)
     $page=str_replace('<header-navigation />', $header, $page);
     if(isset($_SESSION['user'])){
         $page=str_replace('<account-icon />', '<a href="./logout.php" aria-label="Scollegati dal tuo account">
-                <img src="../images/icons/logout.svg" alt="Icona di uscita per effetturare il logout" />
+                <img src="../images/icons/logout.svg" alt="Porta d\'uscita stilizzata" />
                 <span>' . $_SESSION['username'] . '</span>
             </a>', $page);
     }
-    else{
+    else {
         if(!strpos($_SERVER['REQUEST_URI'], 'signup.php') && !strpos($_SERVER['REQUEST_URI'], 'login.php')){
             $page=str_replace('<account-icon />', '<a href="./login.php" aria-label="Esegui l\'accesso">
-                    <img src="../images/icons/login.svg" alt="Icona utente per effettuare login" />
+                    <img src="../images/icons/login.svg" alt="Utente stilizzato" />
                     <span>Accedi</span>
                 </a>', $page);
         }
@@ -116,7 +116,6 @@ function fillPagination($page, $count, $currentPage)
                         class='button current'
                         name='page'
                         type='submit'
-                        aria-selected='true'
                         value='{$i}'
                         aria-label='Sei alla pagina numero {$i}'
                         disabled='disabled'>
@@ -131,7 +130,6 @@ function fillPagination($page, $count, $currentPage)
                         class='button'
                         type='submit'
                         name='page'
-                        aria-selected='false'
                         aria-label='Vai alla pagina numero {$i}'
                         value='{$i}'>
                         {$i}

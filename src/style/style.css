@@ -36,6 +36,10 @@ summary {
     text-decoration: none;
 }
 
+.bold {
+    font-weight: bold;
+}
+
 /* ========== HEADINGS ========== */
 
 h1,
@@ -471,6 +475,10 @@ footer > p{
     color: inherit;
     font: inherit;
     padding: 0;
+}
+
+.quote-control button > span {
+    display: block;
 }
 
 .remove-product img {

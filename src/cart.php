@@ -21,7 +21,7 @@ function fillPagewithCartProducts($page)
                     <img class='quote-product-img' src='{$product->getMainImage()}' alt='{$product->getMainImageDescription()}' />
                     <div class='quote-information'>
                         <strong>{$product->getName()}</strong><br />
-                        <strong>Categoria: </strong><span>{$product->getCategory()}</span></br/>
+                        <strong>Categoria: </strong><span>{$product->getCategory()}</span><br/>
                     </div>
                     <div class='quote-control'>
                         <div class='product-quantity'>
@@ -32,7 +32,7 @@ function fillPagewithCartProducts($page)
                             <input type='hidden' name='product-id' value='{$product->getId()}' />
                             <button class='button' type='submit'>
                                 <img src='../images/icons/remove.svg' alt='Rimuovi il prodotto dal carrello' />
-                                <p>Rimuovi</p>
+                                <span>Rimuovi</span>
                             </button>
                         </form>
                     </div>
@@ -115,14 +115,13 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
             unset($_SESSION['cart']);
             $page = file_get_contents("./cart/thank-you-page.html");
             $page = fillHeader($page);
-            echo $page;
         }
     }
     else
     {
-        $page=fillPagewithCartProducts(file_get_contents("./cart/cart.html"));
-        $page=fillHeader($page);
-        echo fillPageWithErrorsAndValues($page, $err);
+        $page = fillPagewithCartProducts(file_get_contents("./cart/cart.html"));
+        $page = fillHeader($page);
+        $page = fillPageWithErrorsAndValues($page, $err);
     }
 }
 else
@@ -143,8 +142,11 @@ else
         $page = file_get_contents("./cart/go-to-login-page.html");
     }
 
-    $page=fillHeader($page);
-    $page=str_replace('<breadcrumbs-location />', 'Carrello', $page);
-    $page=str_replace('<a href="./cart.php" aria-label="Vai alla pagina del carrello"><img src="../images/icons/shopping_cart.svg" alt="Carrello dei prodotti" /><span>Carrello</span></a>', '', $page);
-    echo cleanPage($page);
+    $page = fillHeader($page);
+    $page = cleanPage($page);
 }
+
+$page=str_replace('<breadcrumbs-location />', 'Carrello', $page);
+$page=str_replace('<a href="./cart.php" aria-label="Vai alla pagina del carrello"><img src="../images/icons/shopping_cart.svg" alt="Carrello dei prodotti" /><span>Carrello</span></a>', '', $page);
+
+echo $page;

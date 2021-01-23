@@ -33,7 +33,6 @@ function fillPageWithDetails(string $page, ProductModel $product)
 	
 	$page = str_replace("<productMainImage/>", $product->getMainImage(), $page);
 	$page = str_replace("<productMainImageDescription/>", $product->getMainImageDescription(), $page);
-	//$page = str_replace("<productCategory/>", $product->getCategory(), $page);
 	$page = str_replace("<productCategory/>", '<li>
 			<strong>Categoria:</strong>
 			<span class="product-detail" id="product-category">' . $product->getCategory() . '</span>
@@ -49,7 +48,7 @@ function fillPageWithDetails(string $page, ProductModel $product)
 		if($_SESSION['cart'][$product->getId()])
 		{
 			$removeForm = "
-				<form class='form-quotation' method='POST' action='./php/remove-from-cart-quotation.php'>
+				<form class='form-quotation' method='post' action='./php/remove-from-cart-quotation.php'>
 					<fieldset>
 						<legend>Rimozione dal preventivo</legend>
 						<button class='button' type='submit'>Rimuovi il prodotto</button>
@@ -65,7 +64,7 @@ function fillPageWithDetails(string $page, ProductModel $product)
 			$addOrUpdateString = "Aggiungi al preventivo";
 		}
 
-		$addForm = "<form class='form-quotation' action='./php/add-to-cart-quotation.php' method='POST'>
+		$addForm = "<form class='form-quotation' action='./php/add-to-cart-quotation.php' method='post'>
 						<fieldset>
 							<legend>Gestione quantità</legend>
 							<input id='quantity' value='{$quantity}' name='quantity' type='number' min='1' />
