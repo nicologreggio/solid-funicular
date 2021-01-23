@@ -199,7 +199,8 @@ header {
 
 .menu {
     width: 100%;
-    background-color: #A70500;
+    /* background-color: #A70500; */
+    border: 3px solid #A70500;
     border-radius: 0.5em;
 }
 
@@ -213,12 +214,24 @@ header {
     justify-content: center;
 }
 
-.menu li a, .menu .current{
+/* .menu li a, .menu .current{
     display: inline-block;
-    color: white;
     text-align: center;
-    text-decoration: none;
-    padding: 1em 0.6em;
+    padding: 1em 0.3em;
+    border-right: 1px solid #A70500;
+} */
+
+.menu li{
+    display: inline-block;
+    /* color: white; */
+    text-align: center;
+    /* text-decoration: none; */
+    padding: 1em 0.3em;
+    border-right: 1px solid #A70500;
+}
+
+.menu li:last-child{
+    border-right: none;
 }
 
 .current {
@@ -229,8 +242,10 @@ header {
     cursor: default;
 }
 
-.menu li a:hover {
-    background-color: #111111;
+
+
+.menu li:hover:not(.current) {
+    background-color: #ff9a97;
 }
 
 #logo {
