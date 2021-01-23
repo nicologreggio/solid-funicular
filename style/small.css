@@ -70,6 +70,10 @@ h3{
     text-align: center;
 }
 
+.menu li a, .current{
+    padding: 1em 0;
+}
+
 #staff-fav > div{
     display: flex;
     flex-direction: column;
@@ -79,12 +83,16 @@ h3{
     width: 100%;
 }
 
-#products-list li{
+#products-list li, #products-list img{
     width: 100%;
 }
 
 #categories-list a{
     display: block;
+}
+
+#categories-list li{
+    border-bottom: none;
 }
 
 .product-counter{

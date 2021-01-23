@@ -34,7 +34,7 @@ function base()
 
 function fillHeader($page, $currentCat=-1)
 {
-    $categories=CategoryService::getAll(4);
+    $categories=CategoryService::getAll(-1);
     $idx=0;
 
     $header=file_get_contents('./utils/header.html');
