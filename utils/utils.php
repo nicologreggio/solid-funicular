@@ -29,7 +29,7 @@ function fillPageWithError($page, $err)
 
 function base()
 {
-    return str_replace(PHP_EOL, '', file_get_contents(__DIR__.'/../../.base_path') ?? "");
+    return str_replace(PHP_EOL, '', file_get_contents(__DIR__.'/../.base_path') ?? "");
 }
 
 function fillHeader($page, $currentCat=-1)
@@ -41,14 +41,14 @@ function fillHeader($page, $currentCat=-1)
     $page=str_replace('<header-navigation />', $header, $page);
     if(isset($_SESSION['user'])){
         $page=str_replace('<account-icon />', '<a href="./logout.php" title="Scollegati dal tuo account">
-                <img src="../images/icons/logout.svg" alt="Porta d\'uscita stilizzata" />
+                <img src="./images/icons/logout.svg" alt="Porta d\'uscita stilizzata" />
                 <span>' . $_SESSION['username'] . '</span>
             </a>', $page);
     }
     else {
         if(!strpos($_SERVER['REQUEST_URI'], 'signup.php') && !strpos($_SERVER['REQUEST_URI'], 'login.php')){
             $page=str_replace('<account-icon />', '<a href="./login.php" title="Vai alla pagina per eseguire l\'accesso">
-                    <img src="../images/icons/login.svg" alt="Utente stilizzato" />
+                    <img src="./images/icons/login.svg" alt="Utente stilizzato" />
                     <span>Accedi</span>
                 </a>', $page);
         }
