@@ -5,4 +5,11 @@ unset($_SESSION['user']);
 unset($_SESSION['username']);
 unset($_SESSION['cart']);
 
-header('Location: ' . $_SESSION['HTTP_REFERER']);
+if(isset($_SESSION['HTTP_REFERER']))
+{
+    header('Location: ' . $_SESSION['HTTP_REFERER']);
+}
+else
+{
+    header('Location: /');
+}
