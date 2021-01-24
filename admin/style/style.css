@@ -81,6 +81,7 @@ nav > ul > li{
     color: rgb(172, 0, 0);
     font-weight: 600;
     font-size: 0.98em !important;
+    text-align: center;
 }
 nav > ul > li > a {
     position: relative;
