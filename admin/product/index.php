@@ -40,7 +40,7 @@ foreach(($stm->fetchAll() ?? []) as $prod){
             <div class="w80 w100-sm right pl-3 pl-0-sm pt-2-sm">
                 <h3 class="m0 p0"><abbr title="Identificativo" class="strong">ID:</abbr> '.e($prod->_ID).'</h3>
                 <p class="m0 p0 mt-2">
-                    <span class="strong">"Meta-descrizione:</span><br />
+                    <span class="strong">Meta-descrizione:</span><br />
                     '.e($prod->_METADESCRIPTION).'
                 </p>
                 <p class="m0 p0 mt-2">
