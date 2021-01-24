@@ -13,6 +13,6 @@ $page=str_replace(
     $page, $countReplace
 );
 
-$page=str_replace('<breadcrumbs-location />', '<span xml:lang="en" lang="en">Home</span>', $page);
+$page=str_replace("<span class='bold'><breadcrumbs-location /></span>", '<span xml:lang="en" lang="en" class="bold">Home</span>', $page);
 
 echo $page;

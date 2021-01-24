@@ -28,9 +28,9 @@ function validateLoginData(string $email, string $password)
         'email' => ['required'],
         'password' => ['required']
     ], [
-        'email.required' => "L'email non è stata inserita",
+        'email.required' => "L'<span xml:lang='en' lang='en'>email</span> non è stata inserita",
 
-        'password.required' => "La password non è stata inserita",
+        'password.required' => "La <span xml:lang='en' lang='en'>password<span> non è stata inserita",
     ]);
 
     return $err;
@@ -88,7 +88,11 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
         }
         else
         {
-            echo fillPageWithErrorAndValue($page, ["password" => [ "Email o password sbagliata" ]]);
+            $err = [
+                "password" => [ "<span xml:lang='en' lang='en'>Email</span> o <span xml:lang='en' lang='en'>password</span> sbagliata" ]
+            ];
+
+            echo fillPageWithErrorAndValue($page, $err);
         }
     }
     else

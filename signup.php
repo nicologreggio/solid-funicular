@@ -40,10 +40,10 @@ function validateSignupData(string $email, string $name, string $surname, string
         'password' => ['required', 'password'],
         'confirm' => ['required', 'equals:password']
     ], [
-        'email.required' => "E' obbligatorio inserire una email",
-        'email.email' => "L'email inserita non è valida",
-        'email.max_length' => "L'email può essere lunga al massimo 100 caratteri",
-        'email.unique' => "L'email è già in uso",
+        'email.required' => "E' obbligatorio inserire una <span xml:lang='en' lang='en'>email</span>",
+        'email.email' => "L'<span xml:lang='en' lang='en'>email</span> inserita non è valida",
+        'email.max_length' => "L'<span xml:lang='en' lang='en'>email</span> può essere lunga al massimo 100 caratteri",
+        'email.unique' => "L'<span xml:lang='en' lang='en'>email</span> è già in uso",
 
         'name.required' => "È obbligatorio inserire un nome (una parola composte da lettere dell'alfabeto)",
         'name.alphabetic' => "Il nome inserito può contenere solo lettere dell'alfabeto",
@@ -53,11 +53,11 @@ function validateSignupData(string $email, string $name, string $surname, string
         'surname.alphabetic' => "Il nome inserito può contenere solo lettere dell'alfabeto",
         'surname.max_length' => "Il cognome inserito può essere lungo al massimo 100 caratteri", 
         
-        'password' => "È obbligatorio inserire una password",
-        'password.password' => "La password inserita non è valida",
+        'password' => "È obbligatorio inserire una <span xml:lang='en' lang='en'>password</span>",
+        'password.password' => "La <span xml:lang='en' lang='en'>password</span> inserita non è valida",
         
-        'confirm.required' => "È obbligatorio inserire la verifica",
-        'confirm.equals' => "La password e la password di conferma non corrispondono",
+        'confirm.required' => "È obbligatorio inserire la verifica della <span xml:lang='en' lang='en'>password</span>",
+        'confirm.equals' => "La <span xml:lang='en' lang='en'>password</span> e la <span xml:lang='en' lang='en'>password</span> di conferma non corrispondono",
 
         'city.required' => "E' obbligatorio inserire una città",
         'city.max_length' => "Il nome della città inserita può essere al massimo lungo 100 caratteri",
@@ -65,9 +65,9 @@ function validateSignupData(string $email, string $name, string $surname, string
         'address.required' => "E' obbligatorio inserire un indirizzo",
         'address.max_length' => "L'indirizzo inserito può essere lungo al massimo 100 caratteri",
 
-        'cap.required' => "È obbligatorio inserire un CAP",
-        'cap.length' => "Il CAP deve essere lungo esattamente 5 caratteri numerici",
-        'cap.integer' => "Il CAP deve essere composto da soli numeri"
+        'cap.required' => "È obbligatorio inserire un <abbr title='Codice di avviamento postale'>CAP</abbr>",
+        'cap.length' => "Il <abbr title='Codice di avviamento postale'>CAP</abbr> deve essere lungo esattamente 5 caratteri numerici",
+        'cap.integer' => "Il <abbr title='Codice di avviamento postale'>CAP</abbr> deve essere composto da soli numeri"
     ]);
 
     return $err;

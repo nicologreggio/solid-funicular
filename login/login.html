@@ -26,7 +26,7 @@
 		<h2>Accedi</h2>
 		<form class="sf-form" action="./login.php" method="post" data-validate="1">
             <p class='bold'>I campi obbligatori sono segnati con *</p>
-			<label for="email">Email *: </label>
+			<label for="email"><span xml:lang="en" lang="en">Email</span> *: </label>
 			<input
 				id="email"
 				value="<value-email/>"
@@ -38,12 +38,12 @@
 				aria-required="true"
 				data-error-field="error-email" 
 				data-rules="required"
-				data-error-message="L'email non è stata inserita"
+				data-error-message="L'<span xml:lang='en' lang='en'>email</span> non è stata inserita"
 				aria-describedby="error-email"
 				inputmode="email" />
 			<div id="error-email" class="error" role="alert"><error-email/></div>
 
-			<label for="password">Password *: </label>
+			<label for="password"><span xml:lang="en" lang="en">Password</span> *: </label>
 			<input
 				id="password"
 				value="<value-password/>"
@@ -55,7 +55,7 @@
 				aria-required="true"
 				data-error-field="error-password" 
 				data-rules="required"
-				data-error-message="La password non è stata inserita"
+				data-error-message="La <span xml:lang='en' lang='en'>password</span> non è stata inserita"
 				aria-describedby="error-password" />
 			<div id="error-password" class="error" role="alertdialog"><error-password/></div>
 			<div class="buttons-control">
