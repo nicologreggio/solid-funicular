@@ -56,11 +56,9 @@ function fillPageWithErrorAndValue($page, $err)
     {
         $page = fillPageWithError($page, $err);
     }
-    else
-    {
-        $page = str_replace('<error-email/>', "", $page);
-        $page = str_replace('<error-password/>', "", $page);
-    }
+    
+    $page = str_replace('<error-email/>', "", $page);
+    $page = str_replace('<error-password/>', "", $page);
 
     return $page;
 }

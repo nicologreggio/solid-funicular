@@ -14,4 +14,9 @@ class CategoryService
     {
         return CategoryRepository::getAll($limit);
     }
+
+    public static function getAllMenu(int $limit = -1) : array
+    {
+        return CategoryRepository::getAllWhereMenu($limit);
+    }
 }

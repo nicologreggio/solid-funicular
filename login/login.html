@@ -25,7 +25,8 @@
 	<main id="main-content">
 		<h2>Accedi</h2>
 		<form class="sf-form" action="./login.php" method="post" data-validate="1">
-			<label for="email">Email*: </label>
+            <p class='bold'>I campi obbligatori sono segnati con *</p>
+			<label for="email">Email *: </label>
 			<input
 				id="email"
 				value="<value-email/>"
@@ -39,9 +40,9 @@
 				data-rules="required"
 				data-error-message="L'email non è stata inserita"
 				aria-describedby="error-email" />
-			<p id="error-email" class="error" role="alert"><error-email/></p>
+			<div id="error-email" class="error" role="alert"><error-email/></div>
 
-			<label for="password">Password*: </label>
+			<label for="password">Password *: </label>
 			<input
 				id="password"
 				value="<value-password/>"
@@ -55,7 +56,7 @@
 				data-rules="required"
 				data-error-message="La password non è stata inserita"
 				aria-describedby="error-password" />
-			<p id="error-password" class="error" role="alertdialog"><error-password/></p>
+			<div id="error-password" class="error" role="alertdialog"><error-password/></div>
 			<div class="buttons-control">
 				<button class='button' type="submit">Accedi</button>
 				<a href="./signup.php" title="Vai alla pagina di registrazione">Non sei ancora registrato? Fallo subito cliccando qui!</a>

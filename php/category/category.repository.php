@@ -48,5 +48,37 @@ class CategoryRepository
 
         return $categoriesModel;
     }
+
+    public static function getAllWhereMenu(int $limit) : array
+    {
+        $limitStr = "";
+
+        if($limit != -1)
+        {
+            $limitStr .= "LIMIT :lim";
+        }
+
+        $stm = DBC::getInstance()->prepare(
+            "SELECT * FROM `CATEGORIES` WHERE _MENU = 1 ".$limitStr
+        );
+
+        if($limit != -1)
+        {
+            $stm->bindValue(":lim", $limit, PDO::PARAM_INT);
+        }
+
+        $stm->execute();
+
+        $categories = $stm->fetchAll();
+
+        $categoriesModel = array();
+
+        foreach($categories as $category)
+        {
+            $categoriesModel[] = CategoryModel::instanceFromCategory($category);
+        }
+
+        return $categoriesModel;
+    }
 }
 

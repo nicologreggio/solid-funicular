@@ -107,21 +107,19 @@ function fillPageWithErrorAndValue($page, $err)
     $page = str_replace("<value-address/>", $_POST['address'], $page);
     $page = str_replace("<value-cap/>", $_POST['cap'], $page);
 
-    if($err === true)
-    {
-        $page = str_replace('<error-db/>', "C'è stato un errore nel database", $page);
-        $page = str_replace("<error-email/>", "", $page);
-        $page = str_replace("<error-name/>", "", $page);
-        $page = str_replace("<error-surname/>", "", $page);
-        $page = str_replace("<error-password/>", "", $page);
-        $page = str_replace("<error-confirm-password/>", "", $page);
-        $page = str_replace("<error-city/>", "", $page);
-        $page = str_replace("<error-address/>", "", $page);
-        $page = str_replace("<error-cap/>", "", $page);
-    } else if(is_array($err))
+    if(is_array($err))
     {
         $page = fillPageWithError($page, $err);
     }
+
+    $page = str_replace("<error-email/>", "", $page);
+    $page = str_replace("<error-name/>", "", $page);
+    $page = str_replace("<error-surname/>", "", $page);
+    $page = str_replace("<error-password/>", "", $page);
+    $page = str_replace("<error-confirm-password/>", "", $page);
+    $page = str_replace("<error-city/>", "", $page);
+    $page = str_replace("<error-address/>", "", $page);
+    $page = str_replace("<error-cap/>", "", $page);
 
     return $page;
 }

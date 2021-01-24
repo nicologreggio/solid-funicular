@@ -27,10 +27,11 @@
     <main id="main-content">
         <h2>Registrazione</h2>
         <form class="sf-form" action="./signup.php" method="post" data-validate="1">
+            <p class='bold'>I campi obbligatori sono segnati con *</p>
             <fieldset>
                 <legend>Informazioni generali</legend>
                     
-                <label for="email">Email*: </label>
+                <label for="email">Email *: </label>
                 <input 
                     id="email"
                     value="<value-email/>"
@@ -46,9 +47,9 @@
                     aria-label="Inserisci la tua email"
                     aria-describedby="error-email"
                     />
-                <p id="error-email" class="error" role="alert"><error-email/></p>
+                <div id="error-email" class="error" role="alert"><error-email/></div>
                 
-                <label for="name">Nome*:</label>
+                <label for="name">Nome *:</label>
                 <input
                     id="name"
                     value="<value-name/>"
@@ -63,9 +64,9 @@
                     aria-label="Inserisci il tuo nome"
                     aria-describedby="error-name"
                     />
-                <p id="error-name" class="error" role="alert"><error-name/></p>
+                <div id="error-name" class="error" role="alert"><error-name/></div>
                 
-                <label for="surname">Cognome*:</label>
+                <label for="surname">Cognome *:</label>
                 <input 
                     id="surname"
                     value="<value-surname/>"
@@ -80,9 +81,9 @@
                     aria-label="Inserisci il tuo cognome"
                     aria-describedby="error-surname"
                     />
-                <p id="error-surname" class="error" role="alert"><error-surname/></p>
+                <div id="error-surname" class="error" role="alert"><error-surname/></div>
                 
-                <label for="password">Password*: </label>
+                <label for="password">Password *: </label>
                 <input
                     id="password" 
                     value="<value-password/>"
@@ -97,10 +98,10 @@
                     aria-label="Inserisci la password"
                     aria-describedby="error-password"
                     />
-                <p id="suggestion-password" class="suggestion">La password deve essere lunga almeno 8 caratteri, contenere almeno una lettera maiuscola e almeno un numero</p>
-                <p id="error-password" class="error" role="alert"><error-password/></p>
+                <div id="suggestion-password" class="suggestion">La password deve essere lunga almeno 8 caratteri, contenere almeno una lettera maiuscola e almeno un numero</div>
+                <div id="error-password" class="error" role="alert"><error-password/></div>
 
-                <label for="confirm-password">Conferma Password*: </label>
+                <label for="confirm-password">Conferma Password *: </label>
                 <input 
                     id="confirm-password"
                     value="<value-confirm-password/>"
@@ -115,12 +116,12 @@
                     aria-label="Inserisci di nuovo la password come conferma"
                     aria-describedby="error-confirm-password"
                 />
-                <p id="error-confirm-password" class="error" role="alert"><error-confirm-password/></p>
+                <div id="error-confirm-password" class="error" role="alert"><error-confirm-password/></div>
             </fieldset>
             <fieldset>
                 <legend>Residenza</legend>
                 
-                <label for="city">Città*: </label>
+                <label for="city">Città *: </label>
                 <input 
                     id="city"
                     value="<value-city/>"
@@ -135,9 +136,9 @@
                     aria-label="Inserisci la città di residenza"
                     aria-describedby="error-city"
                     />
-                <p id="error-city" class="error" role="alert"><error-city/></p>
+                <div id="error-city" class="error" role="alert"><error-city/></div>
                 
-                <label for="address">Indirizzo*:</label>
+                <label for="address">Indirizzo *:</label>
                 <input 
                     id="address" 
                     value="<value-address/>"
@@ -152,9 +153,9 @@
                     aria-label="Inserisci l'indirizzo di residenza"
                     aria-describedby="error-address"
                     />
-                <p id="error-address" class="error" role="alert"><error-address/></p>
+                <div id="error-address" class="error" role="alert"><error-address/></div>
                 
-                <label for="cap">CAP*:</label>
+                <label for="cap">CAP *:</label>
                 <input
                     id="cap"
                     value="<value-cap/>"
@@ -170,7 +171,7 @@
                     aria-label="Inserisci il CAP di residenza"
                     aria-describedby="error-cap"
                     />
-                <p id="error-cap" class="error" role="alert"><error-cap/></p>
+                <div id="error-cap" class="error" role="alert"><error-cap/></div>
             </fieldset>
             <div class="buttons-control">
                 <button class="button" type="submit">Registrati</button>

@@ -12,15 +12,13 @@ function fillPageWithError($page, $err)
     
     foreach($err as $k => $errors)
     {
-        $msg = ""; //"<ul class='errors-list'>";
-    
+        $msg = "";
         
         foreach($errors as $error)
         {
-            $msg .= "{$error}</br>";
+            $msg .= "<p>{$error}</p>";
         }
 
-        // $msg .= "</ul>";
         $page = str_replace("<error-$k/>", $msg, $page);
     }
 
@@ -34,7 +32,7 @@ function base()
 
 function fillHeader($page, $currentCat=-1)
 {
-    $categories=CategoryService::getAll(-1);
+    $categories=CategoryService::getAllMenu(4);
     $idx=0;
 
     $header=file_get_contents('./utils/header.html');

@@ -83,14 +83,13 @@ function fillPageWithErrorsAndValues($page, $err)
     $page = str_replace("<value-telephone/>", $_POST['telephone'], $page);
     $page = str_replace("<value-reason/>", $_POST['reason'], $page);
 
-    if($err === true)
-    {
-        $page = str_replace('<error-email/>', "", $page);
-        $page = str_replace('<error-password/>', "", $page);
-    } else if(is_array($err))
+    if(is_array($err))
     {
         $page = fillPageWithError($page, $err);
     }
+
+    $page = str_replace('<error-email/>', "", $page);
+    $page = str_replace('<error-password/>', "", $page);
 
     return $page;
 }

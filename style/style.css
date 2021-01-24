@@ -188,8 +188,7 @@ header {
 }
 
 #shortcuts img:active{
-    /* transition: 0.3s; */
-    transform: scale(1.5);
+    transform: scale(1.05);
 }
 
 #titles {
@@ -369,7 +368,7 @@ main hr{
 }
 
 #products-list li:active{
-    transform: scale(1.1);
+    transform: scale(1.05);
     transition: 0.3s ease-out;
 }
 
@@ -435,7 +434,6 @@ footer > p{
 }
 
 .form-quotation input{
-    /* height: 2em; */
     width: 3em;
     font-size: 0.8em;
     padding: 0.2em 0 0.2em 1em;
