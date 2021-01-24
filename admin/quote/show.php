@@ -44,12 +44,12 @@ if(isset($_REQUEST['id'])){
         '<products/>' => $products,
         '<user-name/>' => $user->_NAME.' '.$user->_SURNAME,
         '<user-email/>' => $user->_EMAIL ,
-        '<user-address/>' => $user->_ADDRESS.' '.$user->_CITY.' ('.$user->_CAP.')',
+        '<user-address/>' => $user->_ADDRESS.' '.$user->_CITY.' ('.$user->_CAP.')' ?? "non fornito",
         '<quote-date/>' => $quote->_CREATED_AT ,
         '<quote-date-text/>' => $date->format('d-m-Y').' alle '.$date->format('H:i') ,
-        '<quote-phone/>' => $quote->_TELEPHONE ,
-        '<quote-reason/>' => $quote->_REASON ,
-        '<quote-company/>' => $quote->_COMPANY ,
+        '<quote-phone/>' => $quote->_TELEPHONE ?? "non fornito",
+        '<quote-reason/>' => $quote->_REASON ?? "non fornito",
+        '<quote-company/>' => $quote->_COMPANY ?? "non fornito",
         '<quote-id/>' => $quote->_ID ,
     ];
     foreach($map as $k => $v){
