@@ -121,7 +121,7 @@ function fillPageWithDetails(string $page, ProductModel $product)
 	return $page;
 }
 
-
+echo $_SERVER['HTTP_REFERER'];
 
 if($id = $_GET['id'])
 {
