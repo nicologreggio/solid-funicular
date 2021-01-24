@@ -77,7 +77,7 @@ function fillHeader($page, $currentCat=-1)
         $actualCat = CategoryService::getOne($currentCat);
 
         $page=str_replace("<cat-name />", $actualCat->getName(), $page);
-        $page=str_replace("<breadcrumbs-location />", "<a title='Vai alla pagina di tutte le categorie' href='allcategories.php'>Categorie</a> >> {$actualCat->getName()}", $page);
+        $page=str_replace("<breadcrumbs-location />", "<a title='Vai alla pagina di tutte le categorie' href='allcategories.php'>Categorie</a> <span aria-hidden='true'> >> </span> {$actualCat->getName()}", $page);
     }
 
     return $page;

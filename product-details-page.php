@@ -130,7 +130,7 @@ if($id = $_GET['id'])
 		$_SESSION['actual-product-id'] = $id;
 		$page=file_get_contents('./product-details-page/product-details-page.html');
 		$page=fillHeader($page);
-		$page=str_replace('<breadcrumbs-location />', '<a title="Vai alla pagina di tutte le categorie" href="allcategories.php">Categorie</a> >> <cat-link /> <span aria-hidden="true"> >> </span> <productName/>', $page);
+		$page=str_replace('<breadcrumbs-location />', '<a title="Vai alla pagina di tutte le categorie" href="allcategories.php">Categorie</a> <span aria-hidden="true"> >> </span> <cat-link /> <span aria-hidden="true"> >> </span> <productName/>', $page);
 		$page=fillPageWithDetails($page, $product);
 		echo $page;
 	}
