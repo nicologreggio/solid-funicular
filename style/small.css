@@ -64,6 +64,10 @@ h3{
     text-align: center;
 }
 
+#shortcuts > a {
+    margin-left: 2em;
+}
+
 .menu li {
     float:none;
     width: 100%;

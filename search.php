@@ -12,9 +12,11 @@ function fillSearchbar($page)
         <label for='searchbar'>Termini di ricerca:</label>
         <input 
             id='searchbar'
+            type='text'
             placeholder='Inserisci i termini di ricerca'
             aria-label='Inserisci i termini di ricerca'
             name='searchbar'
+            inputmode='search'
             value='{$_SESSION['search']['name']}'
         />
     ";
