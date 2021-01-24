@@ -72,3 +72,6 @@ h2.print-space-top-0{
     padding-top:0 !important;
     margin-top:0 !important;
 }
+.quote-products-list li{
+    background-color:white;
+}
