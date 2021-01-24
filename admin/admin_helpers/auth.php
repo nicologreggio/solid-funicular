@@ -24,8 +24,8 @@ class Admin{
         ], [
             'email' => ['email', 'required']
         ], [
-            'email.required' => "E' obbligatorio inserire una email",
-            'email.email' => "L'email inserita non è valida"
+            'email.required' => "E' obbligatorio inserire una <span xml:lang=\"en\" lang=\"en\">email</span>",
+            'email.email' => "L'<span xml:lang=\"en\" lang=\"en\">email</span> inserita non è valida"
         ]) !== true){ 
             return $err;
         }
@@ -65,10 +65,10 @@ class Admin{
             'password' => ['required', 'min_length:5', 'max_length:1024', 'equals:confirm'],
             'confirm' => ['required']
         ], [
-            'email.required' => "E' obbligatorio inserire una email",
-            'email.email' => "L'email inserita non è valida",
-            'email.max_length' => "L'email può essere lunga al massimo 100 caratteri",
-            'email.unique' => "L'email è già in uso",
+            'email.required' => "E' obbligatorio inserire una <span xml:lang=\"en\" lang=\"en\">email</span>",
+            'email.email' => "L'<span xml:lang=\"en\" lang=\"en\">email</span> inserita non è valida",
+            'email.max_length' => "L'<span xml:lang=\"en\" lang=\"en\">email</span> può essere lunga al massimo 100 caratteri",
+            'email.unique' => "L'<span xml:lang=\"en\" lang=\"en\">email</span> è già in uso",
 
             'name.required' => "E' obbligatorio inserire un nome (una o più parole composte da lettere dell'alfabeto)",
             'name.alphabetic' => "Il nome inserito può contenere solo lettere dell'alfabeto",
@@ -87,14 +87,14 @@ class Admin{
             'address.required' => "E' obbligatorio inserire un indirizzo",
             'address.max_length' => "L'indirizzo inserito può essere lungo al massimo 100 caratteri",
             'address.min_length' => "L'indirizzo deve essere almeno lungo 2 caratteri",
+            
+            'cap.required' => "E' obbligatorio inserire un <abbr title=\"Codice avviamento postale\">CAP</abbr>",
+            'cap.length' => "Il <abbr title=\"Codice avviamento postale\">CAP</abbr> deve essere lungo esattamente 5 caratteri numerici",
+            'cap.integer' => "Il <abbr title=\"Codice avviamento postale\">CAP</abbr> deve essere composto da soli numeri",
 
-            'cap.required' => "E' obbligatorio inserire un CAP",
-            'cap.length' => "Il CAP deve essere lungo esattamente 5 caratteri numerici",
-            'cap.integer' => "Il CAP deve essere composto da soli numeri",
-
-            'password' => "E' obbligatorio inserire una password",
-            'password.min_length' => "La password deve essere almeno lunga 5 caratteri",
-            'password.max_length' => "La password deve essere al massimo lunga 1024 caratteri",
+            'password' => "E' obbligatorio inserire una <span xml:lang=\"en\" lang=\"en\">password</span>",
+            'password.min_length' => "La <span xml:lang=\"en\" lang=\"en\">password</span> deve essere almeno lunga 5 caratteri",
+            'password.max_length' => "La <span xml:lang=\"en\" lang=\"en\">password</span> deve essere al massimo lunga 1024 caratteri",
             'password.equals' => "La password non corrisponde alla conferma",
 
             'confirm.required' => "E' obbligatorio inserire la verifica",
