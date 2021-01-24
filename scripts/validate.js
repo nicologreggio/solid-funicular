@@ -1,4 +1,20 @@
-/*"use strict";
+/**
+ * Questo script mira ad essere una libreria per la validazione dei form tramite JS
+ * author: Alberto Sinigaglia
+ * co-author: Filippo Fantinato
+ * 
+ * Per usarla, definire dentro il form la seguente proprietà:
+ * data-validate="1"
+ * l'input i seguenti dati
+ * data-error-field="id del div che conterrà l'errore quando è da visualizzare" 
+ * data-rules="le regole che si vogliono applicare separate da |, e se hanno parametri nello stile regola:param1,param2" (per esempio se abbiamo un input numeric required e che deve essere tra 0-10 si può usare "between:0,10|required")
+ * data-error-message="l'errore da mostrare, può contenere anche HTML"
+ * 
+ * Per aggiungere regole, basta aggiungere al object filters una nuova proprietà con come chiave il nome del vincolo, e come valore la funzione per la validazione
+ */
+
+/*
+"use strict";
 const filters = {
     email : function (input){
         const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;

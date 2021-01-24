@@ -1,4 +1,29 @@
 <?php
+/**
+ * Questo file mira ad essere una libreria per la validazione tramite PHP
+ * author: Alberto Sinigaglia
+ * co-author: Filippo Fantinato
+ * 
+ * per usarla chiamare la funzione validate con come parametri:
+ *  1) i valori
+ *  2) i vincoli
+ *  3) i messaggi di errore che si vuole avere quando il valore X fallisce il vincolo Y nella forma "X.Y" => "messaggio di errore"
+ * 
+ *  Esempio:
+ *    validate([
+ *        'email' => 'admin@admin.admin'
+ *    ],[
+ *        'email' => ['required', "email"]
+ *    ],[
+ *        'email.email' => "Inserita un email non valida",
+ *        'email.required' => "E' necessario inserire un'email"
+ *    ]);
+ * 
+ * Per aggiungere regole, basta aggiungere alla classe Rules una funzione pubblica statica con il nome che si vuole dare a quel vincolo
+ * 
+ * N.B.: per dettagli implementativi, per usare la regola regex, bisogna metterla per ultima (per evitare che venga mal interpretata)
+ */
+
 require_once(__DIR__."/../DBC.php");
 class Rules{
     public static function email ($value){
@@ -135,53 +160,3 @@ function validate(array $values, array $rules, array $errors = []){
         return $final_errors;
     }
 }
-
-
-/////////////////////////////////
-//        PER FAR TEST         //
-/////////////////////////////////
-/*
-var_dump(validate([
-    'email' => 'admin@admin.admin'
-],[
-    'email' => ['required', "email"]
-],[
-    'email.email' => "Inserita un email non valida",
-    'email.required' => "E' necessaria una email"
-]));
-var_dump(validate([
-    'testo' => 'as1d'
-],[
-    'testo' => ["alphabetic:1"]
-],[
-    'testo.alphabetic' => "testo non alfabetico o troppo lungo"
-]));
-
-var_dump(validate([
-    'testo' => 'asddddde'
-],[
-    'testo' => ["regex:/asd*$/"]
-],[
-    'testo.regex' => "il testo deve essere asd con tante d finali quante ne vuoi"
-]));
-
-
-
-var_dump(validate([
-    'testo' => 'asddddde',
-    'conferma' => 'asdddde'
-],[
-    'testo' => ["equals:conferma"]
-],[
-    'testo.equals' => "La conferma non è uguale"
-]));
-
-
-var_dump(validate([
-    'email' => 'admin@admin.admin',
-],[
-    'email' => ["unique:USERS,_EMAIL"]
-],[
-    'email.unique' => "L'email esiste già nel DB"
-]));
-*/

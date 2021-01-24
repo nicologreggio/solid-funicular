@@ -1,5 +1,5 @@
 "use strict";
-
+// già con sintassi ie 6, ie_mob 9
 function toggleMenu(e){
     e.preventDefault();
     document.querySelector('nav > ul').classList.toggle('visible');
