@@ -130,7 +130,7 @@ $_SESSION['search'] = [
 $page = file_get_contents("./search/search.html");
 $page = fillHeader($page);
 $page = str_replace('<breadcrumbs-location />', 'Ricerca', $page);
-$page = str_replace('<a href="./search.php" title="Vai alla pagina di ricerca"><img src="./images/icons/search.svg" alt="Lente d\'ingrandimento stilizzata" /><span>Cerca</span></a>', '', $page);
+$page = str_replace('<div><div id="search-icon" class="icon"></div><a href="./search.php" title="Vai alla pagina di ricerca">Cerca</a></div>', '', $page);
 
 $page=fillPage($page);
 

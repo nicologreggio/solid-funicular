@@ -7,7 +7,7 @@ require_once(__DIR__."/utils/utils.php");
 function fillPageWithDetails(string $page, ProductModel $product)
 {
 	$cat=$_GET['cat'];
-	$catLink='<a href="categories.php?cat=' . $cat . '">' . $product->getCategory() . '</a>';
+	$catLink='<a title="Vai alla pagina della categoria '.$product->getCategory().'" href="categories.php?cat=' . $cat . '">' . $product->getCategory() . '</a>';
 	$page=str_replace("<cat-link />", $catLink, $page);
 	
 	$page = str_replace("<productName/>", $product->getName(), $page);
@@ -82,7 +82,7 @@ function fillPageWithDetails(string $page, ProductModel $product)
 	else
 	{
 		$goToLoginPage = "
-			<a href='./login.php'>Vuoi comprare questo prodotto? Autenticati cliccando qui!</a>
+			<a title=\"Vai alla pagina di autenticazione e autenticati per poter inserire nel preventivo questo prodotto\" href='./login.php'>Vuoi aggiungere al preventivo questo prodotto? Autenticati cliccando qui!</a>
 		";
 	}
 

@@ -46,7 +46,7 @@
                     data-error-message="L'email inserita non è valida o troppo lunga (massimo 100 caratteri)"
                     aria-label="Inserisci la tua email"
                     aria-describedby="error-email"
-                    />
+                    inputmode="email" />
                 <div id="error-email" class="error" role="alert"><error-email/></div>
                 
                 <label for="name">Nome *:</label>
@@ -151,8 +151,7 @@
                     data-rules="required|max_length:100" 
                     data-error-message="L'indirizzo è obbligatorio e deve essere lungo massimo 100 caratteri"
                     aria-label="Inserisci l'indirizzo di residenza"
-                    aria-describedby="error-address"
-                    />
+                    aria-describedby="error-address" />
                 <div id="error-address" class="error" role="alert"><error-address/></div>
                 
                 <label for="cap">CAP *:</label>
@@ -170,7 +169,7 @@
                     data-error-message="Il CAP è obbligatorio e deve essere composto esattamente da 5 numeri"
                     aria-label="Inserisci il CAP di residenza"
                     aria-describedby="error-cap"
-                    />
+                    inputmode="numeric" />
                 <div id="error-cap" class="error" role="alert"><error-cap/></div>
             </fieldset>
             <div class="buttons-control">

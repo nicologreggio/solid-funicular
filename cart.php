@@ -28,10 +28,11 @@ function fillPagewithCartProducts($page)
                             <p>Quantità:</p>
                             <span class='bold'>{$quantity}</span>
                         </div>
-                        <form class='remove-product' action='./php/remove-from-cart-quotation.php' method='post'>
+                        <form class='remove-product' action='./php/remove-from-cart-quotation.php' method='post' aria-label='Rimuovi il prodotto dal preventivo'>
                             <input type='hidden' name='product-id' value='{$product->getId()}' />
-                            <button class='button' type='submit'>
-                                <img src='./images/icons/remove.svg' alt='Rimuovi il prodotto dal carrello' />
+                            <button 
+                                class='remove-product-button button'
+                                type='submit' aria-label='Rimuovi il prodotto dal preventivo'>
                                 <span>Rimuovi</span>
                             </button>
                         </form>
@@ -146,6 +147,6 @@ else
 }
 
 $page=str_replace('<breadcrumbs-location />', 'Carrello', $page);
-$page=str_replace('<a href="./cart.php" title="Vai alla pagina del carrello"><img src="./images/icons/shopping_cart.svg" alt="Carrello stilizzato" /><span>Carrello</span></a>', '', $page);
+$page=str_replace('<div><div id="cart-icon" class="icon"></div><a href="./cart.php" title="Vai alla pagina del carrello">Carrello</a></div>', '', $page);
 
 echo $page;

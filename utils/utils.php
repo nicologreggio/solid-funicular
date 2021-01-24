@@ -38,17 +38,26 @@ function fillHeader($page, $currentCat=-1)
     $header=file_get_contents('./utils/header.html');
     $page=str_replace('<header-navigation />', $header, $page);
     if(isset($_SESSION['user'])){
-        $page=str_replace('<account-icon />', '<a href="./logout.php" title="Scollegati dal tuo account">
-                <img src="./images/icons/logout.svg" alt="Porta d\'uscita stilizzata" />
-                <span>' . $_SESSION['username'] . '</span>
-            </a>', $page);
+        $page=str_replace('<account-icon />', 
+                            '<div>
+                                <div id="logout-icon" class="icon"></div>
+                                <a href="./logout.php" title="Scollegati dal tuo account">
+                                    ' . $_SESSION['username'] . '
+                                </a>
+                            </div>
+                            ', 
+                        $page);
     }
     else {
         if(!strpos($_SERVER['REQUEST_URI'], 'signup.php') && !strpos($_SERVER['REQUEST_URI'], 'login.php')){
-            $page=str_replace('<account-icon />', '<a href="./login.php" title="Vai alla pagina per eseguire l\'accesso">
-                    <img src="./images/icons/login.svg" alt="Utente stilizzato" />
-                    <span>Accedi</span>
-                </a>', $page);
+            $page=str_replace('<account-icon />', 
+                                '<div>
+                                    <div id="login-icon" class="icon"></div>
+                                    <a href="./login.php" title="Vai alla pagina per eseguire l\'accesso">
+                                        Accedi
+                                    </a>
+                                </div>',
+                            $page);
         }
         else{
             $page=str_replace('<account-icon />', '', $page);
