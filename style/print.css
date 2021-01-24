@@ -1,5 +1,8 @@
+* {
+    font-family: 'Times New Roman', Times, serif;
+}
+
 html {
-    font: 'Times New Roman', Times, serif;
     padding-top: 1em;
     padding-left: 0.3em;
     padding-right: 0.3em;

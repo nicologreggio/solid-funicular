@@ -121,3 +121,7 @@ h3{
 .quote-control {
     align-self: center;
 }
+
+.remove-product-button {
+    padding: 1.5em 0.5em;
+}

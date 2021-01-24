@@ -169,18 +169,17 @@ header {
     margin-right: 0.6em;
 }
 
-#shortcuts > div {
+#shortcuts > a {
     display: inline-block;
-    margin-left: 2em;
-    display: inline-flex;
-    flex-direction: column;
-    align-items: center;
+    margin-left: 1em;
 }
 
-.icon {
+.icon::before {
+    display: block;
+    content: '';
     width: 2em;
     height: 2em;
-    outline: none !important;
+    margin: auto;
 }
 
 #shortcuts a{
@@ -190,19 +189,19 @@ header {
     overflow: hidden;
 }
 
-#search-icon {
+#search-icon::before {
     background: url("../images/icons/search.svg") no-repeat center;
 }
 
-#login-icon {
+#login-icon::before {
     background: url("../images/icons/login.svg") no-repeat center;
 }
 
-#logout-icon {
+#logout-icon::before {
     background: url("../images/icons/logout.svg") no-repeat center;
 }
 
-#cart-icon {
+#cart-icon::before {
     background: url("../images/icons/shopping_cart.svg") no-repeat center;
 }
 
@@ -311,7 +310,7 @@ main hr{
 }
 
 #staff-fav img {
-    width: 50%;
+    width: 30%;
 }
 
 #staff-fav p {
@@ -320,7 +319,15 @@ main hr{
     margin-top: 1em;
 }
 
-#staff-fav div:nth-child(even) p {
+#staff-fav div:nth-child(even) img {
+    margin-right: 10%;
+}
+
+#staff-fav div:nth-child(odd) img {
+    margin-left: 10%;
+}
+
+#staff-fav div:nth-child(odd) p {
     float: left;
 }
 
