@@ -81,7 +81,7 @@
 
                 <fieldset>
                     <legend>Dati per l'accesso</legend>
-                    <label for="email">Email (massimo 100 caratteri)<span class="color-red">*</span></label>
+                    <label for="email"><span xml:lang="en" lang="en">Email</span> (massimo 100 caratteri)<span class="color-red">*</span></label>
                     <input 
                         inputmode="email"
                         autocomplete="off"
@@ -95,10 +95,10 @@
                         data-error-field="error-email" 
                         aria-required="true"
                         data-rules="required|email|max_length:100" 
-                        data-error-message="L'email inserita non è valida o troppo lunga (massimo 100 caratteri)" />
+                        data-error-message="L'<span xml:lang='en' lang='en'>email</span> inserita non è valida o troppo lunga (massimo 100 caratteri)" />
                     <div id="error-email" class="error" role="alert" aria-relevant="all" aria-live="assertive"><error-email/></div>
 
-                    <label for="password">Password (tra 5 e 1024 caratteri)<span class="color-red">*</span></label>
+                    <label for="password"><span xml:lang="en" lang="en">Password</span> (tra 5 e 1024 caratteri)<span class="color-red">*</span></label>
                     <input 
                         autocomplete="off"
                         id="password" 
@@ -109,10 +109,10 @@
                         aria-required="true"
                         data-error-field="error-password" 
                         data-rules="required|min_length:5|max_length:1024" 
-                        data-error-message="La password deve aver una lunghezza compresa tra 5 e 1024 caratteri" />
+                        data-error-message="La <span xml:lang='en' lang='en'>password</span> deve aver una lunghezza compresa tra 5 e 1024 caratteri" />
                     <div id="error-password" class="error" role="alert" aria-relevant="all" aria-live="assertive"><error-password/></div>
 
-                    <label for="confirm-password">Conferma password<span class="color-red">*</span></label>
+                    <label for="confirm-password">Conferma <span xml:lang="en" lang="en">password</span><span class="color-red">*</span></label>
                     <input 
                         autocomplete="off"
                         id="confirm-password" 
@@ -123,7 +123,7 @@
                         aria-required="true"
                         data-error-field="error-confirm-password" 
                         data-rules="required|equals:password" 
-                        data-error-message="La conferma non corrisponde alla password" />
+                        data-error-message="La conferma non corrisponde alla <span xml:lang='en' lang='en'>password</span>" />
                     <div id="error-confirm-password" class="error" role="alert" aria-relevant="all" aria-live="assertive"><error-confirm/></div>
                 </fieldset>
                 <fieldset>
