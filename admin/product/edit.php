@@ -73,7 +73,7 @@ if(request()->method() == 'POST' ){
         'category.in_table' => "La categoria selezionata non è stata trovata",
 
         "image.file" => "E' obbligatorio inserire un immagine valida di dimensione massima 700kb",
-        "image.image" => "Il file selezionato deve essere un immagine JPEG, PNG, JPEG2000 o GIF",
+        "image.image" => "Il <span xml:lang=\"en\" lang=\"en\">file</span> selezionato deve essere un immagine JPEG, PNG, JPEG2000 o GIF",
 
         'image-description.required' => "E' obbligatorio inserire una descrizione dell'immagine",
         'image-description.min_length' => "La descrizione dell'immagine inserita deve essere lunga almeno 10 caratteri",

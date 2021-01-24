@@ -39,24 +39,13 @@ function fillHeader($page, $currentCat=-1)
     $page=str_replace('<header-navigation />', $header, $page);
     if(isset($_SESSION['user'])){
         $page=str_replace('<account-icon />', 
-                            '<div>
-                                <div id="logout-icon" class="icon"></div>
-                                <a href="./logout.php" title="Scollegati dal tuo account">
-                                    ' . $_SESSION['username'] . '
-                                </a>
-                            </div>
-                            ', 
+                            "<a id='logout-icon' class='icon' href='./logout.php' title='Scollegati dal tuo account'>{$_SESSION['username']}</a>", 
                         $page);
     }
     else {
         if(!strpos($_SERVER['REQUEST_URI'], 'signup.php') && !strpos($_SERVER['REQUEST_URI'], 'login.php')){
             $page=str_replace('<account-icon />', 
-                                '<div>
-                                    <div id="login-icon" class="icon"></div>
-                                    <a href="./login.php" title="Vai alla pagina per eseguire l\'accesso">
-                                        Accedi
-                                    </a>
-                                </div>',
+                                '<a id="login-icon" class="icon" href="./login.php" title="Vai alla pagina per eseguire l\'accesso">Accedi</a>',
                             $page);
         }
         else{
@@ -71,8 +60,6 @@ function fillHeader($page, $currentCat=-1)
                     {$cat->getName()}
                 </li>
             ";
-            $page=str_replace("<cat-name />", $cat->getName(), $page);
-            $page=str_replace("<breadcrumbs-location />", "<a title='Vai alla pagina di tutte le categorie' href='allcategories.php'>Categorie</a> >> {$cat->getName()}", $page);
         }
         else{
             $link="
@@ -83,6 +70,14 @@ function fillHeader($page, $currentCat=-1)
                 </li>";
         }
         $page=str_replace(("<cat-" . ($idx++) . "/>"), $link, $page);
+    }
+
+    if($currentCat != -1)
+    {
+        $actualCat = CategoryService::getOne($currentCat);
+
+        $page=str_replace("<cat-name />", $actualCat->getName(), $page);
+        $page=str_replace("<breadcrumbs-location />", "<a title='Vai alla pagina di tutte le categorie' href='allcategories.php'>Categorie</a> <span aria-hidden='true'> >> </span> {$actualCat->getName()}", $page);
     }
 
     return $page;

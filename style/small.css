@@ -1,117 +1,131 @@
-header
-{
+header {
+    -webkit-box-pack: space-evenly;
+    -ms-flex-pack: space-evenly;
     justify-content: space-evenly;
 }
 
-.desktop{
+.desktop {
     display: none;
 }
 
-.buttons-control *
-{
+.buttons-control * {
     width: 100%;
 }
 
-.buttons-control a
-{
+.buttons-control a {
     position: relative;
 }
 
-.buttons-control button[type='submit']
-{
+.buttons-control button[type='submit'] {
     margin-bottom: 0.5em;
     float: none;
 }
 
-.menu > summary{
+.menu>summary {
     color: #A70500;
     text-align: center;
     font-size: 1.5em;
     padding: 0.4em 0 0.4em 0;
 }
 
-.menu ul{
+.menu ul {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
 }
 
-.menu li a{
+.menu li a {
     width: 100%;
 }
 
-.menu li{
+.menu li {
     border-top: 1px solid #A70500;
 }
 
-#logo{
+#logo {
     width: 20%;
 }
 
-h1{
+h1 {
     font-size: 2em;
 }
 
-h2{
+h2 {
     font-size: 1.5em;
 }
 
-h3{
+h3 {
     font-size: 1.3em;
 }
 
-#shortcuts{
+#shortcuts {
     margin: 0.2em 0 0.2em 0;
     min-width: 100%;
     text-align: center;
 }
 
+#shortcuts>a {
+    margin-left: 1.4em;
+}
+
 .menu li {
-    float:none;
+    float: none;
     width: 100%;
     text-align: center;
 }
 
-.menu li a, .current{
+.menu li a,
+.current {
     padding: 1em 0;
 }
 
-#staff-fav > div{
+#staff-fav>div {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
 }
 
-#staff-fav img, #staff-fav p{
+#staff-fav img,
+#staff-fav p {
     width: 100%;
 }
 
-#products-list li, #products-list img{
+#products-list li,
+#products-list img {
     width: 100%;
 }
 
-#categories-list a{
+#categories-list a {
     display: block;
 }
 
-#categories-list li{
+#categories-list li {
     border-bottom: none;
 }
 
-.product-counter{
+.product-counter {
     margin-left: 1em;
     float: none;
 }
 
-.form-quotation fieldset{
+.form-quotation fieldset {
     width: 80%;
 }
 
-.quote-product
-{
+.quote-product {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
     height: auto;
 }
 
-.quote-product-img
-{
+.quote-product-img {
     width: 60%;
     padding: 0 20%;
     height: auto;
@@ -119,5 +133,11 @@ h3{
 }
 
 .quote-control {
+    -ms-flex-item-align: center;
+    -ms-grid-row-align: center;
     align-self: center;
+}
+
+.remove-product-button {
+    padding: 1.5em 0.5em;
 }
