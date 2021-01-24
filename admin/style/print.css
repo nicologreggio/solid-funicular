@@ -68,3 +68,7 @@ button, .button{
     padding-left:20px;
     padding-right:20px;
 }
+h2.print-space-top-0{
+    padding-top:0 !important;
+    margin-top:0 !important;
+}

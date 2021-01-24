@@ -5,7 +5,7 @@ $page = page('../template_html/quote/index.html');
 
 $cur_page = preg_match('/^[0-9]+$/', $_REQUEST['page']?? '') ? $_REQUEST['page'] : 0;
 $per_page = 8;
-$stm = DBC::getInstance()->prepare('SELECT * FROM QUOTES ORDER BY _ID LIMIT :limit OFFSET :offset');
+$stm = DBC::getInstance()->prepare('SELECT * FROM QUOTES ORDER BY _ID DESC LIMIT :limit OFFSET :offset');
 $stm->bindValue(':limit', (int) $per_page, PDO::PARAM_INT); 
 $stm->bindValue(':offset', (int) $cur_page * $per_page, PDO::PARAM_INT); 
 $stm->execute();
