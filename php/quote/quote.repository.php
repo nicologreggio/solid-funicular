@@ -7,7 +7,7 @@ class QuoteRepository
     public static function insertOne(string $company, string $telephone, string $reason, int $userId) : ?int
     {
         $stm = DBC::getInstance()->prepare("
-            INSERT INTO `QUOTES`(`_TELEPHONE`, `_REASON`, `_COMPANY`, `_USER`) 
+            INSERT INTO `QUOTES`(`_COMPANY`, `_TELEPHONE`, `_REASON`,  `_USER`) 
             VALUES (?, ?, ?, ?)
         ");
 
