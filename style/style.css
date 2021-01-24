@@ -374,6 +374,7 @@ main hr{
 }
 
 #products-list img{
+    display: block;
     width: 90%;
 }
 
