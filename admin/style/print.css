@@ -78,4 +78,6 @@ h2.print-space-top-0{
 
 .useful-links li a:after{
     content: " (http://solid-funicular.com/" attr(href) ") ";
+    color: black;
+    display: inline-block;
 }
