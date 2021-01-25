@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Ricerca | Solid Funicular</title>
+    <meta name="title" content="Unipd Tecweb | Solid Funicular elementi d'arredo" /> 
+    <meta name="description" content="Sito per il progetto del corso di tecweb unipd che fornisce un catalogo di elementi d'arredo per i quali è possibile richiedere un preventivo" />
+
+    <meta name="keywords" content="arredo, mobili, panchine, giardino, panchina, arredamento">
+
+    <meta name="author" content="Nicolo Greggio" />
+    <meta name="language" content="italian it" />
+    <link rel="stylesheet" href="style/style.css" />
+    <!-- only screen and (max-device-width: 768px) deprecato -->
+    <link rel="stylesheet" type="text/css" href="./style/small.css" media="screen and (max-width: 768px)" />
+    <link rel="stylesheet" type="text/css" href="style/print.css" media="print" />
+    <link rel="shortcut icon" type="image/x-icon" href="./images/favicon.ico" />
+</head>
+
+<body>
+    <header-navigation />
+
+    <main id="main-content">
+        <h2>Ricerca Prodotti</h2>
+        <form id='search-form' action="./search.php" method="get">
+            <searchbar/>
+            <fieldset id="filters">
+                <legend>Filtri:</legend>
+                <categories/>
+                <details
+                    id="materials-wrapper"
+                    aria-label="Seleziona i materiali per cui vuoi filtrare">
+                    <summary>Materiali:</summary>
+                    <materials/>
+                </details>
+        </fieldset>
+        <!-- 
+            Per evitare l'utilizzo di javascript abbiamo utilizzato input type='reset', 
+            però dopo aver effettuato una ricerca si ottiene che non svuota i campi ma li riporta allo stato di quest'ultima fatta 
+        -->
+        <input id='reset-button' class='button' type="reset" value="Cancella tutto" aria-label="Cancella la ricerca appena effettuata" />
+        <button id='search-button' class='button' type="submit">CERCA</button>
+            <hr />
+            <h3>Risultati</h3>
+            <productsList/>
+            <pagination/>
+        </form>
+        <a href="#titles" id="scroll-top" title="Torna all'inizio della pagina">↑</a>
+    </main>
+    <footer>
+        <p xml:lang="en" lang="en">© Solid Funicular - All rights reserved</p>
+        <p>Tecnologie <span xml:lang="en" lang="en">Web</span> <abbr title="Università degli Studi di Padova">Unipd</abbr></p>
+    </footer>
+</body>
+</html>

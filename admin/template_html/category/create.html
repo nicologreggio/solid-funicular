@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="it">
+    <head>
+         <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="robots" content="NOINDEX,NOFOLLOW" />
+        <meta name="author" content="co-authored by Alberto Sinigaglia, Sara Privitera" />
+
+        <link rel="shortcut icon" href="../../images/logo2.png" TYPE="image/png" />
+        <link rel="stylesheet" href="../style/style.css" />
+        <link rel="stylesheet" type="text/css" media="print" href="../style/print.css" />
+
+        <title>Crea nuova categoria</title>
+    </head>
+    
+    <body>
+        <a href="#main-content" class="only-screen-reader" title="Vai al contenuto della pagina">Vai al contenuto</a>
+        <header role="banner" id="page-menu">
+            <nav>
+                <img src="../../images/logo2.png" alt="Logo dell'azienda con funicolare solida con persona a bordo" title="logo dell'azienda" />
+                <button title="Espandi/chiudi menu" aria-label="Espandi/chiudi il menu" class="hidden-l show-m" aria-hidden="true" tabindex="-1">
+                    <svg><path d="M4,10h24c1.104,0,2-0.896,2-2s-0.896-2-2-2H4C2.896,6,2,6.896,2,8S2.896,10,4,10z M28,14H4c-1.104,0-2,0.896-2,2  s0.896,2,2,2h24c1.104,0,2-0.896,2-2S29.104,14,28,14z M28,22H4c-1.104,0-2,0.896-2,2s0.896,2,2,2h24c1.104,0,2-0.896,2-2  S29.104,22,28,22z" /></svg>
+                    <!-- <span aria-hidden="true">&times;</span>-->
+                </button>
+                <ul aria-label="menu">
+                    <li>
+                        <a href="../home.php" title="Vai alla homepage" xml:lang="en" lang="en">
+                            Home
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../administrator/create.php" title="Aggiungi un amministratore al sito">
+                            Aggiungi amministratore
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../category/index.php" title="Vai alla pagina per la gestione delle categorie">
+                            Categorie
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../product/index.php" title="Vai alla pagina di gestione dei prodotti del sito">
+                            Prodotti
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../material/index.php" title="Vai alla pagina di gestione dei materiali dei prodotti">
+                            Materiali
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../quote/index.php" title="Vai alla pagina di gestione delle richieste di preventivo">
+                            Richieste di preventivo
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../logout.php" title="effettua il logout" lang="en" xml:lang="en">
+                            Logout
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <main id="main-content">
+            <h1>Crea una nuova categoria per il sito</h1>
+            <ul class="breadcrumb mt-0 pt-1" aria-label="Breadcrumb">
+                <li>
+                    <a href="../home.php" title="torna alla homepage" xml:lang="en" lang="en">
+                        Home
+                    </a>
+                    <p class="separator">
+                        >>
+                    </p>
+                </li>
+                <li>
+                    <a href="../category/index.php" title="Vai alla pagina per la gestione delle categorie">
+                        Categorie
+                    </a>
+                    <p class="separator">
+                        >>
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        Crea nuova categoria
+                    </p>
+                </li>
+            </ul>
+            <p class="error"><error-db/></p>
+            <form action="../category/create.php" method="post" id="form-login" data-validate="1">
+                <p class="p-0 m-0 pb-2">I campi obbligatori son segnati con <span class="color-red">*</span></p>
+                <label for="name">Nome (tra 2 e 100 caratteri)<span class="color-red">*</span></label>
+                <input 
+                    value="<value-name/>"
+                    id="name" 
+                    name="name" 
+                    type="text"
+                    placeholder="Inserisci nome della categoria" 
+                    required="required" 
+                    aria-required="true"
+                    autofocus="autofocus" 
+                    data-error-field="error-name" 
+                    data-rules="required|min_length:2|max_length:100" 
+                    data-error-message="Il nome è obbligatorio e deve essere almeno lungo 2 caratteri e lungo al massimo 100 caratteri" />
+                <div id="error-name" class="error" role="alert" aria-relevant="all" aria-live="assertive"><error-name/></div>
+
+                <label for="meta-description">Meta-descrizione (tra 30 e 500 caratteri)<span class="color-red">*</span></label>
+                <textarea 
+                    id="meta-description" 
+                    name="meta-description" 
+                    placeholder="Inserisci la meta-descrizione" 
+                    required="required" 
+                    aria-required="true"
+                    data-error-field="error-meta-description" 
+                    data-rules="required|max_length:500|min_length:30" 
+                    data-error-message="E' obbligatorio inserire una meta-descrizione che sia più lunga di 30 caratteri e lunga al massimo 500 caratteri"><value-meta-description/></textarea>
+                <div id="error-meta-description" class="error" role="alert" aria-relevant="all" aria-live="assertive"><error-meta-description/></div>
+                
+                <label for="description">Descrizione (almeno 30 caratteri)<span class="color-red">*</span></label>
+                <textarea 
+                    id="description" 
+                    name="description" 
+                    placeholder="Inserisci la descrizione" 
+                    required="required" 
+                    aria-required="true"
+                    data-error-field="error-description" 
+                    data-rules="required|min_length:30" 
+                    data-error-message="E' obbligatorio inserire una descrizione lunga almeno 30 caratteri"><value-description/></textarea>
+                <div id="error-description" class="error pb-2" role="alert" aria-relevant="all" aria-live="assertive"><error-description/></div>
+
+
+                <input type="checkbox" name="menu" id="menu" class="left" <disabled-menu/> <value-menu/>/>
+                <label for="menu" class="d-inline pl-1" ><menu-message/></label>
+
+                <button type="submit" class="show-print">
+                    Crea
+                </button>
+            </form>
+        </main>
+        <a href="#main-content" class="only-screen-reader" title="Torna all'inizio del contenuto della pagina">Torna all'inizio del contenuto della pagina</a>
+        <a href="#page-menu" class="only-screen-reader" title="Torna al menu della pagina">Torna al menu della pagina</a>
+        <script src="../../scripts/validate.js"></script>
+        <script src="../script/menu.js"></script>
+    </body>
+</html>

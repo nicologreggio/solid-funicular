@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="it">
+    <head>
+         <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="robots" content="NOINDEX,NOFOLLOW" />
+        <meta name="author" content="Alberto Sinigaglia" />
+
+        <link rel="shortcut icon" href="../../images/logo2.png" TYPE="image/png" />
+        <link rel="stylesheet" href="../style/style.css" />
+        <link rel="stylesheet" type="text/css" media="print" href="../style/print.css" />
+
+        <title>Richiesta di preventivo n.<quote-id/></title>
+    </head>
+    
+    <body>
+        <a href="#main-content" class="only-screen-reader" title="Vai al contenuto della pagina">Vai al contenuto</a>
+        <header role="banner" id="page-menu">
+            <nav>
+                <img src="../../images/logo2.png" alt="Logo dell'azienda con funicolare solida con persona a bordo" title="logo dell'azienda" />
+                <button title="Espandi/chiudi menu" aria-label="Espandi/chiudi il menu" class="hidden-l show-m" aria-hidden="true" tabindex="-1">
+                    <svg><path d="M4,10h24c1.104,0,2-0.896,2-2s-0.896-2-2-2H4C2.896,6,2,6.896,2,8S2.896,10,4,10z M28,14H4c-1.104,0-2,0.896-2,2  s0.896,2,2,2h24c1.104,0,2-0.896,2-2S29.104,14,28,14z M28,22H4c-1.104,0-2,0.896-2,2s0.896,2,2,2h24c1.104,0,2-0.896,2-2  S29.104,22,28,22z" /></svg>
+                    <!-- <span aria-hidden="true">&times;</span>-->
+                </button>
+                <ul aria-label="menu">
+                    <li>
+                        <a href="../home.php" title="Vai alla homepage" xml:lang="en" lang="en">
+                            Home
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../administrator/create.php" title="Aggiungi un amministratore al sito">
+                            Aggiungi amministratore
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../category/index.php" title="Vai alla pagina per la gestione delle categorie">
+                            Categorie
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../product/index.php" title="Vai alla pagina di gestione dei prodotti del sito">
+                            Prodotti
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../material/index.php" title="Vai alla pagina di gestione dei materiali dei prodotti">
+                            Materiali
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../quote/index.php" title="Vai alla pagina di gestione delle richieste di preventivo">
+                            Richieste di preventivo
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../logout.php" title="effettua il logout" lang="en" xml:lang="en">
+                            Logout
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <main id="main-content">
+            <h1 class="pb-1 mb-0">Richiesta di preventivo numero <quote-id/> </h1>
+            <p class="pb-0 mb-0 breadcrumb-intro"> Ti trovi in: </p>
+            <ul class="breadcrumb mt-0 pt-1" aria-label="Breadcrumb">
+                <li>
+                    <a href="../home.php" title="torna alla homepage" xml:lang="en" lang="en">
+                        Home
+                    </a>
+                    <p class="separator">
+                        >>
+                    </p>
+                </li>
+                <li>
+                    <a href="../quote/index.php" title="torna alle richieste di preventivo">
+                        Richieste di preventivo
+                    </a>
+                    <p class="separator">
+                        >>
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        Richiesta n.<quote-id/>
+                    </p>
+                </li>
+            </ul>
+            <p>Richiesta effettuata il <time datetime="<quote-date/>"><quote-date-text/></time></p>
+            <hr />
+            <div title="Dati relativi alla richiesta" class="m0 p1">
+                <h2 class="strong pb-0 mb-0">Dati richiesta</h2>
+                <p>Telefono: <br /> <quote-phone/></p>
+                <p>Motivazione: <br /> <quote-reason/></p>
+                <p>Azienda: <br /> <quote-company/></p>
+            </div>
+
+            <div title="Dati relativi al cliente che ha effettuato la richiesta" class="m0 p1">
+                <h2 class="strong pt-2 pb-0 mb-0 print-space-top-0">Dati utente</h2>
+                <p>Nominativo: <br /> <user-name/></p>
+                <p>Indirizzo: <br /> <user-address/></p>
+                <p>Indirizzo <span xml:lang="en" lang="en">email</span>: <br /> <a href="mailto:<user-email/>"><user-email/></a></p>
+            </div>
+
+            <div title="Dati relativi ai prodotti richiesti" class="m0 p1 dont-break">
+                <h2 class="strong pt-2 pb-0 mb-0 print-space-top-0">Prodotti</h2>
+                <ul class="quote-products-list dont-break-children">
+                    <products/>
+                </ul>
+            </div>
+        </main>
+        <a href="#main-content" class="only-screen-reader" title="Torna all'inizio del contenuto della pagina">Torna all'inizio del contenuto della pagina</a>
+        <a href="#page-menu" class="only-screen-reader" title="Torna al menu della pagina">Torna al menu della pagina</a>
+        <script src="../script/menu.js"></script>
+    </body>
+</html>

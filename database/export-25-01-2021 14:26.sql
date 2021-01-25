@@ -1,99 +1,42 @@
-START TRANSACTION;
-SET FOREIGN_KEY_CHECKS = 0;
+-- phpMyAdmin SQL Dump
+-- version 4.6.6deb5ubuntu0.5
+-- https://www.phpmyadmin.net/
+--
+-- Host: localhost:3306
+-- Creato il: Gen 25, 2021 alle 13:25
+-- Versione del server: 10.1.47-MariaDB-0ubuntu0.18.04.1
+-- Versione PHP: 7.2.24-0ubuntu0.18.04.7
 
-DROP TABLE IF EXISTS USERS;
-DROP TABLE IF EXISTS CATEGORIES;
-DROP TABLE IF EXISTS MATERIALS;
-DROP TABLE IF EXISTS PRODUCTS;
-DROP TABLE IF EXISTS PRODUCT_MATERIAL;
-DROP TABLE IF EXISTS USER_PRODUCT;
-DROP TABLE IF EXISTS QUOTES;
-DROP TABLE IF EXISTS QUOTE_PRODUCT;
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
 
-CREATE TABLE USERS(
-    _ID INT AUTO_INCREMENT PRIMARY KEY,
-    _NAME VARCHAR(50) NOT NULL,
-    _SURNAME VARCHAR(100) NOT NULL,
-    _CITY VARCHAR(100) NOT NULL,
-    _ADDRESS VARCHAR(100) NOT NULL,
-    _CAP CHAR(5) NOT NULL,
-    _ADMIN BIT DEFAULT 0,
-    _EMAIL VARCHAR(100) NOT NULL UNIQUE,
-    _PASSWORD VARCHAR(1024)
-) ENGINE=INNODB DEFAULT CHARSET=UTF8MB4;
 
-CREATE TABLE CATEGORIES(
-    _ID INT AUTO_INCREMENT PRIMARY KEY,
-    _NAME VARCHAR(100) NOT NULL,
-    _DESCRIPTION TEXT NOT NULL,
-    _METADESCRIPTION VARCHAR(500) NOT NULL,
-    _MENU BIT DEFAULT 0
-) ENGINE=INNODB DEFAULT CHARSET=UTF8MB4;
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
 
-CREATE TABLE MATERIALS(
-    _ID INT AUTO_INCREMENT PRIMARY KEY,
-    _NAME VARCHAR(50) NOT NULL,
-    _DESCRIPTION VARCHAR(200) NOT NULL
-) ENGINE=INNODB DEFAULT CHARSET=UTF8MB4;
+--
+-- Database: `alsiniga`
+--
 
-CREATE TABLE PRODUCTS(
-    _ID INT AUTO_INCREMENT PRIMARY KEY,
-    _NAME VARCHAR(30) NOT NULL,
-    _DESCRIPTION TEXT NOT NULL,
-    _METADESCRIPTION VARCHAR(500) NOT NULL,
-    _DIMENSIONS VARCHAR(300),
-    _AGE VARCHAR(50),
-    _MAIN_IMAGE VARCHAR(500) NOT NULL,
-    _MAIN_IMAGE_DESCRIPTION VARCHAR(200) NOT NULL,
-    _CATEGORY INT NOT NULL,
-    FOREIGN KEY (_CATEGORY) REFERENCES CATEGORIES(_ID) ON UPDATE CASCADE ON DELETE CASCADE
-) ENGINE=INNODB DEFAULT CHARSET=UTF8MB4;
+-- --------------------------------------------------------
 
-CREATE TABLE PRODUCT_MATERIAL(
-    _MATERIAL_ID INT NOT NULL,
-    _PRODUCT_ID INT NOT NULL,
-    PRIMARY KEY (_MATERIAL_ID, _PRODUCT_ID),
-    FOREIGN KEY (_MATERIAL_ID) REFERENCES MATERIALS(_ID) ON UPDATE CASCADE ON DELETE CASCADE,
-    FOREIGN KEY (_PRODUCT_ID) REFERENCES PRODUCTS(_ID) ON UPDATE CASCADE ON DELETE CASCADE
-) ENGINE=INNODB DEFAULT CHARSET=UTF8MB4;
+--
+-- Struttura della tabella `CATEGORIES`
+--
 
-CREATE TABLE USER_PRODUCT( /* PRODOTTI VISUALIZZATI E QUANTE VOLTE SON STATI VISUALIZZATI*/
-    _QUANTITY INT DEFAULT 1,
+CREATE TABLE `CATEGORIES` (
+  `_ID` int(11) NOT NULL,
+  `_NAME` varchar(100) NOT NULL,
+  `_DESCRIPTION` text NOT NULL,
+  `_METADESCRIPTION` varchar(500) NOT NULL,
+  `_MENU` bit(1) DEFAULT b'0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-    _USER_ID INT NOT NULL,
-    _PRODUCT_ID INT NOT NULL,
-    PRIMARY KEY (_USER_ID, _PRODUCT_ID),
-    FOREIGN KEY(_USER_ID) REFERENCES USERS(_ID)  ON UPDATE CASCADE ON DELETE CASCADE,
-    FOREIGN KEY(_PRODUCT_ID) REFERENCES PRODUCTS(_ID) ON UPDATE CASCADE ON DELETE CASCADE
-) ENGINE=INNODB DEFAULT CHARSET=UTF8MB4;
-
-CREATE TABLE QUOTES(
-    _ID INT AUTO_INCREMENT PRIMARY KEY,
-    _CREATED_AT TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    _TELEPHONE VARCHAR(20),
-    _REASON TEXT,
-    _COMPANY VARCHAR(100),
-    
-    _USER INT NOT NULL,
-    FOREIGN KEY(_USER) REFERENCES USERS(_ID) ON UPDATE CASCADE ON DELETE CASCADE
-) ENGINE=INNODB DEFAULT CHARSET=UTF8MB4;
-
-CREATE TABLE QUOTE_PRODUCT(
-    _QUANTITY INT DEFAULT 1,
-
-    _QUOTE_ID INT NOT NULL,
-    _PRODUCT_ID INT NOT NULL,
-    PRIMARY KEY (_QUOTE_ID, _PRODUCT_ID),
-    FOREIGN KEY(_QUOTE_ID) REFERENCES QUOTES(_ID) ON UPDATE CASCADE ON DELETE CASCADE,
-    FOREIGN KEY(_PRODUCT_ID) REFERENCES PRODUCTS(_ID) ON UPDATE CASCADE ON DELETE CASCADE
-) ENGINE=INNODB DEFAULT CHARSET=UTF8MB4;
-
-INSERT INTO `USERS` (`_ID`, `_NAME`, `_SURNAME`, `_CITY`, `_ADDRESS`, `_CAP`, `_ADMIN`, `_EMAIL`, `_PASSWORD`) VALUES
-(1, 'admin name', 'admin surname', 'admin city', 'admin address', '10010', b'1', 'admin@admin.admin', 'admin'),
-(2, 'Utente', 'Utente', 'Città', 'Via della città', '30010', b'0', 'utente@utente.utente', 'utente');
-
-INSERT INTO `QUOTES` (`_ID`, `_CREATED_AT`, `_TELEPHONE`, `_REASON`, `_COMPANY`, `_USER`) VALUES 
-(1, '2021-01-02 19:50:49', '349867369', 'Creazione del parco giochi vicino a casa mia', 'Company SRL', '2');
+--
+-- Dump dei dati per la tabella `CATEGORIES`
+--
 
 INSERT INTO `CATEGORIES` (`_ID`, `_NAME`, `_DESCRIPTION`, `_METADESCRIPTION`, `_MENU`) VALUES
 (4, 'Arredo Urbano', 'Solid Funicular propone una vasta gamma di prodotti per l’arredo urbano quali panchine da esterno, fontane, cestini porta-rifiuti, rastrelliere, griglie per alberi, pensiline attesa autobus, dissuasori, fioriere, transenne e molti altri complementi.<br />\r\n<br />\r\nFunzionalità, stile e innovazione sono le peculiarità che fanno di ogni articolo una soluzione affidabile, destinata a durare nel tempo e che ben si adatta a contesti architettonici di ogni genere, grazie a un’esperienza ventennale e a un’accurata scelta dei materiali.<br />\r\n<br />\r\nIl nostro staff di arredo urbano è al tuo servizio per migliorare la qualità della vita, rispettando l’ambiente che ci circonda utilizzando anche prodotti riciclati e riciclabili.', 'Arredo Urbano. Prodotti per l’arredo urbano quali panchine da esterno, fontane, cestini portarifiuti, rastrelliere, griglie per alberi, pensiline attesa autobus, dissuasori, fioriere, transenne e molti altri complementi.', b'1'),
@@ -102,6 +45,54 @@ INSERT INTO `CATEGORIES` (`_ID`, `_NAME`, `_DESCRIPTION`, `_METADESCRIPTION`, `_
 (7, 'Giochi per parchi', 'I giochi per parchi pubblici di Non Solo Arredo, da molti anni specializzata nel proporre strutture ludiche, comprendono tutti i classici : altalena, il bilico, i giochi a molla, castelli, scivoli, combinati, giochi a tema e casette per i più piccoli, oltre a questi siamo in grado di fornire: campi da gioco multi sportivi, piste da skate, roller e parkour per i ragazzi fino ad arrivare a percorsi vita o fitness dando la possibilità a tutti di divertirsi in modo sano e sicuro.<br />\r\n<br />\r\nIl nostro staff specializzato nella progettazione di giochi da esterno per bambini, grazie anche ai molti corsi TUV frequentati, ti aspetta per offrirti soluzioni innovative sia dal punto di vista ludico che dei materiali utilizzati per permettere al bambino di giocare in completa sicurezza nel rispetto delle normative europee EN1176/77.<br />\r\n<br />\r\nScegli tra la nostra ampia gamma di esterni per bambini.', 'Una vasta serie di giochi per parchi pubblici e giochi da esterno per bambini, per la comunità e non solo. I giochi per parchi sono disponibili in vari materiali e di diverse grandezze. Contattaci per avere maggiori informazioni sui nostri giochi da esterno per bambini.', b'1'),
 (8, 'Distributori Gel Igienizzante', 'I dispenser automatici di gel igienizzante per mani sono l’ideale per tutti gli ambienti pubblici come aziende, parchi pubblici, centri commerciali, hotel, cinema e spazi commerciali.<br />\r\nLa nostra colonnina igienizzante mani è disponibile in molti colori e forme, per incontrare qualsiasi esigenza estetica e di necessità.<br />\r\n<br />\r\nIl distributore gel è un elemento di arredo urbano che aiuta a create intorno a te e alle persone a te vicine un ambiente sicuro ed sano, diminuendo drasticamente la proliferazione dei virus.<br />\r\n', 'Dispenser automatici di gel igienizzante per mani, ottimale per aziende, centri commerciali, hotel e luoghi pubblici. Il distributore gel è un elemento ormai necessario e fondamentale per garantire massima sicurezza ai lavoratori ed ai clienti, con un occhio anche al design.', b'0'),
 (9, 'Percorso Vita', 'Il nostro Percorso Vita si compone di varie stazioni, con diversi livelli di difficoltà. <br />\r\nÈ diviso in tre categorie a seconda degli utenti: adulti, ragazzi, e per chi ha difficoltà motorie. <br />\r\nDispone anche di App dedicata, che consente di utilizzare al meglio l’attrezzo, e di avere in tempo reale tutti i dati riguardanti il consumo calorico, le istruzioni di utilizzo, e i vari livelli di difficoltÀ da poter eseguire.', 'Il nostro Percorso Vita si compone di varie stazioni, con diversi livelli di difficoltà. È diviso in tre categorie a seconda degli utenti: adulti, ragazzi, e per chi ha difficoltà motorie. Dispone anche di App dedicata, che consente di utilizzare al meglio l’attrezzo, e di avere in tempo reale tutti i dati riguardanti il consumo calorico, le istruzioni di utilizzo, e i vari livelli di difficoltà da poter eseguire.', b'0');
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `MATERIALS`
+--
+
+CREATE TABLE `MATERIALS` (
+  `_ID` int(11) NOT NULL,
+  `_NAME` varchar(50) NOT NULL,
+  `_DESCRIPTION` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dump dei dati per la tabella `MATERIALS`
+--
+
+INSERT INTO `MATERIALS` (`_ID`, `_NAME`, `_DESCRIPTION`) VALUES
+(1, 'Plastica riciclata', 'Materiale di origine organico a elevato peso molecolare, che determinano in modo essenziale il quadro specifico delle caratteristiche dei materiali stessi.'),
+(2, 'Acciaio Zincato', 'Questo metallo si unisce alle capacità di resistenza del ferro, la resistenza alla corrosione dello zinco; la resistenza alla corrosione sarà tanto maggiore quanto lo spessore della zincatura'),
+(3, 'Ghisa', 'lega ferrosa costituita principalmente da ferro e carbonio con tenore di carbonio relativamente alto, ottenuta per riduzione o trattamento a caldo dei minerali di ferro.'),
+(4, 'Calcestruzzo', 'Il calcestruzzo è un materiale da costruzione, conglomerato artificiale costituito da una miscela di legante, acqua e aggregati fini e grossi '),
+(5, 'Policarbonato', 'Materiale termoplastico molto utilizzato in campo edile e nella realizzazione di vetrate data la sua eccellente resistenza agli urti, la chiarezza ottica e l’ampio range di temperatura d’esercizio.'),
+(6, 'Legno', 'Il legno è il tessuto vegetale che costituisce il fusto delle piante aventi crescita secondaria (albero, arbusto, liana ed alcune erbe).'),
+(7, 'Polietilene MDPE', 'Il polietilene (noto anche come politene) è il più semplice dei polimeri sintetici ed è la più comune fra le materie plastiche'),
+(8, 'Acciaio Galvanizzato', 'innanzitutto il materiale da trattare è adeguatamente preparato . Subito dopo  il materiale è immerso in una soluzione elettrolitica contenente sali di zinco');
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `PRODUCTS`
+--
+
+CREATE TABLE `PRODUCTS` (
+  `_ID` int(11) NOT NULL,
+  `_NAME` varchar(30) NOT NULL,
+  `_DESCRIPTION` text NOT NULL,
+  `_METADESCRIPTION` varchar(500) NOT NULL,
+  `_DIMENSIONS` varchar(300) DEFAULT NULL,
+  `_AGE` varchar(50) DEFAULT NULL,
+  `_MAIN_IMAGE` varchar(500) NOT NULL,
+  `_MAIN_IMAGE_DESCRIPTION` varchar(200) NOT NULL,
+  `_CATEGORY` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dump dei dati per la tabella `PRODUCTS`
+--
 
 INSERT INTO `PRODUCTS` (`_ID`, `_NAME`, `_DESCRIPTION`, `_METADESCRIPTION`, `_DIMENSIONS`, `_AGE`, `_MAIN_IMAGE`, `_MAIN_IMAGE_DESCRIPTION`, `_CATEGORY`) VALUES
 (1, 'VANCOUVER', 'Panche e sedie solide, comode ed ecologiche. Versioni: panche e sedie con 5 o 6 assi e panca. Facile sistema di ancoraggio al suolo. Sono forniti assemblati o smontati. Gambe realizzate in tubo d’acciaio con primer ricco di zinco e tavole di pino tropicale o legno certificato FSC da una fonte responsabile della gestione forestale.', 'VANCOUVER (dim: Con schienale: 180 x 67,7 x h 83 cm\r\nSenza schienale: 180 x 49 x h 63 cm\r\nSedia: 70 x 67 x h 83 cm) della categoria Arredo Urbano è fatta di  legno, perfetto per qualsiasi ambito e luogo.', 'Con schienale: 180 x 67,7 x h 83 cm Senza schienale: 180 x 49 x h 63 cm Sedia: 70 x 67 x h 83 cm', '', '/images/products/5feb1efc3d06f.jpeg', 'Panchina da parco in polietilene', 4),
@@ -115,7 +106,7 @@ INSERT INTO `PRODUCTS` (`_ID`, `_NAME`, `_DESCRIPTION`, `_METADESCRIPTION`, `_DI
 (9, 'GALDANA', 'Fontana realizzata in acciaio verniciato a polveri termoindurenti tramite forno. Il rubinetto è realizzato in ottone ed è temporizzato. Fissaggio mediante gettata in calcestruzzo. Rifinito con vernice nera in ossido di forgia nera.', 'GALDANA (dim: 348 x 579 x h 1004 mm) della categoria Arredo Urbano è fatto di  Acciaio zincato a caldo e verniciato a polvere, Ottone, perfetto per qualsiasi ambito e luogo.\r\n			', '348 x 579 x h 1004 mm', '', '/images/products/5feb4adf39de0.jpeg', 'Fontanella in acciaio con rubineto, colore nero', 4),
 (10, 'APRICA', 'Recinzione interamente realizzata in legno di pino silvestre impregnato in autoclave. I piantoni verticali e le correnti orizzontali sono in tondello cilindrico fuori cuore con fori passanti, fissati per mezzo di viteria in acciaio zincato. Possibilità di fornire scarpette per il fissaggio a muretti in calcestruzzo e cappelli copri piantone realizzati in acciaio zincato. Disponibile anche a 3 correnti.', 'APRICA (dim: Altezza 1100 mm \r\nLarghezza 2000 mm) della categoria Arredo Urbano è fatto di  Pino, Legno, perfetto per qualsiasi ambito e luogo.\r\n			', 'Altezza 1100 mm Larghezza 2000 mm', '', '/images/products/5feb4bcc9e43d.jpeg', 'Altezza 1100 mm Larghezza 2000 mm', 9),
 (11, 'HIGHLINE', 'Il modello \"High Line\" ha le doghe poste verticalmente, elemento che in combinazione con gli elementi del piede a cubo, crea un look elegante che si fonde armoniosamente in qualsiasi ambiente. Uno stile che convince ancora anche dopo anni con una seduta comoda grazie ai bordi arrotondati.', 'HIGH LINE (dim: 200 x 45 x 45 cm) della categoria Arredi Plastica Riciclata è fatto di  Plastica Riciclata, perfetto per qualsiasi ambito e luogo.\r\n			', '200 x 45 x 45 cm', '', '/images/products/5feb4d6ab16fc.jpg', 'Panchina da esterno color marrone in plastica reciclata ', 5),
-(12, 'ELDORADO SUN LOUNGER', 'I lettini sono progettati per una cosa: relax e comfort sotto il sole. Sia da seduto che da sdraiato, sia da solo che in coppia o in gruppo, sdraiarsi sull’Eldorado Sun Lounger è sempre un piacere. Metti i piedi in alto, goditi il ​​paesaggio, segui il tramonto o semplicemente guarda le persone che passano.', 'ELDORADO SUN LOUNGER (dim: Lunghezza: 150 cm \r\nLarghezza: 168 cm \r\nSeduta: 150 x 8 x 4,7 cm) della categoria Arredi Plastica Riciclata è fatto di  Acciaio Zincato, Plastica Riciclata, perfetto per qualsiasi ambito e luogo.\r\n			', 'Lunghezza: 150 cm Larghezza: 168 cm Seduta: 150 x 8 x 4,7 cm', '', '/images/products/5feb4e57a504a.jpg', 'Lunghezza: 150 cm Larghezza: 168 cm Seduta: 150 x 8 x 4,7 cm', 5),
+(12, 'ELDORADO SUN LOUNGER', 'I lettini sono progettati per una cosa: relax e comfort sotto il sole. Sia da seduto che da sdraiato, sia da solo che in coppia o in gruppo, sdraiarsi sull’Eldorado Sun Lounger è sempre un piacere. Metti i piedi in alto, goditi il ​​paesaggio, segui il tramonto o semplicemente guarda le persone che passano.', 'ELDORADO SUN LOUNGER (dim: Lunghezza: 150 cm \r\nLarghezza: 168 cm \r\nSeduta: 150 x 8 x 4,7 cm) della categoria Arredi Plastica Riciclata è fatto di  Acciaio Zincato, Plastica Riciclata, perfetto per qualsiasi ambito e luogo.\r\n			', 'Lunghezza: 150 cm Larghezza: 168 cm Seduta: 150 x 8 x 4,7 cm', '', '/images/products/5feb4e57a504a.jpg', 'ELDORADO SUN LOUNGER - Panchine in Plastica Riciclata', 5),
 (13, 'SUPREME RECYCLING', 'Panchina con basamento in plastica riciclata, con spessore di 4,7 mm; l’assemblaggio avviene per mezzo di bulloni in acciaio zincato. La panchina è predisposta per il fissaggio a terra mediante tasselli. Versione di colorazione marrone, grigia o verde.', 'SUPREME RECYCLING (dim: 200 x 46 x 81 cm) della categoria Arredi in Plastica Riciclata è fatto di  Plastica Riciclata, perfetto per qualsiasi ambito e luogo.\r\n			', '200 x 46 x 81 cm', '', '/images/products/5feb9a2aea061.jpg', '200 x 46 x 81 cm', 9),
 (14, 'GATTON ROUND BENCH', 'La panchina rotonda \"Gatton\" disponibile in una grande e in una piccola variante esagonale. Le parti del sedile e dello schienale sono formate ciascuna da più assi, che allentano l’immagine rispetto alle tavole continue. Le panchine di plastica riciclata sono state testate per decenni. Le proprietà del materiale sintetico riciclato assicurano la robustezza e la longevità. Le panchine di plastica realizzate in plastica secondaria riciclata di alta qualità sono robuste, esenti da manutenzione e si adattano perfettamente a qualsiasi ambiente, sia come panchina da città che panchina del parco o da giardino.', 'GATTON ROUND BENCH (dim: 30 tavole da banco: 10 x 4 cm \r\nmax. Larghezza del sedile per elemento: 150 o 200 cm \r\nAltezza di seduta: 45 cm  \r\nGatton 1: Ø 1  = 300 cm, Ø 2 = 260 cm, Ø 3 = 151 centimetri \r\nGatton 2:  Ø 1 = 400 cm, Ø 2 = 342 cm, Ø 3 = 236 centimetri) della categoria Panchine in Plastica Riciclata  (Arredi Plastica Riciclata) è fatto di  Plastica Riciclata, perfetto per qualsiasi ambito e luogo.', ' 30 tavole da banco: 10 x 4 cm max. Larghezza del sedile per elemento: 150 o 200 cm Altezza di seduta: 45 cm Gatton 1: Ø 1 = 300 cm, Ø 2 = 260 cm, Ø 3 = 151 centimetri Gatton 2: Ø 1 = 400 cm, Ø 2 = 342 cm, Ø 3 = 236 centimetri', '', '/images/products/5feb9b2cbdecb.jpg', 'panchina esagonale in plastica riciclata con buco in centro', 5),
 (15, 'STELVIO SET', 'Panchina con tavolo quadrato da esterno in plastica riciclata supportata da un telaio tubolare in acciaio, robusto ed elegante. Per questo si integra perfettamente con l’architettura moderna in paesaggi urbani o commerciali.', 'STELVIO SET (dim: Panchina: 150 x 10 x 4.7 cm Tavolo: 150 x 10 x 4.7 cm Altezza della seduta: 45 cm Altezza del tavolo: 75 cm) della categoria Arredi Plastica Riciclata è fatto di  Acciaio, Plastica Riciclata, perfetto per qualsiasi ambito e luogo. 			', ' Panchina: 150 x 10 x 4.7 cm Tavolo: 150 x 10 x 4.7 cm Altezza della seduta: 45 cm Altezza del tavolo: 75 cm', '', '/images/products/5feb9be03fb8d.jpg', 'set tavolo e panche in plastica riciclata marrone unite da acciaio ', 5),
@@ -147,49 +138,48 @@ INSERT INTO `PRODUCTS` (`_ID`, `_NAME`, `_DESCRIPTION`, `_METADESCRIPTION`, `_DI
 (41, 'LUXI', '\"Luxi\" è uno dei due villaggi di gioco dove i le case gioco si uniscono per creare ambienti più grandi. Il villaggio dei giochi consente di dividere i casolari in zone, in modo che molti bambini possano giocare insieme in luoghi diversi intorno ai casolari senza disturbarsi a vicenda. I villaggi dei giochi sono molto pratici, ad esempio, nelle istituzioni, dove le casette devono ospitare un gran numero di bambini. Il villaggio del gioco ospita molte attività diverse, offrendo opportunità di concentrazione e giochi di ruolo, supportando allo stesso tempo lo sviluppo creativo, sociale, motorio e cognitivo dei bambini. ', 'LUXI (dim: 540 x 540 x 166 cm) della categoria Giochi per parchi è fatto di  Acciaio Zincato perfetto per qualsiasi ambito e luogo.\r\n			', '540 x 540 x 166 cm', '1+', '/images/products/5fec4e6b36add.jpeg', 'due casette da gioco per bambini collegate da un tubo color verde dove i bambini possono giocare', 7),
 (42, 'LED SAND 16', 'Sabbiera con 16 sedute da bambini', 'LED SAND 16 (dim: 520 x 520 x 30 cm) della categoria Giochi per bambini è fatto di  Polietilene HDPE, Acciaio Galvanizzato, perfetto per qualsiasi ambito e luogo.', ' 520 x 520 x 30 cm', '1+', '/images/products/5fec4f21c5c4d.jpg', 'Sabbiera per bambini quadrata, colorata con 16 postazioni', 7);
 
-INSERT INTO `MATERIALS` (`_ID`, `_NAME`, `_DESCRIPTION`) VALUES
-(1, 'Plastica riciclata', 'Materiale di origine organico a elevato peso molecolare, che determinano in modo essenziale il quadro specifico delle caratteristiche dei materiali stessi.'),
-(2, 'Acciaio Zincato', 'Questo metallo si unisce alle capacità di resistenza del ferro, la resistenza alla corrosione dello zinco; la resistenza alla corrosione sarà tanto maggiore quanto lo spessore della zincatura'),
-(3, 'Ghisa', 'lega ferrosa costituita principalmente da ferro e carbonio con tenore di carbonio relativamente alto, ottenuta per riduzione o trattamento a caldo dei minerali di ferro.'),
-(4, 'Calcestruzzo', 'Il calcestruzzo è un materiale da costruzione, conglomerato artificiale costituito da una miscela di legante, acqua e aggregati fini e grossi '),
-(5, 'Policarbonato', 'Materiale termoplastico molto utilizzato in campo edile e nella realizzazione di vetrate data la sua eccellente resistenza agli urti, la chiarezza ottica e l’ampio range di temperatura d’esercizio.'),
-(6, 'Legno', 'Il legno è il tessuto vegetale che costituisce il fusto delle piante aventi crescita secondaria (albero, arbusto, liana ed alcune erbe).'),
-(7, 'Polietilene MDPE', 'Il polietilene (noto anche come politene) è il più semplice dei polimeri sintetici ed è la più comune fra le materie plastiche'),
-(8, 'Acciaio Galvanizzato', 'innanzitutto il materiale da trattare è adeguatamente preparato . Subito dopo  il materiale è immerso in una soluzione elettrolitica contenente sali di zinco');
+-- --------------------------------------------------------
 
+--
+-- Struttura della tabella `PRODUCT_MATERIAL`
+--
+
+CREATE TABLE `PRODUCT_MATERIAL` (
+  `_MATERIAL_ID` int(11) NOT NULL,
+  `_PRODUCT_ID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dump dei dati per la tabella `PRODUCT_MATERIAL`
+--
 
 INSERT INTO `PRODUCT_MATERIAL` (`_MATERIAL_ID`, `_PRODUCT_ID`) VALUES
 (1, 1),
-(2, 1),
 (1, 2),
+(1, 11),
+(1, 12),
+(1, 13),
+(1, 14),
+(1, 15),
+(1, 16),
+(1, 17),
+(1, 18),
+(1, 36),
+(1, 39),
+(1, 40),
+(1, 41),
+(1, 42),
+(2, 1),
 (2, 2),
-(3, 3),
-(3, 4),
-(3, 5),
 (2, 6),
-(4, 6),
 (2, 7),
 (2, 8),
-(5, 8),
 (2, 9),
-(3, 9),
-(6, 10),
-(1, 11),
-(6, 11),
-(1, 12),
 (2, 12),
-(1, 13),
 (2, 13),
-(5, 13),
-(1, 14),
-(6, 14),
-(1, 15),
 (2, 15),
-(1, 16),
 (2, 16),
-(1, 17),
 (2, 17),
-(1, 18),
 (2, 18),
 (2, 19),
 (2, 20),
@@ -197,39 +187,253 @@ INSERT INTO `PRODUCT_MATERIAL` (`_MATERIAL_ID`, `_PRODUCT_ID`) VALUES
 (2, 22),
 (2, 23),
 (2, 24),
-(7, 25),
 (2, 26),
-(7, 26),
 (2, 27),
 (2, 28),
 (2, 29),
 (2, 30),
 (2, 31),
-(6, 31),
-(8, 32),
 (2, 33),
-(6, 33),
-(6, 34),
 (2, 35),
-(5, 35),
-(1, 36),
 (2, 36),
 (2, 37),
 (2, 38),
-(1, 39),
 (2, 39),
-(1, 40),
 (2, 40),
-(7, 40),
-(1, 41),
 (2, 41),
+(3, 3),
+(3, 4),
+(3, 5),
+(3, 9),
+(4, 6),
+(5, 8),
+(5, 13),
+(5, 35),
 (5, 41),
-(1, 42);
+(6, 10),
+(6, 11),
+(6, 14),
+(6, 31),
+(6, 33),
+(6, 34),
+(7, 25),
+(7, 26),
+(7, 40),
+(8, 32);
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `QUOTES`
+--
+
+CREATE TABLE `QUOTES` (
+  `_ID` int(11) NOT NULL,
+  `_CREATED_AT` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `_TELEPHONE` varchar(20) DEFAULT NULL,
+  `_REASON` text,
+  `_COMPANY` varchar(100) DEFAULT NULL,
+  `_USER` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dump dei dati per la tabella `QUOTES`
+--
+
+INSERT INTO `QUOTES` (`_ID`, `_CREATED_AT`, `_TELEPHONE`, `_REASON`, `_COMPANY`, `_USER`) VALUES
+(1, '2021-01-02 19:50:49', '349867369', 'Creazione del parco giochi vicino a casa mia', 'Company SRL', 2),
+(2, '2021-01-22 22:25:47', '333467921', 'Giardino comune di residenza', NULL, 2),
+(3, '2021-01-24 10:46:34', '3637788918', 'Arredamento urbano comune di lavoro', 'Something SAS', 2),
+(4, '2021-01-24 12:15:14', NULL, NULL, 'Somethingelse SPA', 2);
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `QUOTE_PRODUCT`
+--
+
+CREATE TABLE `QUOTE_PRODUCT` (
+  `_QUANTITY` int(11) DEFAULT '1',
+  `_QUOTE_ID` int(11) NOT NULL,
+  `_PRODUCT_ID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dump dei dati per la tabella `QUOTE_PRODUCT`
+--
 
 INSERT INTO `QUOTE_PRODUCT` (`_QUANTITY`, `_QUOTE_ID`, `_PRODUCT_ID`) VALUES
 (5, 1, 6),
 (1, 1, 13),
 (3, 1, 15),
-(4, 1, 23);
+(4, 1, 23),
+(1, 2, 3),
+(1, 3, 2),
+(1, 4, 12);
 
-COMMIT;
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `USERS`
+--
+
+CREATE TABLE `USERS` (
+  `_ID` int(11) NOT NULL,
+  `_NAME` varchar(50) NOT NULL,
+  `_SURNAME` varchar(100) NOT NULL,
+  `_CITY` varchar(100) NOT NULL,
+  `_ADDRESS` varchar(100) NOT NULL,
+  `_CAP` char(5) NOT NULL,
+  `_ADMIN` bit(1) DEFAULT b'0',
+  `_EMAIL` varchar(100) NOT NULL,
+  `_PASSWORD` varchar(1024) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dump dei dati per la tabella `USERS`
+--
+
+INSERT INTO `USERS` (`_ID`, `_NAME`, `_SURNAME`, `_CITY`, `_ADDRESS`, `_CAP`, `_ADMIN`, `_EMAIL`, `_PASSWORD`) VALUES
+(1, 'Ermenegilda', 'Quondamangelomaria', 'Lunamatrona', 'Via dae scatoe', '10010', b'1', 'admin@admin.admin', 'admin'),
+(2, 'Gianfrappeppino', 'La Frasca', 'Larderello', 'Via dai polemici', '30010', b'0', 'utente@utente.utente', 'utente'),
+(3, 'Alberto', 'Sinigaglia', 'da qualche parte', 'in qualche via', '12312', b'0', 'alberto@alberto.alberto', 'Alberto0');
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `USER_PRODUCT`
+--
+
+CREATE TABLE `USER_PRODUCT` (
+  `_QUANTITY` int(11) DEFAULT '1',
+  `_USER_ID` int(11) NOT NULL,
+  `_PRODUCT_ID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Indici per le tabelle scaricate
+--
+
+--
+-- Indici per le tabelle `CATEGORIES`
+--
+ALTER TABLE `CATEGORIES`
+  ADD PRIMARY KEY (`_ID`);
+
+--
+-- Indici per le tabelle `MATERIALS`
+--
+ALTER TABLE `MATERIALS`
+  ADD PRIMARY KEY (`_ID`);
+
+--
+-- Indici per le tabelle `PRODUCTS`
+--
+ALTER TABLE `PRODUCTS`
+  ADD PRIMARY KEY (`_ID`),
+  ADD KEY `_CATEGORY` (`_CATEGORY`);
+
+--
+-- Indici per le tabelle `PRODUCT_MATERIAL`
+--
+ALTER TABLE `PRODUCT_MATERIAL`
+  ADD PRIMARY KEY (`_MATERIAL_ID`,`_PRODUCT_ID`),
+  ADD KEY `_PRODUCT_ID` (`_PRODUCT_ID`);
+
+--
+-- Indici per le tabelle `QUOTES`
+--
+ALTER TABLE `QUOTES`
+  ADD PRIMARY KEY (`_ID`),
+  ADD KEY `_USER` (`_USER`);
+
+--
+-- Indici per le tabelle `QUOTE_PRODUCT`
+--
+ALTER TABLE `QUOTE_PRODUCT`
+  ADD PRIMARY KEY (`_QUOTE_ID`,`_PRODUCT_ID`),
+  ADD KEY `_PRODUCT_ID` (`_PRODUCT_ID`);
+
+--
+-- Indici per le tabelle `USERS`
+--
+ALTER TABLE `USERS`
+  ADD PRIMARY KEY (`_ID`),
+  ADD UNIQUE KEY `_EMAIL` (`_EMAIL`);
+
+--
+-- Indici per le tabelle `USER_PRODUCT`
+--
+ALTER TABLE `USER_PRODUCT`
+  ADD PRIMARY KEY (`_USER_ID`,`_PRODUCT_ID`),
+  ADD KEY `_PRODUCT_ID` (`_PRODUCT_ID`);
+
+--
+-- AUTO_INCREMENT per le tabelle scaricate
+--
+
+--
+-- AUTO_INCREMENT per la tabella `CATEGORIES`
+--
+ALTER TABLE `CATEGORIES`
+  MODIFY `_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+--
+-- AUTO_INCREMENT per la tabella `MATERIALS`
+--
+ALTER TABLE `MATERIALS`
+  MODIFY `_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+--
+-- AUTO_INCREMENT per la tabella `PRODUCTS`
+--
+ALTER TABLE `PRODUCTS`
+  MODIFY `_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+--
+-- AUTO_INCREMENT per la tabella `QUOTES`
+--
+ALTER TABLE `QUOTES`
+  MODIFY `_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+--
+-- AUTO_INCREMENT per la tabella `USERS`
+--
+ALTER TABLE `USERS`
+  MODIFY `_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+--
+-- Limiti per le tabelle scaricate
+--
+
+--
+-- Limiti per la tabella `PRODUCTS`
+--
+ALTER TABLE `PRODUCTS`
+  ADD CONSTRAINT `PRODUCTS_ibfk_1` FOREIGN KEY (`_CATEGORY`) REFERENCES `CATEGORIES` (`_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Limiti per la tabella `PRODUCT_MATERIAL`
+--
+ALTER TABLE `PRODUCT_MATERIAL`
+  ADD CONSTRAINT `PRODUCT_MATERIAL_ibfk_1` FOREIGN KEY (`_MATERIAL_ID`) REFERENCES `MATERIALS` (`_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `PRODUCT_MATERIAL_ibfk_2` FOREIGN KEY (`_PRODUCT_ID`) REFERENCES `PRODUCTS` (`_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Limiti per la tabella `QUOTES`
+--
+ALTER TABLE `QUOTES`
+  ADD CONSTRAINT `QUOTES_ibfk_1` FOREIGN KEY (`_USER`) REFERENCES `USERS` (`_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Limiti per la tabella `QUOTE_PRODUCT`
+--
+ALTER TABLE `QUOTE_PRODUCT`
+  ADD CONSTRAINT `QUOTE_PRODUCT_ibfk_1` FOREIGN KEY (`_QUOTE_ID`) REFERENCES `QUOTES` (`_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `QUOTE_PRODUCT_ibfk_2` FOREIGN KEY (`_PRODUCT_ID`) REFERENCES `PRODUCTS` (`_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Limiti per la tabella `USER_PRODUCT`
+--
+ALTER TABLE `USER_PRODUCT`
+  ADD CONSTRAINT `USER_PRODUCT_ibfk_1` FOREIGN KEY (`_USER_ID`) REFERENCES `USERS` (`_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `USER_PRODUCT_ibfk_2` FOREIGN KEY (`_PRODUCT_ID`) REFERENCES `PRODUCTS` (`_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="it">
+    <head>
+         <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="robots" content="NOINDEX,NOFOLLOW" />
+        <meta name="author" content="co-authored by Alberto Sinigaglia, Sara Privitera" />
+
+        <link rel="shortcut icon" href="../../images/logo2.png" TYPE="image/png" />
+        <link rel="stylesheet" href="../style/style.css" />
+        <link rel="stylesheet" type="text/css" media="print" href="../style/print.css" />
+
+        <title>Gestione delle richieste di preventivo del sito</title>
+    </head>
+    
+    <body>
+        <a href="#main-content" class="only-screen-reader" title="Vai al contenuto della pagina">Vai al contenuto</a>
+        <header role="banner" id="page-menu">
+            <nav>
+                <img src="../../images/logo2.png" alt="Logo dell'azienda con funicolare solida con persona a bordo" title="logo dell'azienda" />
+                <button title="Espandi/chiudi menu" aria-label="Espandi/chiudi il menu" class="hidden-l show-m" aria-hidden="true" tabindex="-1">
+                    <svg><path d="M4,10h24c1.104,0,2-0.896,2-2s-0.896-2-2-2H4C2.896,6,2,6.896,2,8S2.896,10,4,10z M28,14H4c-1.104,0-2,0.896-2,2  s0.896,2,2,2h24c1.104,0,2-0.896,2-2S29.104,14,28,14z M28,22H4c-1.104,0-2,0.896-2,2s0.896,2,2,2h24c1.104,0,2-0.896,2-2  S29.104,22,28,22z" /></svg>
+                    <!-- <span aria-hidden="true">&times;</span>-->
+                </button>
+                <ul aria-label="menu">
+                    <li>
+                        <a href="../home.php" title="Vai alla homepage" xml:lang="en" lang="en">
+                            Home
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../administrator/create.php" title="Aggiungi un amministratore al sito">
+                            Aggiungi amministratore
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../category/index.php" title="Vai alla pagina per la gestione delle categorie">
+                            Categorie
+                        </a>
+                    </li>
+                    <li >
+                        <a href="../category/index.php" title="Vai alla pagina per la gestione dei prodotti">
+                            Prodotti
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../material/index.php" title="Vai alla pagina di gestione dei materiali dei prodotti">
+                            Materiali
+                        </a>
+                    </li>
+                    <li aria-current="page">
+                        <p>
+                            Richieste di preventivo
+                        </p>
+                    </li>
+                    <li>
+                        <a href="../logout.php" title="effettua il logout" lang="en" xml:lang="en">
+                            Logout
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <main id="main-content">
+            <h1 class="pb-1 mb-0">Richieste di preventivo</h1>
+            <p class="only-printer pagination-index"><page-number-of/></p>
+            <p class="pb-0 mb-0 breadcrumb-intro"> Ti trovi in: </p>
+            <ul class="breadcrumb mt-0 pt-1" aria-label="Breadcrumb">
+                <li>
+                    <a href="../home.php" title="torna alla homepage" xml:lang="en" lang="en">
+                        Home
+                    </a>
+                    <p class="separator">
+                        >>
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        Richieste di preventivo (pagina <page/>)
+                    </p>
+                </li>
+            </ul>
+            <div class="p-0 m-0 message mt-3 mb-2">
+                <message/>
+            </div>
+            <ul class="main-list  p0 m0 dont-break-children">
+                <quotes/>
+            </ul>
+            <nav class="pagination" aria-label="Paginazione">
+                <pagination/>
+            </nav>
+        </main>
+        <a href="#main-content" class="only-screen-reader" title="Torna all'inizio del contenuto della pagina">Torna all'inizio del contenuto della pagina</a>
+        <a href="#page-menu" class="only-screen-reader" title="Torna al menu della pagina">Torna al menu della pagina</a>
+        <script src="../script/menu.js"></script>
+    </body>
+</html>

@@ -1,0 +1,143 @@
+header {
+    -webkit-box-pack: space-evenly;
+    -ms-flex-pack: space-evenly;
+    justify-content: space-evenly;
+}
+
+.desktop {
+    display: none;
+}
+
+.buttons-control * {
+    width: 100%;
+}
+
+.buttons-control a {
+    position: relative;
+}
+
+.buttons-control button[type='submit'] {
+    margin-bottom: 0.5em;
+    float: none;
+}
+
+.menu>summary {
+    color: #A70500;
+    text-align: center;
+    font-size: 1.5em;
+    padding: 0.4em 0 0.4em 0;
+}
+
+.menu ul {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+}
+
+.menu li a {
+    width: 100%;
+}
+
+.menu li {
+    border-top: 1px solid #A70500;
+}
+
+#logo {
+    width: 20%;
+}
+
+h1 {
+    font-size: 2em;
+}
+
+h2 {
+    font-size: 1.5em;
+}
+
+h3 {
+    font-size: 1.3em;
+}
+
+#shortcuts {
+    margin: 0.2em 0 0.2em 0;
+    min-width: 100%;
+    text-align: center;
+}
+
+#shortcuts>a {
+    margin-left: 1.4em;
+}
+
+.menu li {
+    float: none;
+    width: 100%;
+    text-align: center;
+}
+
+.menu li a,
+.current {
+    padding: 1em 0;
+}
+
+#staff-fav>div {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+}
+
+#staff-fav img,
+#staff-fav p {
+    width: 100%;
+}
+
+#products-list li,
+#products-list img {
+    width: 100%;
+}
+
+#categories-list a {
+    display: block;
+}
+
+#categories-list li {
+    border-bottom: none;
+}
+
+.product-counter {
+    margin-left: 1em;
+    float: none;
+}
+
+.form-quotation fieldset {
+    width: 80%;
+}
+
+.quote-product {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    height: auto;
+}
+
+.quote-product-img {
+    width: 60%;
+    padding: 0 20%;
+    height: auto;
+    margin: auto;
+}
+
+.quote-control {
+    -ms-flex-item-align: center;
+    -ms-grid-row-align: center;
+    align-self: center;
+}
+
+.remove-product-button {
+    padding: 1.5em 0.5em;
+}
