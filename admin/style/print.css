@@ -77,7 +77,7 @@ h2.print-space-top-0{
 }
 
 .useful-links li a:after{
-    content: " (http://solid-funicular.com/" attr(href) ") ";
+    content: " (http://solid-funicular.com/admin/" attr(href) ") ";
     color: black;
     display: inline-block;
 }
