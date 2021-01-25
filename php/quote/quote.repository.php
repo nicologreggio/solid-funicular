@@ -28,16 +28,12 @@ class QuoteRepository
             VALUES (?, ?, ?)
         ");
 
-        $data = [];
+        $res = true;
 
         foreach($cart as $productId => $quantity)
         {
-            $data[] = $quoteId;
-            $data[] = $productId;
-            $data[] = $quantity;
+            $res &= $stm->execute([$quoteId, $productId, $quantity ?? 1]);
         }
-
-        $res = $stm->execute($data);
 
         return $res;
     }
