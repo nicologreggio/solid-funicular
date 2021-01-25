@@ -75,3 +75,7 @@ h2.print-space-top-0{
 .quote-products-list li{
     background-color:white;
 }
+
+.useful-links:after{
+    content: " (http://solid-funicular.com/" attr(href) ") ";
+}
