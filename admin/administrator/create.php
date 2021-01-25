@@ -26,6 +26,7 @@ if(request()->method() == 'POST' ){
     );
     // registrazione andata a buon fine
     if($register === true){
+        message("Amministratore aggiunto correttamente");
         redirectIfLogged();
     }
     // altrimenti ripristino i valori inseriti
