@@ -47,7 +47,7 @@ class ProductRepository
             _MAIN_IMAGE, _MAIN_IMAGE_DESCRIPTION, NAME_CATEGORY as _CATEGORY, _CATEGORY_ID
             FROM (`PRODUCTS` inner join (select _ID as _CATEGORY_ID, _NAME as NAME_CATEGORY from CATEGORIES {$filterCategory}) c 
                 on c._CATEGORY_ID = _CATEGORY)
-            inner join (select * from PRODUCT_MATERIAL join MATERIALS on PRODUCT_MATERIAL._MATERIAL_ID = MATERIALS._ID {$filterMaterials} group by PRODUCT_MATERIAL._PRODUCT_ID) pm 
+            inner join (select PRODUCT_MATERIAL._PRODUCT_ID from PRODUCT_MATERIAL join MATERIALS on PRODUCT_MATERIAL._MATERIAL_ID = MATERIALS._ID {$filterMaterials} group by PRODUCT_MATERIAL._PRODUCT_ID) pm 
                 on pm._PRODUCT_ID = PRODUCTS._ID
             WHERE `PRODUCTS`._NAME like :name OR `PRODUCTS`._DESCRIPTION like :name LIMIT :lim OFFSET :of
             "
@@ -90,7 +90,7 @@ class ProductRepository
             "SELECT count(`PRODUCTS`._ID) as total
             FROM (`PRODUCTS` inner join (select _ID, _NAME as NAME_CATEGORY from CATEGORIES {$filterCategory}) c 
                 on c._ID = _CATEGORY)
-            inner join (select * from PRODUCT_MATERIAL join MATERIALS on PRODUCT_MATERIAL._MATERIAL_ID = MATERIALS._ID {$filterMaterials} group by PRODUCT_MATERIAL._PRODUCT_ID) pm 
+            inner join (select PRODUCT_MATERIAL._PRODUCT_ID from PRODUCT_MATERIAL join MATERIALS on PRODUCT_MATERIAL._MATERIAL_ID = MATERIALS._ID {$filterMaterials} group by PRODUCT_MATERIAL._PRODUCT_ID) pm 
                 on pm._PRODUCT_ID = PRODUCTS._ID
             WHERE `PRODUCTS`._NAME like :name
             "

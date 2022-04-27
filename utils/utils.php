@@ -36,7 +36,7 @@ function fillHeader($page, $currentCat=-1)
     $idx=0;
 
     $header=file_get_contents('./utils/header.html');
-    $page=str_replace('<header-navigation />', $header, $page);
+    $page=str_replace('<header-navigation />', "<div class='wrapper'>$header</div>", $page);
     if(isset($_SESSION['user'])){
         $page=str_replace('<account-icon />', 
                             "<a id='logout-icon' class='icon' href='./logout.php' title='Scollegati dal tuo account'>{$_SESSION['username']}</a>", 

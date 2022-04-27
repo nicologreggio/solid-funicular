@@ -127,7 +127,7 @@ $_SESSION['search'] = [
     'category' => (int) $_GET['category'],
     'materials' => $_GET['materials'],
     'page' => ($_GET['page']) ? (int) ($_GET['page']) : 1
-];+
+];
 
 $page = file_get_contents("./search/search.html");
 $page = fillHeader($page);
