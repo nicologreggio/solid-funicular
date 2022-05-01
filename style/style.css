@@ -55,10 +55,8 @@ abbr {
 
 /* ========== HEADINGS ========== */
 
-h1,
-h2,
-h3 {
-    color: white;
+h1,h2,h3{
+    color: #A70500;
 }
 
 h1 {
@@ -180,6 +178,18 @@ header {
     margin: auto;
 }
 
+#titles {
+    text-align: center;
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+}
+
+#titles > h1, 
+#titles > h2{
+    color: white;
+}
+
 #shortcuts {
     margin-right: 0.6em;
 }
@@ -188,9 +198,18 @@ header {
     display: inline-block;
     margin-left: 1em;
     color:white;
+    border: 1px solid white;
+    padding: 0.3em;
+    text-decoration: none;
+    border-radius: 1em;
+    -webkit-transition: 0.3s ease-out;
+    transition: 0.3s;
+    -o-transition: 0.3s;
 }
 #shortcuts > a:hover {
-    color:#dedede
+    color:#dedede;
+    -webkit-box-shadow: 2px 2px 5px 2px #dedede;
+    box-shadow: 2px 2px 5px 2px #dedede;
 }
 
 .icon::before {
@@ -225,17 +244,11 @@ header {
     background: url("../images/icons/shopping_cart.svg") no-repeat center;
 }
 
-#titles {
-    text-align: center;
-    -webkit-box-flex: 1;
-    -ms-flex: 1;
-    flex: 1;
-}
-
 .menu {
     width: 100%;
-    border: 3px solid #A70500;
-    border-radius: 0.5em;
+    /* border: 3px solid #A70500; */
+    border: 1px solid white;
+    border-radius: 1em;
 }
 
 .menu ul {
@@ -258,7 +271,7 @@ header {
 .menu .current {
     display: inline-block;
     text-align: center;
-    padding: 1em 0.3em;
+    padding: 1em 0.8em;
     background-color: #A70500;
     color:black;
     border-right: 1px solid white;
