@@ -5,15 +5,15 @@ function base(){
 }
 function redirectIfNotLogged() : void{
     if(!auth()->isLogged()){
-        echo "Ti stiamo reindirizzando al login.";
         header("Location: ".base()."/admin/login.php");
+        echo "Ti stiamo reindirizzando al login.";
         die();
     }
 }
 function redirectIfLogged() : void{
     if(auth()->isLogged()){
-        echo "Ti stiamo reindirizzando alla home.";
         header("Location: ".base()."/admin/home.php");
+        echo "Ti stiamo reindirizzando alla home.";
         die();
     }
 }
