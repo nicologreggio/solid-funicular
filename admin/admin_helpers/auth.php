@@ -20,7 +20,9 @@ class Admin{
     }
     public function login($email, $password){
         if($err = validate([
-            'email' => ['email', 'required']
+            'email' => $email
+        ], [
+        'email' => ['email', 'required']
         ], [
             'email.required' => "E' obbligatorio inserire una <span xml:lang=\"en\" lang=\"en\">email</span>"
         ]) !== true){ 
