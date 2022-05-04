@@ -296,7 +296,9 @@ CREATE TABLE `USERS` (
 INSERT INTO `USERS` (`_ID`, `_NAME`, `_SURNAME`, `_CITY`, `_ADDRESS`, `_CAP`, `_ADMIN`, `_EMAIL`, `_PASSWORD`) VALUES
 (1, 'Ermenegilda', 'Quondamangelomaria', 'Lunamatrona', 'Via dae scatoe', '10010', b'1', 'admin@admin.admin', 'admin'),
 (2, 'Gianfrappeppino', 'La Frasca', 'Larderello', 'Via dai polemici', '30010', b'0', 'utente@utente.utente', 'utente'),
-(3, 'Alberto', 'Sinigaglia', 'da qualche parte', 'in qualche via', '12312', b'0', 'alberto@alberto.alberto', 'Alberto0');
+(3, 'Alberto', 'Sinigaglia', 'da qualche parte', 'in qualche via', '12312', b'0', 'alberto@alberto.alberto', 'Alberto0'),
+(4, 'Super', 'Admin', 'Padua', 'Via Trieste', '35131', b'1', 'admin', 'admin'),
+(5, 'Piergiuseppe', 'Amadori', 'Gardaland', 'Via lattea', '39593', b'0', 'user', 'user');
 
 -- --------------------------------------------------------
 
