@@ -19,7 +19,7 @@ class Admin{
         $this->user = null;
     }
     public function login($email, $password){
-        if($err = validate([
+        /*if($err = validate([
             'email' => $email
         ], [
         'email' => ['email', 'required']
@@ -27,7 +27,7 @@ class Admin{
             'email.required' => "E' obbligatorio inserire una <span xml:lang=\"en\" lang=\"en\">email</span>"
         ]) !== true){ 
             return $err;
-        }
+        }*/
         $stm = DBC::getInstance()->prepare("
             SELECT * FROM USERS WHERE _ADMIN = 1 AND _EMAIL = ? AND _PASSWORD = ?
         ");
