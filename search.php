@@ -9,7 +9,7 @@ require_once(__DIR__."/php/product/product.service.php");
 function fillSearchbar($page)
 {
     $searchbarStr = "
-        <label for='searchbar'>Termini di ricerca:</label>
+        <label for='searchbar'>Termini di ricerca</label>
         <input 
             id='searchbar'
             type='text'
@@ -29,7 +29,7 @@ function fillSearchbar($page)
 function fillCategories($page)
 {
     $categoriesStr = "
-        <label for='categories'>Categoria:</label>
+        <label for='categories'>Categoria</label>
         <select id='categories' name='category' aria-label='Inserisci la categoria per cui ricercare'>
             <option value=''>Tutte le categorie</option>
     ";

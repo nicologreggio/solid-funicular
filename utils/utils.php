@@ -116,7 +116,7 @@ function fillPagination($page, $count, $currentPage)
     {
         $paginationStr .= "
             <fieldset id='pagination'>
-            <legend>Pagine:&nbsp;</legend>
+            <legend>Pagine&nbsp;</legend>
         ";
 
         for($i = 1; $i <= $numberPages; ++$i)
