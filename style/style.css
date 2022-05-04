@@ -49,6 +49,8 @@ abbr {
 
 .button:active{
     transform: scale(.95);
+    -webkit-transform: scale(.95);
+    -ms-transform: scale(.95);
 }
 
 .button:hover {
@@ -218,6 +220,8 @@ header {
 
 #shortcuts > a:active {
     transform: scale(1.1);
+    -webkit-transform: scale(1.1);
+    -ms-transform: scale(1.1);
 }
 
 .icon::before {
@@ -707,6 +711,8 @@ footer>p {
 
 #pagination .current:hover{
     transform: none;
+    -webkit-transform: none;
+    -ms-transform: none;
 }
 
 
